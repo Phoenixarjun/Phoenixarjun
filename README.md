@@ -4,7 +4,7 @@
 </p>
 
 <!-- Typing Animation -->
-<h1 align="center">Hi 👋, I'm Naresh</h1>
+<h1 align="center">Hi 👋, I'm Naresh B A</h1>
 <h3 align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=0AFFEF&center=true&vCenter=true&random=false&width=500&lines=ML+Engineer;Full+Stack+Developer;AI+Engineer;Prompt+Engineer;Java+Developer" alt="Typing Animation" />
 </h3>
