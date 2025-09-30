@@ -1,26 +1,90 @@
-<h1 align="center">Hi 👋, I'm Naresh</h1>
-<h3 align="center">A passionate full stack & AI developer from India</h3>
-
-- 🔭 I’m currently working on [Fitsync](https://github.com/Phoenixarjun/FitSync)
-
-- 🌱 I’m currently learning **Machine Learning, Generative AI, TensorFlow, PyTorch, Scikit-learn, OpenCV, FastAPI, Flask, Hugging Face Transformers, Streamlit, LangChain, LlamaIndex, Prompt Engineering, Vector Databases, Pinecone, Weaviate, ChromaDB, and Full Stack Integration.**
-
-- 👨‍💻 All of my projects are available at [https://naresh-portfolio-007.netlify.app/](https://naresh-portfolio-007.netlify.app/)
-
-- 💬 Ask me about **React.js, Firebase, Python, FastAPI, TensorFlow, LangChain, LLM app architecture, prompt engineering, full stack AI integration, and building real-world ML & GenAI products.**
-
-- 📫 How to reach me **phoenixarjun007@gmai.com**
-
-- 📄 Know about my experiences [https://drive.google.com/file/d/12aqOnkAm54BDwq2AWPVosPiCfzxKgZPm/view?usp=sharing](https://drive.google.com/file/d/12aqOnkAm54BDwq2AWPVosPiCfzxKgZPm/view?usp=sharing)
-
-- ⚡ Fun fact **I debug with music, build with curiosity, and believe the best interfaces tell stories.**
-
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://linkedin.com/in/naresh b a" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="naresh b a" height="30" width="40" /></a>
-<a href="https://kaggle.com/nareshba007" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/kaggle.svg" alt="nareshba007" height="30" width="40" /></a>
-<a href="https://www.leetcode.com/naresh-007" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="naresh-007" height="30" width="40" /></a>
+<!-- Banner -->
+<p align="center">
+  <img width="1584" height="396" alt="Grey Minimalist Corporate Personal Profile LinkedIn Banner" src="https://github.com/user-attachments/assets/91a0b9de-e3d4-43fe-be5c-2e9c9beabf35" />
 </p>
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://opencv.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="pandas" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://scikit-learn.org/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit_learn" width="40" height="40"/> </a> <a href="https://seaborn.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="seaborn" width="40" height="40"/> </a> <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> <a href="https://www.sqlite.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" alt="sqlite" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a> <a href="https://www.tensorflow.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/> </a> <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> <a href="https://vuejs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original-wordmark.svg" alt="vuejs" width="40" height="40"/> </a> </p>
+<!-- Typing Animation -->
+<h1 align="center">Hi 👋, I'm Naresh</h1>
+<h3 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=0AFFEF&center=true&vCenter=true&random=false&width=500&lines=ML+Engineer;Full+Stack+Developer;AI+Engineer;Prompt+Engineer;Java+Developer" alt="Typing Animation" />
+</h3>
+
+<!-- Motivational Quote -->
+<p align="center"><em>"Learn a tech with consistency. Your effort never goes waste – even a drop accumulates into an ocean one day."</em></p>
+
+---
+
+## 🚀 About Me  
+- 🔭 Currently building **[PromptNova](https://prompt-nova.vercel.app/)** & **[FitSync](https://github.com/Phoenixarjun/FitSync)**  
+- 🧩 Exploring **[NextStep-AI](https://github.com/Phoenixarjun/NextStep-AI)** – AI-powered career assistant  
+- ✍️ Blogging at [Medium](https://medium.com/@phoenixarjun007) & [Dev.to](https://dev.to/naresh_007)  
+- 🎯 Competing on **Kaggle** [here](https://www.kaggle.com/nareshba007)  
+- 👨‍💻 Portfolio: [naresh-portfolio-007.netlify.app](https://naresh-portfolio-007.netlify.app/)  
+
+---
+
+## 🛠️ Tech Stack  
+
+### 🌐 Full Stack  
+![React](https://img.shields.io/badge/React-0AFFEF?style=for-the-badge&logo=react&logoColor=black)  ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js)  ![Node.js](https://img.shields.io/badge/Node.js-3C873A?style=for-the-badge&logo=node.js&logoColor=white)  ![Express](https://img.shields.io/badge/Express-303030?style=for-the-badge&logo=express)  ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwind-css)  ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase)  
+
+### 💻 Languages
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)  ![C++](https://img.shields.io/badge/C++-004482?style=for-the-badge&logo=cplusplus&logoColor=white)  ![Java](https://img.shields.io/badge/Java-FF0000?style=for-the-badge&logo=java&logoColor=white)  ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
+
+### 🗄️ Databases
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)  ![MySQL](https://img.shields.io/badge/MySQL-00618A?style=for-the-badge&logo=mysql&logoColor=white)  ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)  
+
+### 🤖 Machine Learning / AI
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)  ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)  ![Scikit-learn](https://img.shields.io/badge/ScikitLearn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)  ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)  ![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)  
+
+### 🔮 GenAI / LLMs
+![LangChain](https://img.shields.io/badge/LangChain-121212?style=for-the-badge&logo=chainlink&logoColor=0AFFEF)  ![LangGraph](https://img.shields.io/badge/LangGraph-444444?style=for-the-badge&logo=graph&logoColor=0AFFEF)  ![LlamaIndex](https://img.shields.io/badge/LlamaIndex-FFB86C?style=for-the-badge)  ![HuggingFace](https://img.shields.io/badge/HuggingFace-FCC72D?style=for-the-badge&logo=huggingface)  ![VectorDBs](https://img.shields.io/badge/VectorDBs-6633FF?style=for-the-badge&logo=databricks)  ![n8n](https://img.shields.io/badge/n8n-FF6B6B?style=for-the-badge&logo=n8n&logoColor=white)  
+
+### 📊 Data Science
+![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)  ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi)  ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas)  ![Seaborn](https://img.shields.io/badge/Seaborn-5C7B8B?style=for-the-badge)  
+
+---
+
+## 📌 Featured Projects  
+🔹 [PromptNova](https://prompt-nova.vercel.app/) – AI Prompting Platform  
+🔹 [FitSync](https://github.com/Phoenixarjun/FitSync) – Fitness & Wellness Tracker  
+🔹 [NextStep-AI](https://github.com/Phoenixarjun/NextStep-AI) – Career Growth Assistant  
+🔹 [ReArticle](https://github.com/Phoenixarjun/ReArticle) – LaTeX-free Research Paper Builder  
+🔹 [AI Sign Language Translator](#) – Bridging Communication Barriers  
+🔹 [Portfolio](https://naresh-portfolio-007.netlify.app/) – Personal Portfolio  
+
+---
+
+## ✍️ Latest Blogs  
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
+
+---
+
+## 📊 GitHub Stats  
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Phoenixarjun&show_icons=true&theme=radical" height="180"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Phoenixarjun&theme=radical" height="180"/>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Phoenixarjun&layout=compact&theme=radical" />
+</p>
+
+---
+
+## 🌍 Connect with Me  
+<p align="center">
+  <a href="https://linkedin.com/in/naresh-b-a"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin" /></a>
+  <a href="https://twitter.com/phoenixarjun007"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter" /></a>
+  <a href="https://www.kaggle.com/nareshba007"><img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=kaggle" /></a>
+  <a href="https://leetcode.com/u/Naresh-007/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode" /></a>
+  <a href="https://naresh-portfolio-007.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-FF007F?style=for-the-badge&logo=vercel" /></a>
+</p>
+
+---
+
+## 🐍 Contribution Graph  
+<p align="center">
+  <img src="https://github.com/Platane/snk/raw/output/github-contribution-grid-snake.svg" />
+</p>
