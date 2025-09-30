@@ -19,4 +19,4 @@ jobs:
       - name: Pull in latest blog posts
         uses: gautamkrishnar/blog-post-workflow@master
         with:
-          feed_list: "https://medium.com/feed/@phoenixarjun007,https://dev.to/feed/naresh_007"
+          feed_list: "https://medium.com/feed/@phoenixarjun007"
