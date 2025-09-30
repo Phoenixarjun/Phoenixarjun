@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
-- [AI That Thinks and Reasons: A Deep Dive into Neuro-Symbolic AI](https://dev.to/naresh_007/ai-that-thinks-and-reasons-a-deep-dive-into-neuro-symbolic-ai-37dh)
 - [AI That Thinks and Reasons: A Deep Dive into Neuro-Symbolic AI](https://medium.com/@phoenixarjun007/ai-that-thinks-and-reasons-a-deep-dive-into-neuro-symbolic-ai-3d1c3fdb331d?source=rss-bf9add216b39------2)
-- [Noise to Nice: How Stable Diffusion Turns Chaos into Art](https://dev.to/naresh_007/noise-to-nice-how-stable-diffusion-turns-chaos-into-art-1pkm)
 - [Noise to Nice: How Stable Diffusion Turns Chaos into Art](https://medium.com/@phoenixarjun007/noise-to-nice-how-stable-diffusion-turns-chaos-into-art-a9cecf2caef3?source=rss-bf9add216b39------2)
 - [LangChain, LangGraph, and LangSmith: Untangling the Confusion](https://medium.com/@phoenixarjun007/langchain-langgraph-and-langsmith-untangling-the-confusion-ed268d890e17?source=rss-bf9add216b39------2)
+- [Beyond Innovation: Building AI We Can Trust](https://medium.com/@phoenixarjun007/beyond-innovation-building-ai-we-can-trust-2993076c8cf7?source=rss-bf9add216b39------2)
+- [Not Fast, But Consistent!!!](https://medium.com/@phoenixarjun007/not-fast-but-consistent-91788d81b841?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
