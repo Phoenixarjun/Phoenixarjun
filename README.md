@@ -52,7 +52,7 @@
 🔹 [FitSync](https://github.com/Phoenixarjun/FitSync) – Fitness & Wellness Tracker  
 🔹 [NextStep-AI](https://github.com/Phoenixarjun/NextStep-AI) – Career Growth Assistant  
 🔹 [ReArticle](https://github.com/Phoenixarjun/ReArticle) – LaTeX-free Research Paper Builder  
-🔹 [AI Sign Language Translator](#) – Bridging Communication Barriers  
+🔹 [SignComm](https://github.com/Phoenixarjun/SignComm) – Bridging Communication Barriers  
 🔹 [Portfolio](https://naresh-portfolio-007.netlify.app/) – Personal Portfolio  
 
 ---
