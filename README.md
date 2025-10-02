@@ -15,7 +15,7 @@
 ---
 
 ## 🚀 About Me  
-- 🔭 Currently building **[PromptNova](https://prompt-nova.vercel.app/)** & **[FitSync](https://github.com/Phoenixarjun/FitSync](https://fit-sync-sepia.vercel.app/))**  
+- 🔭 Currently building **[PromptNova](https://prompt-nova.vercel.app/)** & **[FitSync](https://fit-sync-sepia.vercel.app/)**  
 - 🧩 Exploring **[NextStep-AI](https://github.com/Phoenixarjun/NextStep-AI)** – AI-powered career assistant  
 - ✍️ Blogging at [Medium](https://medium.com/@phoenixarjun007) & [Dev.to](https://dev.to/naresh_007)  
 - 🎯 Competing on **Kaggle** [here](https://www.kaggle.com/nareshba007)  
