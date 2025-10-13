@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Heart vs. Brain: The Real Struggle Behind Every Big Decision](https://medium.com/@phoenixarjun007/heart-vs-brain-the-real-struggle-behind-every-big-decision-2881953228cc?source=rss-bf9add216b39------2)
 - [AlphaApollo: The Self-Evolving AI Dream Team](https://medium.com/@phoenixarjun007/alphaapollo-the-self-evolving-ai-dream-team-4d81c856589c?source=rss-bf9add216b39------2)
 - [Vibe Coding Is Easy? How AI Lets Anyone Code Without the Headaches](https://medium.com/@phoenixarjun007/vibe-coding-is-easy-how-ai-lets-anyone-code-without-the-headaches-4017f6e0258c?source=rss-bf9add216b39------2)
 - [AI That Thinks and Reasons: A Deep Dive into Neuro-Symbolic AI](https://medium.com/@phoenixarjun007/ai-that-thinks-and-reasons-a-deep-dive-into-neuro-symbolic-ai-3d1c3fdb331d?source=rss-bf9add216b39------2)
 - [Noise to Nice: How Stable Diffusion Turns Chaos into Art](https://medium.com/@phoenixarjun007/noise-to-nice-how-stable-diffusion-turns-chaos-into-art-a9cecf2caef3?source=rss-bf9add216b39------2)
-- [LangChain, LangGraph, and LangSmith: Untangling the Confusion](https://medium.com/@phoenixarjun007/langchain-langgraph-and-langsmith-untangling-the-confusion-ed268d890e17?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
