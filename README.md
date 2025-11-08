@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Finding Peace in Acceptance: When I Stopped Fighting What I Couldn’t Change](https://medium.com/@phoenixarjun007/finding-peace-in-acceptance-when-i-stopped-fighting-what-i-couldnt-change-14e6941b00f4?source=rss-bf9add216b39------2)
 - [AI That Shows Its Work: The Transparent Revolution of PALs](https://medium.com/@phoenixarjun007/ai-that-shows-its-work-the-transparent-revolution-of-pals-a134785560a8?source=rss-bf9add216b39------2)
 - [We Were Wild Once Before Life Distilled Us Down](https://medium.com/@phoenixarjun007/we-were-wild-once-before-life-distilled-us-down-0198da7c67ec?source=rss-bf9add216b39------2)
 - [My Honest Week with Comet Browser: What I Loved, What I Didn’t](https://medium.com/@phoenixarjun007/my-honest-week-with-comet-browser-what-i-loved-what-i-didnt-b63487122481?source=rss-bf9add216b39------2)
 - [AI Isn’t Weak-It’s Underused: How PromptNova Unlocks Its True Potential](https://medium.com/@phoenixarjun007/ai-isnt-weak-it-s-underused-how-promptnova-unlocks-its-true-potential-da01ddb30e52?source=rss-bf9add216b39------2)
-- [Heart vs. Brain: The Real Struggle Behind Every Big Decision](https://medium.com/@phoenixarjun007/heart-vs-brain-the-real-struggle-behind-every-big-decision-2881953228cc?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
