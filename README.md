@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Why Do We Feel Guilty for Smiling? &lpar;And Who Taught Us That?&rpar;](https://medium.com/@phoenixarjun007/why-do-we-feel-guilty-for-smiling-and-who-taught-us-that-4007bccd63f9?source=rss-bf9add216b39------2)
 - [Antigravity’s Accidental Apocalypse: Why AI Coding Agents Need Real Guardrails](https://medium.com/@phoenixarjun007/antigravitys-accidental-apocalypse-why-ai-coding-agents-need-real-guardrails-41c8c7729c7f?source=rss-bf9add216b39------2)
 - [Beyond Vanilla RAG: The 7 Modern RAG Architectures Every AI Engineer Must Know](https://medium.com/@phoenixarjun007/beyond-vanilla-rag-the-7-modern-rag-architectures-every-ai-engineer-must-know-af18679f5108?source=rss-bf9add216b39------2)
 - [Four Months That Changed Me: How Prodapt University Rewired My Mindset, My Skills, and My…](https://medium.com/@phoenixarjun007/four-months-that-changed-me-how-prodapt-university-rewired-my-mindset-my-skills-and-my-ac689e8cad4a?source=rss-bf9add216b39------2)
 - [RAG vs Fine-Tuning vs Prompt Engineering: The Ultimate Guide to Choosing the Right AI Strategy](https://medium.com/@phoenixarjun007/rag-vs-fine-tuning-vs-prompt-engineering-the-ultimate-guide-to-choosing-the-right-ai-strategy-853087401769?source=rss-bf9add216b39------2)
-- [When Life Doesn’t Go Your Way: A Lesson in Seeing the Other Side](https://medium.com/@phoenixarjun007/when-life-doesnt-go-your-way-a-lesson-in-seeing-the-other-side-b5bf7bbe9bbc?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
