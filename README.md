@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Shallow Agents vs Deep Agents: How Deep Research Actually Works Inside GPT-Like Systems](https://medium.com/@phoenixarjun007/shallow-agents-vs-deep-agents-how-deep-research-actually-works-inside-gpt-like-systems-4490538f3f56?source=rss-bf9add216b39------2)
 - [The Day I Realized Effort Isn’t Measured by Time on Stage](https://medium.com/@phoenixarjun007/the-day-i-realized-effort-isnt-measured-by-time-on-stage-710bb3891ca1?source=rss-bf9add216b39------2)
 - [Why Do We Feel Guilty for Smiling? &lpar;And Who Taught Us That?&rpar;](https://medium.com/@phoenixarjun007/why-do-we-feel-guilty-for-smiling-and-who-taught-us-that-4007bccd63f9?source=rss-bf9add216b39------2)
 - [Antigravity’s Accidental Apocalypse: Why AI Coding Agents Need Real Guardrails](https://medium.com/@phoenixarjun007/antigravitys-accidental-apocalypse-why-ai-coding-agents-need-real-guardrails-41c8c7729c7f?source=rss-bf9add216b39------2)
 - [Beyond Vanilla RAG: The 7 Modern RAG Architectures Every AI Engineer Must Know](https://medium.com/@phoenixarjun007/beyond-vanilla-rag-the-7-modern-rag-architectures-every-ai-engineer-must-know-af18679f5108?source=rss-bf9add216b39------2)
-- [Four Months That Changed Me: How Prodapt University Rewired My Mindset, My Skills, and My…](https://medium.com/@phoenixarjun007/four-months-that-changed-me-how-prodapt-university-rewired-my-mindset-my-skills-and-my-ac689e8cad4a?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
