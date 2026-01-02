@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [AgentOrchestra Explained: A Mental Model for Hierarchical Multi-Agent Systems](https://medium.com/@phoenixarjun007/agentorchestra-explained-a-mental-model-for-hierarchical-multi-agent-systems-c8985d083115?source=rss-bf9add216b39------2)
 - [Apache Kafka Explained: A Clear Mental Model for Event-Driven Systems](https://medium.com/@phoenixarjun007/apache-kafka-explained-a-clear-mental-model-for-event-driven-systems-3d54b0f1fb85?source=rss-bf9add216b39------2)
 - [Shallow Agents vs Deep Agents: How Deep Research Actually Works Inside GPT-Like Systems](https://medium.com/@phoenixarjun007/shallow-agents-vs-deep-agents-how-deep-research-actually-works-inside-gpt-like-systems-4490538f3f56?source=rss-bf9add216b39------2)
 - [The Day I Realized Effort Isn’t Measured by Time on Stage](https://medium.com/@phoenixarjun007/the-day-i-realized-effort-isnt-measured-by-time-on-stage-710bb3891ca1?source=rss-bf9add216b39------2)
 - [Why Do We Feel Guilty for Smiling? &lpar;And Who Taught Us That?&rpar;](https://medium.com/@phoenixarjun007/why-do-we-feel-guilty-for-smiling-and-who-taught-us-that-4007bccd63f9?source=rss-bf9add216b39------2)
-- [Antigravity’s Accidental Apocalypse: Why AI Coding Agents Need Real Guardrails](https://medium.com/@phoenixarjun007/antigravitys-accidental-apocalypse-why-ai-coding-agents-need-real-guardrails-41c8c7729c7f?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
