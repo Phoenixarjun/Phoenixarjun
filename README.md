@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Kafka Guarantees Delivery, Not Uniqueness: How to Build Idempotent Systems](https://medium.com/@phoenixarjun007/kafka-guarantees-delivery-not-uniqueness-how-to-build-idempotent-systems-1c79040dd6ea?source=rss-bf9add216b39------2)
 - [When Smarter Agents Perform Worse: Depth vs Breadth in AI Systems](https://medium.com/@phoenixarjun007/when-smarter-agents-perform-worse-depth-vs-breadth-in-ai-systems-69be8ed33a9d?source=rss-bf9add216b39------2)
 - [AgentOrchestra Explained: A Mental Model for Hierarchical Multi-Agent Systems](https://medium.com/@phoenixarjun007/agentorchestra-explained-a-mental-model-for-hierarchical-multi-agent-systems-c8985d083115?source=rss-bf9add216b39------2)
 - [Apache Kafka Explained: A Clear Mental Model for Event-Driven Systems](https://medium.com/@phoenixarjun007/apache-kafka-explained-a-clear-mental-model-for-event-driven-systems-3d54b0f1fb85?source=rss-bf9add216b39------2)
 - [Shallow Agents vs Deep Agents: How Deep Research Actually Works Inside GPT-Like Systems](https://medium.com/@phoenixarjun007/shallow-agents-vs-deep-agents-how-deep-research-actually-works-inside-gpt-like-systems-4490538f3f56?source=rss-bf9add216b39------2)
-- [The Day I Realized Effort Isn’t Measured by Time on Stage](https://medium.com/@phoenixarjun007/the-day-i-realized-effort-isnt-measured-by-time-on-stage-710bb3891ca1?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
