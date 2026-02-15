@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [AI Writes My Code Now. But What Is It Doing to My Brain?](https://medium.com/@phoenixarjun007/ai-writes-my-code-now-but-what-is-it-doing-to-my-brain-81bc7e6a5b16?source=rss-bf9add216b39------2)
 - [Kafka Guarantees Delivery, Not Uniqueness: How to Build Idempotent Systems](https://medium.com/@phoenixarjun007/kafka-guarantees-delivery-not-uniqueness-how-to-build-idempotent-systems-1c79040dd6ea?source=rss-bf9add216b39------2)
 - [When Smarter Agents Perform Worse: Depth vs Breadth in AI Systems](https://medium.com/@phoenixarjun007/when-smarter-agents-perform-worse-depth-vs-breadth-in-ai-systems-69be8ed33a9d?source=rss-bf9add216b39------2)
 - [AgentOrchestra Explained: A Mental Model for Hierarchical Multi-Agent Systems](https://medium.com/@phoenixarjun007/agentorchestra-explained-a-mental-model-for-hierarchical-multi-agent-systems-c8985d083115?source=rss-bf9add216b39------2)
 - [Apache Kafka Explained: A Clear Mental Model for Event-Driven Systems](https://medium.com/@phoenixarjun007/apache-kafka-explained-a-clear-mental-model-for-event-driven-systems-3d54b0f1fb85?source=rss-bf9add216b39------2)
-- [Shallow Agents vs Deep Agents: How Deep Research Actually Works Inside GPT-Like Systems](https://medium.com/@phoenixarjun007/shallow-agents-vs-deep-agents-how-deep-research-actually-works-inside-gpt-like-systems-4490538f3f56?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
