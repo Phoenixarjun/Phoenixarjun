@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Why Most RAG Systems Hallucinate — And How My Hybrid Pipeline Fixes It](https://medium.com/@phoenixarjun007/why-most-rag-systems-hallucinate-and-how-my-hybrid-pipeline-fixes-it-a58fb3daf25d?source=rss-bf9add216b39------2)
 - [Two Stories That Quietly Changed How I See Self-Control](https://medium.com/@phoenixarjun007/two-stories-that-quietly-changed-how-i-see-self-control-f157df9dab44?source=rss-bf9add216b39------2)
 - [The Hidden Problem With AI Agents: They Don’t Know When They’re Wrong](https://medium.com/@phoenixarjun007/the-hidden-problem-with-ai-agents-they-dont-know-when-they-re-wrong-bb28efcce817?source=rss-bf9add216b39------2)
 - [AI Writes My Code Now. But What Is It Doing to My Brain?](https://medium.com/@phoenixarjun007/ai-writes-my-code-now-but-what-is-it-doing-to-my-brain-81bc7e6a5b16?source=rss-bf9add216b39------2)
 - [Kafka Guarantees Delivery, Not Uniqueness: How to Build Idempotent Systems](https://medium.com/@phoenixarjun007/kafka-guarantees-delivery-not-uniqueness-how-to-build-idempotent-systems-1c79040dd6ea?source=rss-bf9add216b39------2)
-- [When Smarter Agents Perform Worse: Depth vs Breadth in AI Systems](https://medium.com/@phoenixarjun007/when-smarter-agents-perform-worse-depth-vs-breadth-in-ai-systems-69be8ed33a9d?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
