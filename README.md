@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [What Is Vibe Engineering? How AI Turns Ideas Into Working Prototypes Instantly](https://medium.com/@phoenixarjun007/what-is-vibe-engineering-how-ai-turns-ideas-into-working-prototypes-instantly-86f679c946f5?source=rss-bf9add216b39------2)
 - [Beyond Prompt Engineering: The Layers of Modern AI Engineering](https://medium.com/@phoenixarjun007/beyond-prompt-engineering-the-layers-of-modern-ai-engineering-0f93eb71b6c6?source=rss-bf9add216b39------2)
 - [The Two People Living Inside Me](https://medium.com/@phoenixarjun007/the-two-people-living-inside-me-42b25e70be1e?source=rss-bf9add216b39------2)
 - [Why Most RAG Systems Hallucinate — And How My Hybrid Pipeline Fixes It](https://medium.com/@phoenixarjun007/why-most-rag-systems-hallucinate-and-how-my-hybrid-pipeline-fixes-it-a58fb3daf25d?source=rss-bf9add216b39------2)
 - [Two Stories That Quietly Changed How I See Self-Control](https://medium.com/@phoenixarjun007/two-stories-that-quietly-changed-how-i-see-self-control-f157df9dab44?source=rss-bf9add216b39------2)
-- [The Hidden Problem With AI Agents: They Don’t Know When They’re Wrong](https://medium.com/@phoenixarjun007/the-hidden-problem-with-ai-agents-they-dont-know-when-they-re-wrong-bb28efcce817?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
