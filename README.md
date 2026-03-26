@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [The Most Dangerous Advice I Learned: Don’t Give Advice](https://medium.com/@phoenixarjun007/the-most-dangerous-advice-i-learned-dont-give-advice-5b9bd4b090de?source=rss-bf9add216b39------2)
 - [The Real Skill Behind Prompt Engineering: Turning Thoughts Into Structured Instructions](https://medium.com/@phoenixarjun007/the-real-skill-behind-prompt-engineering-turning-thoughts-into-structured-instructions-650f8d5fde79?source=rss-bf9add216b39------2)
 - [What Is Vibe Engineering? How AI Turns Ideas Into Working Prototypes Instantly](https://medium.com/@phoenixarjun007/what-is-vibe-engineering-how-ai-turns-ideas-into-working-prototypes-instantly-86f679c946f5?source=rss-bf9add216b39------2)
 - [Beyond Prompt Engineering: The Layers of Modern AI Engineering](https://medium.com/@phoenixarjun007/beyond-prompt-engineering-the-layers-of-modern-ai-engineering-0f93eb71b6c6?source=rss-bf9add216b39------2)
 - [The Two People Living Inside Me](https://medium.com/@phoenixarjun007/the-two-people-living-inside-me-42b25e70be1e?source=rss-bf9add216b39------2)
-- [Why Most RAG Systems Hallucinate — And How My Hybrid Pipeline Fixes It](https://medium.com/@phoenixarjun007/why-most-rag-systems-hallucinate-and-how-my-hybrid-pipeline-fixes-it-a58fb3daf25d?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
