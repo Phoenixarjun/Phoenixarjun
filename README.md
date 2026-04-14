@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Why Your System Breaks at Scale: Lessons from Processing Millions of Events](https://medium.com/@phoenixarjun007/why-your-system-breaks-at-scale-lessons-from-processing-millions-of-events-1c3e56fe2cea?source=rss-bf9add216b39------2)
 - [Why Your AI “Works”… But Still Fails: The Missing Layer of Verification Engineering](https://medium.com/@phoenixarjun007/why-your-ai-works-but-still-fails-the-missing-layer-of-verification-engineering-bd13f17685af?source=rss-bf9add216b39------2)
 - [Beyond Intent: How Agentic Engineering Turns AI Into a Development Team](https://medium.com/@phoenixarjun007/beyond-intent-how-agentic-engineering-turns-ai-into-a-development-team-3de8488329a8?source=rss-bf9add216b39------2)
 - [Why Your AI Solves the Wrong Problem &lpar;And How Intent Engineering Fixes It&rpar;](https://medium.com/@phoenixarjun007/why-your-ai-solves-the-wrong-problem-and-how-intent-engineering-fixes-it-255ec711e2b2?source=rss-bf9add216b39------2)
 - [Why Your AI Breaks &lpar;And How Context Engineering Fixes It&rpar;](https://medium.com/@phoenixarjun007/why-your-ai-breaks-and-how-context-engineering-fixes-it-30e3ac4181c0?source=rss-bf9add216b39------2)
-- [The Most Dangerous Advice I Learned: Don’t Give Advice](https://medium.com/@phoenixarjun007/the-most-dangerous-advice-i-learned-dont-give-advice-5b9bd4b090de?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
