@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Why Prompt Injection Is an Architectural Problem — Not Just a Security Bug](https://medium.com/@phoenixarjun007/why-prompt-injection-is-an-architectural-problem-not-just-a-security-bug-6c9430b051d8?source=rss-bf9add216b39------2)
 - [What Python’s GIL Change Actually Means in Real Systems](https://medium.com/@phoenixarjun007/what-pythons-gil-change-actually-means-in-real-systems-49bccb68eff5?source=rss-bf9add216b39------2)
 - [I Blamed the Limitation Until I Realized the Problem Was Me…](https://medium.com/@phoenixarjun007/i-blamed-the-limitation-until-i-realized-the-problem-was-me-211d8706d9e4?source=rss-bf9add216b39------2)
 - [Why Your System Breaks at Scale: Lessons from Processing Millions of Events](https://medium.com/@phoenixarjun007/why-your-system-breaks-at-scale-lessons-from-processing-millions-of-events-1c3e56fe2cea?source=rss-bf9add216b39------2)
 - [Why Your AI “Works”… But Still Fails: The Missing Layer of Verification Engineering](https://medium.com/@phoenixarjun007/why-your-ai-works-but-still-fails-the-missing-layer-of-verification-engineering-bd13f17685af?source=rss-bf9add216b39------2)
-- [Beyond Intent: How Agentic Engineering Turns AI Into a Development Team](https://medium.com/@phoenixarjun007/beyond-intent-how-agentic-engineering-turns-ai-into-a-development-team-3de8488329a8?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
