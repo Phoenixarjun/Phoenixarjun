@@ -59,11 +59,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Retrieval-Augmented Agents vs RAG Pipelines: Why They’re Not the Same Thing](https://medium.com/@phoenixarjun007/retrieval-augmented-agents-vs-rag-pipelines-why-theyre-not-the-same-thing-db3c388ab5d9?source=rss-bf9add216b39------2)
 - [Historical TSDS Migration At Scale: Lessons Learned From Real Production Data](https://medium.com/@phoenixarjun007/historical-tsds-migration-at-scale-lessons-learned-from-real-production-data-32b4219f7c5b?source=rss-bf9add216b39------2)
 - [LLM Wiki Solved Memory for AI. I Wanted Memory for Humans.](https://medium.com/@phoenixarjun007/llm-wiki-solved-memory-for-ai-i-wanted-memory-for-humans-688d10e102ff?source=rss-bf9add216b39------2)
 - [What Actually Happens Inside Elasticsearch TSDS During Live Ingestion](https://medium.com/@phoenixarjun007/what-actually-happens-inside-elasticsearch-tsds-during-live-ingestion-8cbbd0b57628?source=rss-bf9add216b39------2)
 - [What Is Elasticsearch TSDS And Why We Migrated From Standard Indices](https://medium.com/@phoenixarjun007/what-is-elasticsearch-tsds-and-why-we-migrated-from-standard-indices-f001226c3d4c?source=rss-bf9add216b39------2)
-- [Making Your AI Agent Meaningfully Harder to Break — Without Killing Latency](https://medium.com/@phoenixarjun007/making-your-ai-agent-meaningfully-harder-to-break-without-killing-latency-fdfaa485673e?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
