@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Loop Engineering Beyond the Hype: An Engineer’s Perspective](https://medium.com/@phoenixarjun007/loop-engineering-beyond-the-hype-an-engineers-perspective-b3423292b237?source=rss-bf9add216b39------2)
 - [What Actually Happens Inside a Kafka Consumer Group Rebalance &lpar;And Why It Causes Lag Spikes&rpar;](https://medium.com/@phoenixarjun007/what-actually-happens-inside-a-kafka-consumer-group-rebalance-and-why-it-causes-lag-spikes-998cee8dd283?source=rss-bf9add216b39------2)
 - [The Courage to Try When the Odds Are Against You](https://medium.com/@phoenixarjun007/the-courage-to-try-when-the-odds-are-against-you-155ec1078dca?source=rss-bf9add216b39------2)
 - [Retrieval-Augmented Agents vs RAG Pipelines: Why They’re Not the Same Thing](https://medium.com/@phoenixarjun007/retrieval-augmented-agents-vs-rag-pipelines-why-theyre-not-the-same-thing-db3c388ab5d9?source=rss-bf9add216b39------2)
 - [Historical TSDS Migration At Scale: Lessons Learned From Real Production Data](https://medium.com/@phoenixarjun007/historical-tsds-migration-at-scale-lessons-learned-from-real-production-data-32b4219f7c5b?source=rss-bf9add216b39------2)
-- [LLM Wiki Solved Memory for AI. I Wanted Memory for Humans.](https://medium.com/@phoenixarjun007/llm-wiki-solved-memory-for-ai-i-wanted-memory-for-humans-688d10e102ff?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
