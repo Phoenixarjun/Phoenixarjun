@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Your LLM Isn’t Slow Because of the Model. It’s Slow Because of Physics.](https://medium.com/@phoenixarjun007/your-llm-isnt-slow-because-of-the-model-it-s-slow-because-of-physics-c4fd8ad5c1f3?source=rss-bf9add216b39------2)
 - [The Six Minutes That Decide a Kubernetes Node Failure](https://medium.com/@phoenixarjun007/the-six-minutes-that-decide-a-kubernetes-node-failure-68f132628704?source=rss-bf9add216b39------2)
 - [The Question That Saved Me From a Decision I Didn’t Need](https://medium.com/@phoenixarjun007/the-question-that-saved-me-from-a-decision-i-didnt-need-64a10013d1ad?source=rss-bf9add216b39------2)
 - [Beyond Prompt Filters: How to Build AI Systems That Resist Prompt Injection](https://medium.com/@phoenixarjun007/beyond-prompt-filters-how-to-build-ai-systems-that-resist-prompt-injection-255ed5e62096?source=rss-bf9add216b39------2)
 - [Loop Engineering Beyond the Hype: An Engineer’s Perspective](https://medium.com/@phoenixarjun007/loop-engineering-beyond-the-hype-an-engineers-perspective-b3423292b237?source=rss-bf9add216b39------2)
-- [What Actually Happens Inside a Kafka Consumer Group Rebalance &lpar;And Why It Causes Lag Spikes&rpar;](https://medium.com/@phoenixarjun007/what-actually-happens-inside-a-kafka-consumer-group-rebalance-and-why-it-causes-lag-spikes-998cee8dd283?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
