@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [What Actually Happens Inside Redis During a Snapshot &lpar;And Why It Matters in Production&rpar;](https://medium.com/@phoenixarjun007/what-actually-happens-inside-redis-during-a-snapshot-and-why-it-matters-in-production-2b0cb2c3978b?source=rss-bf9add216b39------2)
 - [I Thought AI Was Making Me Smarter. Then I Noticed Something Strange](https://medium.com/@phoenixarjun007/i-thought-ai-was-making-me-smarter-then-i-noticed-something-strange-5a4841951c50?source=rss-bf9add216b39------2)
 - [I Built a Harness Around an AI Agent. Here’s What Actually Changed.](https://medium.com/@phoenixarjun007/i-built-a-harness-around-an-ai-agent-heres-what-actually-changed-36cbfef6c34d?source=rss-bf9add216b39------2)
 - [Your LLM Isn’t Slow Because of the Model. It’s Slow Because of Physics.](https://medium.com/@phoenixarjun007/your-llm-isnt-slow-because-of-the-model-it-s-slow-because-of-physics-c4fd8ad5c1f3?source=rss-bf9add216b39------2)
 - [The Six Minutes That Decide a Kubernetes Node Failure](https://medium.com/@phoenixarjun007/the-six-minutes-that-decide-a-kubernetes-node-failure-68f132628704?source=rss-bf9add216b39------2)
-- [The Question That Saved Me From a Decision I Didn’t Need](https://medium.com/@phoenixarjun007/the-question-that-saved-me-from-a-decision-i-didnt-need-64a10013d1ad?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
