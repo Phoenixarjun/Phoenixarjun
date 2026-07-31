@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Graph Engineering for AI Coding Agents: Beyond Prompt Loops](https://medium.com/@phoenixarjun007/graph-engineering-for-ai-coding-agents-beyond-prompt-loops-dd74bc1c4608?source=rss-bf9add216b39------2)
 - [I Switched from Claude Code to Codex. Here’s What Surprised Me.](https://medium.com/@phoenixarjun007/i-switched-from-claude-code-to-codex-heres-what-surprised-me-facaab06a2e6?source=rss-bf9add216b39------2)
 - [What Actually Happens Inside Redis During a Snapshot &lpar;And Why It Matters in Production&rpar;](https://medium.com/@phoenixarjun007/what-actually-happens-inside-redis-during-a-snapshot-and-why-it-matters-in-production-2b0cb2c3978b?source=rss-bf9add216b39------2)
 - [I Thought AI Was Making Me Smarter. Then I Noticed Something Strange](https://medium.com/@phoenixarjun007/i-thought-ai-was-making-me-smarter-then-i-noticed-something-strange-5a4841951c50?source=rss-bf9add216b39------2)
 - [I Built a Harness Around an AI Agent. Here’s What Actually Changed.](https://medium.com/@phoenixarjun007/i-built-a-harness-around-an-ai-agent-heres-what-actually-changed-36cbfef6c34d?source=rss-bf9add216b39------2)
-- [Your LLM Isn’t Slow Because of the Model. It’s Slow Because of Physics.](https://medium.com/@phoenixarjun007/your-llm-isnt-slow-because-of-the-model-it-s-slow-because-of-physics-c4fd8ad5c1f3?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
