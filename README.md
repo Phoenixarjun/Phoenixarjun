@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [I Thought Idempotency Was Enough: Redesigning a Payment Service for Real-World Failures](https://medium.com/@phoenixarjun007/i-thought-idempotency-was-enough-redesigning-a-payment-service-for-real-world-failures-74ea446cbd5d?source=rss-bf9add216b39------2)
 - [After Two Months of Codex, Here’s What I Realized About AI Coding](https://medium.com/@phoenixarjun007/after-two-months-of-codex-heres-what-i-realized-about-ai-coding-184a8e3a1ff3?source=rss-bf9add216b39------2)
 - [Why Instagram Reels Feels Different From YouTube Shorts: An Engineering Look at Recommendation…](https://medium.com/@phoenixarjun007/why-instagram-reels-feels-different-from-youtube-shorts-an-engineering-look-at-recommendation-89a4bba8e9f3?source=rss-bf9add216b39------2)
 - [What Happens When AI Agents Become the Primary Users of Software?](https://medium.com/@phoenixarjun007/what-happens-when-ai-agents-become-the-primary-users-of-software-cdf336c9dd07?source=rss-bf9add216b39------2)
 - [Inside a Production LLM Memory System](https://medium.com/@phoenixarjun007/inside-a-production-llm-memory-system-ca1167f4dfdc?source=rss-bf9add216b39------2)
-- [Your AI Coding Assistant Doesn’t Need Better Prompts. It Needs Better Foundations](https://medium.com/@phoenixarjun007/your-ai-coding-assistant-doesnt-need-better-prompts-it-needs-better-foundations-4d9dafd67c9a?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
