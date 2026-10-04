@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Designing a Production RAG Retrieval System for 500 Million Vectors](https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83?source=rss-bf9add216b39------2)
 - [Scaling Vector Search to 500 Million Vectors: The Architecture Behind It](https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97?source=rss-bf9add216b39------2)
 - [I Thought Idempotency Was Enough: Redesigning a Payment Service for Real-World Failures](https://medium.com/@phoenixarjun007/i-thought-idempotency-was-enough-redesigning-a-payment-service-for-real-world-failures-74ea446cbd5d?source=rss-bf9add216b39------2)
 - [After Two Months of Codex, Here’s What I Realized About AI Coding](https://medium.com/@phoenixarjun007/after-two-months-of-codex-heres-what-i-realized-about-ai-coding-184a8e3a1ff3?source=rss-bf9add216b39------2)
 - [Why Instagram Reels Feels Different From YouTube Shorts: An Engineering Look at Recommendation…](https://medium.com/@phoenixarjun007/why-instagram-reels-feels-different-from-youtube-shorts-an-engineering-look-at-recommendation-89a4bba8e9f3?source=rss-bf9add216b39------2)
-- [What Happens When AI Agents Become the Primary Users of Software?](https://medium.com/@phoenixarjun007/what-happens-when-ai-agents-become-the-primary-users-of-software-cdf336c9dd07?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
