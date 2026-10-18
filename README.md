@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade?source=rss-bf9add216b39------2)
+- [From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e?source=rss-bf9add216b39------2)
 - [Designing a Production RAG Retrieval System for 500 Million Vectors](https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83?source=rss-bf9add216b39------2)
 - [Scaling Vector Search to 500 Million Vectors: The Architecture Behind It](https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97?source=rss-bf9add216b39------2)
 - [I Thought Idempotency Was Enough: Redesigning a Payment Service for Real-World Failures](https://medium.com/@phoenixarjun007/i-thought-idempotency-was-enough-redesigning-a-payment-service-for-real-world-failures-74ea446cbd5d?source=rss-bf9add216b39------2)
-- [After Two Months of Codex, Here’s What I Realized About AI Coding](https://medium.com/@phoenixarjun007/after-two-months-of-codex-heres-what-i-realized-about-ai-coding-184a8e3a1ff3?source=rss-bf9add216b39------2)
-- [Why Instagram Reels Feels Different From YouTube Shorts: An Engineering Look at Recommendation…](https://medium.com/@phoenixarjun007/why-instagram-reels-feels-different-from-youtube-shorts-an-engineering-look-at-recommendation-89a4bba8e9f3?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
