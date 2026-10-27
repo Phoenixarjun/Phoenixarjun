@@ -58,11 +58,11 @@
 
 ## ✍️ Latest Blogs  
 <!-- BLOG-POST-LIST:START -->
+- [Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3?source=rss-bf9add216b39------2)
 - [Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade?source=rss-bf9add216b39------2)
 - [From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e?source=rss-bf9add216b39------2)
 - [Designing a Production RAG Retrieval System for 500 Million Vectors](https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83?source=rss-bf9add216b39------2)
 - [Scaling Vector Search to 500 Million Vectors: The Architecture Behind It](https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97?source=rss-bf9add216b39------2)
-- [I Thought Idempotency Was Enough: Redesigning a Payment Service for Real-World Failures](https://medium.com/@phoenixarjun007/i-thought-idempotency-was-enough-redesigning-a-payment-service-for-real-world-failures-74ea446cbd5d?source=rss-bf9add216b39------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
