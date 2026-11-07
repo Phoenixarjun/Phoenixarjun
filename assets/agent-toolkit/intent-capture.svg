@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Intent Capture — target icon"><title>Intent Capture — target icon</title><defs>
+    <linearGradient id="top" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#8EADB6" stop-opacity=".75"/><stop offset=".46" stop-color="#1B2328"/><stop offset="1" stop-color="#0C0F10"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B6FF3B" stop-opacity=".82"/><stop offset="1" stop-color="#42535C"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#B6FF3B" stop-opacity=".27"/><stop offset=".46" stop-color="#B6FF3B" stop-opacity=".07"/><stop offset="1" stop-color="#B6FF3B" stop-opacity="0"/></radialGradient>
+    <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="micro-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    </defs><rect x="14" y="14" width="100" height="100" rx="21" fill="#1B2328" fill-opacity=".82" stroke="#42535C" stroke-width="2"/>
+    <path d="M 14 38 V 34 Q 14 14 34 14 H 57" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <path d="M 71 114 H 94 Q 114 114 114 94 V 72" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <circle cx="64" cy="64" r="58" fill="url(#halo)"/><g fill="none" stroke="#B6FF3B" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="64" cy="64" r="24" stroke-width="4"/>
+      <circle cx="64" cy="64" r="9" stroke-width="3"/>
+      <path d="M 64 28 V 46 M 64 82 V 100 M 28 64 H 46 M 82 64 H 100" stroke-width="4"/>
+      <path d="M 61 64 L 64 59 L 67 64 L 64 69 Z" fill="#B6FF3B" stroke="none"/>
+      </g></svg>

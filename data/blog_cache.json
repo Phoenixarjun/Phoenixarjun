@@ -4,32 +4,42 @@
     {
       "index": "01",
       "title": "Think Beyond LLMs: Choosing the Right Model for the Right Job",
-      "topic": "Llm · Artificial-intelligence",
-      "url": "https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3"
+      "topic": "Applied AI · Model Selection",
+      "url": "https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3",
+      "read_time": "~9 min read",
+      "platform": "Medium"
     },
     {
       "index": "02",
       "title": "Git at Agent Scale: What Anthropic’s Scion Really Teaches Us",
-      "topic": "System-design-interview · Git",
-      "url": "https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade"
+      "topic": "Systems · Agent Scale",
+      "url": "https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade",
+      "read_time": "~9 min read",
+      "platform": "Medium"
     },
     {
       "index": "03",
       "title": "From Prompts to Engineering Playbooks: Why I Built Agent Toolkit",
-      "topic": "Software-engineering · Prompt-engineering",
-      "url": "https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e"
+      "topic": "Agent Engineering · Tooling",
+      "url": "https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e",
+      "read_time": "~3 min read",
+      "platform": "Medium"
     },
     {
       "index": "04",
       "title": "Designing a Production RAG Retrieval System for 500 Million Vectors",
       "topic": "Distributed-systems · Artificial-intelligence",
-      "url": "https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83"
+      "url": "https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83",
+      "read_time": "~10 min read",
+      "platform": "Medium"
     },
     {
       "index": "05",
       "title": "Scaling Vector Search to 500 Million Vectors: The Architecture Behind It",
       "topic": "Software-development · System-design-interview",
-      "url": "https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97"
+      "url": "https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97",
+      "read_time": "~11 min read",
+      "platform": "Medium"
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "title": "Thanks for stopping by.",
+  "closing": "// Session Closed //",
+  "principles": [
+    "Built with curiosity",
+    "Driven by systems",
+    "Always learning",
+    "Always shipping"
+  ],
+  "command": "logout"
+}

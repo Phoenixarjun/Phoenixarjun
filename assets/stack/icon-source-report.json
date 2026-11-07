@@ -1,0 +1,173 @@
+{
+  "generated": [
+    {
+      "name": "Python",
+      "source": "devicon:python-original",
+      "file": "assets/stack/vendor/python.svg"
+    },
+    {
+      "name": "Java",
+      "source": "devicon:java-original",
+      "file": "assets/stack/vendor/java.svg"
+    },
+    {
+      "name": "TypeScript",
+      "source": "devicon:typescript-original",
+      "file": "assets/stack/vendor/typescript.svg"
+    },
+    {
+      "name": "JavaScript",
+      "source": "devicon:javascript-original",
+      "file": "assets/stack/vendor/javascript.svg"
+    },
+    {
+      "name": "SQL",
+      "source": "lucide:database",
+      "file": "assets/stack/vendor/sql.svg"
+    },
+    {
+      "name": "Go",
+      "source": "devicon:go-original",
+      "file": "assets/stack/vendor/go.svg"
+    },
+    {
+      "name": "LangGraph",
+      "source": "simple-icons:langgraph",
+      "file": "assets/stack/vendor/langgraph.svg"
+    },
+    {
+      "name": "LangChain",
+      "source": "simple-icons:langchain",
+      "file": "assets/stack/vendor/langchain.svg"
+    },
+    {
+      "name": "CrewAI",
+      "source": "simple-icons:crewai",
+      "file": "assets/stack/vendor/crewai.svg"
+    },
+    {
+      "name": "n8n",
+      "source": "simple-icons:n8n",
+      "file": "assets/stack/vendor/n8n.svg"
+    },
+    {
+      "name": "Hugging Face",
+      "source": "simple-icons:huggingface",
+      "file": "assets/stack/vendor/hugging-face.svg"
+    },
+    {
+      "name": "FastAPI",
+      "source": "devicon:fastapi-original",
+      "file": "assets/stack/vendor/fastapi.svg"
+    },
+    {
+      "name": "Spring Boot",
+      "source": "devicon:spring-original",
+      "file": "assets/stack/vendor/spring-boot.svg"
+    },
+    {
+      "name": "Kafka",
+      "source": "devicon:apachekafka-original",
+      "file": "assets/stack/vendor/kafka.svg"
+    },
+    {
+      "name": "Redis",
+      "source": "devicon:redis-original",
+      "file": "assets/stack/vendor/redis.svg"
+    },
+    {
+      "name": "PostgreSQL",
+      "source": "devicon:postgresql-original",
+      "file": "assets/stack/vendor/postgresql.svg"
+    },
+    {
+      "name": "MongoDB",
+      "source": "devicon:mongodb-original",
+      "file": "assets/stack/vendor/mongodb.svg"
+    },
+    {
+      "name": "Elasticsearch",
+      "source": "devicon:elasticsearch-original",
+      "file": "assets/stack/vendor/elasticsearch.svg"
+    },
+    {
+      "name": "OpenSearch",
+      "source": "simple-icons:opensearch",
+      "file": "assets/stack/vendor/opensearch.svg"
+    },
+    {
+      "name": "Docker",
+      "source": "devicon:docker-original",
+      "file": "assets/stack/vendor/docker.svg"
+    },
+    {
+      "name": "Kubernetes",
+      "source": "devicon:kubernetes-original",
+      "file": "assets/stack/vendor/kubernetes.svg"
+    },
+    {
+      "name": "Git",
+      "source": "devicon:git-original",
+      "file": "assets/stack/vendor/git.svg"
+    },
+    {
+      "name": "Linux",
+      "source": "devicon:linux-original",
+      "file": "assets/stack/vendor/linux.svg"
+    },
+    {
+      "name": "GCP",
+      "source": "devicon:googlecloud-original",
+      "file": "assets/stack/vendor/gcp.svg"
+    },
+    {
+      "name": "React",
+      "source": "devicon:react-original",
+      "file": "assets/stack/vendor/react.svg"
+    },
+    {
+      "name": "Next.js",
+      "source": "devicon:nextjs-original",
+      "file": "assets/stack/vendor/next-js.svg"
+    },
+    {
+      "name": "Tailwind CSS",
+      "source": "devicon:tailwindcss-original",
+      "file": "assets/stack/vendor/tailwind-css.svg"
+    },
+    {
+      "name": "Streamlit",
+      "source": "devicon:streamlit-original",
+      "file": "assets/stack/vendor/streamlit.svg"
+    },
+    {
+      "name": "Prometheus",
+      "source": "devicon:prometheus-original",
+      "file": "assets/stack/vendor/prometheus.svg"
+    },
+    {
+      "name": "Grafana",
+      "source": "devicon:grafana-original",
+      "file": "assets/stack/vendor/grafana.svg"
+    },
+    {
+      "name": "OpenTelemetry",
+      "source": "devicon:opentelemetry-original",
+      "file": "assets/stack/vendor/opentelemetry.svg"
+    },
+    {
+      "name": "VictoriaMetrics",
+      "source": "simple-icons:victoriametrics",
+      "file": "assets/stack/vendor/victoriametrics.svg"
+    }
+  ],
+  "missing": [
+    {
+      "name": "AutoGen",
+      "candidates": [
+        "simple-icons:autogen"
+      ]
+    }
+  ],
+  "notes": []
+}

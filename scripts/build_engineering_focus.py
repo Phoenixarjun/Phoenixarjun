@@ -316,10 +316,11 @@ def make_separator(is_light: bool = False) -> str:
     h = 40
     p = [svg_open(1160, h, 'Terminal section divider: engineering-focus', C)]
     p += [
-        text(10, 26, 'naresh@github:~$', 15, C['headingAccent'], 700, family='mono'),
-        text(160, 26, 'inspect --engineering-focus', 15, C['headingText'], 500, family='mono'),
-        path('M 430 22 H 1132', C['practiceRule'], width=1.2, extra='opacity=".75"'),
-        f'<circle cx="1140" cy="22" r="3" fill="{C["headingAccent"]}"/>',
+        f'<rect x="10" y="14" width="3.2" height="15" rx="1.5" fill="{C["headingAccent"]}"/>',
+        text(22, 26, 'naresh@github:~$', 15, C['headingAccent'], 700, family='mono'),
+        text(172, 26, 'inspect --engineering-focus', 15, C['headingText'], 500, family='mono'),
+        path('M 442 22 H 1130', C['practiceRule'], width=1.2, extra='opacity=".75"'),
+        f'<path d="M 1132 17 L 1138 22 L 1132 27" fill="none" stroke="{C["headingAccent"]}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
         '</svg>',
     ]
     return '\n'.join(p)

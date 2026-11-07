@@ -114,6 +114,121 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         self.assertNotIn('Vigilant', readme)
         self.assertNotIn('AIVON', readme)
 
+    def test_featured_projects_assets(self):
+        """Featured projects must have valid 1160px SVGs, verified copy, and standalone visuals."""
+        projects_data = json.loads((ROOT / 'content' / 'projects.json').read_text(encoding='utf-8'))
+        flagship = projects_data['flagship']
+        self.assertEqual(len(flagship), 3)
+
+        expected_slugs = ['architecture-as-memory', 'promptnova', 'credflow']
+        self.assertEqual([p['slug'] for p in flagship], expected_slugs)
+
+        for p in flagship:
+            slug = p['slug']
+            dark_file = ROOT / 'assets' / 'projects' / f'{slug}.svg'
+            light_file = ROOT / 'assets' / 'projects' / f'{slug}-light.svg'
+            self.assertTrue(dark_file.is_file(), f'Missing {dark_file}')
+            self.assertTrue(light_file.is_file(), f'Missing {light_file}')
+
+            for f in [dark_file, light_file]:
+                root = ET.parse(f).getroot()
+                self.assertEqual(root.attrib.get('width'), '1160')
+                self.assertEqual(root.attrib.get('height'), '216')
+                content = f.read_text(encoding='utf-8')
+                self.assertIn('View on GitHub ↗', content)
+                self.assertIn(p['name'], content)
+
+        # Standalone visuals
+        for vis_name in ['aam-topology', 'promptnova-workflow', 'credflow-collections']:
+            vis_dark = ROOT / 'assets' / 'projects' / 'visuals' / f'{vis_name}.svg'
+            vis_light = ROOT / 'assets' / 'projects' / 'visuals' / f'{vis_name}-light.svg'
+            self.assertTrue(vis_dark.is_file(), f'Missing {vis_dark}')
+            self.assertTrue(vis_light.is_file(), f'Missing {vis_light}')
+            ET.parse(vis_dark)
+            ET.parse(vis_light)
+
+        # Header check
+        header_dark = ROOT / 'assets' / 'headers' / 'ls-flagship-projects.svg'
+        self.assertTrue(header_dark.is_file())
+        header_text = header_dark.read_text(encoding='utf-8')
+        self.assertIn('Featured Projects', header_text)
+        self.assertIn('naresh@github:~$', header_text)
+
+    def test_playground_assets(self):
+        """Playground must have dual-mode 1160px SVGs and working GitHub Pages game prototype."""
+        dark = ROOT / 'assets' / 'playground' / 'concept.svg'
+        light = ROOT / 'assets' / 'playground' / 'concept-light.svg'
+        self.assertTrue(dark.is_file(), f'Missing {dark}')
+        self.assertTrue(light.is_file(), f'Missing {light}')
+
+        for f in [dark, light]:
+            root = ET.parse(f).getroot()
+            self.assertEqual(root.attrib.get('width'), '1160')
+            self.assertEqual(root.attrib.get('height'), '560')
+            content = f.read_text(encoding='utf-8')
+            self.assertIn('Developer Playground', content)
+            self.assertIn('System Runner', content)
+            self.assertIn('Architecture Grid Runner', content)
+            self.assertIn('CONCEPT ③', content)
+            self.assertIn('/// ARCHITECTURE', content)
+            self.assertIn('Play System Runner ↗', content)
+
+        # Prototype check
+        runner_html = ROOT / 'docs' / 'runner.html'
+        self.assertTrue(runner_html.is_file(), f'Missing {runner_html}')
+        runner_text = runner_html.read_text(encoding='utf-8')
+        self.assertIn('SYSTEM RUNNER', runner_text)
+        self.assertIn('gameCanvas', runner_text)
+
+        # Header check
+        header = ROOT / 'assets' / 'headers' / 'play-system-runner.svg'
+        self.assertTrue(header.is_file())
+        header_text = header.read_text(encoding='utf-8')
+        self.assertIn('play --system-runner', header_text)
+
+        # README link check
+        readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+        self.assertIn('https://phoenixarjun.github.io/Phoenixarjun/runner.html', readme)
+
+    def test_connect_and_footer_assets(self):
+        """Connect buttons and footer must have dual-mode compact 206px buttons with built-in vector spacing and editorial footer."""
+        for slug, label in [('btn-github', 'GitHub'), ('btn-linkedin', 'LinkedIn'), ('btn-medium', 'Medium'), ('btn-portfolio', 'Portfolio')]:
+            dark = ROOT / 'assets' / 'sections' / f'{slug}.svg'
+            light = ROOT / 'assets' / 'sections' / f'{slug}-light.svg'
+            self.assertTrue(dark.is_file(), f'Missing {dark}')
+            self.assertTrue(light.is_file(), f'Missing {light}')
+
+            for f in [dark, light]:
+                root = ET.parse(f).getroot()
+                self.assertEqual(root.attrib.get('width'), '206')
+                self.assertEqual(root.attrib.get('height'), '50')
+                content = f.read_text(encoding='utf-8')
+                self.assertIn(label, content)
+
+        # Special check for highlighted portfolio button glow
+        portfolio_dark = (ROOT / 'assets' / 'sections' / 'btn-portfolio.svg').read_text(encoding='utf-8')
+        self.assertIn('portfolioUnderglow', portfolio_dark)
+
+        # Footer check
+        footer_dark = ROOT / 'assets' / 'sections' / 'footer.svg'
+        footer_light = ROOT / 'assets' / 'sections' / 'footer-light.svg'
+        self.assertTrue(footer_dark.is_file())
+        self.assertTrue(footer_light.is_file())
+        for f in [footer_dark, footer_light]:
+            root = ET.parse(f).getroot()
+            self.assertEqual(root.attrib.get('width'), '1160')
+            self.assertEqual(root.attrib.get('height'), '70')
+            content = f.read_text(encoding='utf-8')
+            self.assertIn('Building intelligent software on reliable systems.', content)
+            self.assertIn('VARIATION 01 / TERMINAL EDITORIAL', content)
+
+        # README checks
+        readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+        self.assertIn('https://github.com/Phoenixarjun', readme)
+        self.assertIn('https://www.linkedin.com/in/naresh-b-a-1b5331243/', readme)
+        self.assertIn('https://medium.com/@phoenixarjun007', readme)
+        self.assertIn('assets/sections/footer.svg', readme)
+
 
 if __name__ == '__main__':
     unittest.main()

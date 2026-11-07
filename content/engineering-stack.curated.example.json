@@ -1,0 +1,54 @@
+{
+  "status": "proposed_for_user_review_not_automatic_skill_claims",
+  "sectionCommand": "cat --engineering-stack",
+  "notes": "33 technologies based on the approved visual direction and previously discussed work. Review actual usage and confidence before publication. Not the full unverified 73-skill catalog.",
+  "domains": [
+    {"id": "languages", "label": "Languages", "items": [
+      {"name": "Python", "candidates": ["devicon:python-original", "simple-icons:python"]},
+      {"name": "Java", "candidates": ["devicon:java-original", "simple-icons:openjdk"]},
+      {"name": "TypeScript", "candidates": ["devicon:typescript-original", "simple-icons:typescript"]},
+      {"name": "JavaScript", "candidates": ["devicon:javascript-original", "simple-icons:javascript"]},
+      {"name": "SQL", "candidates": ["lucide:database"]},
+      {"name": "Go", "candidates": ["devicon:go-original", "simple-icons:go"]}
+    ]},
+    {"id": "applied-ai", "label": "Applied AI", "items": [
+      {"name": "LangGraph", "candidates": ["simple-icons:langgraph", "devicon:langgraph-original"]},
+      {"name": "LangChain", "candidates": ["simple-icons:langchain", "devicon:langchain-original"]},
+      {"name": "AutoGen", "candidates": ["simple-icons:autogen"]},
+      {"name": "CrewAI", "candidates": ["simple-icons:crewai"]},
+      {"name": "n8n", "candidates": ["simple-icons:n8n", "devicon:n8n-original"]},
+      {"name": "Hugging Face", "candidates": ["simple-icons:huggingface", "devicon:huggingface-original"]}
+    ]},
+    {"id": "backend-distributed", "label": "Backend & Distributed", "items": [
+      {"name": "FastAPI", "candidates": ["devicon:fastapi-original", "simple-icons:fastapi"]},
+      {"name": "Spring Boot", "candidates": ["devicon:spring-original", "simple-icons:springboot"]},
+      {"name": "Kafka", "candidates": ["devicon:apachekafka-original", "simple-icons:apachekafka"]},
+      {"name": "Redis", "candidates": ["devicon:redis-original", "simple-icons:redis"]}
+    ]},
+    {"id": "data-search", "label": "Data & Search", "items": [
+      {"name": "PostgreSQL", "candidates": ["devicon:postgresql-original", "simple-icons:postgresql"]},
+      {"name": "MongoDB", "candidates": ["devicon:mongodb-original", "simple-icons:mongodb"]},
+      {"name": "Elasticsearch", "candidates": ["devicon:elasticsearch-original", "simple-icons:elasticsearch"]},
+      {"name": "OpenSearch", "candidates": ["devicon:opensearch-original", "simple-icons:opensearch"]}
+    ]},
+    {"id": "platform", "label": "Platform & Infrastructure", "items": [
+      {"name": "Docker", "candidates": ["devicon:docker-original", "simple-icons:docker"]},
+      {"name": "Kubernetes", "candidates": ["devicon:kubernetes-original", "simple-icons:kubernetes"]},
+      {"name": "Git", "candidates": ["devicon:git-original", "simple-icons:git"]},
+      {"name": "Linux", "candidates": ["devicon:linux-original", "simple-icons:linux"]},
+      {"name": "GCP", "candidates": ["devicon:googlecloud-original", "simple-icons:googlecloud"]}
+    ]},
+    {"id": "frontend", "label": "Frontend & Interface", "items": [
+      {"name": "React", "candidates": ["devicon:react-original", "simple-icons:react"]},
+      {"name": "Next.js", "candidates": ["devicon:nextjs-original", "simple-icons:nextdotjs"]},
+      {"name": "Tailwind CSS", "candidates": ["devicon:tailwindcss-original", "simple-icons:tailwindcss"]},
+      {"name": "Streamlit", "candidates": ["devicon:streamlit-original", "simple-icons:streamlit"]}
+    ]},
+    {"id": "observability", "label": "Observability", "items": [
+      {"name": "Prometheus", "candidates": ["devicon:prometheus-original", "simple-icons:prometheus"]},
+      {"name": "Grafana", "candidates": ["devicon:grafana-original", "simple-icons:grafana"]},
+      {"name": "OpenTelemetry", "candidates": ["devicon:opentelemetry-original", "simple-icons:opentelemetry"]},
+      {"name": "VictoriaMetrics", "candidates": ["simple-icons:victoriametrics"]}
+    ]}
+  ]
+}

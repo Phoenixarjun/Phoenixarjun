@@ -105,17 +105,46 @@
 <!-- ==================== SECTION 06: TECHNICAL WRITING ==================== -->
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/read-technical-writing.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/read-technical-writing-light.svg">
-    <img src="./assets/headers/read-technical-writing.svg" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/render-technical-writing.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/render-technical-writing-light.svg">
+    <img src="./assets/headers/render-technical-writing.svg" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/header.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/writing/header-light.svg">
+    <img src="./assets/writing/header.svg" alt="Technical Writing // Articles, ideas, and engineering write-ups" width="100%" />
   </picture>
 </p>
 <!-- BLOG-POST-LIST:START -->
-- **[Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3)**
-- **[Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade)**
-- **[From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e)**
-- **[Designing a Production RAG Retrieval System for 500 Million Vectors](https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83)**
-- **[Scaling Vector Search to 500 Million Vectors: The Architecture Behind It](https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97)**
+<p align="center">
+  <a href="https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/row-01.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/writing/row-01-light.svg">
+      <img src="./assets/writing/row-01.svg" alt="Think Beyond LLMs: Choosing the Right Model for the Right Job" width="100%" />
+    </picture>
+  </a>
+</p>
+<p align="center">
+  <a href="https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/row-02.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/writing/row-02-light.svg">
+      <img src="./assets/writing/row-02.svg" alt="Git at Agent Scale: What Anthropic’s Scion Really Teaches Us" width="100%" />
+    </picture>
+  </a>
+</p>
+<p align="center">
+  <a href="https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/row-03.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/writing/row-03-light.svg">
+      <img src="./assets/writing/row-03.svg" alt="From Prompts to Engineering Playbooks: Why I Built Agent Toolkit" width="100%" />
+    </picture>
+  </a>
+</p>
 <!-- BLOG-POST-LIST:END -->
 
 <!-- ==================== SECTION 07: CONTRIBUTION ATLAS ==================== -->
@@ -126,18 +155,36 @@
     <img src="./assets/headers/render-contribution-atlas.svg" width="100%" />
   </picture>
 </p>
-<p align="center"><img src="./assets/contributions/city.svg" alt="Contribution Atlas" width="100%" /></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions/atlas-static.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/contributions/atlas-static-light.svg">
+    <img src="./assets/contributions/atlas-static.svg" alt="Contribution Atlas: 208 contributions across 37 active days as an isometric 3D city" width="100%" />
+  </picture>
+</p>
+<!-- Optional Animated Build View:
+<p align="center">
+  <img src="./assets/contributions/atlas-animated.gif" alt="Contribution Atlas Rise Animation" width="100%" />
+</p>
+-->
 
 <!-- ==================== SECTION 08: DEVELOPER PLAYGROUND ==================== -->
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/open-developer-playground.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/open-developer-playground-light.svg">
-    <img src="./assets/headers/open-developer-playground.svg" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/play-system-runner.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/play-system-runner-light.svg">
+    <img src="./assets/headers/play-system-runner.svg" width="100%" />
   </picture>
 </p>
-<p align="left"><sub>A little personality, without distracting from the engineering.</sub></p>
-<p align="center"><img src="./assets/playground/concept.svg" alt="Developer Playground" width="100%" /></p>
+<p align="center">
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/runner.html">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/playground/concept.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/playground/concept-light.svg">
+      <img src="./assets/playground/concept.svg" alt="Developer Playground — System Runner: Architecture Grid Runner" width="100%" />
+    </picture>
+  </a>
+</p>
 
 <!-- ==================== SECTION 09: CONNECT ==================== -->
 <p align="center">
@@ -148,13 +195,35 @@
   </picture>
 </p>
 <p align="center">
-  <a href="https://github.com/Phoenixarjun"><img src="./assets/sections/btn-github.svg" height="44" alt="GitHub" /></a> &nbsp;
-  <a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/"><img src="./assets/sections/btn-linkedin.svg" height="44" alt="LinkedIn" /></a> &nbsp;
-  <a href="https://medium.com/@phoenixarjun007"><img src="./assets/sections/btn-medium.svg" height="44" alt="Medium" /></a> &nbsp;
-  <img src="./assets/sections/btn-portfolio.svg" height="44" alt="Portfolio (soon)" />
+  <a href="https://github.com/Phoenixarjun"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sections/btn-github.svg"><source media="(prefers-color-scheme: light)" srcset="./assets/sections/btn-github-light.svg"><img src="./assets/sections/btn-github.svg" width="21%" alt="GitHub" /></picture></a><a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sections/btn-linkedin.svg"><source media="(prefers-color-scheme: light)" srcset="./assets/sections/btn-linkedin-light.svg"><img src="./assets/sections/btn-linkedin.svg" width="21%" alt="LinkedIn" /></picture></a><a href="https://medium.com/@phoenixarjun007"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sections/btn-medium.svg"><source media="(prefers-color-scheme: light)" srcset="./assets/sections/btn-medium-light.svg"><img src="./assets/sections/btn-medium.svg" width="21%" alt="Medium" /></picture></a><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sections/btn-portfolio.svg"><source media="(prefers-color-scheme: light)" srcset="./assets/sections/btn-portfolio-light.svg"><img src="./assets/sections/btn-portfolio.svg" width="21%" alt="Portfolio" /></picture>
 </p>
 
 <p align="center">
-  <sub>Building intelligent software on reliable systems.</sub><br/>
-  <sub><code>VARIATION 01 / TERMINAL EDITORIAL</code></sub>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/sections/footer.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/sections/footer-light.svg">
+    <img src="./assets/sections/footer.svg" alt="Variation 01 / Terminal Editorial — Building intelligent software on reliable systems." width="100%" />
+  </picture>
 </p>
+
+<!-- ==================== FINAL LOGOUT FOOTER ==================== -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/logout.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/logout-light.svg">
+    <img src="./assets/headers/logout.svg" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <img
+    src="./assets/logout-footer/logout-card-animated.gif"
+    alt="Thanks for stopping by. Built with curiosity, driven by systems, always learning and always shipping. Session closed."
+    width="770"
+  />
+</p>
+<!-- Static Fallback:
+<p align="center">
+  <img src="./assets/logout-footer/logout-card-static.png" alt="Thanks for stopping by. Session closed." width="770" />
+</p>
+-->
+

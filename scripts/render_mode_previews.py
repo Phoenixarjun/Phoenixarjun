@@ -20,6 +20,7 @@ def render_mode_preview(mode: str, bg_color: str, text_color: str, out_png: Path
     ef_svg = (ROOT / 'assets' / 'engineering-focus' / f'engineering-focus-{"light" if is_light else "dark"}.svg').as_uri()
     p1 = (ROOT / 'assets' / 'projects' / f'architecture-as-memory{"-light" if is_light else ""}.svg').as_uri()
     p2 = (ROOT / 'assets' / 'projects' / f'promptnova{"-light" if is_light else ""}.svg').as_uri()
+    p3 = (ROOT / 'assets' / 'projects' / f'credflow{"-light" if is_light else ""}.svg').as_uri()
     now_svg = (ROOT / 'assets' / 'now' / f'agent-toolkit{"-light" if is_light else ""}.svg').as_uri()
 
     html = f"""<!doctype html>
@@ -64,6 +65,7 @@ h2 {{
   <img src="{h_proj}" alt="Flagship Projects Header" />
   <img src="{p1}" alt="Architecture as Memory" />
   <img src="{p2}" alt="PromptNova" />
+  <img src="{p3}" alt="CredFlow" />
   <img src="{h_now}" alt="Currently Building Header" />
   <img src="{now_svg}" alt="Agent Toolkit" />
 </div>

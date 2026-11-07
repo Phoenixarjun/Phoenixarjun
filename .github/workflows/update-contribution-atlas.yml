@@ -1,0 +1,67 @@
+name: Update Contribution Atlas & Profile
+
+on:
+  schedule:
+    # Run daily at 03:23 UTC (non-peak minute)
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-atlas:
+    name: Refresh GitHub Contribution Atlas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install Pillow
+
+      - name: Fetch latest contribution data
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch public/authorized contribution data from official GraphQL API
+          python scripts/fetch_contributions.py || echo "API fetch failed or token unavailable; preserving verified dataset."
+
+      - name: Generate static Contribution Atlas SVGs
+        run: |
+          python scripts/render_contribution_svg.py
+
+      - name: Generate animated Contribution Atlas GIF
+        run: |
+          python scripts/render_contribution_gif.py || echo "GIF generation skipped; static SVG preserved."
+
+      - name: Rebuild profile assets and README
+        run: |
+          python scripts/build.py
+
+      - name: Run verification test suite
+        run: |
+          python -m unittest discover -s tests -v
+
+      - name: Commit updated contribution assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/contributions.json assets/contributions/ assets/writing/ assets/headers/ README.md README.v2.md
+          if git diff --staged --quiet; then
+            echo "No contribution changes detected; skipping commit."
+          else
+            git commit -m "chore(atlas): automated daily contribution update [skip ci]"
+            git push
+          fi
+

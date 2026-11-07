@@ -1,0 +1,30 @@
+{
+  "name": "phoenixarjun",
+  "version": "1.0.0",
+  "description": "<!-- GENERATED FILE: edit content/*.json or design/themes.json, then run python scripts/build.py. -->",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phoenixarjun/Phoenixarjun.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phoenixarjun/Phoenixarjun/issues"
+  },
+  "homepage": "https://github.com/Phoenixarjun/Phoenixarjun#readme",
+  "devDependencies": {
+    "@iconify-json/devicon": "^1.2.78",
+    "@iconify-json/lucide": "^1.2.152",
+    "@iconify-json/simple-icons": "^1.2.101",
+    "@iconify/utils": "^3.1.7"
+  }
+}

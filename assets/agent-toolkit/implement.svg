@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Implement — code brackets icon"><title>Implement — code brackets icon</title><defs>
+    <linearGradient id="top" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#8EADB6" stop-opacity=".75"/><stop offset=".46" stop-color="#1B2328"/><stop offset="1" stop-color="#0C0F10"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B6FF3B" stop-opacity=".82"/><stop offset="1" stop-color="#42535C"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#B6FF3B" stop-opacity=".27"/><stop offset=".46" stop-color="#B6FF3B" stop-opacity=".07"/><stop offset="1" stop-color="#B6FF3B" stop-opacity="0"/></radialGradient>
+    <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="micro-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    </defs><rect x="14" y="14" width="100" height="100" rx="21" fill="#1B2328" fill-opacity=".82" stroke="#42535C" stroke-width="2"/>
+    <path d="M 14 38 V 34 Q 14 14 34 14 H 57" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <path d="M 71 114 H 94 Q 114 114 114 94 V 72" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <circle cx="64" cy="64" r="58" fill="url(#halo)"/><g fill="none" stroke="#B6FF3B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 52 49 L 37 64 L 52 79"/><path d="M 76 49 L 91 64 L 76 79"/>
+      <path d="M 70 43 L 58 85"/>
+      </g></svg>

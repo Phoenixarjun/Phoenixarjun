@@ -1,36 +1,78 @@
 {
   "flagship": [
     {
-      "slug": "architecture-as-memory", "name": "Architecture-as-Memory", "short_name": "AAM",
+      "slug": "architecture-as-memory",
+      "name": "Architecture-as-Memory",
+      "short_name": "AAM",
+      "number": "01",
       "category": "Developer Infrastructure",
-      "description": "Local-first architectural memory for AI-assisted development.",
-      "highlights": ["Local-first architectural memory", "CLI workflows", "Topology visualization"],
-      "technologies": ["TypeScript", "CLI", "Architecture"],
-      "url": "https://github.com/Phoenixarjun/architecture-as-memory"
+      "description": "Local-first architectural memory for AI-assisted development. Models system boundaries through declarative YAML, visualizes repository topology, and validates architectural relationships through CLI workflows.",
+      "technologies": [
+        "TypeScript",
+        "Node.js",
+        "YAML",
+        "CLI"
+      ],
+      "github_url": "https://github.com/Phoenixarjun/architecture-as-memory",
+      "url": "https://github.com/Phoenixarjun/architecture-as-memory",
+      "visual": "assets/projects/visuals/aam-topology.svg",
+      "featured": true
     },
     {
-      "slug": "promptnova", "name": "PromptNova", "short_name": "PN",
+      "slug": "promptnova",
+      "name": "PromptNova",
+      "short_name": "PN",
+      "number": "02",
       "category": "Applied AI",
-      "description": "Prompt engineering, agent workflows, and structured evaluation.",
-      "highlights": ["Agent workflows", "Prompt evaluation", "Interactive workbench"],
-      "technologies": ["FastAPI", "LangGraph", "Next.js"],
-      "url": "https://github.com/Phoenixarjun/PromptNova"
+      "description": "An AI prompt-engineering workbench for transforming raw intent into structured prompts. Combines agent refinement workflows, multi-perspective evaluation, and an interactive interface for developing and testing prompts.",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "LangGraph",
+        "Next.js"
+      ],
+      "github_url": "https://github.com/Phoenixarjun/PromptNova",
+      "url": "https://github.com/Phoenixarjun/PromptNova",
+      "visual": "assets/projects/visuals/promptnova-workflow.svg",
+      "featured": true
     },
     {
-      "slug": "credflow", "name": "CredFlow", "short_name": "CF",
+      "slug": "credflow",
+      "name": "CredFlow",
+      "short_name": "CF",
+      "number": "03",
       "category": "Backend & Product Engineering",
-      "description": "Telecom billing and collections with rule-based workflows.",
-      "highlights": ["Spring Boot backend", "Rules-driven workflows", "Multi-role product"],
-      "technologies": ["Spring Boot", "React", "MySQL"],
-      "url": "https://github.com/Phoenixarjun/CredFlow"
+      "description": "A full-stack telecom billing and collections application with automated dunning rules, invoice workflows, and role-based operational dashboards. Integrates Spring Boot services, relational persistence, and AI-assisted features.",
+      "technologies": [
+        "Java",
+        "Spring Boot",
+        "React",
+        "MySQL"
+      ],
+      "github_url": "https://github.com/Phoenixarjun/CredFlow",
+      "url": "https://github.com/Phoenixarjun/CredFlow",
+      "visual": "assets/projects/visuals/credflow-collections.svg",
+      "featured": true
     }
   ],
   "currently_building": [
     {
-      "slug": "agent-toolkit", "name": "Agent Toolkit", "category": "ACTIVE REPOSITORY", "status": "Active",
-      "description": "Engineering playbooks for coding agents: safer changes and verifiable outcomes.",
-      "highlights": ["INTENT", "IMPLEMENT", "VERIFY"],
-      "technologies": ["Python", "Markdown", "Automation"],
+      "slug": "agent-toolkit",
+      "name": "Agent Toolkit",
+      "subtitle": "Engineering playbooks for coding agents.",
+      "category": "ACTIVE REPOSITORY",
+      "status": "Active",
+      "description": "Portable, tool-agnostic procedures for Intent Capture, Code Explore, TDD, Code Review, Security Audit, and verification — with an evidence-driven approach.",
+      "highlights": [
+        "Intent",
+        "Implement",
+        "Verify"
+      ],
+      "technologies": [
+        "Python",
+        "Markdown",
+        "Automation"
+      ],
       "url": "https://github.com/Phoenixarjun/Agent-Toolkit"
     }
   ]

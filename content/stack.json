@@ -1,9 +1,77 @@
 {
   "domains": [
-    {"name": "LANGUAGES", "items": ["Python", "Java", "TypeScript"]},
-    {"name": "APPLIED AI", "items": ["LangGraph", "LangChain", "FastAPI"]},
-    {"name": "BACKEND + DATA", "items": ["Kafka", "Redis", "PostgreSQL"]},
-    {"name": "PLATFORM", "items": ["Docker", "Kubernetes", "OpenSearch"]},
-    {"name": "OBSERVABILITY", "items": ["Prometheus", "Grafana"]}
+    {
+      "id": "languages",
+      "name": "Languages",
+      "icon": "code",
+      "items": [
+        {"name": "Python", "slug": "python"},
+        {"name": "Java", "slug": "java"},
+        {"name": "TypeScript", "slug": "typescript"},
+        {"name": "JavaScript", "slug": "javascript"},
+        {"name": "SQL", "slug": "sql"},
+        {"name": "Go", "slug": "go"}
+      ]
+    },
+    {
+      "id": "applied-ai",
+      "name": "Applied AI",
+      "icon": "brain",
+      "items": [
+        {"name": "LangGraph", "slug": "langgraph"},
+        {"name": "LangChain", "slug": "langchain"},
+        {"name": "AutoGen", "slug": "autogen"},
+        {"name": "CrewAI", "slug": "crewai"},
+        {"name": "FastAPI", "slug": "fastapi"}
+      ]
+    },
+    {
+      "id": "backend-data",
+      "name": "Backend & Data",
+      "icon": "layers",
+      "items": [
+        {"name": "Kafka", "slug": "kafka"},
+        {"name": "Redis", "slug": "redis"},
+        {"name": "PostgreSQL", "slug": "postgresql"},
+        {"name": "MongoDB", "slug": "mongodb"},
+        {"name": "Elasticsearch", "slug": "elasticsearch"},
+        {"name": "OpenSearch", "slug": "opensearch"}
+      ]
+    },
+    {
+      "id": "platform-infra",
+      "name": "Platform & Infra",
+      "icon": "cube",
+      "items": [
+        {"name": "Docker", "slug": "docker"},
+        {"name": "Kubernetes", "slug": "kubernetes"},
+        {"name": "Git", "slug": "git"},
+        {"name": "Linux", "slug": "linux"},
+        {"name": "GCP", "slug": "gcp"}
+      ]
+    },
+    {
+      "id": "frontend-interface",
+      "name": "Frontend & Interface",
+      "icon": "monitor",
+      "items": [
+        {"name": "React", "slug": "react"},
+        {"name": "Next.js", "slug": "next-js"},
+        {"name": "Tailwind CSS", "slug": "tailwind-css"},
+        {"name": "Streamlit", "slug": "streamlit"}
+      ]
+    },
+    {
+      "id": "observability",
+      "name": "Observability",
+      "icon": "pulse",
+      "has_more": true,
+      "items": [
+        {"name": "Prometheus", "slug": "prometheus"},
+        {"name": "Grafana", "slug": "grafana"},
+        {"name": "OpenTelemetry", "slug": "opentelemetry"},
+        {"name": "VictoriaMetrics", "slug": "victoriametrics"}
+      ]
+    }
   ]
 }

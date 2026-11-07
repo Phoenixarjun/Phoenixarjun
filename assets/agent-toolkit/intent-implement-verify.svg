@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="670" height="183" viewBox="0 0 670 183" role="img" aria-label="Agent Toolkit workflow: Intent, Implement, Verify"><title>Agent Toolkit workflow: Intent, Implement, Verify</title><defs>
+    <linearGradient id="top" x1="0" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#8EADB6" stop-opacity=".75"/><stop offset=".46" stop-color="#1B2328"/><stop offset="1" stop-color="#0C0F10"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B6FF3B" stop-opacity=".82"/><stop offset="1" stop-color="#42535C"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#B6FF3B" stop-opacity=".27"/><stop offset=".46" stop-color="#B6FF3B" stop-opacity=".07"/><stop offset="1" stop-color="#B6FF3B" stop-opacity="0"/></radialGradient>
+    <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="micro-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    </defs><g transform="translate(25,10) scale(1.0)"><rect x="14" y="14" width="100" height="100" rx="21" fill="#1B2328" fill-opacity=".82" stroke="#42535C" stroke-width="2"/>
+    <path d="M 14 38 V 34 Q 14 14 34 14 H 57" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <path d="M 71 114 H 94 Q 114 114 114 94 V 72" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <circle cx="64" cy="64" r="58" fill="url(#halo)"/><g fill="none" stroke="#B6FF3B" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="64" cy="64" r="24" stroke-width="4"/>
+      <circle cx="64" cy="64" r="9" stroke-width="3"/>
+      <path d="M 64 28 V 46 M 64 82 V 100 M 28 64 H 46 M 82 64 H 100" stroke-width="4"/>
+      <path d="M 61 64 L 64 59 L 67 64 L 64 69 Z" fill="#B6FF3B" stroke="none"/>
+      </g></g><g transform="translate(259,10) scale(1.0)"><rect x="14" y="14" width="100" height="100" rx="21" fill="#1B2328" fill-opacity=".82" stroke="#42535C" stroke-width="2"/>
+    <path d="M 14 38 V 34 Q 14 14 34 14 H 57" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <path d="M 71 114 H 94 Q 114 114 114 94 V 72" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <circle cx="64" cy="64" r="58" fill="url(#halo)"/><g fill="none" stroke="#B6FF3B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 52 49 L 37 64 L 52 79"/><path d="M 76 49 L 91 64 L 76 79"/>
+      <path d="M 70 43 L 58 85"/>
+      </g></g><g transform="translate(493,10) scale(1.0)"><rect x="14" y="14" width="100" height="100" rx="21" fill="#1B2328" fill-opacity=".82" stroke="#42535C" stroke-width="2"/>
+    <path d="M 14 38 V 34 Q 14 14 34 14 H 57" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <path d="M 71 114 H 94 Q 114 114 114 94 V 72" fill="none" stroke="#B6FF3B" stroke-width="2.2" opacity=".9"/>
+    <circle cx="64" cy="64" r="58" fill="url(#halo)"/><path d="M 64 31 L 91 41 V 63 Q 91 82 64 99 Q 37 82 37 63 V 41 Z" fill="#0C0F10" stroke="#B6FF3B" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M 51 65 L 61 75 L 79 56" fill="none" stroke="#B6FF3B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M 166 74 H 231" stroke="#B6FF3B" stroke-width="3.5" stroke-linecap="round"/><path d="M 220 65 L 231 74 L 220 83" fill="none" stroke="#B6FF3B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M 400 74 H 465" stroke="#B6FF3B" stroke-width="3.5" stroke-linecap="round"/><path d="M 454 65 L 465 74 L 454 83" fill="none" stroke="#B6FF3B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text x="89" y="167" text-anchor="middle" fill="#EEF7EF" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-weight="650" font-size="18">INTENT</text><text x="323" y="167" text-anchor="middle" fill="#EEF7EF" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-weight="650" font-size="18">IMPLEMENT</text><text x="557" y="167" text-anchor="middle" fill="#EEF7EF" font-family="JetBrains Mono,DejaVu Sans Mono,monospace" font-weight="650" font-size="18">VERIFY</text></svg>

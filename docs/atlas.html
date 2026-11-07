@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoenixarjun — 3D Contribution Atlas</title>
+  <style>
+    :root {
+      --bg: #070B0C;
+      --card-bg: #0C0F10;
+      --surface: #10161A;
+      --border: #222D33;
+      --border-light: #1E2B33;
+      --accent: #B6FF3B;
+      --text: #EEF7EF;
+      --muted: #7A8C99;
+      --meta: #52636E;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 1180px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .terminal-header {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #162026;
+    }
+    .terminal-header .prompt { color: var(--accent); font-weight: bold; }
+    .atlas-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .title-group {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .accent-bar {
+      width: 4px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 2px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 750;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+    }
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .btn-replay {
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--border-light);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-replay:hover {
+      background: #182228;
+      border-color: var(--accent);
+    }
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .stat-icon {
+      width: 26px;
+      height: 26px;
+      fill: currentColor;
+    }
+    .stat-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: capitalize;
+    }
+    .stat-val {
+      font-size: 18px;
+      font-weight: 750;
+      color: var(--text);
+    }
+    .stat-val.accent { color: var(--accent); }
+    .canvas-container {
+      width: 100%;
+      height: 380px;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 11px;
+      color: var(--meta);
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+    }
+    .legend-box {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+    #tooltip {
+      position: absolute;
+      background: rgba(16, 22, 26, 0.95);
+      border: 1px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 6px;
+      pointer-events: none;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 11px;
+      color: var(--text);
+      display: none;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+      transform: translate(-50%, -120%);
+    }
+    #tooltip .tt-date { color: var(--muted); margin-bottom: 2px; }
+    #tooltip .tt-count { font-size: 13px; font-weight: bold; color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="terminal-header">
+    <span class="prompt">naresh@github:~$</span> render --contribution-atlas
+  </div>
+
+  <div class="atlas-card" id="atlasSection">
+    <div class="card-top">
+      <div class="title-group">
+        <h1 class="title"><span class="accent-bar"></span>Contribution Atlas</h1>
+        <span class="subtitle">// My GitHub activity, visualized as a contribution city</span>
+      </div>
+      <button class="btn-replay" id="btnReplay"><span>↺</span> Replay Construction</button>
+    </div>
+
+    <div class="stats-strip" id="statsStrip"></div>
+
+    <div class="canvas-container">
+      <canvas id="atlasCanvas"></canvas>
+      <div id="tooltip"></div>
+    </div>
+
+    <div class="card-footer">
+      <div id="metadataText">Data: GitHub Contributions · Updated: 2026-11-07</div>
+      <div class="legend">
+        <span>Less</span>
+        <div class="legend-box" style="background: #10161A; border: 1px solid #182228;"></div>
+        <div class="legend-box" style="background: #2E424D; border: 1px solid #3A5260;"></div>
+        <div class="legend-box" style="background: #3E702A; border: 1px solid #529437;"></div>
+        <div class="legend-box" style="background: #6EBC2C; border: 1px solid #8AE33A;"></div>
+        <div class="legend-box" style="background: #B6FF3B; border: 1px solid #D4FF78;"></div>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {"status": "ok", "source": "GitHub GraphQL contributionsCollection.contributionCalendar (authenticated)", "username": "Phoenixarjun", "fetched_at_utc": "2026-11-07T16:04:40+00:00", "total_contributions": 3405, "days": [{"date": "2025-11-02", "count": 0}, {"date": "2025-11-03", "count": 0}, {"date": "2025-11-04", "count": 0}, {"date": "2025-11-05", "count": 0}, {"date": "2025-11-06", "count": 0}, {"date": "2025-11-07", "count": 0}, {"date": "2025-11-08", "count": 0}, {"date": "2025-11-09", "count": 0}, {"date": "2025-11-10", "count": 0}, {"date": "2025-11-11", "count": 0}, {"date": "2025-11-12", "count": 2}, {"date": "2025-11-13", "count": 0}, {"date": "2025-11-14", "count": 1}, {"date": "2025-11-15", "count": 0}, {"date": "2025-11-16", "count": 1}, {"date": "2025-11-17", "count": 0}, {"date": "2025-11-18", "count": 0}, {"date": "2025-11-19", "count": 0}, {"date": "2025-11-20", "count": 0}, {"date": "2025-11-21", "count": 0}, {"date": "2025-11-22", "count": 4}, {"date": "2025-11-23", "count": 0}, {"date": "2025-11-24", "count": 2}, {"date": "2025-11-25", "count": 0}, {"date": "2025-11-26", "count": 0}, {"date": "2025-11-27", "count": 0}, {"date": "2025-11-28", "count": 0}, {"date": "2025-11-29", "count": 0}, {"date": "2025-11-30", "count": 0}, {"date": "2025-12-01", "count": 1}, {"date": "2025-12-02", "count": 0}, {"date": "2025-12-03", "count": 0}, {"date": "2025-12-04", "count": 0}, {"date": "2025-12-05", "count": 0}, {"date": "2025-12-06", "count": 0}, {"date": "2025-12-07", "count": 0}, {"date": "2025-12-08", "count": 0}, {"date": "2025-12-09", "count": 0}, {"date": "2025-12-10", "count": 0}, {"date": "2025-12-11", "count": 0}, {"date": "2025-12-12", "count": 1}, {"date": "2025-12-13", "count": 1}, {"date": "2025-12-14", "count": 0}, {"date": "2025-12-15", "count": 0}, {"date": "2025-12-16", "count": 0}, {"date": "2025-12-17", "count": 5}, {"date": "2025-12-18", "count": 0}, {"date": "2025-12-19", "count": 0}, {"date": "2025-12-20", "count": 0}, {"date": "2025-12-21", "count": 0}, {"date": "2025-12-22", "count": 0}, {"date": "2025-12-23", "count": 1}, {"date": "2025-12-24", "count": 2}, {"date": "2025-12-25", "count": 0}, {"date": "2025-12-26", "count": 0}, {"date": "2025-12-27", "count": 0}, {"date": "2025-12-28", "count": 1}, {"date": "2025-12-29", "count": 0}, {"date": "2025-12-30", "count": 0}, {"date": "2025-12-31", "count": 0}, {"date": "2026-01-01", "count": 0}, {"date": "2026-01-02", "count": 0}, {"date": "2026-01-03", "count": 0}, {"date": "2026-01-04", "count": 0}, {"date": "2026-01-05", "count": 0}, {"date": "2026-01-06", "count": 0}, {"date": "2026-01-07", "count": 0}, {"date": "2026-01-08", "count": 1}, {"date": "2026-01-09", "count": 0}, {"date": "2026-01-10", "count": 0}, {"date": "2026-01-11", "count": 1}, {"date": "2026-01-12", "count": 0}, {"date": "2026-01-13", "count": 0}, {"date": "2026-01-14", "count": 0}, {"date": "2026-01-15", "count": 0}, {"date": "2026-01-16", "count": 0}, {"date": "2026-01-17", "count": 0}, {"date": "2026-01-18", "count": 0}, {"date": "2026-01-19", "count": 0}, {"date": "2026-01-20", "count": 0}, {"date": "2026-01-21", "count": 0}, {"date": "2026-01-22", "count": 0}, {"date": "2026-01-23", "count": 0}, {"date": "2026-01-24", "count": 0}, {"date": "2026-01-25", "count": 0}, {"date": "2026-01-26", "count": 0}, {"date": "2026-01-27", "count": 0}, {"date": "2026-01-28", "count": 0}, {"date": "2026-01-29", "count": 0}, {"date": "2026-01-30", "count": 0}, {"date": "2026-01-31", "count": 0}, {"date": "2026-02-01", "count": 0}, {"date": "2026-02-02", "count": 0}, {"date": "2026-02-03", "count": 0}, {"date": "2026-02-04", "count": 0}, {"date": "2026-02-05", "count": 0}, {"date": "2026-02-06", "count": 0}, {"date": "2026-02-07", "count": 0}, {"date": "2026-02-08", "count": 0}, {"date": "2026-02-09", "count": 0}, {"date": "2026-02-10", "count": 0}, {"date": "2026-02-11", "count": 0}, {"date": "2026-02-12", "count": 0}, {"date": "2026-02-13", "count": 0}, {"date": "2026-02-14", "count": 0}, {"date": "2026-02-15", "count": 2}, {"date": "2026-02-16", "count": 0}, {"date": "2026-02-17", "count": 0}, {"date": "2026-02-18", "count": 2}, {"date": "2026-02-19", "count": 0}, {"date": "2026-02-20", "count": 6}, {"date": "2026-02-21", "count": 0}, {"date": "2026-02-22", "count": 6}, {"date": "2026-02-23", "count": 4}, {"date": "2026-02-24", "count": 4}, {"date": "2026-02-25", "count": 10}, {"date": "2026-02-26", "count": 10}, {"date": "2026-02-27", "count": 8}, {"date": "2026-02-28", "count": 6}, {"date": "2026-03-01", "count": 9}, {"date": "2026-03-02", "count": 7}, {"date": "2026-03-03", "count": 4}, {"date": "2026-03-04", "count": 5}, {"date": "2026-03-05", "count": 11}, {"date": "2026-03-06", "count": 7}, {"date": "2026-03-07", "count": 11}, {"date": "2026-03-08", "count": 5}, {"date": "2026-03-09", "count": 5}, {"date": "2026-03-10", "count": 2}, {"date": "2026-03-11", "count": 10}, {"date": "2026-03-12", "count": 2}, {"date": "2026-03-13", "count": 11}, {"date": "2026-03-14", "count": 4}, {"date": "2026-03-15", "count": 5}, {"date": "2026-03-16", "count": 4}, {"date": "2026-03-17", "count": 8}, {"date": "2026-03-18", "count": 2}, {"date": "2026-03-19", "count": 2}, {"date": "2026-03-20", "count": 16}, {"date": "2026-03-21", "count": 0}, {"date": "2026-03-22", "count": 4}, {"date": "2026-03-23", "count": 8}, {"date": "2026-03-24", "count": 4}, {"date": "2026-03-25", "count": 2}, {"date": "2026-03-26", "count": 2}, {"date": "2026-03-27", "count": 5}, {"date": "2026-03-28", "count": 2}, {"date": "2026-03-29", "count": 8}, {"date": "2026-03-30", "count": 11}, {"date": "2026-03-31", "count": 13}, {"date": "2026-04-01", "count": 2}, {"date": "2026-04-02", "count": 8}, {"date": "2026-04-03", "count": 9}, {"date": "2026-04-04", "count": 8}, {"date": "2026-04-05", "count": 11}, {"date": "2026-04-06", "count": 2}, {"date": "2026-04-07", "count": 6}, {"date": "2026-04-08", "count": 2}, {"date": "2026-04-09", "count": 2}, {"date": "2026-04-10", "count": 4}, {"date": "2026-04-11", "count": 0}, {"date": "2026-04-12", "count": 3}, {"date": "2026-04-13", "count": 19}, {"date": "2026-04-14", "count": 4}, {"date": "2026-04-15", "count": 4}, {"date": "2026-04-16", "count": 6}, {"date": "2026-04-17", "count": 3}, {"date": "2026-04-18", "count": 2}, {"date": "2026-04-19", "count": 7}, {"date": "2026-04-20", "count": 7}, {"date": "2026-04-21", "count": 4}, {"date": "2026-04-22", "count": 0}, {"date": "2026-04-23", "count": 2}, {"date": "2026-04-24", "count": 8}, {"date": "2026-04-25", "count": 16}, {"date": "2026-04-26", "count": 4}, {"date": "2026-04-27", "count": 3}, {"date": "2026-04-28", "count": 3}, {"date": "2026-04-29", "count": 1}, {"date": "2026-04-30", "count": 1}, {"date": "2026-05-01", "count": 0}, {"date": "2026-05-02", "count": 0}, {"date": "2026-05-03", "count": 2}, {"date": "2026-05-04", "count": 10}, {"date": "2026-05-05", "count": 4}, {"date": "2026-05-06", "count": 2}, {"date": "2026-05-07", "count": 4}, {"date": "2026-05-08", "count": 6}, {"date": "2026-05-09", "count": 4}, {"date": "2026-05-10", "count": 6}, {"date": "2026-05-11", "count": 8}, {"date": "2026-05-12", "count": 2}, {"date": "2026-05-13", "count": 2}, {"date": "2026-05-14", "count": 2}, {"date": "2026-05-15", "count": 8}, {"date": "2026-05-16", "count": 2}, {"date": "2026-05-17", "count": 4}, {"date": "2026-05-18", "count": 2}, {"date": "2026-05-19", "count": 7}, {"date": "2026-05-20", "count": 2}, {"date": "2026-05-21", "count": 4}, {"date": "2026-05-22", "count": 4}, {"date": "2026-05-23", "count": 6}, {"date": "2026-05-24", "count": 8}, {"date": "2026-05-25", "count": 50}, {"date": "2026-05-26", "count": 24}, {"date": "2026-05-27", "count": 8}, {"date": "2026-05-28", "count": 48}, {"date": "2026-05-29", "count": 9}, {"date": "2026-05-30", "count": 21}, {"date": "2026-05-31", "count": 24}, {"date": "2026-06-01", "count": 10}, {"date": "2026-06-02", "count": 9}, {"date": "2026-06-03", "count": 26}, {"date": "2026-06-04", "count": 3}, {"date": "2026-06-05", "count": 4}, {"date": "2026-06-06", "count": 0}, {"date": "2026-06-07", "count": 0}, {"date": "2026-06-08", "count": 24}, {"date": "2026-06-09", "count": 19}, {"date": "2026-06-10", "count": 12}, {"date": "2026-06-11", "count": 13}, {"date": "2026-06-12", "count": 21}, {"date": "2026-06-13", "count": 22}, {"date": "2026-06-14", "count": 8}, {"date": "2026-06-15", "count": 50}, {"date": "2026-06-16", "count": 40}, {"date": "2026-06-17", "count": 34}, {"date": "2026-06-18", "count": 15}, {"date": "2026-06-19", "count": 37}, {"date": "2026-06-20", "count": 66}, {"date": "2026-06-21", "count": 49}, {"date": "2026-06-22", "count": 44}, {"date": "2026-06-23", "count": 23}, {"date": "2026-06-24", "count": 10}, {"date": "2026-06-25", "count": 10}, {"date": "2026-06-26", "count": 1}, {"date": "2026-06-27", "count": 3}, {"date": "2026-06-28", "count": 0}, {"date": "2026-06-29", "count": 25}, {"date": "2026-06-30", "count": 31}, {"date": "2026-07-01", "count": 18}, {"date": "2026-07-02", "count": 17}, {"date": "2026-07-03", "count": 24}, {"date": "2026-07-04", "count": 19}, {"date": "2026-07-05", "count": 11}, {"date": "2026-07-06", "count": 18}, {"date": "2026-07-07", "count": 5}, {"date": "2026-07-08", "count": 6}, {"date": "2026-07-09", "count": 8}, {"date": "2026-07-10", "count": 9}, {"date": "2026-07-11", "count": 12}, {"date": "2026-07-12", "count": 46}, {"date": "2026-07-13", "count": 24}, {"date": "2026-07-14", "count": 28}, {"date": "2026-07-15", "count": 12}, {"date": "2026-07-16", "count": 8}, {"date": "2026-07-17", "count": 6}, {"date": "2026-07-18", "count": 11}, {"date": "2026-07-19", "count": 10}, {"date": "2026-07-20", "count": 11}, {"date": "2026-07-21", "count": 5}, {"date": "2026-07-22", "count": 26}, {"date": "2026-07-23", "count": 10}, {"date": "2026-07-24", "count": 4}, {"date": "2026-07-25", "count": 6}, {"date": "2026-07-26", "count": 12}, {"date": "2026-07-27", "count": 27}, {"date": "2026-07-28", "count": 3}, {"date": "2026-07-29", "count": 10}, {"date": "2026-07-30", "count": 5}, {"date": "2026-07-31", "count": 4}, {"date": "2026-08-01", "count": 6}, {"date": "2026-08-02", "count": 4}, {"date": "2026-08-03", "count": 6}, {"date": "2026-08-04", "count": 7}, {"date": "2026-08-05", "count": 10}, {"date": "2026-08-06", "count": 26}, {"date": "2026-08-07", "count": 4}, {"date": "2026-08-08", "count": 5}, {"date": "2026-08-09", "count": 56}, {"date": "2026-08-10", "count": 7}, {"date": "2026-08-11", "count": 6}, {"date": "2026-08-12", "count": 8}, {"date": "2026-08-13", "count": 4}, {"date": "2026-08-14", "count": 5}, {"date": "2026-08-15", "count": 3}, {"date": "2026-08-16", "count": 91}, {"date": "2026-08-17", "count": 1}, {"date": "2026-08-18", "count": 7}, {"date": "2026-08-19", "count": 8}, {"date": "2026-08-20", "count": 11}, {"date": "2026-08-21", "count": 9}, {"date": "2026-08-22", "count": 15}, {"date": "2026-08-23", "count": 16}, {"date": "2026-08-24", "count": 13}, {"date": "2026-08-25", "count": 15}, {"date": "2026-08-26", "count": 4}, {"date": "2026-08-27", "count": 1}, {"date": "2026-08-28", "count": 1}, {"date": "2026-08-29", "count": 29}, {"date": "2026-08-30", "count": 0}, {"date": "2026-08-31", "count": 8}, {"date": "2026-09-01", "count": 2}, {"date": "2026-09-02", "count": 8}, {"date": "2026-09-03", "count": 31}, {"date": "2026-09-04", "count": 29}, {"date": "2026-09-05", "count": 0}, {"date": "2026-09-06", "count": 1}, {"date": "2026-09-07", "count": 8}, {"date": "2026-09-08", "count": 5}, {"date": "2026-09-09", "count": 21}, {"date": "2026-09-10", "count": 28}, {"date": "2026-09-11", "count": 29}, {"date": "2026-09-12", "count": 32}, {"date": "2026-09-13", "count": 34}, {"date": "2026-09-14", "count": 18}, {"date": "2026-09-15", "count": 0}, {"date": "2026-09-16", "count": 10}, {"date": "2026-09-17", "count": 9}, {"date": "2026-09-18", "count": 19}, {"date": "2026-09-19", "count": 38}, {"date": "2026-09-20", "count": 11}, {"date": "2026-09-21", "count": 11}, {"date": "2026-09-22", "count": 5}, {"date": "2026-09-23", "count": 3}, {"date": "2026-09-24", "count": 19}, {"date": "2026-09-25", "count": 9}, {"date": "2026-09-26", "count": 3}, {"date": "2026-09-27", "count": 19}, {"date": "2026-09-28", "count": 8}, {"date": "2026-09-29", "count": 3}, {"date": "2026-09-30", "count": 22}, {"date": "2026-10-01", "count": 13}, {"date": "2026-10-02", "count": 0}, {"date": "2026-10-03", "count": 0}, {"date": "2026-10-04", "count": 8}, {"date": "2026-10-05", "count": 7}, {"date": "2026-10-06", "count": 12}, {"date": "2026-10-07", "count": 7}, {"date": "2026-10-08", "count": 10}, {"date": "2026-10-09", "count": 16}, {"date": "2026-10-10", "count": 8}, {"date": "2026-10-11", "count": 39}, {"date": "2026-10-12", "count": 43}, {"date": "2026-10-13", "count": 41}, {"date": "2026-10-14", "count": 32}, {"date": "2026-10-15", "count": 25}, {"date": "2026-10-16", "count": 16}, {"date": "2026-10-17", "count": 32}, {"date": "2026-10-18", "count": 17}, {"date": "2026-10-19", "count": 27}, {"date": "2026-10-20", "count": 18}, {"date": "2026-10-21", "count": 44}, {"date": "2026-10-22", "count": 13}, {"date": "2026-10-23", "count": 32}, {"date": "2026-10-24", "count": 27}, {"date": "2026-10-25", "count": 43}, {"date": "2026-10-26", "count": 14}, {"date": "2026-10-27", "count": 15}, {"date": "2026-10-28", "count": 11}, {"date": "2026-10-29", "count": 19}, {"date": "2026-10-30", "count": 37}, {"date": "2026-10-31", "count": 2}, {"date": "2026-11-01", "count": 22}, {"date": "2026-11-02", "count": 56}, {"date": "2026-11-03", "count": 29}, {"date": "2026-11-04", "count": 24}, {"date": "2026-11-05", "count": 28}, {"date": "2026-11-06", "count": 43}, {"date": "2026-11-07", "count": 25}]};
+
+// Metrics Computation
+function computeMetrics(days) {
+  const sorted = [...days].sort((a,b) => a.date.localeCompare(b.date));
+  const total = DATA.total_contributions || sorted.reduce((sum, d) => sum + d.count, 0);
+  const active = sorted.filter(d => d.count > 0).length;
+  let busiest = { count: 0, date: "" };
+  let longest = 0, cur = 0;
+
+  for (const d of sorted) {
+    if (d.count > busiest.count) { busiest = d; }
+    if (d.count > 0) {
+      cur++;
+      if (cur > longest) longest = cur;
+    } else {
+      cur = 0;
+    }
+  }
+
+  // Current streak (ending today or yesterday)
+  let currStreak = 0;
+  const n = sorted.length;
+  if (n > 0) {
+    if (sorted[n - 1].count > 0) {
+      let i = n - 1;
+      while (i >= 0 && sorted[i].count > 0) { currStreak++; i--; }
+    } else if (n > 1 && sorted[n - 2].count > 0) {
+      let i = n - 2;
+      while (i >= 0 && sorted[i].count > 0) { currStreak++; i--; }
+    }
+  }
+
+  return { total, active, busiest, currStreak, longest };
+}
+
+const metrics = computeMetrics(DATA.days);
+
+// Populate Stats Strip
+const statsStrip = document.getElementById("statsStrip");
+const statsConfig = [
+  { label: "Total Contributions", val: metrics.total.toLocaleString(), accent: true },
+  { label: "Active Days", val: metrics.active.toString(), accent: false },
+  { label: "Busiest Day", val: metrics.busiest.count + " contributions", accent: false },
+  { label: "Current Streak", val: metrics.currStreak + " days", accent: false },
+  { label: "Longest Streak", val: metrics.longest + " days", accent: false },
+];
+
+statsConfig.forEach(s => {
+  const box = document.createElement("div");
+  box.className = "stat-box";
+  box.innerHTML = `
+    <div class="stat-text">
+      <span class="stat-label">${s.label}</span>
+      <span class="stat-val ${s.accent ? 'accent' : ''}">${s.val}</span>
+    </div>
+  `;
+  statsStrip.appendChild(box);
+});
+
+document.getElementById("metadataText").innerText =
+  `Data: GitHub Contributions · Updated: ${DATA.fetched_at_utc ? DATA.fetched_at_utc.slice(0, 10) : '2026-11-07'}`;
+
+// Geometry & Projection
+const canvas = document.getElementById("atlasCanvas");
+const ctx = canvas.getContext("2d");
+const tooltip = document.getElementById("tooltip");
+
+const levels = [
+  { top: "#10161A", left: "#0D1215", right: "#090D0F", stroke: "#182228" },
+  { top: "#2E424D", left: "#1E2C33", right: "#141E23", stroke: "#3A5260" },
+  { top: "#3E702A", left: "#2B4F1D", right: "#1D3613", stroke: "#529437" },
+  { top: "#6EBC2C", left: "#4B821E", right: "#335914", stroke: "#8AE33A" },
+  { top: "#B6FF3B", left: "#78A826", right: "#54751A", stroke: "#D4FF78" }
+];
+
+function getLevel(c) {
+  if (c <= 0) return 0;
+  if (c <= 2) return 1;
+  if (c <= 6) return 2;
+  if (c <= 14) return 3;
+  return 4;
+}
+
+function getTargetHeight(c, refMax=26) {
+  if (c <= 0) return 0;
+  const scale = Math.log(1 + c) / Math.log(1 + Math.max(1, refMax));
+  return Math.min(88, 12 + (76 - 12) * scale);
+}
+
+let towers = [];
+let animProgress = 0;
+let isAnimating = false;
+let animStartTime = null;
+let hoveredTower = null;
+
+function setupGeometry() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.resetTransform();
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width;
+  const H = rect.height;
+
+  const dx_w = (W / 1160) * 17.2;
+  const dy_w = 1.4;
+  const dx_d = (W / 1160) * -8.6;
+  const dy_d = 7.8;
+  const originX = W * 0.135;
+  const originY = H * 0.48;
+
+  const sorted = [...DATA.days].sort((a,b) => a.date.localeCompare(b.date));
+  const firstDate = new Date(sorted[0].date + "T00:00:00Z");
+  const firstSunday = new Date(firstDate);
+  firstSunday.setUTCDate(firstDate.getUTCDate() - firstDate.getUTCDay());
+
+  towers = sorted.map((d, i) => {
+    const curDate = new Date(d.date + "T00:00:00Z");
+    const ghWeekday = curDate.getUTCDay();
+    const diffDays = Math.floor((curDate - firstSunday) / (86400000));
+    const weekIdx = Math.floor(diffDays / 7);
+
+    const cx = originX + weekIdx * dx_w + ghWeekday * dx_d;
+    const cy = originY + weekIdx * dy_w + ghWeekday * dy_d;
+    const targetH = getTargetHeight(d.count, metrics.busiest.count);
+    const lvl = getLevel(d.count);
+
+    const hwx = (dx_w * 0.88) / 2;
+    const hwy = (dy_w * 0.88) / 2;
+    const hdx = (dx_d * 0.88) / 2;
+    const hdy = (dy_d * 0.88) / 2;
+
+    const ground = {
+      top: [cx - hwx - hdx, cy - hwy - hdy],
+      right: [cx + hwx - hdx, cy + hwy - hdy],
+      bottom: [cx + hwx + hdx, cy + hwy + hdy],
+      left: [cx - hwx + hdx, cy - hwy + hdy]
+    };
+
+    return {
+      date: d.date,
+      count: d.count,
+      cx, cy,
+      ground,
+      targetH,
+      lvl,
+      depth: cy + weekIdx * 0.01,
+      chronoIndex: i
+    };
+  });
+
+  towers.sort((a,b) => a.depth - b.depth);
+}
+
+function easeOutCubic(t) {
+  t = Math.max(0, Math.min(1, t));
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function render(time) {
+  const rect = canvas.getBoundingClientRect();
+  ctx.clearRect(0, 0, rect.width, rect.height);
+
+  const totalRise = 2.4;
+  const numDays = towers.length;
+
+  for (const t of towers) {
+    let currentH = 0;
+    if (t.targetH > 0) {
+      const ratio = t.chronoIndex / Math.max(1, numDays - 1);
+      const tStart = 0.4 + 1.6 * ratio;
+      const tWin = 0.55;
+      if (animProgress >= tStart + tWin) {
+        currentH = t.targetH;
+      } else if (animProgress > tStart) {
+        currentH = t.targetH * easeOutCubic((animProgress - tStart) / tWin);
+      }
+    }
+
+    const g = t.ground;
+    const col = levels[t.lvl];
+    const isHovered = (hoveredTower === t);
+
+    if (currentH <= 0.1) {
+      // Flat ground tile
+      ctx.beginPath();
+      ctx.moveTo(g.top[0], g.top[1]);
+      ctx.lineTo(g.right[0], g.right[1]);
+      ctx.lineTo(g.bottom[0], g.bottom[1]);
+      ctx.lineTo(g.left[0], g.left[1]);
+      ctx.closePath();
+      ctx.fillStyle = isHovered ? "#22333B" : col.top;
+      ctx.fill();
+      ctx.strokeStyle = isHovered ? "#B6FF3B" : col.stroke;
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+    } else {
+      const topPts = {
+        top: [g.top[0], g.top[1] - currentH],
+        right: [g.right[0], g.right[1] - currentH],
+        bottom: [g.bottom[0], g.bottom[1] - currentH],
+        left: [g.left[0], g.left[1] - currentH]
+      };
+
+      // Left face
+      ctx.beginPath();
+      ctx.moveTo(g.left[0], g.left[1]);
+      ctx.lineTo(topPts.left[0], topPts.left[1]);
+      ctx.lineTo(topPts.bottom[0], topPts.bottom[1]);
+      ctx.lineTo(g.bottom[0], g.bottom[1]);
+      ctx.closePath();
+      ctx.fillStyle = col.left;
+      ctx.fill();
+
+      // Right face
+      ctx.beginPath();
+      ctx.moveTo(g.bottom[0], g.bottom[1]);
+      ctx.lineTo(topPts.bottom[0], topPts.bottom[1]);
+      ctx.lineTo(topPts.right[0], topPts.right[1]);
+      ctx.lineTo(g.right[0], g.right[1]);
+      ctx.closePath();
+      ctx.fillStyle = col.right;
+      ctx.fill();
+
+      // Top face
+      ctx.beginPath();
+      ctx.moveTo(topPts.top[0], topPts.top[1]);
+      ctx.lineTo(topPts.right[0], topPts.right[1]);
+      ctx.lineTo(topPts.bottom[0], topPts.bottom[1]);
+      ctx.lineTo(topPts.left[0], topPts.left[1]);
+      ctx.closePath();
+      ctx.fillStyle = isHovered ? "#D4FF78" : col.top;
+      ctx.fill();
+      ctx.strokeStyle = isHovered ? "#FFFFFF" : col.stroke;
+      ctx.lineWidth = isHovered ? 1.5 : 0.8;
+      ctx.stroke();
+    }
+  }
+}
+
+function animate(timestamp) {
+  if (!animStartTime) animStartTime = timestamp;
+  const elapsed = (timestamp - animStartTime) / 1000;
+  animProgress = elapsed;
+
+  render(timestamp);
+
+  if (elapsed < 3.2) {
+    requestAnimationFrame(animate);
+  } else {
+    animProgress = 10.0;
+    render(timestamp);
+    isAnimating = false;
+  }
+}
+
+function startAnimation() {
+  animStartTime = null;
+  animProgress = 0;
+  isAnimating = true;
+  requestAnimationFrame(animate);
+}
+
+// Scroll trigger via IntersectionObserver
+let hasTriggered = false;
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !hasTriggered) {
+      hasTriggered = true;
+      startAnimation();
+    }
+  });
+}, { threshold: 0.25 });
+
+window.addEventListener("load", () => {
+  setupGeometry();
+  render();
+  observer.observe(document.getElementById("atlasSection"));
+});
+
+window.addEventListener("resize", () => {
+  setupGeometry();
+  render();
+});
+
+document.getElementById("btnReplay").addEventListener("click", () => {
+  startAnimation();
+});
+
+// Interactive hover detection
+canvas.addEventListener("mousemove", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+
+  let found = null;
+  // Test in reverse depth order (front to back)
+  for (let i = towers.length - 1; i >= 0; i--) {
+    const t = towers[i];
+    const dx = mx - t.cx;
+    const dy = my - (t.cy - (t.targetH * (animProgress > 3.0 ? 1 : 0)) / 2);
+    if (Math.abs(dx) < 9 && Math.abs(dy) < 18) {
+      found = t;
+      break;
+    }
+  }
+
+  if (found !== hoveredTower) {
+    hoveredTower = found;
+    render();
+  }
+
+  if (found) {
+    tooltip.style.display = "block";
+    tooltip.style.left = mx + "px";
+    tooltip.style.top = (my - 10) + "px";
+    tooltip.innerHTML = `
+      <div class="tt-date">${found.date}</div>
+      <div class="tt-count">${found.count} ${found.count === 1 ? 'contribution' : 'contributions'}</div>
+    `;
+  } else {
+    tooltip.style.display = "none";
+  }
+});
+
+canvas.addEventListener("mouseleave", () => {
+  hoveredTower = null;
+  tooltip.style.display = "none";
+  render();
+});
+</script>
+
+</body>
+</html>
