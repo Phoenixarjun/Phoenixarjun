@@ -14,6 +14,7 @@
 
 <!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->
 <!-- PROFILE:ENGINEERING-FOCUS:START -->
+<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>
 <p align="center">
   <img src="./assets/engineering-focus/engineering-focus-dark.svg"
        alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."

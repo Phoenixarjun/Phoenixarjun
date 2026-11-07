@@ -23,9 +23,15 @@ class EngineeringFocusAssetTests(unittest.TestCase):
                 self.assertNotIn('http://www.w3.org/1999/xlink',text)
 
     def test_canonical_text_in_master(self):
-        s=(OUT/'engineering-focus-dark.svg').read_text()
-        for word in ['naresh@github:~$','engineering-focus','Engineering','Focus','Applied AI', 'Backend','Distributed &amp;','Reliable Platforms','Automation','Observability','Production Engineering']:
-            with self.subTest(word=word): self.assertIn(word,s)
+        s = (OUT / 'engineering-focus-dark.svg').read_text()
+        for word in ['Engineering', 'Focus', 'Applied AI', 'Backend', 'Distributed &amp;', 'Reliable Platforms', 'Automation', 'Observability', 'Production Engineering']:
+            with self.subTest(word=word):
+                self.assertIn(word, s)
+        # Separator strip contains terminal command prompts
+        cmd_s = (OUT / 'section-command.svg').read_text()
+        for word in ['naresh@github:~$', 'engineering-focus']:
+            with self.subTest(word=word):
+                self.assertIn(word, cmd_s)
 
     def test_colors_and_content_are_centralized(self):
         data=json.loads((ROOT/'config'/'theme.json').read_text())

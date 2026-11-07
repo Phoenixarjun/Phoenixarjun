@@ -172,63 +172,57 @@ def pod_asset(w=386,h=353):
     ])
 
 def make_section(background: bool):
-    w,h=1280,765
-    p=[svg_open(w,h, 'Engineering Focus — Applied AI Systems, Backend Engineering, Distributed & Reliable Platforms')]
+    w, h = 1280, 685
+    p = [svg_open(w, h, 'Engineering Focus — Applied AI Systems, Backend Engineering, Distributed & Reliable Platforms')]
     if background:
-        p.extend([f'<rect width="{w}" height="{h}" fill="#070B0C"/>',f'<rect width="{w}" height="{h}" fill="url(#dots)" opacity=".18"/>'])
+        p.append(f'<rect width="{w}" height="{h}" fill="#070B0C"/>')
     else:
-        p.append('<g id="background-alpha" opacity="1"><rect x="0" y="0" width="1280" height="765" fill="none"/></g>')
-    # Clean open command separator matching terminal header style with no enclosing box
-    p += ['<g id="command-separator">',
-          '<rect x="20" y="34" width="4.5" height="30" rx="2" fill="'+A+'"/>',
-          text(36,56,'naresh@github:~$',24,A,700,family='mono'),
-          text(326,56,DATA['section']['command'],24,C['text'],400,family='mono'),
-          path('M 600 48 H 1242',C['steel'],width=1.3,extra='opacity=".7"'),
-          f'<circle cx="1248" cy="48" r="3" fill="{A}"/>','</g>']
+        p.append('<g id="background-alpha" opacity="1"><rect x="0" y="0" width="1280" height="685" fill="none"/></g>')
     # Heading area with no enclosing box
     p += ['<g id="heading">',
-          f'<rect x="20" y="110" width="5" height="60" rx="2" fill="{A}"/>',
-          text(44,142,'Engineering',44,C['text'],800),
-          text(338,142,'Focus',44,A,800),
-          text(46,176,DATA['section']['subtitle'],23,C['textSecondary'],400),
+          f'<rect x="20" y="24" width="5" height="54" rx="2" fill="{A}"/>',
+          text(44, 54, 'Engineering', 44, C['text'], 800),
+          text(338, 54, 'Focus', 44, A, 800),
+          text(46, 88, DATA['section']['subtitle'], 23, C['textSecondary'], 400),
           '</g>']
     # Card geometry
-    positions=[(20,226),(447,226),(874,226)]
+    positions = [(20, 138), (447, 138), (874, 138)]
     for i, pillar in enumerate(DATA['pillars']):
-        x,y=positions[i]
+        x, y = positions[i]
         p.append(f'<g id="pillar-{pillar["id"]}" transform="translate({x},{y})">')
-        p.append(pod_asset(386,353))
+        p.append(pod_asset(386, 353))
         p.append(f'<g transform="translate(100,14)">{[icon_ai(),icon_backend(),icon_distributed()][i]}</g>')
-        title_lines=pillar['titleLines']; ty=196 if len(title_lines)==2 else 211
-        for j,ln in enumerate(title_lines):
-            p.append(text(193,ty+j*34,ln,30,C['text'],760,'middle'))
+        title_lines = pillar['titleLines']; ty = 196 if len(title_lines) == 2 else 211
+        for j, ln in enumerate(title_lines):
+            p.append(text(193, ty + j * 34, ln, 30, C['text'], 760, 'middle'))
         p.append(f'<rect x="169" y="257" width="48" height="4" rx="2" fill="{A}"/>')
-        for j,ln in enumerate(pillar['descriptionLines']):
-            p.append(text(193,287+j*23,ln,19,C['textSecondary'],400,'middle',family='mono'))
+        for j, ln in enumerate(pillar['descriptionLines']):
+            p.append(text(193, 287 + j * 23, ln, 19, C['textSecondary'], 400, 'middle', family='mono'))
         p.append('</g>')
     # Practice heading with no enclosing box
     p += ['<g id="practice-heading">',
-        text(20,632,'//',28,A,700,family='mono'),
-        text(68,632,'Enabling Practices',27,C['text'],600),
-        path('M 312 622 H 1248',C['steel'],width=1.2,extra='opacity=".6"'),
-        f'<circle cx="1254" cy="622" r="3" fill="{A}"/>','</g>']
-    pills=[(23,672,366),(452,672,366),(880,672,378)]
+        text(20, 544, '//', 28, A, 700, family='mono'),
+        text(68, 544, 'Enabling Practices', 27, C['text'], 600),
+        path('M 312 534 H 1248', C['steel'], width=1.2, extra='opacity=".6"'),
+        f'<circle cx="1254" cy="534" r="3" fill="{A}"/>', '</g>']
+    pills = [(23, 584, 366), (452, 584, 366), (880, 584, 378)]
     for i, practice in enumerate(DATA['practices']):
-        x,y,pw=pills[i]
+        x, y, pw = pills[i]
         p.append(f'<g id="practice-{practice["id"]}" transform="translate({x},{y})">')
-        p.append(pill_frame(pw,66))
+        p.append(pill_frame(pw, 66))
         p.append(f'<g transform="translate(18,4) scale(.88)">{practice_icon(practice["id"])}</g>')
-        p.append(text((225 if practice['id']=='production-engineering' else pw/2+8),43,practice['label'],(21 if practice['id']=='production-engineering' else 24),C['text'],650,'middle'))
+        p.append(text((225 if practice['id'] == 'production-engineering' else pw / 2 + 8), 43, practice['label'], (21 if practice['id'] == 'production-engineering' else 24), C['text'], 650, 'middle'))
         p.append('</g>')
     p.append('</svg>')
     return '\n'.join(p)
 
 def make_separator():
-    p=[svg_open(1280,56,'Terminal section divider: engineering-focus')]
+    p = [svg_open(1280, 56, 'Terminal section divider: engineering-focus')]
     p += [
-      text(20,38,'naresh@github:~$',24,A,700,family='mono'),
-      text(310,38,'engineering-focus',24,C['text'],400,family='mono'),
-      path('M 580 30 H 1248',C['steel'],width=1.3,extra='opacity=".7"'),
+      '<rect width="1280" height="56" fill="#070B0C"/>',
+      text(20, 38, 'naresh@github:~$', 24, A, 700, family='mono'),
+      text(310, 38, 'engineering-focus', 24, C['text'], 400, family='mono'),
+      path('M 580 30 H 1248', C['steel'], width=1.3, extra='opacity=".7"'),
       f'<circle cx="1254" cy="30" r="3" fill="{A}"/>',
       '</svg>']
     return '\n'.join(p)

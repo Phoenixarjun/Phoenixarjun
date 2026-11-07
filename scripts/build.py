@@ -136,6 +136,7 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
     # 2. ENGINEERING FOCUS
     lines.append('<!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->\n')
     lines.append('<!-- PROFILE:ENGINEERING-FOCUS:START -->\n')
+    lines.append('<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>\n')
     lines.append('<p align="center">\n')
     lines.append('  <img src="./assets/engineering-focus/engineering-focus-dark.svg"\n')
     lines.append('       alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."\n')
@@ -230,6 +231,7 @@ def build(theme_override=None, save=False):
 
     # 2. Section Header Dividers
     headers = [
+        ('inspect', 'engineering-focus', 'assets/headers/inspect-engineering-focus.svg'),
         ('ls', 'flagship-projects', 'assets/headers/ls-flagship-projects.svg'),
         ('status', 'currently-building', 'assets/headers/status-currently-building.svg'),
         ('cat', 'engineering-stack', 'assets/headers/cat-engineering-stack.svg'),

@@ -104,6 +104,8 @@ def section_terminal_header(command: str, flag: str, theme: dict, width: int = 1
     line_end_x = width - 20
 
     body = [
+        # Solid dark background matching Hero GIF
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
         # Terminal prompt
         f'<text x="10" y="24" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="15" font-weight="700" fill="{t["accent"]}">{E(prompt_str)}'
         f'<tspan fill="{t["text"]}" font-weight="500">{E(cmd_str)}</tspan></text>',
@@ -127,7 +129,9 @@ def engineering_focus_card(profile: dict, theme: dict, width: int = 1160) -> str
     pillars = profile.get('engineering_pillars', [])
     col_w = (width - 40) / 3
 
-    body = []
+    body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
+    ]
     for i, p in enumerate(pillars[:3]):
         cx = 10 + i * col_w
         idx_str = f"0{i+1}"
@@ -153,7 +157,9 @@ def project_card(p: dict, theme: dict, idx: int, width: int = 1160) -> str:
     """Generate project card with right-side architecture node diagram."""
     h = 118
     t = theme
-    body = []
+    body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
+    ]
 
     # Left: Index, Title, Description, Tech
     body.append(txt(14, 34, f"{idx:02d}", size=14, color=t['accent'], weight=700, mono=True))
@@ -221,6 +227,7 @@ def now_building(p: dict, theme: dict, width: int = 1160) -> str:
     h = 136
     t = theme
     body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
         # Main card container
         rect(8, 6, width - 16, h - 12, t['surface'], r=12, stroke=t['stroke'], sw=1.2),
         # Left side: Active Repository, Title, Description
@@ -257,7 +264,9 @@ def stack_card(stack: dict, theme: dict, width: int = 1160) -> str:
     domains = stack.get('domains', [])
     h = max(220, len(domains) * 44 + 20)
 
-    body = []
+    body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
+    ]
     y_start = 32
     row_h = 40
 
@@ -288,7 +297,9 @@ def technical_writing_card(writing, theme: dict, width: int = 1160) -> str:
         articles = writing.get('featured', [])
     else:
         articles = writing or []
-    body = []
+    body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
+    ]
 
     y_pos = [34, 102, 170]
     for i, a in enumerate(articles[:3]):
@@ -337,6 +348,7 @@ def city(contrib: dict, theme: dict, width: int = 1160) -> str:
         total, active = 208, 94
 
     body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
         # Main card frame
         rect(8, 6, width - 16, h - 12, t['surface'], r=12, stroke=t['stroke'], sw=1.2),
         # Left side: Title, Subtitle, Scale specs
@@ -405,6 +417,7 @@ def playground(theme: dict, width: int = 1160) -> str:
     h = 144
     t = theme
     body = [
+        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
         # Main card container
         rect(8, 6, width - 16, h - 12, t['surface'], r=12, stroke=t['stroke'], sw=1.2),
         # Left side: Tag, Title, Subtitle, Play capsule
