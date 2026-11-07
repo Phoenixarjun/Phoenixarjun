@@ -135,8 +135,13 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
 
     # 2. ENGINEERING FOCUS
     lines.append('<!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>\n')
-    lines.append('<p align="center"><img src="./assets/sections/engineering-focus.svg" alt="Engineering Focus" width="100%" /></p>\n\n')
+    lines.append('<!-- PROFILE:ENGINEERING-FOCUS:START -->\n')
+    lines.append('<p align="center">\n')
+    lines.append('  <img src="./assets/engineering-focus/engineering-focus-dark.svg"\n')
+    lines.append('       alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."\n')
+    lines.append('       width="100%" />\n')
+    lines.append('</p>\n')
+    lines.append('<!-- PROFILE:ENGINEERING-FOCUS:END -->\n\n')
 
     # 3. FLAGSHIP PROJECTS
     lines.append('<!-- ==================== SECTION 03: FLAGSHIP PROJECTS ==================== -->\n')
@@ -219,9 +224,12 @@ def build(theme_override=None, save=False):
         max_posts=5,
     )
 
-    # 1. Section Header Dividers
+    # 1. Engineering Focus Section Assets
+    import subprocess, sys
+    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build_engineering_focus.py')], check=True)
+
+    # 2. Section Header Dividers
     headers = [
-        ('inspect', 'engineering-focus', 'assets/headers/inspect-engineering-focus.svg'),
         ('ls', 'flagship-projects', 'assets/headers/ls-flagship-projects.svg'),
         ('status', 'currently-building', 'assets/headers/status-currently-building.svg'),
         ('cat', 'engineering-stack', 'assets/headers/cat-engineering-stack.svg'),

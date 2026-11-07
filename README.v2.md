@@ -13,8 +13,13 @@
 -->
 
 <!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->
-<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>
-<p align="center"><img src="./assets/sections/engineering-focus.svg" alt="Engineering Focus" width="100%" /></p>
+<!-- PROFILE:ENGINEERING-FOCUS:START -->
+<p align="center">
+  <img src="./assets/engineering-focus/engineering-focus-dark.svg"
+       alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."
+       width="100%" />
+</p>
+<!-- PROFILE:ENGINEERING-FOCUS:END -->
 
 <!-- ==================== SECTION 03: FLAGSHIP PROJECTS ==================== -->
 <p align="center"><img src="./assets/headers/ls-flagship-projects.svg" width="100%" /></p>

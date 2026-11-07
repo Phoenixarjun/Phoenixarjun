@@ -1,0 +1,22 @@
+# Visual and technical acceptance checklist
+
+- [ ] User reference image is in `references/engineering-focus-reference.png`.
+- [ ] Theme swatches match `#0C0F10`, `#1B2328`, `#42535C`, `#B6FF3B`, `#EEF7EF`.
+- [ ] Generated SVG `viewBox="0 0 1280 765"` has three equal-sized pods and evenly spaced practice pills.
+- [ ] Command separator is **above** Engineering Focus title and has a horizontal rule.
+- [ ] No duplicate Markdown title/command is displayed with the composite SVG.
+- [ ] The outer section has no big neon-frame boundary.
+- [ ] Text is readable after downscale to 900px README width.
+- [ ] Applied AI Systems has a layered AI chip icon.
+- [ ] Backend Engineering has a tilted code console icon.
+- [ ] Distributed & Reliable Platforms has three connected isometric cubes.
+- [ ] Icon sheets / transparent standalone assets have alpha zero at all four outer corners.
+- [ ] Each pod has a dim steel border and lime corner glow only at selected corners.
+- [ ] No glyphs or descriptions overlap/clip the bottom of pods.
+- [ ] Production Engineering fits within its practice pill with adequate icon spacing.
+- [ ] GitHub light/dark mode previews remain readable.
+- [ ] Central design/themes.json takes priority over fallback config/theme.json.
+- [ ] No JavaScript, CSS imports, external SVG images, fonts, network requests, or secrets.
+- [ ] Running `python scripts/build_engineering_focus.py` regenerates the exact same SVG hashes on successive runs.
+- [ ] Existing `README.md` and workflows are preserved.
+- [ ] Final embed appears between hero and flagship projects, not elsewhere.

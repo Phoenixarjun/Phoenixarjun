@@ -1,0 +1,29 @@
+{
+  "section": {
+    "command": "engineering-focus",
+    "title": "Engineering Focus",
+    "subtitle": "Primary engineering pillars, supported by key engineering practices."
+  },
+  "pillars": [
+    {
+      "id": "applied-ai-systems",
+      "titleLines": ["Applied AI", "Systems"],
+      "descriptionLines": ["Building practical AI", "workflows, agents, and", "intelligent software."]
+    },
+    {
+      "id": "backend-engineering",
+      "titleLines": ["Backend", "Engineering"],
+      "descriptionLines": ["Designing APIs, services,", "data flows, and scalable", "backend systems."]
+    },
+    {
+      "id": "distributed-reliable-platforms",
+      "titleLines": ["Distributed &", "Reliable Platforms"],
+      "descriptionLines": ["Building event-driven,", "scalable, and observable", "platforms."]
+    }
+  ],
+  "practices": [
+    {"id": "automation", "label": "Automation"},
+    {"id": "observability", "label": "Observability"},
+    {"id": "production-engineering", "label": "Production Engineering"}
+  ]
+}

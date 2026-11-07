@@ -1,0 +1,25 @@
+{
+  "$schema_note": "Single source of truth for Engineering Focus generated assets; no magic hex colors in the generator.",
+  "themeId": "titanium-hacker",
+  "name": "Titanium Hacker",
+  "colors": {
+    "base": "#0C0F10",
+    "surface": "#1B2328",
+    "steel": "#42535C",
+    "accent": "#B6FF3B",
+    "text": "#EEF7EF",
+    "deep": "#070B0C",
+    "surfaceDeep": "#101819",
+    "surfaceRaised": "#14201E",
+    "edge": "#5F7873",
+    "textSecondary": "#B8C8BE",
+    "muted": "#91A49B",
+    "aquaHighlight": "#80D8C7",
+    "limeShadow": "#609A20",
+    "transparent": "#000000"
+  },
+  "fonts": {
+    "heading": "Inter, 'DejaVu Sans', Arial, sans-serif",
+    "mono": "'JetBrains Mono', 'DejaVu Sans Mono', Consolas, monospace"
+  }
+}
