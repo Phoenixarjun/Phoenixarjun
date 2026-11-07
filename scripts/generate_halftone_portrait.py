@@ -246,3 +246,4 @@ if __name__ == '__main__':
     print(f"Generated {len(data['dots'])} portrait dots and {len(data['guide_dots'])} guide dots.")
     svg_fragment = render_portrait_svg_group(data)
     print("Sample SVG snippet length:", len(svg_fragment))
+

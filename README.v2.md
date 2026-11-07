@@ -1,6 +1,6 @@
 <!-- GENERATED FILE: edit content/*.json or design/themes.json, then run python scripts/build.py. -->
-<!-- Preview only. Existing README.md is deliberately untouched. -->
 
+<!-- ==================== SECTION 01: IDENTITY / HERO ==================== -->
 <!-- Regenerate hero assets: python scripts/generate_hero_svg.py && python scripts/render_hero_gif.py -->
 <p align="center">
   <img src="./assets/generated/hero/hero-animated.gif" alt="Naresh B A — AI Systems Engineer" width="100%" />
@@ -12,74 +12,63 @@
 </p>
 -->
 
-<p align="center"><a href="https://github.com/Phoenixarjun">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/">LinkedIn</a> &nbsp;·&nbsp; <a href="https://medium.com/@phoenixarjun007">Medium</a></p>
+<!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->
+<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>
+<p align="center"><img src="./assets/sections/engineering-focus.svg" alt="Engineering Focus" width="100%" /></p>
 
----
+<!-- ==================== SECTION 03: FLAGSHIP PROJECTS ==================== -->
+<p align="center"><img src="./assets/headers/ls-flagship-projects.svg" width="100%" /></p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun/architecture-as-memory"><img src="./assets/projects/architecture-as-memory.svg" alt="Architecture-as-Memory" width="100%" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun/PromptNova"><img src="./assets/projects/promptnova.svg" alt="PromptNova" width="100%" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun/CredFlow"><img src="./assets/projects/credflow.svg" alt="CredFlow" width="100%" /></a>
+</p>
 
-## Engineering focus
+<!-- ==================== SECTION 04: CURRENTLY BUILDING ==================== -->
+<p align="center"><img src="./assets/headers/status-currently-building.svg" width="100%" /></p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun/Agent-Toolkit"><img src="./assets/now/agent-toolkit.svg" alt="Agent Toolkit" width="100%" /></a>
+</p>
 
-I design and build backend systems, event-driven workflows and intelligent software. My work spans telemetry and distributed processing at Prodapt, alongside independent AI and developer-tooling projects.
+<!-- ==================== SECTION 05: ENGINEERING STACK ==================== -->
+<p align="center"><img src="./assets/headers/cat-engineering-stack.svg" width="100%" /></p>
+<p align="center"><img src="./assets/stack/toolkit.svg" alt="Engineering Stack" width="100%" /></p>
 
-- **AI Engineering:** Agent workflows, structured evaluation and intelligent applications.
-- **Backend & Distributed Systems:** APIs, asynchronous processing, event-driven architecture and data systems.
-- **Reliability & Observability:** Telemetry pipelines, storage lifecycle design and system behavior under constraints.
+<!-- ==================== SECTION 06: TECHNICAL WRITING ==================== -->
+<p align="center"><img src="./assets/headers/read-technical-writing.svg" width="100%" /></p>
+<p align="center"><img src="./assets/sections/technical-writing.svg" alt="Technical Writing" width="100%" /></p>
 
----
+<!-- BLOG-POST-LIST:START -->
+- **[Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3)**
+- **[Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade)**
+- **[From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e)**
+- **[Designing a Production RAG Retrieval System for 500 Million Vectors](https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83)**
+- **[Scaling Vector Search to 500 Million Vectors: The Architecture Behind It](https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97)**
+<!-- BLOG-POST-LIST:END -->
 
-## Flagship projects
+<!-- ==================== SECTION 07: CONTRIBUTION ATLAS ==================== -->
+<p align="center"><img src="./assets/headers/render-contribution-atlas.svg" width="100%" /></p>
+<p align="center"><img src="./assets/contributions/city.svg" alt="Contribution Atlas" width="100%" /></p>
 
-Selected public projects with engineering-focused write-ups.
+<!-- ==================== SECTION 08: DEVELOPER PLAYGROUND ==================== -->
+<p align="center"><img src="./assets/headers/open-developer-playground.svg" width="100%" /></p>
+<p align="left"><sub>A little personality, without distracting from the engineering.</sub></p>
+<p align="center"><img src="./assets/playground/concept.svg" alt="Developer Playground" width="100%" /></p>
 
-<a href="https://github.com/Phoenixarjun/architecture-as-memory"><img src="assets/projects/architecture-as-memory.svg" alt="Architecture-as-Memory project showcase" width="100%" /></a>
+<!-- ==================== SECTION 09: CONNECT ==================== -->
+<p align="center"><img src="./assets/headers/connect-all.svg" width="100%" /></p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun"><img src="./assets/sections/btn-github.svg" height="44" alt="GitHub" /></a> &nbsp;
+  <a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/"><img src="./assets/sections/btn-linkedin.svg" height="44" alt="LinkedIn" /></a> &nbsp;
+  <a href="https://medium.com/@phoenixarjun007"><img src="./assets/sections/btn-medium.svg" height="44" alt="Medium" /></a> &nbsp;
+  <img src="./assets/sections/btn-portfolio.svg" height="44" alt="Portfolio (soon)" />
+</p>
 
-**[Architecture-as-Memory](https://github.com/Phoenixarjun/architecture-as-memory)** · Developer Infrastructure
-
-<a href="https://github.com/Phoenixarjun/PromptNova"><img src="assets/projects/promptnova.svg" alt="PromptNova project showcase" width="100%" /></a>
-
-**[PromptNova](https://github.com/Phoenixarjun/PromptNova)** · Applied AI
-
-<a href="https://github.com/Phoenixarjun/CredFlow"><img src="assets/projects/credflow.svg" alt="CredFlow project showcase" width="100%" /></a>
-
-**[CredFlow](https://github.com/Phoenixarjun/CredFlow)** · Backend & Product Engineering
-
----
-
-## Currently building
-
-Active, evolving work — separate from the flagship portfolio.
-
-<a href="https://github.com/Phoenixarjun/Agent-Toolkit"><img src="assets/now/agent-toolkit.svg" alt="Agent Toolkit currently building" width="100%" /></a>
-
-**[Agent Toolkit](https://github.com/Phoenixarjun/Agent-Toolkit)** · Evolving
-
----
-
-## Engineering toolkit
-
-<p align="center"><img src="assets/stack/toolkit.svg" alt="Engineering domains and technologies" width="100%" /></p>
-
----
-
-## Technical writing
-
-Selected articles about designing, building, and evaluating software systems.
-
-- **[Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3)** — Applied AI · Model selection
-- **[Git at Agent Scale: What Anthropic's Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade)** — Agent engineering · Git
-- **[From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e)** — Developer tooling · Engineering playbooks
-
----
-
-## Contribution atlas
-
-<p align="center"><img src="assets/contributions/city.svg" alt="Isometric GitHub contribution city" width="100%" /></p>
-
----
-
-## Connect
-
-**Building intelligent software on reliable systems.**
-
-[GitHub](https://github.com/Phoenixarjun) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/naresh-b-a-1b5331243/) &nbsp;·&nbsp; [Medium](https://medium.com/@phoenixarjun007)
-
-<sub>Naresh B A · Chennai, India</sub>
+<p align="center">
+  <sub>Building intelligent software on reliable systems.</sub><br/>
+  <sub><code>VARIATION 01 / TERMINAL EDITORIAL</code></sub>
+</p>

@@ -2,16 +2,16 @@
   "name": "Naresh B A",
   "github_username": "Phoenixarjun",
   "identity": "AI Systems Engineer",
-  "official_role": "Software Development Engineer",
+  "official_role": "Software Engineer",
   "employer": "Prodapt",
   "tagline": "Building intelligent software on reliable systems.",
   "location": "Chennai, India",
-  "focus": ["Applied AI", "Backend Engineering", "Distributed Systems"],
+  "focus": ["Applied AI", "Backend & Platform", "Distributed Systems"],
   "overview": "I design and build backend systems, event-driven workflows and intelligent software. My work spans telemetry and distributed processing at Prodapt, alongside independent AI and developer-tooling projects.",
   "engineering_pillars": [
-    {"title": "AI Engineering", "description": "Agent workflows, structured evaluation and intelligent applications."},
-    {"title": "Backend & Distributed Systems", "description": "APIs, asynchronous processing, event-driven architecture and data systems."},
-    {"title": "Reliability & Observability", "description": "Telemetry pipelines, storage lifecycle design and system behavior under constraints."}
+    {"title": "Applied AI", "description": "Agent workflows, RAG and evaluation"},
+    {"title": "Backend & Platform", "description": "APIs, services and data boundaries"},
+    {"title": "Distributed Systems", "description": "Event streams, reliability and scale"}
   ],
   "links": {
     "github": "https://github.com/Phoenixarjun",
@@ -19,6 +19,6 @@
     "medium": "https://medium.com/@phoenixarjun007",
     "portfolio": ""
   },
-  "features": {"show_contribution_city": true, "show_playground": false, "show_portfolio": false},
+  "features": {"show_contribution_city": true, "show_playground": true, "show_portfolio": true},
   "confidentiality_note": "Do not copy employer/customer data or operational metrics into public graphics without authorization."
 }

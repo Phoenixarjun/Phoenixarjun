@@ -1,10 +1,9 @@
 {
   "domains": [
-    {"name": "Languages", "items": ["Python", "Java", "TypeScript", "SQL"]},
-    {"name": "AI Engineering", "items": ["LangGraph", "LangChain", "RAG", "Agent Workflows"]},
-    {"name": "Backend & Events", "items": ["FastAPI", "Spring Boot", "Kafka", "Redis"]},
-    {"name": "Data & Search", "items": ["PostgreSQL", "Elasticsearch", "MongoDB", "Qdrant"]},
-    {"name": "Infrastructure", "items": ["Docker", "Kubernetes", "GCP", "GitHub Actions"]},
-    {"name": "Observability", "items": ["Prometheus", "Grafana", "OpenTelemetry"]}
+    {"name": "LANGUAGES", "items": ["Python", "Java", "TypeScript"]},
+    {"name": "APPLIED AI", "items": ["LangGraph", "LangChain", "FastAPI"]},
+    {"name": "BACKEND + DATA", "items": ["Kafka", "Redis", "PostgreSQL"]},
+    {"name": "PLATFORM", "items": ["Docker", "Kubernetes", "OpenSearch"]},
+    {"name": "OBSERVABILITY", "items": ["Prometheus", "Grafana"]}
   ]
 }
