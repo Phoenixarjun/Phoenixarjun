@@ -30,18 +30,27 @@ if central.exists():
     if selected not in settings['presets']:
         raise ValueError('Unknown active theme in design/themes.json: '+selected)
     chosen=settings['presets'][selected]
-    base=chosen['base'];surface=chosen['surface'];accent=chosen['accent'];text_primary=chosen['text'];steel=chosen['stroke'];secondary=chosen['secondary']
-    C={
-      'base':base,'surface':surface,'steel':steel,'accent':accent,'text':text_primary,
-      'deep':blend(base,'#000000',.28),
-      'surfaceDeep':blend(surface,base,.50),
-      'surfaceRaised':blend(surface,accent,.055),
-      'edge':blend(steel,secondary,.40),
-      'textSecondary':chosen.get('muted',blend(text_primary,base,.30)),
-      'muted':chosen.get('muted',secondary),
-      'aquaHighlight':secondary,
-      'limeShadow':blend(accent,base,.54),
-      'transparent':'#000000',
+    base = '#070B0C'
+    surface = chosen['surface']
+    accent = chosen['accent']
+    text_primary = chosen['text']
+    steel = chosen['stroke']
+    secondary = chosen['secondary']
+    C = {
+      'base': '#070B0C',
+      'surface': surface,
+      'steel': steel,
+      'accent': accent,
+      'text': text_primary,
+      'deep': '#070B0C',
+      'surfaceDeep': blend(surface, '#070B0C', .50),
+      'surfaceRaised': blend(surface, accent, .055),
+      'edge': blend(steel, secondary, .40),
+      'textSecondary': chosen.get('muted', blend(text_primary, '#070B0C', .30)),
+      'muted': chosen.get('muted', secondary),
+      'aquaHighlight': secondary,
+      'limeShadow': blend(accent, '#070B0C', .54),
+      'transparent': '#000000',
     }
 else:
     C=T['colors']
@@ -66,7 +75,7 @@ def shared_defs() -> str:
       <radialGradient id="softLight"><stop offset="0" stop-color="{A}" stop-opacity=".23"/><stop offset=".55" stop-color="{A}" stop-opacity=".07"/><stop offset="1" stop-color="{A}" stop-opacity="0"/></radialGradient>
       <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5"/></filter>
       <filter id="glowSmall" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.6"/></filter>
-      <pattern id="dots" width="17" height="17" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".75" fill="{C['steel']}" opacity=".27"/></pattern>
+      <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".75" fill="{C['steel']}" opacity=".18"/></pattern>
       <clipPath id="clipPanel"><rect x="0" y="0" width="1280" height="765"/></clipPath>
     </defs>'''
 
@@ -166,32 +175,27 @@ def make_section(background: bool):
     w,h=1280,765
     p=[svg_open(w,h, 'Engineering Focus — Applied AI Systems, Backend Engineering, Distributed & Reliable Platforms')]
     if background:
-        p.extend([f'<rect width="{w}" height="{h}" fill="{C["base"]}"/>',f'<rect width="{w}" height="{h}" fill="url(#dots)" opacity=".38"/>'])
+        p.extend([f'<rect width="{w}" height="{h}" fill="#070B0C"/>',f'<rect width="{w}" height="{h}" fill="url(#dots)" opacity=".18"/>'])
     else:
-        # A non-card dark technical surface under everything ensures readability in either GitHub theme;
-        # the SVG viewport beyond the section is still alpha transparent.
         p.append('<g id="background-alpha" opacity="1"><rect x="0" y="0" width="1280" height="765" fill="none"/></g>')
-    # command separator always sits on a dark self-contained band for light-mode readability
+    # Clean open command separator matching terminal header style with no enclosing box
     p += ['<g id="command-separator">',
-          f'<rect x="20" y="14" width="1240" height="72" rx="6" fill="{C["deep"]}" opacity=".94"/>',
-          '<rect x="35" y="33" width="5" height="32" rx="2" fill="'+A+'"/>',
-          text(57,63,'naresh@github:~$',25,A,700,family='mono'),
-          text(341,63,DATA['section']['command'],25,C['text'],400,family='mono'),
-          path('M 618 53 H 1230',C['edge'],width=1.5),
-          path('M 1230 45 L 1240 53 L 1230 61',A,width=2),'</g>']
-    # heading band not card-shaped
+          '<rect x="20" y="34" width="4.5" height="30" rx="2" fill="'+A+'"/>',
+          text(36,56,'naresh@github:~$',24,A,700,family='mono'),
+          text(326,56,DATA['section']['command'],24,C['text'],400,family='mono'),
+          path('M 600 48 H 1242',C['steel'],width=1.3,extra='opacity=".7"'),
+          f'<circle cx="1248" cy="48" r="3" fill="{A}"/>','</g>']
+    # Heading area with no enclosing box
     p += ['<g id="heading">',
-          f'<rect x="20" y="105" width="1240" height="102" fill="{C["deep"]}" opacity=".93"/>',
-          f'<rect x="39" y="123" width="5" height="60" rx="2" fill="{A}"/>',
-          text(63,153,'Engineering',44,C['text'],800),
-          text(358,153,'Focus',44,A,800),
-          text(65,188,DATA['section']['subtitle'],23,C['textSecondary'],400),
+          f'<rect x="20" y="110" width="5" height="60" rx="2" fill="{A}"/>',
+          text(44,142,'Engineering',44,C['text'],800),
+          text(338,142,'Focus',44,A,800),
+          text(46,176,DATA['section']['subtitle'],23,C['textSecondary'],400),
           '</g>']
-    # card geometry
+    # Card geometry
     positions=[(20,226),(447,226),(874,226)]
     for i, pillar in enumerate(DATA['pillars']):
         x,y=positions[i]
-        # frame and per-card internal content
         p.append(f'<g id="pillar-{pillar["id"]}" transform="translate({x},{y})">')
         p.append(pod_asset(386,353))
         p.append(f'<g transform="translate(100,14)">{[icon_ai(),icon_backend(),icon_distributed()][i]}</g>')
@@ -202,11 +206,12 @@ def make_section(background: bool):
         for j,ln in enumerate(pillar['descriptionLines']):
             p.append(text(193,287+j*23,ln,19,C['textSecondary'],400,'middle',family='mono'))
         p.append('</g>')
+    # Practice heading with no enclosing box
     p += ['<g id="practice-heading">',
-        f'<rect x="20" y="607" width="1240" height="54" fill="{C["deep"]}" opacity=".94"/>',
-        text(31,641,'//',28,A,700,family='mono'),
-        text(84,641,'Enabling Practices',27,C['text'],600),
-        path('M 321 628 H 1250',C['steel'],width=1.2),'</g>']
+        text(20,632,'//',28,A,700,family='mono'),
+        text(68,632,'Enabling Practices',27,C['text'],600),
+        path('M 312 622 H 1248',C['steel'],width=1.2,extra='opacity=".6"'),
+        f'<circle cx="1254" cy="622" r="3" fill="{A}"/>','</g>']
     pills=[(23,672,366),(452,672,366),(880,672,378)]
     for i, practice in enumerate(DATA['practices']):
         x,y,pw=pills[i]
@@ -219,12 +224,13 @@ def make_section(background: bool):
     return '\n'.join(p)
 
 def make_separator():
-    p=[svg_open(1280,85,'Terminal section divider: engineering-focus')]
-    p += [f'<rect x="8" y="7" width="1264" height="70" fill="{C["deep"]}" rx="3"/>',
-      f'<rect x="22" y="28" width="4" height="27" fill="{A}"/>',
-      text(48,53,'naresh@github:~$',26,A,700,family='mono'),
-      text(340,53,'engineering-focus',26,C['text'],400,family='mono'),
-      path('M 645 44 H 1252',C['edge'],width=1.3), '</svg>']
+    p=[svg_open(1280,56,'Terminal section divider: engineering-focus')]
+    p += [
+      text(20,38,'naresh@github:~$',24,A,700,family='mono'),
+      text(310,38,'engineering-focus',24,C['text'],400,family='mono'),
+      path('M 580 30 H 1248',C['steel'],width=1.3,extra='opacity=".7"'),
+      f'<circle cx="1254" cy="30" r="3" fill="{A}"/>',
+      '</svg>']
     return '\n'.join(p)
 
 def make_frame():
