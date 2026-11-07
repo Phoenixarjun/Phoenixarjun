@@ -1,96 +1,85 @@
+<!-- GENERATED FILE: edit content/*.json or design/themes.json, then run python scripts/build.py. -->
+<!-- Preview only. Existing README.md is deliberately untouched. -->
+
+<!-- Regenerate hero assets: python scripts/generate_hero_svg.py && python scripts/render_hero_gif.py -->
 <p align="center">
-  <img width="2172" height="724" alt="ChatGPT Image May 27, 2026, 12_49_12 PM" src="https://github.com/user-attachments/assets/e1a6d41a-fb45-4549-b9ba-9686ff7fe2b1" />
+  <img src="./assets/generated/hero/hero-animated.gif" alt="Naresh B A — AI Systems Engineer" width="100%" />
 </p>
 
-<!-- Typing Animation -->
-<h1 align="center">Hi 👋, I'm Naresh B A</h1>
-<h3 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=0AFFEF&center=true&vCenter=true&random=false&width=500&lines=ML+Engineer;Full+Stack+Developer;AI+Engineer;Prompt+Engineer;Java+Developer" alt="Typing Animation" />
-</h3>
-
-<!-- Motivational Quote -->
-<p align="center"><em>"Learn a tech with consistency. Your effort never goes waste – even a drop accumulates into an ocean one day."</em></p>
-
----
-
-## 🚀 About Me  
-- 🔭 Currently building **[PromptNova](https://prompt-nova.vercel.app/)** & **[FitSync](https://fit-sync-sepia.vercel.app/)**  
-- 🧩 Exploring **[NextStep-AI](https://github.com/Phoenixarjun/NextStep-AI)** – AI-powered career assistant  
-- ✍️ Blogging at [Medium](https://medium.com/@phoenixarjun007) & [Dev.to](https://dev.to/naresh_007)  
-- 🎯 Competing on **Kaggle** [here](https://www.kaggle.com/nareshba007)  
-- 👨‍💻 Portfolio: [naresh-portfolio-007.netlify.app](https://naresh-portfolio-007.netlify.app/)  
-
----
-
-## 🛠️ Tech Stack  
-
-### 🌐 Full Stack  
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)  ![React](https://img.shields.io/badge/React-0AFFEF?style=for-the-badge&logo=react&logoColor=black)  ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js)  ![Node.js](https://img.shields.io/badge/Node.js-3C873A?style=for-the-badge&logo=node.js&logoColor=white)  ![Express](https://img.shields.io/badge/Express-303030?style=for-the-badge&logo=express)  ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwind-css)  ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)  
-
-
-### 💻 Languages
-![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)  ![C++](https://img.shields.io/badge/C++-004482?style=for-the-badge&logo=cplusplus&logoColor=white)  ![Java](https://img.shields.io/badge/Java-FF0000?style=for-the-badge&logo=java&logoColor=white)  ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
-
-### 🗄️ Databases
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)  ![MySQL](https://img.shields.io/badge/MySQL-00618A?style=for-the-badge&logo=mysql&logoColor=white)  ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase)  
-
-### 🤖 Machine Learning / AI
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)  ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)  ![Scikit-learn](https://img.shields.io/badge/ScikitLearn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)  ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)  ![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)  
-
-### 🔮 GenAI / LLMs
-![LangChain](https://img.shields.io/badge/LangChain-121212?style=for-the-badge&logo=chainlink&logoColor=0AFFEF)  ![LangGraph](https://img.shields.io/badge/LangGraph-444444?style=for-the-badge&logo=graph&logoColor=0AFFEF)  ![LlamaIndex](https://img.shields.io/badge/LlamaIndex-FFB86C?style=for-the-badge)  ![HuggingFace](https://img.shields.io/badge/HuggingFace-FCC72D?style=for-the-badge&logo=huggingface)  ![VectorDBs](https://img.shields.io/badge/VectorDBs-6633FF?style=for-the-badge&logo=databricks)  ![n8n](https://img.shields.io/badge/n8n-FF6B6B?style=for-the-badge&logo=n8n&logoColor=white)  
-
-### 📊 Data Science
-![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)  ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi)  ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas)  ![Seaborn](https://img.shields.io/badge/Seaborn-5C7B8B?style=for-the-badge)  
-
----
-
-## 📌 Featured Projects  
-🔹 [PromptNova](https://prompt-nova.vercel.app/) – AI Prompting Platform  
-🔹 [FitSync](https://github.com/Phoenixarjun/FitSync) – Fitness & Wellness Tracker  
-🔹 [NextStep-AI](https://github.com/Phoenixarjun/NextStep-AI) – Career Growth Assistant  
-🔹 [ReArticle](https://github.com/Phoenixarjun/ReArticle) – LaTeX-free Research Paper Builder  
-🔹 [SignComm](https://github.com/Phoenixarjun/SignComm) – Bridging Communication Barriers  
-🔹 [Portfolio](https://naresh-portfolio-007.netlify.app/) – Personal Portfolio  
-
----
-
-## ✍️ Latest Blogs  
-<!-- BLOG-POST-LIST:START -->
-- [Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3?source=rss-bf9add216b39------2)
-- [Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade?source=rss-bf9add216b39------2)
-- [From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e?source=rss-bf9add216b39------2)
-- [Designing a Production RAG Retrieval System for 500 Million Vectors](https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83?source=rss-bf9add216b39------2)
-- [Scaling Vector Search to 500 Million Vectors: The Architecture Behind It](https://medium.com/@phoenixarjun007/scaling-vector-search-to-500-million-vectors-the-architecture-behind-it-950458403e97?source=rss-bf9add216b39------2)
-<!-- BLOG-POST-LIST:END -->
-
----
-
-## 📊 GitHub Stats  
+<!-- Fallback:
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Phoenixarjun&show_icons=true&theme=radical" height="180"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Phoenixarjun&theme=radical" height="180"/>
+  <img src="./assets/generated/hero/hero-static.svg" alt="Naresh B A — AI Systems Engineer" width="100%" />
 </p>
+-->
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Phoenixarjun&layout=compact&theme=radical" />
-</p>
+<p align="center"><a href="https://github.com/Phoenixarjun">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/">LinkedIn</a> &nbsp;·&nbsp; <a href="https://medium.com/@phoenixarjun007">Medium</a></p>
 
 ---
 
-## 🌍 Connect with Me  
-<p align="center">
-  <a href="https://linkedin.com/in/naresh-b-a"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin" /></a>
-  <a href="https://twitter.com/phoenixarjun007"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter" /></a>
-  <a href="https://www.kaggle.com/nareshba007"><img src="https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=kaggle" /></a>
-  <a href="https://leetcode.com/u/Naresh-007/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode" /></a>
-  <a href="https://naresh-portfolio-007.netlify.app/"><img src="https://img.shields.io/badge/Portfolio-FF007F?style=for-the-badge&logo=vercel" /></a>
-</p>
+## Engineering focus
+
+I design and build backend systems, event-driven workflows and intelligent software. My work spans telemetry and distributed processing at Prodapt, alongside independent AI and developer-tooling projects.
+
+- **AI Engineering:** Agent workflows, structured evaluation and intelligent applications.
+- **Backend & Distributed Systems:** APIs, asynchronous processing, event-driven architecture and data systems.
+- **Reliability & Observability:** Telemetry pipelines, storage lifecycle design and system behavior under constraints.
 
 ---
 
-## 🐍 Contribution Graph  
-<p align="center">
-  <img src="https://github.com/Platane/snk/raw/output/github-contribution-grid-snake.svg" />
-</p>
+## Flagship projects
+
+Selected public projects with engineering-focused write-ups.
+
+<a href="https://github.com/Phoenixarjun/architecture-as-memory"><img src="assets/projects/architecture-as-memory.svg" alt="Architecture-as-Memory project showcase" width="100%" /></a>
+
+**[Architecture-as-Memory](https://github.com/Phoenixarjun/architecture-as-memory)** · Developer Infrastructure
+
+<a href="https://github.com/Phoenixarjun/PromptNova"><img src="assets/projects/promptnova.svg" alt="PromptNova project showcase" width="100%" /></a>
+
+**[PromptNova](https://github.com/Phoenixarjun/PromptNova)** · Applied AI
+
+<a href="https://github.com/Phoenixarjun/CredFlow"><img src="assets/projects/credflow.svg" alt="CredFlow project showcase" width="100%" /></a>
+
+**[CredFlow](https://github.com/Phoenixarjun/CredFlow)** · Backend & Product Engineering
+
+---
+
+## Currently building
+
+Active, evolving work — separate from the flagship portfolio.
+
+<a href="https://github.com/Phoenixarjun/Agent-Toolkit"><img src="assets/now/agent-toolkit.svg" alt="Agent Toolkit currently building" width="100%" /></a>
+
+**[Agent Toolkit](https://github.com/Phoenixarjun/Agent-Toolkit)** · Evolving
+
+---
+
+## Engineering toolkit
+
+<p align="center"><img src="assets/stack/toolkit.svg" alt="Engineering domains and technologies" width="100%" /></p>
+
+---
+
+## Technical writing
+
+Selected articles about designing, building, and evaluating software systems.
+
+- **[Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3)** — Applied AI · Model selection
+- **[Git at Agent Scale: What Anthropic's Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade)** — Agent engineering · Git
+- **[From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e)** — Developer tooling · Engineering playbooks
+
+---
+
+## Contribution atlas
+
+<p align="center"><img src="assets/contributions/city.svg" alt="Isometric GitHub contribution city" width="100%" /></p>
+
+---
+
+## Connect
+
+**Building intelligent software on reliable systems.**
+
+[GitHub](https://github.com/Phoenixarjun) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/naresh-b-a-1b5331243/) &nbsp;·&nbsp; [Medium](https://medium.com/@phoenixarjun007)
+
+<sub>Naresh B A · Chennai, India</sub>

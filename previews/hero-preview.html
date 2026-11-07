@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hero Section 01 Preview · Titanium Hacker</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #070B0C;
+      color: #F0F5EF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    header {
+      margin-bottom: 28px;
+      border-bottom: 1px solid #203037;
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #F0F5EF;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge {
+      font-size: 13px;
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: rgba(185, 255, 56, 0.15);
+      color: #B9FF38;
+      border: 1px solid #B9FF38;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    p.subtitle {
+      color: #B7C7BF;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      margin-top: 24px;
+    }
+    .card {
+      background: #0B1113;
+      border: 1px solid #335058;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #F0F5EF;
+    }
+    .card-meta {
+      font-size: 13px;
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      color: #B7C7BF;
+    }
+    .asset-view {
+      border: 1px solid #203037;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #070B0C;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid #203037;
+      color: #8A9B93;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>
+      Section 01 — Identity / Hero
+      <span class="badge">Titanium Hacker</span>
+    </h1>
+    <p class="subtitle">
+      Computational halftone dot-matrix portrait, cyber-HUD framing, terminal prompt strip, typewriter role animation, and flowing signal wave.
+    </p>
+  </header>
+
+  <main class="grid">
+    <!-- 1. Animated GIF -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">1. Animated GIF (Primary GitHub README embed)</h2>
+        <span class="card-meta">assets/generated/hero/hero-animated.gif (~215 KB, 15 FPS)</span>
+      </div>
+      <div class="asset-view">
+        <img src="../assets/generated/hero/hero-animated.gif" alt="Animated GitHub Hero GIF" />
+      </div>
+    </article>
+
+    <!-- 2. Static SVG -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">2. Static Vector SVG (High-DPI Fallback)</h2>
+        <span class="card-meta">assets/generated/hero/hero-static.svg (1280x420)</span>
+      </div>
+      <div class="asset-view">
+        <img src="../assets/generated/hero/hero-static.svg" alt="Static GitHub Hero SVG" />
+      </div>
+    </article>
+
+    <!-- 3. Animated SVG -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">3. Animated Vector SVG (SMIL / CSS Keyframes)</h2>
+        <span class="card-meta">assets/generated/hero/hero-animated.svg</span>
+      </div>
+      <div class="asset-view">
+        <img src="../assets/generated/hero/hero-animated.svg" alt="Animated GitHub Hero SVG" />
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    Phoenixarjun / GitHub Profile 2.0 &bull; Generated deterministically via Python
+  </footer>
+</body>
+</html>

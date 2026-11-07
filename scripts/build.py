@@ -46,7 +46,9 @@ def build_readme(profile,projects,stack,writing,has_real):
     lines=[]
     lines.append('<!-- GENERATED FILE: edit content/*.json or design/themes.json, then run python scripts/build.py. -->\n')
     lines.append('<!-- Preview only. Existing README.md is deliberately untouched. -->\n\n')
-    lines.append(img('assets/hero/identity.svg','Naresh B A — AI Systems Engineer'))
+    lines.append('<!-- Regenerate hero assets: python scripts/generate_hero_svg.py && python scripts/render_hero_gif.py -->\n')
+    lines.append('<p align="center">\n  <img src="./assets/generated/hero/hero-animated.gif" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n\n')
+    lines.append('<!-- Fallback:\n<p align="center">\n  <img src="./assets/generated/hero/hero-static.svg" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n-->\n\n')
     links=profile['links']
     nav=[('GitHub',links['github']),('LinkedIn',links['linkedin']),('Medium',links['medium'])]
     if profile['features'].get('show_portfolio') and links.get('portfolio'):

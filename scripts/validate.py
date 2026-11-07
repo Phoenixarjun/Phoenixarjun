@@ -25,7 +25,7 @@ def validate():
         url=urlsplit(p['url'])
         assert url.scheme=='https' and url.netloc=='github.com' and url.path.strip('/'), p
     content=(ROOT/'README.v2.md').read_text(encoding='utf-8')
-    assert 'assets/hero/identity.svg' in content
+    assert ('assets/hero/identity.svg' in content or 'assets/generated/hero' in content)
     assert len(content)<500*1024
     for filename in (ROOT/'assets').rglob('*.svg'):
         ET.parse(filename)

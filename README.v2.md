@@ -1,7 +1,16 @@
 <!-- GENERATED FILE: edit content/*.json or design/themes.json, then run python scripts/build.py. -->
 <!-- Preview only. Existing README.md is deliberately untouched. -->
 
-<p align="center"><img src="assets/hero/identity.svg" alt="Naresh B A — AI Systems Engineer" width="100%" /></p>
+<!-- Regenerate hero assets: python scripts/generate_hero_svg.py && python scripts/render_hero_gif.py -->
+<p align="center">
+  <img src="./assets/generated/hero/hero-animated.gif" alt="Naresh B A — AI Systems Engineer" width="100%" />
+</p>
+
+<!-- Fallback:
+<p align="center">
+  <img src="./assets/generated/hero/hero-static.svg" alt="Naresh B A — AI Systems Engineer" width="100%" />
+</p>
+-->
 
 <p align="center"><a href="https://github.com/Phoenixarjun">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/">LinkedIn</a> &nbsp;·&nbsp; <a href="https://medium.com/@phoenixarjun007">Medium</a></p>
 
