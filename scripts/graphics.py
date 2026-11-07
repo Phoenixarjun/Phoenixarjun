@@ -63,19 +63,40 @@ def poly(points, fill, stroke=None, opacity=None):
     return s + '/>'
 
 
-def shell(w, h, theme, body, title, *, grid=False):
+def get_light_theme(theme: dict) -> dict:
+    """Derive Titanium Hacker light-mode palette tokens strictly from theme palette."""
+    return {
+        'base': '#FFFFFF',
+        'surface': '#F4F7F8',
+        'surface2': '#E5ECEF',
+        'stroke': '#8EADB6',
+        'accent': '#3B6600',  # high-contrast Titanium Hacker lime on light background (WCAG AAA)
+        'secondary': '#42535C',
+        'text': '#11171A',     # dark graphite text
+        'muted': '#586A73',    # readable secondary slate
+    }
+
+
+def shell(w, h, theme, body, title, *, bg_mode='transparent', grid=False):
     t = theme
-    pattern = '<rect width="100%" height="100%" fill="url(#dots)" opacity=".25"/>' if grid else ''
+    defs = []
+    if grid:
+        defs.append(f'''<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r=".7" fill="{t['stroke']}" opacity=".35"/>
+  </pattern>''')
+    defs_block = f'<defs>\n{"".join(defs)}\n</defs>\n' if defs else ''
+
+    bg = ''
+    if bg_mode == 'surface':
+        bg = f'<rect width="{w}" height="{h}" rx="14" fill="{t["surface"]}" stroke="{t["stroke"]}" stroke-width="1"/>\n'
+    elif bg_mode == 'hero':
+        bg = f'<rect width="{w}" height="{h}" rx="14" fill="{t["base"]}"/>\n'
+    # 'transparent' (Mode A) renders no full-canvas background rect
+    pattern = '<rect width="100%" height="100%" fill="url(#dots)" opacity=".25"/>\n' if grid else ''
+
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{E(title)}">
 <title>{E(title)}</title>
-<defs>
-  <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
-    <circle cx="2" cy="2" r=".7" fill="{t['stroke']}" opacity=".35"/>
-  </pattern>
-</defs>
-<rect width="{w}" height="{h}" rx="14" fill="{t['base']}"/>
-{pattern}
-{body}
+{defs_block}{bg}{pattern}{body}
 </svg>'''
 
 
@@ -90,10 +111,10 @@ def pill(x, y, label, theme, w=None, h=28, font=12):
 # -------------------------------------------------------------
 # 1. SECTION TERMINAL HEADERS
 # -------------------------------------------------------------
-def section_terminal_header(command: str, flag: str, theme: dict, width: int = 1160) -> str:
-    """Generate naresh@github:~$ <command> --<flag> ─────── • header strip."""
-    h = 36
-    t = theme
+def section_terminal_header(command: str, flag: str, theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate naresh@github:~$ <command> --<flag> ─────── • header strip (Mode A: transparent root)."""
+    h = 40
+    t = get_light_theme(theme) if is_light else theme
     prompt_str = "naresh@github:~$"
     cmd_str = f" {command} --{flag}"
 
@@ -104,15 +125,14 @@ def section_terminal_header(command: str, flag: str, theme: dict, width: int = 1
     line_end_x = width - 20
 
     body = [
-        # Solid dark background matching Hero GIF
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
+        # Mode A: Transparent outer canvas, no full-canvas rect
         # Terminal prompt
-        f'<text x="10" y="24" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="15" font-weight="700" fill="{t["accent"]}">{E(prompt_str)}'
+        f'<text x="10" y="26" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="15" font-weight="700" fill="{t["accent"]}">{E(prompt_str)}'
         f'<tspan fill="{t["text"]}" font-weight="500">{E(cmd_str)}</tspan></text>',
         # Horizontal connecting guide rule
-        line(text_end_x, 20, line_end_x - 8, 20, t['stroke'], 1.2, 0.75),
+        line(text_end_x, 22, line_end_x - 8, 22, t['stroke'], 1.2, 0.75),
         # End dot
-        f'<circle cx="{line_end_x}" cy="20" r="3" fill="{t["accent"]}"/>',
+        f'<circle cx="{line_end_x}" cy="22" r="3" fill="{t["accent"]}"/>',
     ]
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img">
 {''.join(body)}
@@ -122,16 +142,14 @@ def section_terminal_header(command: str, flag: str, theme: dict, width: int = 1
 # -------------------------------------------------------------
 # 2. SECTION 02: ENGINEERING FOCUS (3 Columns)
 # -------------------------------------------------------------
-def engineering_focus_card(profile: dict, theme: dict, width: int = 1160) -> str:
-    """Generate 3-column editorial engineering focus layout."""
+def engineering_focus_card(profile: dict, theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate 3-column editorial engineering focus layout (Mode A: transparent root)."""
     h = 100
-    t = theme
+    t = get_light_theme(theme) if is_light else theme
     pillars = profile.get('engineering_pillars', [])
     col_w = (width - 40) / 3
 
-    body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-    ]
+    body = []
     for i, p in enumerate(pillars[:3]):
         cx = 10 + i * col_w
         idx_str = f"0{i+1}"
@@ -153,13 +171,11 @@ def engineering_focus_card(profile: dict, theme: dict, width: int = 1160) -> str
 # -------------------------------------------------------------
 # 3. SECTION 03: FLAGSHIP PROJECTS (3 Distinct Cards)
 # -------------------------------------------------------------
-def project_card(p: dict, theme: dict, idx: int, width: int = 1160) -> str:
-    """Generate project card with right-side architecture node diagram."""
+def project_card(p: dict, theme: dict, idx: int, width: int = 1160, is_light: bool = False) -> str:
+    """Generate project card with right-side architecture node diagram (Mode A: transparent root)."""
     h = 118
-    t = theme
-    body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-    ]
+    t = get_light_theme(theme) if is_light else theme
+    body = []
 
     # Left: Index, Title, Description, Tech
     body.append(txt(14, 34, f"{idx:02d}", size=14, color=t['accent'], weight=700, mono=True))
@@ -222,13 +238,12 @@ def project_card(p: dict, theme: dict, idx: int, width: int = 1160) -> str:
 # -------------------------------------------------------------
 # 4. SECTION 04: CURRENTLY BUILDING (Agent Toolkit HUD Card)
 # -------------------------------------------------------------
-def now_building(p: dict, theme: dict, width: int = 1160) -> str:
-    """Generate Currently Building active repository HUD card."""
+def now_building(p: dict, theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate Currently Building active repository HUD card (Mode B: contained surface)."""
     h = 136
-    t = theme
+    t = get_light_theme(theme) if is_light else theme
     body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-        # Main card container
+        # Main card container (Mode B contained surface, transparent outer canvas)
         rect(8, 6, width - 16, h - 12, t['surface'], r=12, stroke=t['stroke'], sw=1.2),
         # Left side: Active Repository, Title, Description
         txt(36, 36, "ACTIVE REPOSITORY", size=11, color=t['accent'], weight=700, mono=True, letter=1.2),
@@ -258,15 +273,13 @@ def now_building(p: dict, theme: dict, width: int = 1160) -> str:
 # -------------------------------------------------------------
 # 5. SECTION 05: ENGINEERING STACK (Terminal Matrix)
 # -------------------------------------------------------------
-def stack_card(stack: dict, theme: dict, width: int = 1160) -> str:
-    """Generate crisp engineering stack terminal matrix."""
-    t = theme
+def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate crisp engineering stack terminal matrix (Mode A: transparent root)."""
+    t = get_light_theme(theme) if is_light else theme
     domains = stack.get('domains', [])
     h = max(220, len(domains) * 44 + 20)
 
-    body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-    ]
+    body = []
     y_start = 32
     row_h = 40
 
@@ -289,17 +302,15 @@ def stack_card(stack: dict, theme: dict, width: int = 1160) -> str:
 # -------------------------------------------------------------
 # 6. SECTION 06: TECHNICAL WRITING (Clean Editorial Rows)
 # -------------------------------------------------------------
-def technical_writing_card(writing, theme: dict, width: int = 1160) -> str:
-    """Generate technical writing article rows with ↗ indicators."""
+def technical_writing_card(writing, theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate technical writing article rows with ↗ indicators (Mode A: transparent root)."""
     h = 210
-    t = theme
+    t = get_light_theme(theme) if is_light else theme
     if isinstance(writing, dict):
         articles = writing.get('featured', [])
     else:
         articles = writing or []
-    body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-    ]
+    body = []
 
     y_pos = [34, 102, 170]
     for i, a in enumerate(articles[:3]):
@@ -332,10 +343,10 @@ def _tower(cx, cy, height, t, intensity):
     return poly(left, t['stroke']) + poly(right, t['surface2']) + poly(top, col_top)
 
 
-def city(contrib: dict, theme: dict, width: int = 1160) -> str:
-    """Generate wide Contribution Atlas HUD card with 3D isometric skyline."""
+def city(contrib: dict, theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate wide Contribution Atlas HUD card with 3D isometric skyline (Mode D: contained visualization)."""
     h = 360
-    t = theme
+    t = get_light_theme(theme) if is_light else theme
     live = contrib.get('status') == 'ok' and bool(contrib.get('days'))
 
     days = {}
@@ -348,8 +359,7 @@ def city(contrib: dict, theme: dict, width: int = 1160) -> str:
         total, active = 208, 94
 
     body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-        # Main card frame
+        # Main card frame (Mode D contained surface, transparent outer canvas)
         rect(8, 6, width - 16, h - 12, t['surface'], r=12, stroke=t['stroke'], sw=1.2),
         # Left side: Title, Subtitle, Scale specs
         txt(36, 42, "A YEAR IN CODE", size=11, color=t['accent'], weight=700, mono=True, letter=1.2),
@@ -412,13 +422,12 @@ def city(contrib: dict, theme: dict, width: int = 1160) -> str:
 # -------------------------------------------------------------
 # 8. SECTION 08: DEVELOPER PLAYGROUND
 # -------------------------------------------------------------
-def playground(theme: dict, width: int = 1160) -> str:
-    """Generate System Runner developer playground HUD card with equalizer."""
+def playground(theme: dict, width: int = 1160, is_light: bool = False) -> str:
+    """Generate System Runner developer playground HUD card with equalizer (Mode D: contained visualization)."""
     h = 144
-    t = theme
+    t = get_light_theme(theme) if is_light else theme
     body = [
-        f'<rect width="{width}" height="{h}" fill="#070B0C"/>',
-        # Main card container
+        # Main card container (Mode D contained surface, transparent outer canvas)
         rect(8, 6, width - 16, h - 12, t['surface'], r=12, stroke=t['stroke'], sw=1.2),
         # Left side: Tag, Title, Subtitle, Play capsule
         txt(36, 36, "SYSTEM RUNNER", size=11, color=t['accent'], weight=700, mono=True, letter=1.2),
@@ -450,9 +459,9 @@ def playground(theme: dict, width: int = 1160) -> str:
 # -------------------------------------------------------------
 # 9. SECTION 09: CONNECT BUTTONS
 # -------------------------------------------------------------
-def connect_button(label: str, theme: dict, width: int = 265, height: int = 44) -> str:
+def connect_button(label: str, theme: dict, width: int = 265, height: int = 44, is_light: bool = False) -> str:
     """Generate rounded capsule connect button with green status ring."""
-    t = theme
+    t = get_light_theme(theme) if is_light else theme
     body = [
         rect(1, 1, width - 2, height - 2, t['surface'], r=8, stroke=t['stroke'], sw=1.2),
         # Ring indicator

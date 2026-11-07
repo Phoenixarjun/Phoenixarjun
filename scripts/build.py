@@ -1,16 +1,12 @@
 """Build self-contained GitHub-compatible SVG assets and README.v2.md / README.md.
 
-Adheres strictly to Variation 01 (Terminal Editorial) full profile layout:
-- Hero banner (animated GIF with static SVG fallback)
-- Unified terminal command headers
-- 3-column engineering focus
-- Flagship projects with architecture diagrams
-- Currently building active repository card
-- Terminal engineering stack matrix
-- Technical writing article showcase dynamically populated from Medium blog feed
-- 3D isometric Contribution Atlas
-- Developer playground with audio spectrum
-- Clickable connect buttons & terminal editorial footer
+Adheres strictly to Titanium Hacker design specifications and unified rendering:
+- Standardized reference width (1160px) and transparent root canvases (Mode A)
+- Dual-mode Dark/Light theme switching via GitHub-supported <picture> syntax
+- Intentional contained surfaces for cards and HUD modules (Mode B & Mode D)
+- Standalone animated hero panel (Mode C)
+- Clean, accessible native Markdown links for Technical Writing (no duplicate SVG)
+- Theme centralization strictly flowing from design/themes.json
 """
 from __future__ import annotations
 
@@ -89,7 +85,7 @@ def get_medium_posts(feed_url: str = 'https://medium.com/feed/@phoenixarjun007',
             cache_file.parent.mkdir(parents=True, exist_ok=True)
             cache_file.write_text(json.dumps({'status': 'ok', 'posts': posts}, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
             return posts
-    except Exception as e:
+    except Exception:
         pass
 
     # Read from cache if network fails
@@ -123,71 +119,117 @@ def get_medium_posts(feed_url: str = 'https://medium.com/feed/@phoenixarjun007',
     ]
 
 
+def header_tag(slug: str) -> str:
+    """Return GitHub-compliant <picture> tag for dark/light terminal command separators."""
+    return (
+        f'<p align="center">\n'
+        f'  <picture>\n'
+        f'    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/{slug}.svg">\n'
+        f'    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/{slug}-light.svg">\n'
+        f'    <img src="./assets/headers/{slug}.svg" width="100%" />\n'
+        f'  </picture>\n'
+        f'</p>\n'
+    )
+
+
 def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], has_real: bool) -> str:
     lines = []
     lines.append('<!-- GENERATED FILE: edit content/*.json or design/themes.json, then run python scripts/build.py. -->\n\n')
 
-    # 1. HERO IDENTITY
+    # 1. HERO IDENTITY (Mode C: Independent Cyber Card)
     lines.append('<!-- ==================== SECTION 01: IDENTITY / HERO ==================== -->\n')
     lines.append('<!-- Regenerate hero assets: python scripts/generate_hero_svg.py && python scripts/render_hero_gif.py -->\n')
     lines.append('<p align="center">\n  <img src="./assets/generated/hero/hero-animated.gif" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n\n')
     lines.append('<!-- Fallback:\n<p align="center">\n  <img src="./assets/generated/hero/hero-static.svg" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n-->\n\n')
 
-    # 2. ENGINEERING FOCUS
+    # 2. ENGINEERING FOCUS (Mode A Transparent Canvas with Mode B Contained Pods)
     lines.append('<!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->\n')
     lines.append('<!-- PROFILE:ENGINEERING-FOCUS:START -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>\n')
+    lines.append(header_tag('inspect-engineering-focus'))
     lines.append('<p align="center">\n')
-    lines.append('  <img src="./assets/engineering-focus/engineering-focus-dark.svg"\n')
-    lines.append('       alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."\n')
-    lines.append('       width="100%" />\n')
+    lines.append('  <picture>\n')
+    lines.append('    <source media="(prefers-color-scheme: dark)" srcset="./assets/engineering-focus/engineering-focus-dark.svg">\n')
+    lines.append('    <source media="(prefers-color-scheme: light)" srcset="./assets/engineering-focus/engineering-focus-light.svg">\n')
+    lines.append('    <img src="./assets/engineering-focus/engineering-focus-dark.svg"\n')
+    lines.append('         alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."\n')
+    lines.append('         width="100%" />\n')
+    lines.append('  </picture>\n')
     lines.append('</p>\n')
     lines.append('<!-- PROFILE:ENGINEERING-FOCUS:END -->\n\n')
 
-    # 3. FLAGSHIP PROJECTS
+    # 3. FLAGSHIP PROJECTS (Mode A Transparent Outer Rows with Mode B Architecture Previews)
     lines.append('<!-- ==================== SECTION 03: FLAGSHIP PROJECTS ==================== -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/ls-flagship-projects.svg" width="100%" /></p>\n')
+    lines.append(header_tag('ls-flagship-projects'))
     for p in projects['flagship']:
-        lines.append(f'<p align="center">\n  <a href="{html_escape(p["url"], quote=True)}"><img src="./assets/projects/{p["slug"]}.svg" alt="{html_escape(p["name"], quote=True)}" width="100%" /></a>\n</p>\n')
+        slug = p["slug"]
+        lines.append(
+            f'<p align="center">\n'
+            f'  <a href="{html_escape(p["url"], quote=True)}">\n'
+            f'    <picture>\n'
+            f'      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/{slug}.svg">\n'
+            f'      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/{slug}-light.svg">\n'
+            f'      <img src="./assets/projects/{slug}.svg" alt="{html_escape(p["name"], quote=True)}" width="100%" />\n'
+            f'    </picture>\n'
+            f'  </a>\n'
+            f'</p>\n'
+        )
     lines.append('\n')
 
-    # 4. CURRENTLY BUILDING
+    # 4. CURRENTLY BUILDING (Mode B Contained HUD Surface)
     lines.append('<!-- ==================== SECTION 04: CURRENTLY BUILDING ==================== -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/status-currently-building.svg" width="100%" /></p>\n')
+    lines.append(header_tag('status-currently-building'))
     for p in projects['currently_building']:
-        lines.append(f'<p align="center">\n  <a href="{html_escape(p["url"], quote=True)}"><img src="./assets/now/{p["slug"]}.svg" alt="{html_escape(p["name"], quote=True)}" width="100%" /></a>\n</p>\n')
+        slug = p["slug"]
+        lines.append(
+            f'<p align="center">\n'
+            f'  <a href="{html_escape(p["url"], quote=True)}">\n'
+            f'    <picture>\n'
+            f'      <source media="(prefers-color-scheme: dark)" srcset="./assets/now/{slug}.svg">\n'
+            f'      <source media="(prefers-color-scheme: light)" srcset="./assets/now/{slug}-light.svg">\n'
+            f'      <img src="./assets/now/{slug}.svg" alt="{html_escape(p["name"], quote=True)}" width="100%" />\n'
+            f'    </picture>\n'
+            f'  </a>\n'
+            f'</p>\n'
+        )
     lines.append('\n')
 
-    # 5. ENGINEERING STACK
+    # 5. ENGINEERING STACK (Mode A Transparent Terminal Matrix)
     lines.append('<!-- ==================== SECTION 05: ENGINEERING STACK ==================== -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/cat-engineering-stack.svg" width="100%" /></p>\n')
-    lines.append('<p align="center"><img src="./assets/stack/toolkit.svg" alt="Engineering Stack" width="100%" /></p>\n\n')
+    lines.append(header_tag('cat-engineering-stack'))
+    lines.append(
+        '<p align="center">\n'
+        '  <picture>\n'
+        '    <source media="(prefers-color-scheme: dark)" srcset="./assets/stack/toolkit.svg">\n'
+        '    <source media="(prefers-color-scheme: light)" srcset="./assets/stack/toolkit-light.svg">\n'
+        '    <img src="./assets/stack/toolkit.svg" alt="Engineering Stack" width="100%" />\n'
+        '  </picture>\n'
+        '</p>\n\n'
+    )
 
-    # 6. TECHNICAL WRITING (Integrated with GitHub blog-post-workflow)
+    # 6. TECHNICAL WRITING (Deduplicated: Native Accessible Markdown Links only)
     lines.append('<!-- ==================== SECTION 06: TECHNICAL WRITING ==================== -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/read-technical-writing.svg" width="100%" /></p>\n')
-    lines.append('<p align="center"><img src="./assets/sections/technical-writing.svg" alt="Technical Writing" width="100%" /></p>\n\n')
+    lines.append(header_tag('read-technical-writing'))
     lines.append('<!-- BLOG-POST-LIST:START -->\n')
     for a in posts:
         lines.append(f'- **[{html_escape(a["title"])}]({html_escape(a["url"], quote=True)})**\n')
     lines.append('<!-- BLOG-POST-LIST:END -->\n\n')
 
-    # 7. CONTRIBUTION ATLAS
+    # 7. CONTRIBUTION ATLAS (Mode D Contained Visualization)
     if profile['features'].get('show_contribution_city', True):
         lines.append('<!-- ==================== SECTION 07: CONTRIBUTION ATLAS ==================== -->\n')
-        lines.append('<p align="center"><img src="./assets/headers/render-contribution-atlas.svg" width="100%" /></p>\n')
+        lines.append(header_tag('render-contribution-atlas'))
         lines.append('<p align="center"><img src="./assets/contributions/city.svg" alt="Contribution Atlas" width="100%" /></p>\n\n')
 
-    # 8. DEVELOPER PLAYGROUND
+    # 8. DEVELOPER PLAYGROUND (Mode D Contained Visualization)
     if profile['features'].get('show_playground', True):
         lines.append('<!-- ==================== SECTION 08: DEVELOPER PLAYGROUND ==================== -->\n')
-        lines.append('<p align="center"><img src="./assets/headers/open-developer-playground.svg" width="100%" /></p>\n')
+        lines.append(header_tag('open-developer-playground'))
         lines.append('<p align="left"><sub>A little personality, without distracting from the engineering.</sub></p>\n')
         lines.append('<p align="center"><img src="./assets/playground/concept.svg" alt="Developer Playground" width="100%" /></p>\n\n')
 
-    # 9. CONNECT
+    # 9. CONNECT (Mode A Accessible Actions)
     lines.append('<!-- ==================== SECTION 09: CONNECT ==================== -->\n')
-    lines.append('<p align="center"><img src="./assets/headers/connect-all.svg" width="100%" /></p>\n')
+    lines.append(header_tag('connect-all'))
     lines.append('<p align="center">\n')
     lines.append(f'  <a href="{html_escape(profile["links"]["github"], quote=True)}"><img src="./assets/sections/btn-github.svg" height="44" alt="GitHub" /></a> &nbsp;\n')
     lines.append(f'  <a href="{html_escape(profile["links"]["linkedin"], quote=True)}"><img src="./assets/sections/btn-linkedin.svg" height="44" alt="LinkedIn" /></a> &nbsp;\n')
@@ -225,45 +267,52 @@ def build(theme_override=None, save=False):
         max_posts=5,
     )
 
-    # 1. Engineering Focus Section Assets
+    # 1. Engineering Focus Section Assets (Dual-mode 1160px SVGs)
     import subprocess, sys
     subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build_engineering_focus.py')], check=True)
 
-    # 2. Section Header Dividers
+    # 2. Section Header Dividers (Dual-mode Dark and Light variants)
     headers = [
-        ('inspect', 'engineering-focus', 'assets/headers/inspect-engineering-focus.svg'),
-        ('ls', 'flagship-projects', 'assets/headers/ls-flagship-projects.svg'),
-        ('status', 'currently-building', 'assets/headers/status-currently-building.svg'),
-        ('cat', 'engineering-stack', 'assets/headers/cat-engineering-stack.svg'),
-        ('read', 'technical-writing', 'assets/headers/read-technical-writing.svg'),
-        ('render', 'contribution-atlas', 'assets/headers/render-contribution-atlas.svg'),
-        ('open', 'developer-playground', 'assets/headers/open-developer-playground.svg'),
-        ('connect', 'all', 'assets/headers/connect-all.svg'),
+        ('inspect', 'engineering-focus', 'inspect-engineering-focus'),
+        ('ls', 'flagship-projects', 'ls-flagship-projects'),
+        ('status', 'currently-building', 'status-currently-building'),
+        ('cat', 'engineering-stack', 'cat-engineering-stack'),
+        ('read', 'technical-writing', 'read-technical-writing'),
+        ('render', 'contribution-atlas', 'render-contribution-atlas'),
+        ('open', 'developer-playground', 'open-developer-playground'),
+        ('connect', 'all', 'connect-all'),
     ]
-    for cmd, flg, out_file in headers:
-        write(out_file, section_terminal_header(cmd, flg, theme))
+    for cmd, flg, slug in headers:
+        write(f'assets/headers/{slug}.svg', section_terminal_header(cmd, flg, theme, is_light=False))
+        write(f'assets/headers/{slug}-light.svg', section_terminal_header(cmd, flg, theme, is_light=True))
 
-    # 2. Section Cards & Components
-    write('assets/sections/engineering-focus.svg', engineering_focus_card(profile, theme))
+    # 3. Section Cards & Components (Dark and Light variants)
+    write('assets/sections/engineering-focus.svg', engineering_focus_card(profile, theme, is_light=False))
+    write('assets/sections/engineering-focus-light.svg', engineering_focus_card(profile, theme, is_light=True))
 
     for i, p in enumerate(projects['flagship'], 1):
-        write(f'assets/projects/{p["slug"]}.svg', project_card(p, theme, i))
+        write(f'assets/projects/{p["slug"]}.svg', project_card(p, theme, i, is_light=False))
+        write(f'assets/projects/{p["slug"]}-light.svg', project_card(p, theme, i, is_light=True))
 
     for p in projects['currently_building']:
-        write(f'assets/now/{p["slug"]}.svg', now_building(p, theme))
+        write(f'assets/now/{p["slug"]}.svg', now_building(p, theme, is_light=False))
+        write(f'assets/now/{p["slug"]}-light.svg', now_building(p, theme, is_light=True))
 
-    write('assets/stack/toolkit.svg', stack_card(stack, theme))
-    write('assets/sections/technical-writing.svg', technical_writing_card(posts, theme))
+    write('assets/stack/toolkit.svg', stack_card(stack, theme, is_light=False))
+    write('assets/stack/toolkit-light.svg', stack_card(stack, theme, is_light=True))
+
+    # Backward compatibility for any external references
+    write('assets/sections/technical-writing.svg', technical_writing_card(posts, theme, is_light=False))
     write('assets/contributions/city.svg', city(contributions, theme))
     write('assets/playground/concept.svg', playground(theme))
 
-    # 3. Connect Buttons
+    # 4. Connect Buttons
     write('assets/sections/btn-github.svg', connect_button('GitHub', theme))
     write('assets/sections/btn-linkedin.svg', connect_button('LinkedIn', theme))
     write('assets/sections/btn-medium.svg', connect_button('Medium', theme))
     write('assets/sections/btn-portfolio.svg', connect_button('Portfolio (soon)', theme))
 
-    # 4. Assemble READMEs
+    # 5. Assemble READMEs
     live = contributions.get('status') == 'ok' and bool(contributions.get('days'))
     readme_content = build_readme(profile, projects, stack, posts, live)
     write('README.v2.md', readme_content)

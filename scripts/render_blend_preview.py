@@ -47,3 +47,4 @@ subprocess.run(cmd, check=True)
 if tmp_html.is_file():
     tmp_html.unlink()
 print("Rendered seamless blend preview to:", out_png)
+

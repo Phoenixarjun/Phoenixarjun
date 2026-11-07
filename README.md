@@ -14,40 +14,102 @@
 
 <!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->
 <!-- PROFILE:ENGINEERING-FOCUS:START -->
-<p align="center"><img src="./assets/headers/inspect-engineering-focus.svg" width="100%" /></p>
 <p align="center">
-  <img src="./assets/engineering-focus/engineering-focus-dark.svg"
-       alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."
-       width="100%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/inspect-engineering-focus.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/inspect-engineering-focus-light.svg">
+    <img src="./assets/headers/inspect-engineering-focus.svg" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/engineering-focus/engineering-focus-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/engineering-focus/engineering-focus-light.svg">
+    <img src="./assets/engineering-focus/engineering-focus-dark.svg"
+         alt="Engineering Focus: Applied AI Systems, Backend Engineering, Distributed and Reliable Platforms; enabling practices Automation, Observability, and Production Engineering."
+         width="100%" />
+  </picture>
 </p>
 <!-- PROFILE:ENGINEERING-FOCUS:END -->
 
 <!-- ==================== SECTION 03: FLAGSHIP PROJECTS ==================== -->
-<p align="center"><img src="./assets/headers/ls-flagship-projects.svg" width="100%" /></p>
 <p align="center">
-  <a href="https://github.com/Phoenixarjun/architecture-as-memory"><img src="./assets/projects/architecture-as-memory.svg" alt="Architecture-as-Memory" width="100%" /></a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/ls-flagship-projects.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/ls-flagship-projects-light.svg">
+    <img src="./assets/headers/ls-flagship-projects.svg" width="100%" />
+  </picture>
 </p>
 <p align="center">
-  <a href="https://github.com/Phoenixarjun/PromptNova"><img src="./assets/projects/promptnova.svg" alt="PromptNova" width="100%" /></a>
+  <a href="https://github.com/Phoenixarjun/architecture-as-memory">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/architecture-as-memory.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/architecture-as-memory-light.svg">
+      <img src="./assets/projects/architecture-as-memory.svg" alt="Architecture-as-Memory" width="100%" />
+    </picture>
+  </a>
 </p>
 <p align="center">
-  <a href="https://github.com/Phoenixarjun/CredFlow"><img src="./assets/projects/credflow.svg" alt="CredFlow" width="100%" /></a>
+  <a href="https://github.com/Phoenixarjun/PromptNova">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/promptnova.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/promptnova-light.svg">
+      <img src="./assets/projects/promptnova.svg" alt="PromptNova" width="100%" />
+    </picture>
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun/CredFlow">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/credflow.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/credflow-light.svg">
+      <img src="./assets/projects/credflow.svg" alt="CredFlow" width="100%" />
+    </picture>
+  </a>
 </p>
 
 <!-- ==================== SECTION 04: CURRENTLY BUILDING ==================== -->
-<p align="center"><img src="./assets/headers/status-currently-building.svg" width="100%" /></p>
 <p align="center">
-  <a href="https://github.com/Phoenixarjun/Agent-Toolkit"><img src="./assets/now/agent-toolkit.svg" alt="Agent Toolkit" width="100%" /></a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/status-currently-building.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/status-currently-building-light.svg">
+    <img src="./assets/headers/status-currently-building.svg" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <a href="https://github.com/Phoenixarjun/Agent-Toolkit">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/now/agent-toolkit.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/now/agent-toolkit-light.svg">
+      <img src="./assets/now/agent-toolkit.svg" alt="Agent Toolkit" width="100%" />
+    </picture>
+  </a>
 </p>
 
 <!-- ==================== SECTION 05: ENGINEERING STACK ==================== -->
-<p align="center"><img src="./assets/headers/cat-engineering-stack.svg" width="100%" /></p>
-<p align="center"><img src="./assets/stack/toolkit.svg" alt="Engineering Stack" width="100%" /></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/cat-engineering-stack.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/cat-engineering-stack-light.svg">
+    <img src="./assets/headers/cat-engineering-stack.svg" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/stack/toolkit.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/stack/toolkit-light.svg">
+    <img src="./assets/stack/toolkit.svg" alt="Engineering Stack" width="100%" />
+  </picture>
+</p>
 
 <!-- ==================== SECTION 06: TECHNICAL WRITING ==================== -->
-<p align="center"><img src="./assets/headers/read-technical-writing.svg" width="100%" /></p>
-<p align="center"><img src="./assets/sections/technical-writing.svg" alt="Technical Writing" width="100%" /></p>
-
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/read-technical-writing.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/read-technical-writing-light.svg">
+    <img src="./assets/headers/read-technical-writing.svg" width="100%" />
+  </picture>
+</p>
 <!-- BLOG-POST-LIST:START -->
 - **[Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3)**
 - **[Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade)**
@@ -57,16 +119,34 @@
 <!-- BLOG-POST-LIST:END -->
 
 <!-- ==================== SECTION 07: CONTRIBUTION ATLAS ==================== -->
-<p align="center"><img src="./assets/headers/render-contribution-atlas.svg" width="100%" /></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/render-contribution-atlas.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/render-contribution-atlas-light.svg">
+    <img src="./assets/headers/render-contribution-atlas.svg" width="100%" />
+  </picture>
+</p>
 <p align="center"><img src="./assets/contributions/city.svg" alt="Contribution Atlas" width="100%" /></p>
 
 <!-- ==================== SECTION 08: DEVELOPER PLAYGROUND ==================== -->
-<p align="center"><img src="./assets/headers/open-developer-playground.svg" width="100%" /></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/open-developer-playground.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/open-developer-playground-light.svg">
+    <img src="./assets/headers/open-developer-playground.svg" width="100%" />
+  </picture>
+</p>
 <p align="left"><sub>A little personality, without distracting from the engineering.</sub></p>
 <p align="center"><img src="./assets/playground/concept.svg" alt="Developer Playground" width="100%" /></p>
 
 <!-- ==================== SECTION 09: CONNECT ==================== -->
-<p align="center"><img src="./assets/headers/connect-all.svg" width="100%" /></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/connect-all.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/connect-all-light.svg">
+    <img src="./assets/headers/connect-all.svg" width="100%" />
+  </picture>
+</p>
 <p align="center">
   <a href="https://github.com/Phoenixarjun"><img src="./assets/sections/btn-github.svg" height="44" alt="GitHub" /></a> &nbsp;
   <a href="https://www.linkedin.com/in/naresh-b-a-1b5331243/"><img src="./assets/sections/btn-linkedin.svg" height="44" alt="LinkedIn" /></a> &nbsp;
