@@ -1,0 +1,37 @@
+{
+  "flagship": [
+    {
+      "slug": "architecture-as-memory", "name": "Architecture-as-Memory", "short_name": "AAM",
+      "category": "Developer Infrastructure",
+      "description": "A local-first architecture modeling and visualization toolkit designed to preserve system boundaries during AI-assisted development.",
+      "highlights": ["Local-first architecture model", "CLI workflows", "Topology visualization"],
+      "technologies": ["TypeScript", "Node.js", "YAML", "React Flow"],
+      "url": "https://github.com/Phoenixarjun/architecture-as-memory"
+    },
+    {
+      "slug": "promptnova", "name": "PromptNova", "short_name": "PN",
+      "category": "Applied AI",
+      "description": "An AI prompt-engineering workbench for structured generation, iterative refinement and multi-perspective evaluation.",
+      "highlights": ["Agent workflows", "Prompt evaluation", "Interactive workbench"],
+      "technologies": ["Python", "FastAPI", "LangGraph", "Next.js"],
+      "url": "https://github.com/Phoenixarjun/PromptNova"
+    },
+    {
+      "slug": "credflow", "name": "CredFlow", "short_name": "CF",
+      "category": "Backend & Product Engineering",
+      "description": "A telecom billing and collections application with automated dunning rules, role-based workflows and AI-assisted features.",
+      "highlights": ["Spring Boot backend", "Rules-driven workflows", "Multi-role product"],
+      "technologies": ["Java", "Spring Boot", "React", "MySQL"],
+      "url": "https://github.com/Phoenixarjun/CredFlow"
+    }
+  ],
+  "currently_building": [
+    {
+      "slug": "agent-toolkit", "name": "Agent Toolkit", "category": "Open-source Engineering Toolkit", "status": "Evolving",
+      "description": "Reusable engineering playbooks for coding agents, organized around decision quality, safer changes and verifiable results.",
+      "highlights": ["Reusable engineering skills", "Workflow composition", "Validation-first approach"],
+      "technologies": ["Python", "Markdown", "Automation"],
+      "url": "https://github.com/Phoenixarjun/Agent-Toolkit"
+    }
+  ]
+}

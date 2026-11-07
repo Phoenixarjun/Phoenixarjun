@@ -1,0 +1,7 @@
+{
+  "featured": [
+    {"title": "Think Beyond LLMs: Choosing the Right Model for the Right Job", "topic": "Applied AI · Model selection", "url": "https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3"},
+    {"title": "Git at Agent Scale: What Anthropic's Scion Really Teaches Us", "topic": "Agent engineering · Git", "url": "https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade"},
+    {"title": "From Prompts to Engineering Playbooks: Why I Built Agent Toolkit", "topic": "Developer tooling · Engineering playbooks", "url": "https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e"}
+  ]
+}

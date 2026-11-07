@@ -1,0 +1,53 @@
+{
+  "active": "titanium-hacker",
+  "presets": {
+    "titanium-hacker": {
+      "name": "Titanium Hacker",
+      "description": "Charcoal metal, steel gray, and selective lime accents.",
+      "base": "#0C0F10",
+      "surface": "#1B2328",
+      "surface2": "#253139",
+      "stroke": "#42535C",
+      "accent": "#B6FF3B",
+      "secondary": "#8EADB6",
+      "text": "#EEF7EF",
+      "muted": "#A6B6B2"
+    },
+    "midnight-circuit": {
+      "name": "Midnight Circuit",
+      "description": "Graphite, steel blue, and quiet engineering detail.",
+      "base": "#0B0F14",
+      "surface": "#161D26",
+      "surface2": "#202D39",
+      "stroke": "#27435D",
+      "accent": "#4E8FBF",
+      "secondary": "#89B6CF",
+      "text": "#E6F0F7",
+      "muted": "#AFBEC9"
+    },
+    "aurora-grid": {
+      "name": "Aurora Grid",
+      "description": "Deep indigo with teal and violet technical accents.",
+      "base": "#0B0A16",
+      "surface": "#171A2F",
+      "surface2": "#25284A",
+      "stroke": "#3B4D9A",
+      "accent": "#27D3C3",
+      "secondary": "#AFA4F2",
+      "text": "#F1EEFF",
+      "muted": "#C1BBDE"
+    },
+    "obsidian-vermilion": {
+      "name": "Obsidian & Vermilion",
+      "description": "Dark mineral panels with warm vermilion and amber.",
+      "base": "#0E1114",
+      "surface": "#20262B",
+      "surface2": "#2B3036",
+      "stroke": "#4A4E52",
+      "accent": "#F06A55",
+      "secondary": "#F0B36D",
+      "text": "#F4F0E9",
+      "muted": "#C0B9B1"
+    }
+  }
+}

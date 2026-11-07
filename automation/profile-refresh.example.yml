@@ -1,0 +1,39 @@
+# INACTIVE EXAMPLE — DO NOT ASSUME THIS FILE IS LIVE.
+# To activate, review and copy to .github/workflows/profile-v2-refresh.yml
+# in your EXISTING profile repository. Does not touch README.md.
+name: Profile v2 assets (preview only)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '21 3 * * *'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch contribution calendar
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/fetch_contributions.py
+      - name: Render profile preview assets
+        run: |
+          python scripts/build.py
+          python scripts/validate.py
+          python -m unittest discover -s tests -v
+      - name: Commit preview changes only
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/contributions.json assets/ README.v2.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(profile): refresh contribution city preview'
+            git push
+          fi
