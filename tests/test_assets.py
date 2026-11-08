@@ -203,6 +203,35 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
         self.assertIn('https://phoenixarjun.github.io/Phoenixarjun/games/', readme)
 
+    def test_about_me_assets(self):
+        """About Me must have dual-mode 1160px SVGs, terminal command headers, and README inclusion."""
+        dark = ROOT / 'assets' / 'sections' / 'about-me.svg'
+        light = ROOT / 'assets' / 'sections' / 'about-me-light.svg'
+        self.assertTrue(dark.is_file(), f'Missing {dark}')
+        self.assertTrue(light.is_file(), f'Missing {light}')
+
+        for f in [dark, light]:
+            root = ET.parse(f).getroot()
+            self.assertEqual(root.attrib.get('width'), '1160')
+            self.assertEqual(root.attrib.get('height'), '645')
+            content = f.read_text(encoding='utf-8')
+            self.assertIn('About Me', content)
+            self.assertIn('Software Engineer at Prodapt', content)
+            self.assertIn('Currently exploring', content)
+            self.assertIn('Engineering mindset', content)
+
+        # Header check
+        header_dark = ROOT / 'assets' / 'headers' / 'show-about-me.svg'
+        header_light = ROOT / 'assets' / 'headers' / 'show-about-me-light.svg'
+        self.assertTrue(header_dark.is_file())
+        self.assertTrue(header_light.is_file())
+        self.assertIn('show --about-me', header_dark.read_text(encoding='utf-8'))
+
+        # README check
+        readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+        self.assertIn('assets/sections/about-me.svg', readme)
+        self.assertIn('assets/headers/show-about-me.svg', readme)
+
     def test_connect_and_footer_assets(self):
         """Connect buttons and footer must have dual-mode compact 206px buttons with built-in vector spacing and editorial footer."""
         for slug, label in [('btn-github', 'GitHub'), ('btn-linkedin', 'LinkedIn'), ('btn-medium', 'Medium'), ('btn-portfolio', 'Portfolio')]:

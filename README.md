@@ -16,6 +16,24 @@
 </p>
 -->
 
+<!-- ==================== SECTION: ABOUT ME ==================== -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/show-about-me.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/show-about-me-light.svg">
+    <img src="./assets/headers/show-about-me.svg" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/sections/about-me.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/sections/about-me-light.svg">
+    <img src="./assets/sections/about-me.svg"
+         alt="About Me — Naresh B A, Software Engineer at Prodapt"
+         width="100%" />
+  </picture>
+</p>
+
 <!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->
 <!-- PROFILE:ENGINEERING-FOCUS:START -->
 <p align="center">
