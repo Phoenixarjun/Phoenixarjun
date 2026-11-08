@@ -1,0 +1,17 @@
+{
+  "id":"stack-overflow",
+  "number":5,
+  "name":"Stack Overflow",
+  "subtitle":"Server Tower Protocol",
+  "category":"Precision / Physics",
+  "theme":"titanium-hacker",
+  "description":"Time a moving server block to stack a stable, ever-higher infrastructure tower. Overhang is trimmed; stage speed and wind increase.",
+  "entrypoint":"index.html",
+  "standalone":"standalone.html",
+  "cover":"assets/arcade-cover.png",
+  "preview":"assets/stack-overflow-gameplay.gif",
+  "controls":{"desktop":"Space/Click=drop, Shift=focus, P=pause, R=restart","mobile":"Tap=drop, hold Focus button=precision"},
+  "dependencies":[],
+  "published":false,
+  "deployment_url":null
+}

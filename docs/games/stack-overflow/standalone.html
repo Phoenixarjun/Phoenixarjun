@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0C0F10" />
+  <meta name="description" content="Stack Overflow — a tactile server-tower stacking game in the Titanium Hacker Arcade." />
+  <title>STACK OVERFLOW // Titanium Hacker Arcade</title>
+  <style>
+:root{--bg:#070B0C;--base:#0C0F10;--surface:#11191D;--raised:#1B2328;--steel:#42535C;--border:#28363B;--accent:#B6FF3B;--text:#EEF7EF;--muted:#90A3A9;--aqua:#80D8C7;--amber:#f5c66e;--danger:#ff6577;--mono:'JetBrains Mono','Cascadia Code','SFMono-Regular',Consolas,monospace;--sans:Inter,'Segoe UI',Arial,sans-serif}*{box-sizing:border-box}html{color-scheme:dark}body{margin:0;background:var(--bg);font-family:var(--sans);color:var(--text);min-height:100vh;background-image:radial-gradient(ellipse 65% 40% at 55% -5%,rgba(182,255,59,.052),transparent 75%),linear-gradient(90deg,transparent 0,rgba(95,129,138,.018) 50%,transparent 100%)}button{font:inherit;cursor:pointer}button:focus-visible,canvas:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.page-shell{max-width:1650px;margin:0 auto;padding:20px clamp(14px,2.9vw,42px) 22px}.site-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:7px 0 22px;border-bottom:1px solid var(--border)}.identity{display:flex;gap:15px;align-items:center}.glyph{width:57px;height:57px;border:1px solid var(--accent);border-radius:12px;display:grid;place-items:center;color:var(--accent);font-size:31px;box-shadow:inset 0 0 19px #b6ff3b11,0 0 18px #b6ff3b15}.tiny-heading{font:700 10px var(--mono);letter-spacing:2.8px;color:var(--accent)}.muted{color:var(--muted)}h1{font-size:clamp(25px,2.3vw,37px);line-height:1.1;margin:6px 0 0;letter-spacing:-1.25px;font-weight:850}h1 em{font-style:normal;color:var(--accent)}.caret{color:var(--accent);animation:blink 1s steps(2) infinite}.header-actions{display:flex;align-items:center;gap:12px}.signal{font:700 10px var(--mono);letter-spacing:1px;color:var(--muted);white-space:nowrap;margin-right:10px}.signal-dot,.live-indicator{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;margin-right:9px;box-shadow:0 0 12px var(--accent)}.mini-button,.quiet-button{background:#121b1f;border:1px solid #2c393f;border-radius:9px;color:var(--text);font:700 12px var(--mono);padding:12px 14px;transition:.18s}.mini-button:hover,.quiet-button:hover{border-color:var(--accent);color:var(--accent)}.intro-row{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 0 21px}.intro-row p{margin:0;font-weight:700;font-size:14px}.intro-row p span{font-weight:400;color:var(--muted)}.cmd{font:12px var(--mono);color:var(--accent);white-space:nowrap}.cmd b{font-weight:600;color:var(--text)}.stat-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin-bottom:17px}.stat{background:linear-gradient(135deg,#11191d,#101519);border:1px solid var(--border);border-radius:11px;padding:15px;display:flex;gap:13px;align-items:center;min-height:88px}.stat-icon{font-size:27px;color:var(--accent);font-family:var(--mono)}.stat-icon.aqua{color:var(--aqua)}.stat-icon.amber{color:var(--amber)}.stat-icon.steel{color:#88acb8}.stat small,.stat strong{display:block}.stat small{color:var(--muted);font:700 10px var(--mono);letter-spacing:1px;white-space:nowrap}.stat strong{font:800 clamp(20px,1.8vw,31px) var(--mono);margin-top:7px;white-space:nowrap}.stat strong i{font:600 12px var(--mono);color:#82949a;font-style:normal}.game-layout{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:16px}.board-section{min-width:0}.board-heading{background:#101719;border:1px solid var(--border);border-bottom:0;border-radius:12px 12px 0 0;min-height:57px;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:12px;color:var(--text);font:800 11px var(--mono);letter-spacing:.8px}.board-heading small{font-size:10px;color:#7298a1;margin-left:7px}.board-stage{color:var(--accent);border:1px solid #3b5743;background:#18221a;border-radius:6px;font:700 10px var(--mono);padding:8px 11px;white-space:nowrap}.canvas-frame{background:#050a0b;border:1px solid var(--border);position:relative;overflow:hidden;isolation:isolate}.canvas-frame:after{content:'';pointer-events:none;position:absolute;inset:0;box-shadow:inset 0 0 50px rgba(0,0,0,.45)}canvas{display:block;width:100%;height:auto;aspect-ratio:1040/680;touch-action:manipulation;cursor:crosshair}.board-footer{display:flex;gap:19px;align-items:center;padding:14px 17px;background:#0e1518;border:1px solid var(--border);border-top:0;border-radius:0 0 12px 12px;font:700 10px var(--mono);color:var(--muted);white-space:nowrap}.board-footer strong{margin-left:auto;color:var(--accent);font-weight:700;text-align:right}.legend-swatch{width:9px;height:9px;display:inline-block;margin-right:4px;background:var(--accent);border-radius:2px}.legend-swatch.ghost{border:1px dashed var(--aqua);background:transparent}.legend-swatch.placed{background:#426e62}.control-row{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-top:13px}.controls-left,.controls-right{display:flex;gap:9px}.primary-button{background:var(--accent);color:#07100a;border:1px solid #d2ff8d;border-radius:9px;font:900 12px var(--mono);padding:14px 20px;box-shadow:0 0 25px #b6ff3b24;transition:transform .15s,box-shadow .15s}.primary-button:hover{transform:translateY(-1px);box-shadow:0 0 27px #b6ff3b55}.primary-button:active{transform:translateY(1px)}.primary-button span,.quiet-button span{font-size:9px;opacity:.6;margin-left:13px}.info-panel{background:linear-gradient(#10181b,#0d1417);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:18px;min-width:0}.panel-title{display:flex;align-items:center;gap:10px}.vertical-dots{color:var(--accent);font-size:15px}.panel-title small,.panel-title h2{display:block;margin:0}.panel-title small{font:700 10px var(--mono);color:var(--muted);letter-spacing:1px}.panel-title h2{font-size:17px;margin-top:3px}.sector-box{padding:14px;background:linear-gradient(160deg,#17241f,#0c1516 64%);border:1px solid #375347;border-radius:9px;overflow:hidden}.module-top,.sector-stats,.resource-head,.log-head,.panel-foot{display:flex;justify-content:space-between;align-items:center}.module-top{font:700 10px var(--mono);color:var(--accent);letter-spacing:1px}.module-top b{color:#b8c9c4}.sector-visual{height:112px;display:flex;align-items:center;justify-content:center;position:relative}.server-graphic{font:bold 70px var(--mono);color:var(--accent);text-shadow:0 0 25px #b6ff3b44;transform:rotate(-16deg);position:relative;z-index:2}.server-graphic span{position:absolute;left:-25px;top:10px;color:#8fc8b3;opacity:.5;transform:scale(.65)}.server-graphic i{position:absolute;right:-28px;top:15px;color:#3b6866;opacity:.5;transform:scale(.72);font-style:normal}.sector-rings{position:absolute;border:1px solid #3f654a;border-radius:50%;width:180px;height:65px;transform:rotate(-19deg);box-shadow:0 0 22px #b6ff3b0c}.sector-box>strong{font-size:20px;display:block;letter-spacing:.4px}.sector-box p{font-size:12px;color:var(--muted);line-height:1.6;min-height:40px}.progress-track{background:#243034;height:6px;border-radius:20px;overflow:hidden}.progress-track>span{display:block;height:100%;background:linear-gradient(90deg,#487d54,var(--accent));box-shadow:0 0 12px #b6ff3b44;transition:width .15s}.sector-stats{margin-top:12px;font:700 9px var(--mono);color:var(--muted);gap:8px}.sector-stats span:last-child{color:var(--accent)}.telemetry-list{border:1px solid var(--border);border-radius:8px;overflow:hidden}.telemetry-list>div{display:flex;justify-content:space-between;gap:8px;padding:13px 12px;border-bottom:1px solid var(--border)}.telemetry-list>div:last-child{border-bottom:0}.telemetry-list span,.telemetry-list b{font:700 10px var(--mono)}.telemetry-list span{color:var(--muted)}.telemetry-list b{color:var(--text)}.resource-section{padding:14px;background:#111c1b;border:1px solid #2d4a40;border-radius:8px}.resource-head{font:800 11px var(--mono);margin-bottom:10px}.resource-head b{color:var(--accent)}.resource-section p{font-size:12px;color:var(--muted);line-height:1.65;margin:12px 0 0}.resource-section p b{color:var(--text)}.log-section{border:1px solid var(--border);border-radius:8px;padding:13px;flex:1;min-height:110px}.log-head{font:800 10px var(--mono);color:#bcd2d1;padding-bottom:11px;border-bottom:1px solid var(--border)}.log-head span{color:var(--accent)}.events{display:flex;flex-direction:column;gap:9px;margin-top:12px;max-height:170px;overflow:hidden}.events div{font:10px var(--mono);color:var(--muted)}.events time{color:#668f92;padding-right:10px}.panel-foot{font:700 9px var(--mono);color:var(--muted);border-top:1px solid var(--border);padding-top:10px}.panel-foot b{color:var(--accent)}.footer{display:flex;justify-content:space-between;gap:12px;margin-top:19px;color:#627c82;font:700 10px var(--mono);letter-spacing:.3px}.footer i{color:var(--accent)}.game-overlay{position:absolute;inset:0;z-index:5;background:rgba(5,11,12,.84);backdrop-filter:blur(4px);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px}.game-overlay.active{display:flex}.overlay-glow{position:absolute;width:450px;height:320px;background:radial-gradient(ellipse,#b6ff3b12,transparent 70%);pointer-events:none}.overlay-kicker{font:800 10px var(--mono);color:var(--accent);letter-spacing:3px}.overlay-symbol{color:var(--accent);font:100 100px var(--mono);line-height:1.1;text-shadow:0 0 32px #b6ff3b44;transform:rotate(-20deg)}.game-overlay h2{font-size:clamp(24px,3.5vw,46px);line-height:1.07;margin:8px 0 12px;letter-spacing:-1px;z-index:1}.game-overlay h2 em{color:var(--accent);font-style:normal}.game-overlay p{color:#a9bdbe;max-width:440px;font-size:14px;line-height:1.6;margin:0 0 24px;z-index:1}.overlay-hint{font:700 9px var(--mono);color:#829a9c;margin-top:18px;letter-spacing:.4px}.toast{position:absolute;top:20px;left:50%;transform:translateX(-50%) translateY(-7px);opacity:0;padding:10px 18px;border:1px solid #668f53;background:rgba(10,22,16,.95);color:var(--accent);border-radius:8px;font:800 12px var(--mono);pointer-events:none;white-space:nowrap;transition:opacity .2s,transform .2s;z-index:2}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}dialog{border:1px solid #53704b;background:#0b1214;color:var(--text);border-radius:14px;max-width:min(90vw,660px);padding:0;box-shadow:0 0 100px #000c}dialog::backdrop{background:#000a;backdrop-filter:blur(6px)}.modal{padding:25px}.modal>header{display:flex;justify-content:space-between;align-items:center;color:var(--accent);font:800 12px var(--mono)}.close{background:transparent;border:1px solid #385050;color:var(--text);font-size:23px;padding:3px 12px;border-radius:5px}.modal h2{font-size:26px;margin:20px 0 8px}.modal>p{font-size:14px;line-height:1.7;color:var(--muted)}.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:20px 0}.help-grid>div{border:1px solid var(--border);background:#121b1e;padding:14px;border-radius:8px}.help-grid b{font:800 12px var(--mono);color:var(--accent)}.help-grid p{margin:7px 0 0;font-size:12px;line-height:1.5;color:var(--muted)}.key-line{display:flex;gap:12px;flex-wrap:wrap;margin:17px 0;color:var(--muted);font:11px var(--mono)}kbd{padding:3px 7px;color:var(--text);background:#253036;border:1px solid #536067;border-radius:4px}@keyframes blink{50%{opacity:0}}@media(max-width:1160px){.game-layout{grid-template-columns:minmax(0,1fr)}.info-panel{display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel-title,.panel-foot{grid-column:1/-1}.stat{padding:11px}.stat small{font-size:9px}.cmd{display:none}}@media(max-width:750px){.page-shell{padding:13px 10px}.site-header{align-items:flex-start}.glyph{width:44px;height:44px;font-size:24px}.header-actions{gap:5px}.signal{display:none}.mini-button{padding:10px;font-size:10px}.header-actions #soundBtn{display:none}.intro-row{padding:14px 0}.intro-row p{font-size:12px}.stat-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.stat{min-height:66px;padding:9px;gap:7px}.stat-icon{font-size:18px}.stat small{font-size:8px;white-space:normal}.stat strong{font-size:16px}.stat strong i{font-size:9px}.board-heading{padding:10px;font-size:9px;min-height:44px}.board-heading small{display:none}.board-stage{font-size:9px;padding:5px}.board-footer{flex-wrap:wrap;gap:8px 12px;font-size:8px;padding:10px}.board-footer strong{width:100%;margin:0;text-align:left}.control-row{flex-wrap:wrap}.controls-left,.controls-right{width:100%}.controls-left>*{flex:1}.controls-right>*{flex:1}.primary-button,.quiet-button{font-size:10px;padding:13px 8px}.info-panel{grid-template-columns:1fr}.help-grid{grid-template-columns:1fr}.footer{flex-direction:column;font-size:8px}.game-overlay h2{font-size:27px}.game-overlay p{font-size:12px}.overlay-symbol{font-size:60px}.overlay-hint{font-size:8px}}@media(max-width:430px){h1{font-size:23px}.tiny-heading{font-size:8px}.mini-button{font-size:9px}.stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:last-child{grid-column:1/-1}.toast{font-size:9px;white-space:normal;width:90%;text-align:center}.board-heading{font-size:8px}}
+
+</style>
+  
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="identity"><div class="glyph">▤</div><div><div class="tiny-heading">NARESH//ARCADE <span class="muted">/ GAME 05</span></div><h1>STACK <em>OVERFLOW</em><span class="caret">_</span></h1></div></div>
+      <div class="header-actions"><span class="signal"><span class="signal-dot"></span>SYSTEM ONLINE</span><button id="soundBtn" type="button" class="mini-button" aria-label="Toggle sound">◖)) SOUND ON</button><button id="helpBtn" type="button" class="mini-button">? HOW TO PLAY</button></div>
+    </header>
+    <div class="intro-row"><p>Build upward. Stay balanced. <span>Deploy server layers without losing structural integrity.</span></p><span class="cmd">naresh@github:~$ <b>deploy --stack-overflow</b></span></div>
+    <section class="stat-strip" aria-label="Current game statistics">
+      <div class="stat"><span class="stat-icon">▥</span><div><small>LAYERS BUILT</small><strong id="layersValue">00 <i>/ ∞</i></strong></div></div>
+      <div class="stat"><span class="stat-icon steel">◈</span><div><small>DEPLOYMENT SCORE</small><strong id="scoreValue">000000</strong></div></div>
+      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>STRUCTURAL STABILITY</small><strong id="stabilityValue">100<i>%</i></strong></div></div>
+      <div class="stat"><span class="stat-icon amber">✦</span><div><small>PERFECT SYNC</small><strong id="comboValue">00 <i>CHAIN</i></strong></div></div>
+      <div class="stat"><span class="stat-icon">↗</span><div><small>PERSONAL BEST</small><strong id="bestValue">00 <i>LAYERS</i></strong></div></div>
+    </section>
+    <main class="game-layout">
+      <section class="board-section" aria-label="Stack Overflow game arena">
+        <div class="board-heading"><div><span class="live-indicator"></span> LIVE DEPLOYMENT SIMULATOR <small>// STRUCTURAL VALIDATION ONLINE</small></div><span class="board-stage" id="stageChip">SECTOR 01 // BOOTSTRAP</span></div>
+        <div class="canvas-frame" id="canvasFrame"><canvas id="gameCanvas" width="1040" height="680" tabindex="0" aria-label="Moving server block above a stacked tower. Press Space, click or tap to release a block."></canvas>
+          <div id="overlay" class="game-overlay active"><div class="overlay-glow"></div><span class="overlay-kicker" id="overlayKicker">// INITIATING DEPLOYMENT</span><div class="overlay-symbol">▱</div><h2 id="overlayTitle">BUILD THE <em>IMPOSSIBLE.</em></h2><p id="overlayText">Time the drop. Land on the stack. Protect the core. Every layer gets faster and less forgiving.</p><button id="startBtn" type="button" class="primary-button">▶ START DEPLOYMENT <span>↗</span></button><span class="overlay-hint">SPACE / CLICK / TAP TO DROP · HOLD SHIFT FOR PRECISION</span></div>
+          <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        </div>
+        <div class="board-footer"><span><i class="legend-swatch live"></i> ACTIVE LAYER</span><span><i class="legend-swatch ghost"></i> PROJECTED LANDING</span><span><i class="legend-swatch placed"></i> LOCKED STACK</span><strong id="statusLabel">AWAITING COMMAND</strong></div>
+        <div class="control-row"><div class="controls-left"><button id="dropBtn" type="button" class="primary-button drop-button">▼ DROP SERVER <span>SPACE</span></button><button id="focusBtn" type="button" class="quiet-button">◈ HOLD FOCUS <span>SHIFT</span></button></div><div class="controls-right"><button id="pauseBtn" type="button" class="quiet-button">Ⅱ PAUSE</button><button id="restartBtn" type="button" class="quiet-button">↻ RESTART</button></div></div>
+      </section>
+      <aside class="info-panel" aria-label="Stack Overflow system telemetry">
+        <div class="panel-title"><span class="vertical-dots">▮▮</span><div><small>OPERATIONS CENTER</small><h2>SYSTEM TELEMETRY</h2></div></div>
+        <div class="sector-box"><div class="module-top"><span>CURRENT SECTOR</span><b id="sectorNumber">01 / 05</b></div><div class="sector-visual"><div class="server-graphic">▱<span>▱</span><i>▱</i></div><div class="sector-rings"></div></div><strong id="sectorName">BOOTSTRAP</strong><p id="sectorDesc">Establish a stable foundation and build the first server layers.</p><div class="progress-track"><span id="sectorProgress" style="width:0%"></span></div><div class="sector-stats"><span id="nextMilestone">NEXT SECTOR // 05 LAYERS</span><span id="sectorStatus">READY</span></div></div>
+        <div class="telemetry-list"><div><span>PLATFORM WIDTH</span><b id="widthValue">224 U</b></div><div><span>WIND PRESSURE</span><b id="windValue">CALM</b></div><div><span>DROP ACCURACY</span><b id="accuracyValue">—</b></div><div><span>SCAN VELOCITY</span><b id="velocityValue">230 U/S</b></div></div>
+        <div class="resource-section"><div class="resource-head"><span>PRECISION BUFFER</span><b id="focusValue">100%</b></div><div class="progress-track accent"><span id="focusProgress" style="width:100%"></span></div><p>Hold <b>SHIFT</b> or <b>FOCUS</b> to slow the moving layer. The buffer recharges between precision windows.</p></div>
+        <div class="log-section"><div class="log-head">EVENT STREAM <span>● LIVE</span></div><div id="events" class="events"><div><time>00:00</time> simulator ready</div></div></div>
+        <div class="panel-foot"><span>SIMULATION</span><b>LOCAL // NO ACCOUNT</b></div>
+      </aside>
+    </main>
+    <footer class="footer"><span>◈ TITANIUM HACKER ARCADE <i>//</i> PRECISION ENGINEERING EXPERIMENT</span><span>ONE CLICK TO PLAY • ZERO NETWORK REQUIREMENTS</span></footer>
+  </div>
+  <dialog id="helpDialog"><div class="modal"><header><span>◈ OPERATOR MANUAL</span><button id="helpClose" class="close" type="button" aria-label="Close">×</button></header><h2>HOW HIGH CAN YOU BUILD?</h2><p>A server block moves across the top of your tower. Release it as close to the existing layer as possible; any overhang is cut away. Narrow platforms eventually become too difficult to land on.</p><div class="help-grid"><div><b>01 — AIM</b><p>Track the projected landing marker. The block retains a small amount of momentum when released.</p></div><div><b>02 — DROP</b><p>Press Space or click/tap the arena to release. Gravity does the rest.</p></div><div><b>03 — RECOVER</b><p>Perfect drops preserve or slightly restore width and charge your focus meter.</p></div><div><b>04 — SURVIVE</b><p>Later sectors add speed and wind. If the overlap becomes too small, the stack fails.</p></div></div><div class="key-line"><span><kbd>SPACE</kbd> Drop</span><span><kbd>SHIFT</kbd> Focus</span><span><kbd>P</kbd> Pause</span><span><kbd>R</kbd> Restart</span></div><button id="helpPlay" class="primary-button" type="button">UNDERSTOOD ↗</button></div></dialog>
+<script>
+/* STACK OVERFLOW // deterministic, fixed-step server-stack simulation.
+   World units are pixels, time seconds. Rendering never determines collisions. */
+const W=1040, H=680, BLOCK_H=34, BASE_Y=552, START_W=224, G=1450;
+const STAGES=[
+  {name:'BOOTSTRAP',from:1,speed:230,wind:0},
+  {name:'LOAD BALANCE',from:5,speed:275,wind:35},
+  {name:'DISTRIBUTED CORE',from:10,speed:330,wind:63},
+  {name:'HIGH AVAILABILITY',from:16,speed:388,wind:85},
+  {name:'HYPERSCALE',from:23,speed:445,wind:112}
+];
+function stageFor(level){ return [...STAGES].reverse().find(s=>level>=s.from)||STAGES[0]; }
+function clamp(x,a,b){return Math.min(b,Math.max(a,x));}
+function easeOutCubic(t){return 1-Math.pow(1-clamp(t,0,1),3);}
+function overlap(a,b){let l=Math.max(a.x-a.w/2,b.x-b.w/2);let r=Math.min(a.x+a.w/2,b.x+b.w/2);return {left:l,right:r,width:Math.max(0,r-l),center:(l+r)/2};}
+function impactTime(y,vy,targetY,g=G){const dist=Math.max(0,targetY-y);return (-vy+Math.sqrt(vy*vy+2*g*dist))/g;}
+function predictLandingX(moving,targetY,wind=0){const t=impactTime(moving.y,moving.vy||0,targetY);return moving.x+(moving.vx||0)*t+.5*wind*t*t;}
+function solveLanding(block,top,{snap=7,minimum=24,minRatio=.18,maxWidth=START_W}={}){
+  const delta=Math.abs(block.x-top.x); const ol=overlap(block,top);
+  if(ol.width<minimum || ol.width<block.w*minRatio) return {ok:false,reason:'INSUFFICIENT OVERLAP',overlap:ol};
+  if(delta<=snap && Math.abs(block.w-top.w)<=snap){
+    return {ok:true,perfect:true,quality:1,trim:0,block:{...block,x:top.x,w:Math.min(maxWidth,Math.max(top.w,block.w)+2)}};
+  }
+  const quality=clamp(ol.width/Math.min(block.w,top.w),0,1);
+  return {ok:true,perfect:false,quality,trim:Math.max(0,block.w-ol.width),block:{...block,x:ol.center,w:ol.width}};
+}
+function supportStability(blocks){
+  if(blocks.length<2)return 1;
+  let min=1;
+  // For each joint, mass center of EVERY block above the supporting block must lie on its upper footprint.
+  for(let i=0;i<blocks.length-1;i++){
+    let sum=0,mass=0;
+    for(let j=i+1;j<blocks.length;j++){let m=blocks[j].w;sum+=blocks[j].x*m;mass+=m;}
+    const support=blocks[i];const displacement=Math.abs(sum/mass-support.x);
+    const ratio=clamp((support.w/2-displacement)/Math.max(1,support.w/2),0,1);
+    min=Math.min(min,ratio);
+  }
+  return min;
+}
+function mulberry32(seed){let a=seed>>>0;return ()=>{a+=0x6D2B79F5;let t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};}
+class StackGame {
+  constructor(seed=0xCB923){this.seed=seed>>>0;this.rng=mulberry32(this.seed);this.reset();}
+  reset(){this.rng=mulberry32(this.seed);this.mode='ready';this.time=0;this.tower=[{x:W/2,y:BASE_Y-BLOCK_H,w:START_W,h:BLOCK_H,tier:0,kind:'foundation'}];this.level=1;this.score=0;this.combo=0;this.perfects=0;this.bestCombo=0;this.focus=100;this.focusHeld=false;this.reducedThisFrame=false;this.health=1;this.lastQuality=0;this.events=[];this.drops=[];this.shock=0;this.wind=0;this.windClock=0;this.moving=null;this.spawn();}
+  start(){if(this.mode==='ready'||this.mode==='paused')this.mode='running';}
+  pause(){if(this.mode==='running'||this.mode==='falling'){this.resumeMode=this.mode;this.mode='paused';}else if(this.mode==='paused'){this.mode=this.resumeMode||'running';}}
+  spawn(){const top=this.tower[this.tower.length-1];const stage=stageFor(this.level);const sign=this.level%2?1:-1;const x=sign>0?115:W-115;
+    this.wind=(this.level<=4?0:(this.rng()-.5)*2*stage.wind);
+    this.moving={x:clamp(x,top.w/2+24,W-top.w/2-24),y:top.y-162,w:top.w,h:BLOCK_H,vx:sign*(stage.speed+Math.min(100,(this.level-1)*2.7)),vy:0,tier:this.level,kind:this.level%7===0?'reinforced':'standard'};
+    this.mode=this.mode==='ready'?'ready':'running';this.shock=0;
+  }
+  release(){if(this.mode==='ready')this.start();if(this.mode!=='running'||!this.moving)return false;
+    this.moving.vx*=.13;this.moving.vy=0;this.mode='falling';this.focusHeld=false;this.emit('DROP COMMITTED');return true;}
+  toggleFocus(enabled){this.focusHeld=Boolean(enabled);}
+  emit(msg){this.events.unshift({message:msg,at:this.time});if(this.events.length>8)this.events.length=8;}
+  update(dt){ if(!Number.isFinite(dt)||dt<=0) return; dt=Math.min(dt,1/30); if(this.mode!=='running'&&this.mode!=='falling')return;
+    this.time+=dt;this.shock=Math.max(0,this.shock-dt*2.2);this.windClock+=dt;
+    if(this.mode==='running'){
+      const m=this.moving, stage=stageFor(this.level);
+      const focusing=this.focusHeld&&this.focus>0;
+      const speedFactor=focusing?.34:1;
+      this.focus=clamp(this.focus+(focusing?-31:11)*dt,0,100);
+      const bound=Math.max(36,m.w/2+24);m.x+=m.vx*dt*speedFactor;
+      if(m.x>W-bound){m.x=2*(W-bound)-m.x;m.vx=-Math.abs(m.vx);}
+      if(m.x<bound){m.x=2*bound-m.x;m.vx=Math.abs(m.vx);}
+    }else if(this.mode==='falling'){
+      const m=this.moving;const top=this.tower[this.tower.length-1];const targetY=top.y-BLOCK_H;
+      const oldY=m.y; const newVy=m.vy+G*dt;let newY=m.y+(m.vy+newVy)*.5*dt;
+      const newX=m.x+m.vx*dt+.5*this.wind*dt*dt;
+      m.vx+=this.wind*dt; m.vy=newVy;m.x=newX;m.y=newY;
+      if(oldY<=targetY && newY>=targetY){
+        // Solve exact time of contact within this fixed step to avoid high-speed penetration.
+        const remaining=targetY-oldY;
+        const fraction=clamp((targetY-oldY)/Math.max(0.0001,newY-oldY),0,1);
+        const t=dt*fraction;
+        m.x=newX-(m.vx-this.wind*dt)*(dt-t)-.5*this.wind*(dt*dt-t*t);m.y=targetY;
+        this.land();
+      }
+    }
+  }
+  land(){const m=this.moving,top=this.tower[this.tower.length-1];const result=solveLanding(m,top);this.shock=1;
+    if(!result.ok){this.mode='gameover';this.moving=null;this.combo=0;this.emit('STACK FAILURE // '+result.reason);return;}
+    const landed={...result.block,y:top.y-BLOCK_H,h:BLOCK_H,tier:this.level};
+    const next=[...this.tower,landed];const stability=supportStability(next);
+    if(stability<=0.002){this.mode='gameover';this.combo=0;this.emit('TOWER COLLAPSE // CENTER OF MASS');this.moving=null;return;}
+    this.tower.push(landed);this.lastQuality=result.quality;
+    if(result.perfect){this.combo++;this.perfects++;this.focus=clamp(this.focus+21,0,100);}
+    else {this.combo=0;this.focus=clamp(this.focus+7,0,100);}
+    this.bestCombo=Math.max(this.bestCombo,this.combo);
+    const points=Math.round(100+300*Math.pow(result.quality,2)+(result.perfect?180:0)+this.combo*35);
+    this.score+=points;
+    if(result.trim>0){const left=m.x-m.w/2;const right=m.x+m.w/2;const ol=overlap(m,top);
+      if(ol.left>left+0.5)this.drops.push({x:(left+ol.left)/2,y:m.y,w:ol.left-left,vx:-65,vy:-70,rotation:0,spin:-2.4,life:1.5});
+      if(ol.right<right-0.5)this.drops.push({x:(right+ol.right)/2,y:m.y,w:right-ol.right,vx:65,vy:-70,rotation:0,spin:2.4,life:1.5});
+    }
+    this.emit(result.perfect?'PERFECT SYNC // +'+points:'SERVER DOCKED // '+Math.round(result.quality*100)+'% ALIGNMENT');
+    this.level++;this.moving=null;this.spawn();
+  }
+  get stability(){return supportStability(this.tower);}
+  get stage(){return stageFor(this.level);}
+  get predicted(){if(!this.moving)return null;const top=this.tower[this.tower.length-1];const m=this.moving;const t=impactTime(m.y,0,top.y-BLOCK_H);return m.x+m.vx*.13*t+.5*this.wind*t*t;}
+}
+
+
+
+const LIME='#B6FF3B', CYAN='#80D8C7', STEEL='#42535C';
+function rr(ctx,x,y,w,h,r=8){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
+function line(ctx,x1,y1,x2,y2,c,width=1,alpha=1){ctx.strokeStyle=c;ctx.lineWidth=width;ctx.globalAlpha=alpha;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.globalAlpha=1;}
+function text(ctx,t,x,y,size=14,color='#fff',weight='600',align='left'){ctx.fillStyle=color;ctx.textAlign=align;ctx.font=`${weight} ${size}px ui-monospace, Consolas, monospace`;ctx.fillText(t,x,y);}
+class Scene {
+ constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});this.canvas.width=W*2;this.canvas.height=H*2;this.ctx.setTransform(2,0,0,2,0,0);this.fx=[];this.shake=0;this.lastLength=1;this.lastFail=false;this.stars=Array.from({length:145},(_,i)=>({x:(i*71.383)%W,y:(i*39.79)%H,alpha:.07+(i*11%19)/100,r:i%5===0?1.4:.6}));}
+ addLand(x,y,perfect){this.shake=perfect?4:9;for(let i=0;i<(perfect?40:23);i++){const a=Math.random()*Math.PI*2,s=60+Math.random()*215;this.fx.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-40,life:.3+Math.random()*.65,max:.95,color:perfect?LIME:(i%3?CYAN:'#f3c979')});}}
+ addFail(x,y){this.shake=20;for(let i=0;i<65;i++){const a=Math.random()*Math.PI*2,s=80+Math.random()*270;this.fx.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:.5+Math.random()*.8,max:1.3,color:i%2?'#ff6577':LIME});}}
+ tickFx(dt){this.shake=Math.max(0,this.shake-dt*27);for(const p of this.fx){p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=280*dt;p.life-=dt;}this.fx=this.fx.filter(p=>p.life>0);}
+ background(ctx,t){const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#0c1719');bg.addColorStop(.55,'#060b0e');bg.addColorStop(1,'#07120e');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+ const bloom=ctx.createRadialGradient(520,420,30,520,420,480);bloom.addColorStop(0,'#b6ff3b12');bloom.addColorStop(.65,'#163b2610');bloom.addColorStop(1,'#00000000');ctx.fillStyle=bloom;ctx.fillRect(0,0,W,H);
+ // Architectural background rack silhouettes.
+ for(let i=0;i<11;i++){const x=18+i*103;ctx.fillStyle=i%2?'#101d1f44':'#18312924';ctx.fillRect(x,30,43,345);for(let j=0;j<17;j++){line(ctx,x+7,49+j*18,x+34,49+j*18,'#4d7163',.6,.14);}}
+ for(const s of this.stars){ctx.fillStyle=`rgba(161,255,177,${s.alpha})`;ctx.fillRect(s.x,s.y,s.r,s.r);}
+ // Isometric floor lines: fade toward vanishing point; stable across frames.
+ const horizon=390;for(let i=-18;i<=18;i++){line(ctx,W/2+i*21,horizon, W/2+i*95,H+80,'#76c890',1,0.11);}
+ for(let i=0;i<15;i++){const f=(i/14)**1.8;const y=horizon+f*(H-horizon);line(ctx,0,y,W,y,'#87b8a0',.7,0.06+i/900);}
+ const lg=ctx.createLinearGradient(0,0,0,H);lg.addColorStop(0,'#00000004');lg.addColorStop(.77,'#00000000');lg.addColorStop(1,'#000000bb');ctx.fillStyle=lg;ctx.fillRect(0,0,W,H);
+ text(ctx,'// TOWER CONSTRUCTION ZONE',34,40,12,'#91bcb3','700');text(ctx,'DEPLOYMENT MATRIX 05',W-34,40,11,'#6f9995','600','right');line(ctx,33,56,1007,56,'#34574d',1,.55);
+ // Peripheral scan grids and accents
+ for(let i=0;i<4;i++){const y=110+i*56;line(ctx,28,y,140,y,LIME,1,.08);line(ctx,900,y,1011,y,LIME,1,.08);}
+ line(ctx,41,74,41,128,LIME,2,.6);line(ctx,41,74,72,74,LIME,2,.6);
+ line(ctx,997,74,966,74,LIME,2,.5);line(ctx,997,74,997,128,LIME,2,.5);
+ }
+ deck(ctx,cy){const px=W/2,base=BASE_Y+cy;const top=base+2;const w=286;ctx.save();ctx.shadowBlur=34;ctx.shadowColor='#b6ff3b23';ctx.fillStyle='#13211f';ctx.beginPath();ctx.moveTo(px-w/2-23,top);ctx.lineTo(px+w/2+23,top);ctx.lineTo(px+w/2+46,top+31);ctx.lineTo(px-w/2-46,top+31);ctx.closePath();ctx.fill();ctx.restore();
+ ctx.fillStyle='#0c1217';ctx.fillRect(px-w/2,top,w,39);ctx.strokeStyle='#7eabb0';ctx.lineWidth=1.5;ctx.strokeRect(px-w/2,top,w,39);ctx.fillStyle='#131d24';ctx.beginPath();ctx.moveTo(px-w/2,top);ctx.lineTo(px-w/2+20,top-13);ctx.lineTo(px+w/2+20,top-13);ctx.lineTo(px+w/2,top);ctx.closePath();ctx.fill();
+ ctx.strokeStyle=LIME;ctx.lineWidth=2;ctx.strokeRect(px-w/2+8,top+6,w-16,25);
+ for(let i=0;i<12;i++){const x=px-w/2+18+i*(w-36)/11;ctx.fillStyle=i%3===0?LIME:'#365857';ctx.fillRect(x,top+17,8,4);}text(ctx,'CORE RACK / BASE 00',px,top+59,11,'#8eb8aa','600','center');}
+ cuboid(ctx,b,y,mode='placed',time=0,focus=false){const {x,w,h=BLOCK_H}=b;if(w<=.5)return;const left=x-w/2,top=y,depth=14;
+ const bright=mode==='live',ghost=mode==='ghost';const color=bright?LIME:mode==='failure'?'#ff6577':'#659e7d';
+ ctx.save();if(ghost){ctx.globalAlpha=.33;ctx.setLineDash([6,6]);ctx.strokeStyle=LIME;ctx.lineWidth=2;ctx.strokeRect(left,top,w,h);ctx.setLineDash([]);ctx.restore();return;}
+ if(bright){ctx.shadowColor='#b6ff3b';ctx.shadowBlur=20+Math.sin(time*4)*4;}
+ // Front face shaded with three stops
+ const front=ctx.createLinearGradient(left,top,left+w,top+h);if(bright){front.addColorStop(0,'#243d2f');front.addColorStop(.55,'#131d19');front.addColorStop(1,'#10181c');}else{front.addColorStop(0,b.tier%5===0?'#395b48':'#253f3b');front.addColorStop(.7,'#102025');front.addColorStop(1,'#091317');}
+ ctx.fillStyle=front;ctx.fillRect(left,top,w,h);ctx.shadowBlur=0;
+ // right isometric face
+ ctx.beginPath();ctx.moveTo(left+w,top);ctx.lineTo(left+w+depth,top-depth*.55);ctx.lineTo(left+w+depth,top+h-depth*.55);ctx.lineTo(left+w,top+h);ctx.closePath();ctx.fillStyle=bright?'#415b30':'#1e3c38';ctx.fill();ctx.strokeStyle=bright?LIME:'#54796b';ctx.lineWidth=1;ctx.stroke();
+ // upper metallic bevel
+ ctx.beginPath();ctx.moveTo(left,top);ctx.lineTo(left+depth,top-depth*.55);ctx.lineTo(left+w+depth,top-depth*.55);ctx.lineTo(left+w,top);ctx.closePath();const metal=ctx.createLinearGradient(left,top-depth,left+w,top);metal.addColorStop(0,bright?'#9eff3f':'#76b99a');metal.addColorStop(.55,bright?'#365d3d':'#2b5855');metal.addColorStop(1,bright?'#b6ff3b':'#4b8272');ctx.fillStyle=metal;ctx.fill();ctx.strokeStyle=bright?'#d9ffa4':'#6a9d90';ctx.stroke();
+ ctx.strokeStyle=bright?'#b6ff3b':'#3e675f';ctx.lineWidth=bright?2:1.25;ctx.strokeRect(left,top,w,h);line(ctx,left+4,top+6,left+w-4,top+6,bright?'#b9ffa5':'#7bdab5',1,.6);
+ if(w>=45){let slots=Math.min(13,Math.floor(w/16));for(let i=0;i<slots;i++){const sx=left+10+i*(w-20)/Math.max(1,slots-1);ctx.fillStyle=i%4===0?(bright?LIME:'#7fcca7'):'#3c6464';ctx.fillRect(sx,top+h-10,Math.min(7,w/slots/2),3);}
+ if(w>=120){text(ctx,mode==='live'?'INCOMING SERVER // '+String(b.tier).padStart(2,'0'):'SRV / '+String(b.tier).padStart(2,'0'),left+11,top+22,Math.min(11,w/13),bright?'#eaffdf':'#a0c3b8','700');}}
+ ctx.restore();}
+ draw(g){const ctx=this.ctx;ctx.save();ctx.clearRect(0,0,W,H);this.background(ctx,g.time);const cam=Math.max(0,(g.tower.length-5)*BLOCK_H);ctx.save();if(this.shake>0)ctx.translate((Math.random()-.5)*this.shake,(Math.random()-.5)*this.shake*.48);
+ this.deck(ctx,cam);
+ for(const block of g.tower){const y=block.y+cam;if(y<-75||y>H+80)continue;this.cuboid(ctx,block,y,'placed',g.time);}
+ if(g.moving){const m=g.moving,top=g.tower[g.tower.length-1];const target=top.y-BLOCK_H+cam;let px=g.mode==='falling'?m.x:g.predicted;
+ if(px!==null&&Number.isFinite(px)){const prediction={...m,x:px};this.cuboid(ctx,prediction,target,'ghost');line(ctx,px,target-10,px,m.y+cam+BLOCK_H,'#b6ff3b',1,.3);ctx.setLineDash([5,5]);line(ctx,top.x-top.w/2,target+BLOCK_H+2,top.x+top.w/2,target+BLOCK_H+2,'#80D8C7',2,.85);ctx.setLineDash([]);}
+ this.cuboid(ctx,m,m.y+cam,'live',g.time);
+ if(g.mode==='running'){text(ctx,'SCAN IN PROGRESS',m.x,m.y+cam-30,11,LIME,'800','center');line(ctx,m.x-44,m.y+cam-22,m.x+44,m.y+cam-22,LIME,1,.7);}
+ }
+ ctx.restore();
+ // foreground dust and FX
+ for(const p of this.fx){ctx.globalAlpha=clamp(p.life/Math.max(.0001,p.max),0,1);ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,3,3);}ctx.globalAlpha=1;
+ // top-right construction status
+ text(ctx,g.mode==='falling'?'● DEPLOYING':g.mode==='running'?'● SCANNING':g.mode==='gameover'?'● COLLAPSED':'● STANDBY',1005,80,12,g.mode==='gameover'?'#ff6577':LIME,'800','right');
+ // progress elevation marker
+ const layers=g.tower.length-1;text(ctx,'ALT '+String(layers*BLOCK_H).padStart(4,'0')+'m',36,H-28,12,'#75a69b','700');text(ctx,'STABILITY // '+Math.round(g.stability*100)+'%',W-35,H-28,12,'#81b9aa','700','right');
+ ctx.restore();}
+}
+
+
+
+
+const $=id=>document.getElementById(id);
+const game=new StackGame();const scene=new Scene($('gameCanvas'));
+const saved=(()=>{try{return JSON.parse(localStorage.getItem('stack-overflow-score-v1')||'{"layers":0,"score":0}')}catch{return {layers:0,score:0}}})();
+let best={layers:Number(saved.layers)||0,score:Number(saved.score)||0};
+let last=0,acc=0,uiWait=0,toastHandle=0,lastLength=game.tower.length,ended=false;
+let muted=false;let audio=null;
+function tone(freq=420,duration=.1,type='sine',volume=.045){if(muted)return;try{audio ||= new (window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume();const o=audio.createOscillator(),g=audio.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(volume,audio.currentTime);g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+duration);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+duration)}catch{}}
+function successSound(perfect){tone(perfect?830:450,.09,'triangle',.032);setTimeout(()=>tone(perfect?1180:600,.13,'sine',.028),70)}
+function showToast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastHandle);toastHandle=setTimeout(()=>el.classList.remove('show'),1800)}
+function overlay(mode){const el=$('overlay');if(!mode){el.classList.remove('active');return}el.classList.add('active');const configs={
+ ready:['// INITIATING DEPLOYMENT','BUILD THE <em>IMPOSSIBLE.</em>','Time your release. Stack server layers and keep the system standing as the platform shrinks.','▶ START DEPLOYMENT'],
+ paused:['// PROCESS SUSPENDED','SIMULATION <em>PAUSED.</em>','Your stack is safe for now. Resume when you are ready to continue the deployment.','▶ RESUME SIMULATION'],
+ gameover:['// STRUCTURAL FAILURE','STACK <em>OVERFLOW.</em>',`You deployed ${game.tower.length-1} server layers and earned ${game.score.toLocaleString()} points. Reboot to beat your personal best.`, '↻ RETRY DEPLOYMENT']};
+ const [k,t,p,b]=configs[mode]||configs.ready;$('overlayKicker').textContent=k;$('overlayTitle').innerHTML=t;$('overlayText').textContent=p;$('startBtn').textContent=b;
+}
+function start(){if(game.mode==='gameover'){game.reset();lastLength=1;ended=false;}if(game.mode==='paused'){game.pause();}else game.start();overlay(null);tone(540,.12);$('gameCanvas').focus({preventScroll:true});syncUI();}
+function drop(){if(game.mode==='paused'||game.mode==='gameover')return;if(game.mode==='ready'){start();return;}if(game.release()){tone(300,.055,'sawtooth',.024);syncUI();}}
+function restart(){game.reset();lastLength=1;ended=false;scene.fx=[];scene.shake=0;overlay('ready');syncUI();}
+function pause(){if(game.mode==='ready'||game.mode==='gameover')return;game.pause();overlay(game.mode==='paused'?'paused':null);syncUI()}
+function stageIndex(){return Math.max(0,STAGES.findIndex((s,i)=>i===STAGES.length-1||game.level<STAGES[i+1].from));}
+function syncUI(){let layers=game.tower.length-1,stage=game.stage,idx=stageIndex();$('layersValue').innerHTML=String(layers).padStart(2,'0')+' <i>/ ∞</i>';$('scoreValue').textContent=String(game.score).padStart(6,'0');$('stabilityValue').innerHTML=Math.round(game.stability*100)+'<i>%</i>';$('comboValue').innerHTML=String(game.combo).padStart(2,'0')+' <i>CHAIN</i>';$('bestValue').innerHTML=String(Math.max(layers,best.layers)).padStart(2,'0')+' <i>LAYERS</i>';
+ $('stageChip').textContent='SECTOR '+String(idx+1).padStart(2,'0')+' // '+stage.name;$('sectorNumber').textContent=String(idx+1).padStart(2,'0')+' / 05';$('sectorName').textContent=stage.name;
+ const descriptions=['Establish a stable foundation and deploy the first server layers.','Higher scan velocity demands controlled timing.','Wind pressure begins to affect the falling server blocks.','Keep your precision chain through faster transport cycles.','The final deployment sector. Build upward into the endless zone.'];$('sectorDesc').textContent=descriptions[idx];
+ let next=STAGES[idx+1]?.from||Math.max(30,game.level+7);let current=STAGES[idx].from;$('sectorProgress').style.width=(Math.round(clamp((game.level-current)/Math.max(1,next-current),0,1)*100))+'%';$('nextMilestone').textContent=idx===4?'ENDLESS OPERATION // LIVE':'NEXT SECTOR // '+String(next).padStart(2,'0')+' LAYERS';$('sectorStatus').textContent=idx===4?'MAX SECTOR':game.mode==='falling'?'DEPLOYING':'ACTIVE';
+ $('widthValue').textContent=game.tower.at(-1).w.toFixed(1)+' U';$('windValue').textContent=Math.abs(game.wind)<1?'CALM':(game.wind>0?'→ ':'← ')+Math.abs(game.wind).toFixed(0)+' U/S²';$('velocityValue').textContent=Math.round(Math.abs(game.moving?.vx||stage.speed))+' U/S';$('accuracyValue').textContent=layers?Math.round(game.lastQuality*100)+'%':'—';$('focusValue').textContent=Math.round(game.focus)+'%';$('focusProgress').style.width=game.focus+'%';
+ $('statusLabel').textContent=game.mode==='running'?'SPACE / TAP TO DEPLOY':game.mode==='falling'?'DEPLOYMENT IN PROGRESS':game.mode==='gameover'?'STRUCTURAL FAILURE':game.mode==='paused'?'SIMULATION PAUSED':'AWAITING COMMAND';$('pauseBtn').textContent=game.mode==='paused'?'▶ RESUME':'Ⅱ PAUSE';$('dropBtn').disabled=game.mode==='falling'||game.mode==='paused'||game.mode==='gameover';$('focusBtn').classList.toggle('focused',game.focusHeld&&game.focus>0);
+ let secs=Math.floor(game.time);$('events').innerHTML=[...game.events,{message:'SYSTEM READY // '+stage.name,at:0}].slice(0,5).map(v=>`<div><time>${String(Math.floor(v.at/60)).padStart(2,'0')}:${String(Math.floor(v.at%60)).padStart(2,'0')}</time> ${escapeHTML(v.message)}</div>`).join('');
+}
+function escapeHTML(str){return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');}
+function frame(now){const dt=last?Math.min(.07,(now-last)/1000):0;last=now;acc+=dt;
+ let count=0;while(acc>=1/120&&count++<12){const prev=game.tower.length;const state=game.mode;game.update(1/120);if(game.tower.length>prev){const b=game.tower.at(-1);const perfect=game.combo>0;scene.addLand(b.x,b.y+Math.max(0,(game.tower.length-5)*BLOCK_H),perfect);successSound(perfect);showToast(game.events[0]?.message||'SERVER DEPLOYED');lastLength=game.tower.length;
+ if(game.tower.length-1>best.layers||(game.tower.length-1===best.layers&&game.score>best.score)){best={layers:game.tower.length-1,score:game.score};try{localStorage.setItem('stack-overflow-score-v1',JSON.stringify(best))}catch{}}
+ }
+ if(state!=='gameover'&&game.mode==='gameover'&&!ended){ended=true;scene.addFail(game.tower.at(-1).x,game.tower.at(-1).y+Math.max(0,(game.tower.length-5)*BLOCK_H));tone(135,.25,'sawtooth',.035);setTimeout(()=>overlay('gameover'),520);showToast('STRUCTURAL FAILURE');}
+ acc-=1/120;}
+ scene.tickFx(dt);scene.draw(game);uiWait+=dt;if(uiWait>=.12){syncUI();uiWait=0;}requestAnimationFrame(frame);}
+$('startBtn').addEventListener('click',start);$('dropBtn').addEventListener('click',drop);$('gameCanvas').addEventListener('pointerdown',()=>drop());$('pauseBtn').addEventListener('click',pause);$('restartBtn').addEventListener('click',restart);
+$('soundBtn').addEventListener('click',()=>{muted=!muted;$('soundBtn').textContent=muted?'◖× SOUND OFF':'◖)) SOUND ON';if(!muted)tone(620)});
+$('helpBtn').addEventListener('click',()=>{if(game.mode==='running')pause();$('helpDialog').showModal();});$('helpClose').addEventListener('click',()=>$('helpDialog').close());$('helpPlay').addEventListener('click',()=>{$('helpDialog').close();if(game.mode==='paused')pause();});$('helpDialog').addEventListener('click',e=>{if(e.target===$('helpDialog'))$('helpDialog').close();});
+function focus(v){game.toggleFocus(v);$('focusBtn').setAttribute('aria-pressed',String(Boolean(v)));}
+$('focusBtn').addEventListener('pointerdown',e=>{e.preventDefault();try{e.currentTarget.setPointerCapture(e.pointerId)}catch{}focus(true)});for(const s of ['pointerup','pointercancel','lostpointercapture','pointerleave'])$('focusBtn').addEventListener(s,()=>focus(false));
+document.addEventListener('keydown',e=>{if(document.activeElement?.closest('dialog'))return;const k=e.key.toLowerCase();if([' ','shift'].includes(k))e.preventDefault();if(e.repeat&&k!=='shift')return;if(k===' ')drop();else if(k==='shift')focus(true);else if(k==='p')pause();else if(k==='r')restart();});document.addEventListener('keyup',e=>{if(e.key==='Shift')focus(false)});window.addEventListener('blur',()=>{focus(false);if(game.mode==='running'||game.mode==='falling'){game.pause();overlay('paused');}});
+// Pausing a falling server preserves its exact state rather than discarding a committed drop.
+// game.pause() handles both run modes through an explicit pause mode stored below.
+syncUI();requestAnimationFrame(frame);window.__STACK_DEBUG__={game,scene,drop,restart,pause,start};
+
+</script>
+</body>
+</html>

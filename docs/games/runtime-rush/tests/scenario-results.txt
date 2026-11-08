@@ -1,0 +1,3 @@
+Idle failure verified: 396m, 883 points, 2030 steps
+Predictive safety path verified: 2300m, 20800 points, stage 5, 35 lane switches
+10-seed deterministic replay passed

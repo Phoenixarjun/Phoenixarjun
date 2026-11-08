@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0C0F10" />
+  <meta name="description" content="Packet Breaker — a neon 2.5D arcade game by Naresh B A. Keep the packet alive, smash bottlenecks and survive the network." />
+  <title>Packet Breaker // Titanium Hacker Arcade</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../shared/arcade-header.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="../shared/arcade-header.js"></script>
+  <script defer src="./dist/game.bundle.js"></script>
+</head>
+<body>
+  <header id="arcade-nav" data-slug="packet-breaker"></header>
+  <div class="backdrop-grid" aria-hidden="true"></div>
+  <div class="site-shell">
+    <main>
+      <section class="intro" aria-labelledby="gameHeading">
+        <div class="title-group"><span class="eyebrow"><i></i> DEVELOPER PLAYGROUND / TITANIUM ARCADE</span><h1 id="gameHeading">PACKET <span>BREAKER<span class="cursor" aria-hidden="true">_</span></span></h1><p>Keep the packet alive. Break the bottlenecks. <strong>Own the network.</strong></p></div>
+        <div class="intro-mark" aria-hidden="true"><div class="mark-hex">◇</div><div><span>LIVE BUILD</span><b>RUNTIME // ACTIVE</b></div></div>
+      </section>
+      <section class="stats-strip" aria-label="Game scores and current status">
+        <div class="stat"><span class="stat-label">SCORE</span><strong class="stat-value" id="score">000000</strong></div>
+        <div class="stat"><span class="stat-label">BEST SESSION</span><strong class="stat-value" id="best">000000</strong></div>
+        <div class="stat"><span class="stat-label">STAGE</span><strong class="stat-value stage-value" id="levelStat">01 <small>/ 05</small></strong></div>
+        <div class="stat"><span class="stat-label">INTEGRITY</span><strong class="stat-value integrity" id="lives" aria-label="3 lives">◆ ◆ ◆</strong></div>
+        <div class="stat combo-stat"><span class="stat-label">COMBO</span><strong class="stat-value" id="combo">x1.0</strong></div>
+      </section>
+      <div class="play-layout">
+        <aside class="sidebar" aria-label="Game information and controls">
+          <div class="panel panel-status"><div class="panel-heading"><span class="panel-kicker">/// SYSTEM HUD</span><span class="hud-led"></span></div><div class="sidebar-stat"><span>Network status</span><strong id="status">STANDBY</strong></div><div class="sidebar-stat"><span>Targets remaining</span><strong id="remaining">--</strong></div><div class="sidebar-stat"><span>Packet velocity</span><strong id="velocity">0 PX/S</strong></div><div class="sidebar-stat"><span>Shield charge</span><strong id="shieldState">OFFLINE</strong></div><div class="sidebar-line"></div><p class="sidebar-message" id="message">Deploy a packet into the arena to begin clearing faults.</p></div>
+          <div class="panel power-panel"><div class="panel-heading"><span class="panel-kicker">/// SYSTEM UPGRADES</span></div>
+            <div class="upgrade"><span class="upgrade-icon">⤢</span><div><b>CACHE BOOST</b><small>Wider interception paddle</small></div></div>
+            <div class="upgrade"><span class="upgrade-icon">✧</span><div><b>PACKET CLONE</b><small>Duplicate the active packet</small></div></div>
+            <div class="upgrade"><span class="upgrade-icon">⬡</span><div><b>FIREWALL</b><small>Recover a missed packet</small></div></div>
+            <div class="upgrade"><span class="upgrade-icon">◷</span><div><b>TIME DILATION</b><small>Briefly slow the packets</small></div></div>
+          </div>
+          <div class="panel controls-panel"><div class="panel-heading"><span class="panel-kicker">/// PILOT MANUAL</span></div>
+            <div class="control-row"><span>Move paddle</span><span class="keys"><kbd>←</kbd><kbd>→</kbd></span></div>
+            <div class="control-row"><span>Launch packet</span><kbd>SPACE</kbd></div>
+            <div class="control-row"><span>Pause / resume</span><kbd>P</kbd></div>
+            <div class="control-row"><span>Mouse / touch</span><span class="keys-caption">MOVE / TAP</span></div>
+          </div>
+        </aside>
+        <div class="arena-column">
+          <div class="arena-frame" id="arenaFrame">
+            <div class="arena-topline" aria-hidden="true"><span>◈ LIVE NETWORK SIMULATION</span><span id="arenaLabel">STAGE 01 — INITIALIZING</span></div>
+            <canvas id="gameCanvas" width="1000" height="680" aria-label="Packet Breaker game arena. Use mouse, touch, or arrow keys to move your paddle, and Space to launch the ball. Your objective is to clear all destructible blocks."></canvas>
+            <div class="arena-corner corner-tl"></div><div class="arena-corner corner-tr"></div><div class="arena-corner corner-bl"></div><div class="arena-corner corner-br"></div>
+            <div class="game-overlay" id="overlay"><div class="overlay-panel"><div class="overlay-symbol" id="overlayIcon">⬡</div><div class="overlay-kicker" id="overlayKicker">CONNECTION ESTABLISHED</div><h2 id="overlayTitle">PACKET <em>BREAKER</em></h2><p id="overlayDescription">One packet. A hundred bottlenecks. Your paddle is the last line of defense.</p><div class="overlay-tags" id="overlayTags"><span>05 STAGES</span><span>REAL PHYSICS</span><span>NO DOWNLOAD</span></div><button class="action-button" id="primaryAction" type="button">INITIALIZE RUN <span aria-hidden="true">↗</span></button><span class="overlay-keytip" id="overlayKeytip">PRESS ENTER OR TAP TO START</span></div></div>
+            <div class="event-toast" id="eventToast" role="status" aria-live="polite"></div>
+          </div>
+          <div class="bottom-bar"><div class="bottom-left"><span class="live-pip"></span> <span id="stageDescription">STAGE 01 // BOOT SEQUENCE</span></div><div class="bottom-actions"><button id="pauseBtn" type="button" class="utility-btn" aria-label="Pause game" title="Pause or resume (P)">Ⅱ <span>PAUSE</span></button><button id="soundBtn" type="button" class="utility-btn" aria-label="Toggle sound" title="Toggle audio">♫ <span>SOUND ON</span></button><button id="restartBtn" type="button" class="utility-btn" aria-label="Restart game" title="Restart current run">↻ <span>RESTART</span></button></div></div>
+        </div>
+      </div>
+      <footer class="page-footer"><span>BUILT WITH CURIOSITY <b>·</b> ENGINEERED FOR REPLAY</span><span>// NO FRAMEWORKS · NO ADS · NO TELEMETRY</span><span>NARESH B A <b> / </b> © 2026</span></footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "id": "firewall-defense",
+  "order": 4,
+  "name": "Firewall Defense",
+  "subtitle": "Defend the core against hostile packets",
+  "category": "Tactical network defense / strategy",
+  "theme": "Titanium Hacker",
+  "entry": "./index.html",
+  "offline_entry": "./standalone.html",
+  "thumbnail": "./assets/arcade-cover.png",
+  "preview": "./assets/firewall-defense-gameplay.gif",
+  "control_modes": ["mouse", "touch", "keyboard"],
+  "status": "standalone-ready",
+  "no_external_services": true
+}

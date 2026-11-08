@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: lane x and speed bounds
+ok 1 - lane x and speed bounds
+  ---
+  duration_ms: 1.236629
+  type: 'test'
+  ...
+# Subtest: fixed physics dt 120Hz
+ok 2 - fixed physics dt 120Hz
+  ---
+  duration_ms: 0.149545
+  type: 'test'
+  ...
+# Subtest: ballistic jump formula
+ok 3 - ballistic jump formula
+  ---
+  duration_ms: 0.150266
+  type: 'test'
+  ...
+# Subtest: lane clamping
+ok 4 - lane clamping
+  ---
+  duration_ms: 0.291598
+  type: 'test'
+  ...
+# Subtest: lane easing converges
+ok 5 - lane easing converges
+  ---
+  duration_ms: 0.928997
+  type: 'test'
+  ...
+# Subtest: jump and landing
+ok 6 - jump and landing
+  ---
+  duration_ms: 1.634007
+  type: 'test'
+  ...
+# Subtest: slide blocked during jump
+ok 7 - slide blocked during jump
+  ---
+  duration_ms: 0.285138
+  type: 'test'
+  ...
+# Subtest: crossing sweep catches tunneling
+ok 8 - crossing sweep catches tunneling
+  ---
+  duration_ms: 0.190827
+  type: 'test'
+  ...
+# Subtest: obstacle vertical requirements
+ok 9 - obstacle vertical requirements
+  ---
+  duration_ms: 0.318139
+  type: 'test'
+  ...
+# Subtest: no collision in other lanes
+ok 10 - no collision in other lanes
+  ---
+  duration_ms: 0.27921
+  type: 'test'
+  ...
+# Subtest: all generated pattern groups have a clear lane
+ok 11 - all generated pattern groups have a clear lane
+  ---
+  duration_ms: 13.758609
+  type: 'test'
+  ...
+# Subtest: seed deterministic
+ok 12 - seed deterministic
+  ---
+  duration_ms: 1.846317
+  type: 'test'
+  ...
+# Subtest: initial distance monotonic
+ok 13 - initial distance monotonic
+  ---
+  duration_ms: 1.726236
+  type: 'test'
+  ...
+# Subtest: damage reduces integrity and sets invulnerability
+ok 14 - damage reduces integrity and sets invulnerability
+  ---
+  duration_ms: 0.137838
+  type: 'test'
+  ...
+# Subtest: shield absorbs obstacle hit
+ok 15 - shield absorbs obstacle hit
+  ---
+  duration_ms: 0.104808
+  type: 'test'
+  ...
+# Subtest: three distinct hits terminate game
+ok 16 - three distinct hits terminate game
+  ---
+  duration_ms: 0.200091
+  type: 'test'
+  ...
+# Subtest: pickup increments score, grants shield
+ok 17 - pickup increments score, grants shield
+  ---
+  duration_ms: 0.102153
+  type: 'test'
+  ...
+# Subtest: fixed timestep bounded speed and game state
+ok 18 - fixed timestep bounded speed and game state
+  ---
+  duration_ms: 34.255442
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 115.643751

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0C0F10" />
+  <meta name="description" content="Stack Overflow — a tactile server-tower stacking game in the Titanium Hacker Arcade." />
+  <title>STACK OVERFLOW // Titanium Hacker Arcade</title>
+  <link rel="stylesheet" href="../shared/arcade-header.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script defer src="../shared/arcade-header.js"></script>
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <header id="arcade-nav" data-slug="stack-overflow"></header>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="identity"><div class="glyph">▤</div><div><div class="tiny-heading">SERVER ARCHITECTURE PROTOCOL</div><h1>STACK <em>OVERFLOW</em><span class="caret">_</span></h1></div></div>
+      <div class="header-actions"><span class="signal"><span class="signal-dot"></span>SYSTEM ONLINE</span><button id="soundBtn" type="button" class="mini-button" aria-label="Toggle sound">◖)) SOUND ON</button><button id="helpBtn" type="button" class="mini-button">? HOW TO PLAY</button></div>
+    </header>
+    <div class="intro-row"><p>Build upward. Stay balanced. <span>Deploy server layers without losing structural integrity.</span></p></div>
+    <section class="stat-strip" aria-label="Current game statistics">
+      <div class="stat"><span class="stat-icon">▥</span><div><small>LAYERS BUILT</small><strong id="layersValue">00 <i>/ ∞</i></strong></div></div>
+      <div class="stat"><span class="stat-icon steel">◈</span><div><small>DEPLOYMENT SCORE</small><strong id="scoreValue">000000</strong></div></div>
+      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>STRUCTURAL STABILITY</small><strong id="stabilityValue">100<i>%</i></strong></div></div>
+      <div class="stat"><span class="stat-icon amber">✦</span><div><small>PERFECT SYNC</small><strong id="comboValue">00 <i>CHAIN</i></strong></div></div>
+      <div class="stat"><span class="stat-icon">↗</span><div><small>PERSONAL BEST</small><strong id="bestValue">00 <i>LAYERS</i></strong></div></div>
+    </section>
+    <main class="game-layout">
+      <section class="board-section" aria-label="Stack Overflow game arena">
+        <div class="board-heading"><div><span class="live-indicator"></span> LIVE DEPLOYMENT SIMULATOR <small>// STRUCTURAL VALIDATION ONLINE</small></div><span class="board-stage" id="stageChip">SECTOR 01 // BOOTSTRAP</span></div>
+        <div class="canvas-frame" id="canvasFrame"><canvas id="gameCanvas" width="1040" height="680" tabindex="0" aria-label="Moving server block above a stacked tower. Press Space, click or tap to release a block."></canvas>
+          <div id="overlay" class="game-overlay active"><div class="overlay-glow"></div><span class="overlay-kicker" id="overlayKicker">// INITIATING DEPLOYMENT</span><div class="overlay-symbol">▱</div><h2 id="overlayTitle">BUILD THE <em>IMPOSSIBLE.</em></h2><p id="overlayText">Time the drop. Land on the stack. Protect the core. Every layer gets faster and less forgiving.</p><button id="startBtn" type="button" class="primary-button">▶ START DEPLOYMENT <span>↗</span></button><span class="overlay-hint">SPACE / CLICK / TAP TO DROP · HOLD SHIFT FOR PRECISION</span></div>
+          <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        </div>
+        <div class="board-footer"><span><i class="legend-swatch live"></i> ACTIVE LAYER</span><span><i class="legend-swatch ghost"></i> PROJECTED LANDING</span><span><i class="legend-swatch placed"></i> LOCKED STACK</span><strong id="statusLabel">AWAITING COMMAND</strong></div>
+        <div class="control-row"><div class="controls-left"><button id="dropBtn" type="button" class="primary-button drop-button">▼ DROP SERVER <span>SPACE</span></button><button id="focusBtn" type="button" class="quiet-button">◈ HOLD FOCUS <span>SHIFT</span></button></div><div class="controls-right"><button id="pauseBtn" type="button" class="quiet-button">Ⅱ PAUSE</button><button id="restartBtn" type="button" class="quiet-button">↻ RESTART</button></div></div>
+      </section>
+      <aside class="info-panel" aria-label="Stack Overflow system telemetry">
+        <div class="panel-title"><span class="vertical-dots">▮▮</span><div><small>OPERATIONS CENTER</small><h2>SYSTEM TELEMETRY</h2></div></div>
+        <div class="sector-box"><div class="module-top"><span>CURRENT SECTOR</span><b id="sectorNumber">01 / 05</b></div><div class="sector-visual"><div class="server-graphic">▱<span>▱</span><i>▱</i></div><div class="sector-rings"></div></div><strong id="sectorName">BOOTSTRAP</strong><p id="sectorDesc">Establish a stable foundation and build the first server layers.</p><div class="progress-track"><span id="sectorProgress" style="width:0%"></span></div><div class="sector-stats"><span id="nextMilestone">NEXT SECTOR // 05 LAYERS</span><span id="sectorStatus">READY</span></div></div>
+        <div class="telemetry-list"><div><span>PLATFORM WIDTH</span><b id="widthValue">224 U</b></div><div><span>WIND PRESSURE</span><b id="windValue">CALM</b></div><div><span>DROP ACCURACY</span><b id="accuracyValue">—</b></div><div><span>SCAN VELOCITY</span><b id="velocityValue">230 U/S</b></div></div>
+        <div class="resource-section"><div class="resource-head"><span>PRECISION BUFFER</span><b id="focusValue">100%</b></div><div class="progress-track accent"><span id="focusProgress" style="width:100%"></span></div><p>Hold <b>SHIFT</b> or <b>FOCUS</b> to slow the moving layer. The buffer recharges between precision windows.</p></div>
+        <div class="log-section"><div class="log-head">EVENT STREAM <span>● LIVE</span></div><div id="events" class="events"><div><time>00:00</time> simulator ready</div></div></div>
+        <div class="panel-foot"><span>SIMULATION</span><b>LOCAL // NO ACCOUNT</b></div>
+      </aside>
+    </main>
+    <footer class="footer"><span>◈ TITANIUM HACKER ARCADE <i>//</i> PRECISION ENGINEERING EXPERIMENT</span><span>ONE CLICK TO PLAY • ZERO NETWORK REQUIREMENTS</span></footer>
+  </div>
+  <dialog id="helpDialog"><div class="modal"><header><span>◈ OPERATOR MANUAL</span><button id="helpClose" class="close" type="button" aria-label="Close">×</button></header><h2>HOW HIGH CAN YOU BUILD?</h2><p>A server block moves across the top of your tower. Release it as close to the existing layer as possible; any overhang is cut away. Narrow platforms eventually become too difficult to land on.</p><div class="help-grid"><div><b>01 — AIM</b><p>Track the projected landing marker. The block retains a small amount of momentum when released.</p></div><div><b>02 — DROP</b><p>Press Space or click/tap the arena to release. Gravity does the rest.</p></div><div><b>03 — RECOVER</b><p>Perfect drops preserve or slightly restore width and charge your focus meter.</p></div><div><b>04 — SURVIVE</b><p>Later sectors add speed and wind. If the overlap becomes too small, the stack fails.</p></div></div><div class="key-line"><span><kbd>SPACE</kbd> Drop</span><span><kbd>SHIFT</kbd> Focus</span><span><kbd>P</kbd> Pause</span><span><kbd>R</kbd> Restart</span></div><button id="helpPlay" class="primary-button" type="button">UNDERSTOOD ↗</button></div></dialog>
+</body>
+</html>

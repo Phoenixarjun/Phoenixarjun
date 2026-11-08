@@ -1,0 +1,14 @@
+{
+  "id": "circuit-pinball",
+  "title": "Circuit Pinball",
+  "subtitle": "Keep the packet alive. Trigger the circuitry.",
+  "number": "02",
+  "category": "Physics Arcade",
+  "theme": "titanium-hacker",
+  "entrypoint": "./index.html",
+  "preview_image": "./assets/preview-desktop-playing.png",
+  "animated_preview": "./assets/circuit-pinball-gameplay.gif",
+  "supports_touch": true,
+  "offline_playable": true,
+  "status": "independent-build"
+}

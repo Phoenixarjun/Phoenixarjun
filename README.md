@@ -198,19 +198,23 @@
 <!-- ==================== SECTION 08: DEVELOPER PLAYGROUND ==================== -->
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/play-system-runner.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/play-system-runner-light.svg">
-    <img src="./assets/headers/play-system-runner.svg" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/headers/play-developer-arcade.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/headers/play-developer-arcade-light.svg">
+    <img src="./assets/headers/play-developer-arcade.svg" width="100%" />
   </picture>
 </p>
 <p align="center">
-  <a href="https://phoenixarjun.github.io/Phoenixarjun/runner.html">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/playground/concept.svg">
-      <source media="(prefers-color-scheme: light)" srcset="./assets/playground/concept-light.svg">
-      <img src="./assets/playground/concept.svg" alt="Developer Playground — System Runner: Architecture Grid Runner" width="100%" />
-    </picture>
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/games/">
+    <img src="./assets/playground/arcade-showcase.gif" alt="Developer Arcade — Five Browser Games by Naresh B A" width="100%" />
   </a>
+</p>
+
+<p align="center">
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/games/packet-breaker/"><code>[01] Packet Breaker</code></a> &nbsp;•&nbsp;
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/games/circuit-pinball/"><code>[02] Circuit Pinball</code></a> &nbsp;•&nbsp;
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/games/runtime-rush/"><code>[03] Runtime Rush</code></a> &nbsp;•&nbsp;
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/games/firewall-defense/"><code>[04] Firewall Defense</code></a> &nbsp;•&nbsp;
+  <a href="https://phoenixarjun.github.io/Phoenixarjun/games/stack-overflow/"><code>[05] Stack Overflow</code></a>
 </p>
 
 <!-- ==================== SECTION 09: CONNECT ==================== -->

@@ -1,0 +1,164 @@
+/* Titanium Hacker Developer Arcade — Shared Top Navigation */
+:root {
+  --arcade-bg: #0C0F10;
+  --arcade-surface: #141C21;
+  --arcade-surface-hover: #1E2930;
+  --arcade-border: #253139;
+  --arcade-border-hover: #42535C;
+  --arcade-accent: #B6FF3B;
+  --arcade-accent-soft: rgba(182, 255, 59, 0.15);
+  --arcade-accent-glow: rgba(182, 255, 59, 0.35);
+  --arcade-text: #EEF7EF;
+  --arcade-muted: #8EADB6;
+  --arcade-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+}
+
+.arcade-nav-bar {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(12, 15, 16, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--arcade-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  position: relative;
+  z-index: 9999;
+  font-family: var(--arcade-font-mono);
+  font-size: 14px;
+  color: var(--arcade-text);
+  gap: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.arcade-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arcade-nav-prompt {
+  color: var(--arcade-accent);
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+  text-shadow: 0 0 10px var(--arcade-accent-glow);
+}
+
+.arcade-nav-command {
+  color: var(--arcade-text);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.arcade-nav-cursor {
+  display: inline-block;
+  color: var(--arcade-accent);
+  font-weight: 700;
+  animation: arcade-nav-blink 1s steps(2, start) infinite;
+  margin-left: 2px;
+}
+
+.arcade-nav-cursor.stopped {
+  opacity: 0.6;
+  animation: none;
+}
+
+@keyframes arcade-nav-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.arcade-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.arcade-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-family: var(--arcade-font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--arcade-surface);
+  border: 1px solid var(--arcade-border);
+  color: var(--arcade-text);
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.arcade-nav-btn:hover {
+  background: var(--arcade-surface-hover);
+  border-color: var(--arcade-accent);
+  color: #FFFFFF;
+  box-shadow: 0 0 10px var(--arcade-accent-soft);
+  transform: translateY(-1px);
+}
+
+.arcade-nav-btn:active {
+  transform: translateY(0);
+}
+
+.arcade-nav-btn-primary {
+  background: rgba(182, 255, 59, 0.1);
+  border-color: rgba(182, 255, 59, 0.4);
+  color: var(--arcade-accent);
+}
+
+.arcade-nav-btn-primary:hover {
+  background: var(--arcade-accent);
+  border-color: var(--arcade-accent);
+  color: #070B0C;
+  box-shadow: 0 0 14px var(--arcade-accent-glow);
+}
+
+.arcade-nav-btn .arrow {
+  font-size: 11px;
+  opacity: 0.8;
+  transition: transform 0.15s ease;
+}
+
+.arcade-nav-btn:hover .arrow {
+  transform: translateX(2px);
+  opacity: 1;
+}
+
+.arcade-nav-btn:focus-visible {
+  outline: 2px solid var(--arcade-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .arcade-nav-bar {
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .arcade-nav-prompt {
+    font-size: 12px;
+  }
+  .arcade-nav-command {
+    font-size: 12px;
+  }
+  .arcade-nav-btn {
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+}
+

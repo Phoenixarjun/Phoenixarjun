@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: interval overlap exact and no-contact cases
+ok 1 - interval overlap exact and no-contact cases
+  ---
+  duration_ms: 1.063815
+  type: 'test'
+  ...
+# Subtest: impact time matches closed-form kinematics
+ok 2 - impact time matches closed-form kinematics
+  ---
+  duration_ms: 0.274832
+  type: 'test'
+  ...
+# Subtest: prediction accounts for retained horizontal velocity and wind
+ok 3 - prediction accounts for retained horizontal velocity and wind
+  ---
+  duration_ms: 0.131948
+  type: 'test'
+  ...
+# Subtest: perfect center alignment preserves and restores width
+ok 4 - perfect center alignment preserves and restores width
+  ---
+  duration_ms: 0.151016
+  type: 'test'
+  ...
+# Subtest: overhang trims block and shifts new layer center
+ok 5 - overhang trims block and shifts new layer center
+  ---
+  duration_ms: 0.149004
+  type: 'test'
+  ...
+# Subtest: narrow overlap fails without adding a block
+ok 6 - narrow overlap fails without adding a block
+  ---
+  duration_ms: 0.271848
+  type: 'test'
+  ...
+# Subtest: minimum contact width never results in negative widths
+ok 7 - minimum contact width never results in negative widths
+  ---
+  duration_ms: 0.105188
+  type: 'test'
+  ...
+# Subtest: center-of-mass stability detects unsupported upper stack
+ok 8 - center-of-mass stability detects unsupported upper stack
+  ---
+  duration_ms: 0.145017
+  type: 'test'
+  ...
+# Subtest: same seed produces identical initial state and wind
+ok 9 - same seed produces identical initial state and wind
+  ---
+  duration_ms: 2.115861
+  type: 'test'
+  ...
+# Subtest: moving block bounces inside arena bounds
+ok 10 - moving block bounces inside arena bounds
+  ---
+  duration_ms: 1.538236
+  type: 'test'
+  ...
+# Subtest: gravity lands at exact contact y with no penetration
+ok 11 - gravity lands at exact contact y with no penetration
+  ---
+  duration_ms: 0.475192
+  type: 'test'
+  ...
+# Subtest: miss transitions to game over
+ok 12 - miss transitions to game over
+  ---
+  duration_ms: 0.137546
+  type: 'test'
+  ...
+# Subtest: perfect streak increases focus up to cap
+ok 13 - perfect streak increases focus up to cap
+  ---
+  duration_ms: 0.15312
+  type: 'test'
+  ...
+# Subtest: focus slows moving block but uses a finite resource
+ok 14 - focus slows moving block but uses a finite resource
+  ---
+  duration_ms: 0.213811
+  type: 'test'
+  ...
+# Subtest: pause works during free fall, preserving airborne state
+ok 15 - pause works during free fall, preserving airborne state
+  ---
+  duration_ms: 0.224497
+  type: 'test'
+  ...
+# Subtest: stage progression is deterministic
+ok 16 - stage progression is deterministic
+  ---
+  duration_ms: 0.09956
+  type: 'test'
+  ...
+# Subtest: a stack can advance through twenty-five perfect placements
+ok 17 - a stack can advance through twenty-five perfect placements
+  ---
+  duration_ms: 3.360778
+  type: 'test'
+  ...
+# Subtest: long unattended session stays bounded and reaches failure or continues bouncing
+ok 18 - long unattended session stays bounded and reaches failure or continues bouncing
+  ---
+  duration_ms: 3.518334
+  type: 'test'
+  ...
+# Subtest: 10,000 randomized landing overlap scenarios preserve invariants
+ok 19 - 10,000 randomized landing overlap scenarios preserve invariants
+  ---
+  duration_ms: 9.964177
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 90.507267
