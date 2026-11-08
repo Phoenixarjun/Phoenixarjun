@@ -213,12 +213,13 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         for f in [dark, light]:
             root = ET.parse(f).getroot()
             self.assertEqual(root.attrib.get('width'), '1160')
-            self.assertEqual(root.attrib.get('height'), '645')
+            self.assertEqual(root.attrib.get('height'), '530')
             content = f.read_text(encoding='utf-8')
             self.assertIn('About Me', content)
             self.assertIn('Software Engineer at Prodapt', content)
             self.assertIn('Currently exploring', content)
             self.assertIn('Engineering mindset', content)
+            self.assertNotIn('—', content)
 
         # Header check
         header_dark = ROOT / 'assets' / 'headers' / 'show-about-me.svg'
