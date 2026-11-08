@@ -8,9 +8,9 @@
   <rect x="8" y="4" width="1144" height="60" rx="8" ry="8" fill="url(#twRowBg-light)" stroke="#A8C0CB" stroke-width="1.2" />
   <rect x="28" y="18" width="40" height="28" rx="6" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1" />
   <text x="48" y="37" font-family="ui-monospace, SFMono-Regular, monospace" font-size="13" font-weight="700" fill="#1F2328" text-anchor="middle">03</text>
-  <text x="84" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="16.5" font-weight="750" fill="#1F2328">Git at Agent Scale: What Anthropic’s Scion Really Teaches Us</text>
+  <text x="84" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="16.5" font-weight="750" fill="#1F2328">Think Beyond LLMs: Choosing the Right Model for the Right Job</text>
   <g transform="translate(84, 42) scale(0.68)" color="#656D76"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828l-8-8zM7 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"/></g>
-  <text x="102" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#656D76">Systems · Agent Scale · Medium · ~9 min read</text>
+  <text x="102" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#656D76">Applied AI · Model Selection · Medium · ~9 min read</text>
   <rect x="1106" y="18" width="28" height="28" rx="6" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1" />
   <text x="1120" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="#1A7F37" text-anchor="middle">↗</text>
 </svg>

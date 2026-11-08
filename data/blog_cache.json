@@ -3,6 +3,14 @@
   "posts": [
     {
       "index": "01",
+      "title": "I Build With AI. I’m Tired of How It’s Sold Online.",
+      "topic": "Artificial-intelligence · Ai-agent",
+      "url": "https://medium.com/@phoenixarjun007/i-build-with-ai-im-tired-of-how-it-s-sold-online-898c32240c36",
+      "read_time": "~11 min read",
+      "platform": "Medium"
+    },
+    {
+      "index": "02",
       "title": "When Your Backend Starts Building a Workflow Engine",
       "topic": "Backend & Systems · Architecture",
       "url": "https://medium.com/@phoenixarjun007/when-your-backend-starts-building-a-workflow-engine-d0c7838af114",
@@ -10,7 +18,7 @@
       "platform": "Medium"
     },
     {
-      "index": "02",
+      "index": "03",
       "title": "Think Beyond LLMs: Choosing the Right Model for the Right Job",
       "topic": "Applied AI · Model Selection",
       "url": "https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3",
@@ -18,7 +26,7 @@
       "platform": "Medium"
     },
     {
-      "index": "03",
+      "index": "04",
       "title": "Git at Agent Scale: What Anthropic’s Scion Really Teaches Us",
       "topic": "Systems · Agent Scale",
       "url": "https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade",
@@ -26,19 +34,11 @@
       "platform": "Medium"
     },
     {
-      "index": "04",
+      "index": "05",
       "title": "From Prompts to Engineering Playbooks: Why I Built Agent Toolkit",
       "topic": "Agent Engineering · Tooling",
       "url": "https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e",
       "read_time": "~3 min read",
-      "platform": "Medium"
-    },
-    {
-      "index": "05",
-      "title": "Designing a Production RAG Retrieval System for 500 Million Vectors",
-      "topic": "Distributed Systems · AI Infrastructure",
-      "url": "https://medium.com/@phoenixarjun007/designing-a-production-rag-retrieval-system-for-500-million-vectors-35dac7566d83",
-      "read_time": "~11 min read",
       "platform": "Medium"
     }
   ]
