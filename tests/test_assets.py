@@ -213,7 +213,7 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         for f in [dark, light]:
             root = ET.parse(f).getroot()
             self.assertEqual(root.attrib.get('width'), '1160')
-            self.assertEqual(root.attrib.get('height'), '530')
+            self.assertEqual(root.attrib.get('height'), '566')
             content = f.read_text(encoding='utf-8')
             self.assertIn('About Me', content)
             self.assertIn('Software Engineer at Prodapt', content)

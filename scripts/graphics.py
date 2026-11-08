@@ -1610,7 +1610,7 @@ def arcade_game_button(
 
 def about_me_card(theme: dict, is_light: bool = False, width: int = 1160) -> str:
     """Generate authentic Titanium Hacker About Me section card (Mode A transparent root matching Engineering Focus)."""
-    h = 530
+    h = 566
 
     if is_light:
         accent_col = "#3B6600"
@@ -1648,20 +1648,20 @@ def about_me_card(theme: dict, is_light: bool = False, width: int = 1160) -> str
             dy = 24 + row * 8
             dots_svg.append(f'<circle cx="{dx}" cy="{dy}" r="1.3" fill="{dot_col}"/>')
 
-    line_ys = [92, 116, 138, 160, 182, 204, 226, 248, 270, 292, 314, 336, 358]
+    line_ys = [96, 120, 144, 168, 192, 216, 240, 264, 288, 312, 336, 360, 384]
     gutter_lines = []
     for idx, ly in enumerate(line_ys, 1):
         num_str = f"{idx:02d}"
         gutter_lines.append(
-            f'<text x="49" y="{ly}" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="12" font-weight="600" fill="{line_num_col}" text-anchor="middle">{num_str}</text>'
+            f'<text x="49" y="{ly}" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="12.5" font-weight="600" fill="{line_num_col}" text-anchor="middle">{num_str}</text>'
         )
 
-    compass_icon = f'''<g transform="translate(38, 413)" stroke="{accent_col}" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    compass_icon = f'''<g transform="translate(38, 447)" stroke="{accent_col}" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"/>
       <polygon points="14 8 12.5 12.5 8 14 9.5 9.5" fill="{accent_col}" fill-opacity="0.35"/>
     </g>'''
 
-    layers_icon = f'''<g transform="translate(608, 413)" stroke="{accent_col}" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    layers_icon = f'''<g transform="translate(608, 447)" stroke="{accent_col}" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M 3 7 L 11 3 L 19 7 L 11 11 Z"/>
       <path d="M 3 11 L 11 15 L 19 11"/>
       <path d="M 3 15 L 11 19 L 19 15"/>
@@ -1691,46 +1691,46 @@ def about_me_card(theme: dict, is_light: bool = False, width: int = 1160) -> str
 </g>
 
 <!-- Contained Code Editor (Fit-to-content, gap removed) -->
-<rect x="20" y="58" width="1120" height="318" rx="12" fill="url(#{gid})" stroke="{editor_stroke}" stroke-width="1.2"/>
+<rect x="20" y="60" width="1120" height="350" rx="12" fill="url(#{gid})" stroke="{editor_stroke}" stroke-width="1.2"/>
 
-<path d="M 20 76 L 20 58 L 38 58" fill="none" stroke="{accent_col}" stroke-width="1.8" opacity="0.85"/>
-<path d="M 1122 376 L 1140 376 L 1140 358" fill="none" stroke="{accent_col}" stroke-width="1.8" opacity="0.85"/>
+<path d="M 20 78 L 20 60 L 38 60" fill="none" stroke="{accent_col}" stroke-width="1.8" opacity="0.85"/>
+<path d="M 1122 410 L 1140 410 L 1140 392" fill="none" stroke="{accent_col}" stroke-width="1.8" opacity="0.85"/>
 
-<line x1="78" y1="70" x2="78" y2="364" stroke="{gutter_border}" stroke-width="1"/>
+<line x1="78" y1="72" x2="78" y2="398" stroke="{gutter_border}" stroke-width="1"/>
 
 {''.join(gutter_lines)}
 
-<g font-family="'JetBrains Mono', Consolas, 'Liberation Mono', monospace" font-size="13.2">
-  <text x="98" y="92" font-weight="700" fill="{accent_col}"># About Me</text>
+<g font-family="'JetBrains Mono', Consolas, 'Liberation Mono', monospace" font-size="14.5">
+  <text x="98" y="96" font-weight="700" fill="{accent_col}"># About Me</text>
 
-  <text x="98" y="116" fill="{text_col}">I'm a <tspan fill="{accent_col}" font-weight="700">Software Engineer at Prodapt</tspan>, working on backend systems, distributed data pipelines,</text>
-  <text x="98" y="138" fill="{text_col}">and production infrastructure.</text>
+  <text x="98" y="120" fill="{text_col}">I'm a <tspan fill="{accent_col}" font-weight="700">Software Engineer at Prodapt</tspan>, working on backend systems, distributed data pipelines,</text>
+  <text x="98" y="144" fill="{text_col}">and production infrastructure.</text>
 
-  <text x="98" y="182" fill="{text_col}">I'm particularly interested in what makes intelligent software reliable. Beyond integrating AI models,</text>
-  <text x="98" y="204" fill="{text_col}">I enjoy exploring the systems around them: <tspan fill="{text_secondary}">architecture, data flows, failure handling, observability,</tspan></text>
-  <text x="98" y="226" fill="{text_col}">and the engineering decisions that make software dependable.</text>
+  <text x="98" y="192" fill="{text_col}">I'm particularly interested in what makes intelligent software reliable. Beyond integrating AI models,</text>
+  <text x="98" y="216" fill="{text_col}">I enjoy exploring the systems around them: <tspan fill="{text_secondary}">architecture, data flows, failure handling, observability,</tspan></text>
+  <text x="98" y="240" fill="{text_col}">and the engineering decisions that make software dependable.</text>
 
-  <text x="98" y="270" fill="{text_col}">Outside work, I build applied AI projects and open-source developer tools, experiment with new</text>
-  <text x="98" y="292" fill="{text_col}">engineering approaches, and write about the lessons and trade-offs behind them.</text>
+  <text x="98" y="288" fill="{text_col}">Outside work, I build applied AI projects and open-source developer tools, experiment with new</text>
+  <text x="98" y="312" fill="{text_col}">engineering approaches, and write about the lessons and trade-offs behind them.</text>
 
-  <text x="98" y="336" fill="{text_col}">I'm the kind of engineer who wants to understand <tspan fill="{accent_col}" font-weight="700">why something works, what happens when it fails,</tspan></text>
-  <text x="98" y="358" font-weight="700" fill="{accent_col}">and how it can be designed better.<tspan fill="{text_secondary}" font-weight="400">_</tspan></text>
+  <text x="98" y="360" fill="{text_col}">I'm the kind of engineer who wants to understand <tspan fill="{accent_col}" font-weight="700">why something works, what happens when it fails,</tspan></text>
+  <text x="98" y="384" font-weight="700" fill="{accent_col}">and how it can be designed better.<tspan fill="{text_secondary}" font-weight="400">_</tspan></text>
 </g>
 
 <!-- Bottom Two Pods (Matching Engineering Focus container styling & geometry) -->
-<rect x="20" y="394" width="550" height="120" rx="10" fill="url(#{gid})" stroke="{pill_card_stroke}" stroke-width="1.2"/>
-<rect x="34" y="408" width="186" height="32" rx="7" fill="{badge_bg}" stroke="{badge_border}" stroke-width="0.9"/>
+<rect x="20" y="428" width="550" height="122" rx="10" fill="url(#{gid})" stroke="{pill_card_stroke}" stroke-width="1.2"/>
+<rect x="34" y="442" width="190" height="32" rx="7" fill="{badge_bg}" stroke="{badge_border}" stroke-width="0.9"/>
 {compass_icon}
-<text x="72" y="429" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" font-weight="700" fill="{text_col}">Currently exploring</text>
-<text x="36" y="464" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13.5" fill="{text_secondary}">Advanced backend patterns, AI-enabled systems, and more</text>
-<text x="36" y="486" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13.5" fill="{text_secondary}">reliable, observable architectures.</text>
+<text x="72" y="463" font-family="'JetBrains Mono', Consolas, monospace" font-size="13" font-weight="700" fill="{text_col}">Currently exploring</text>
+<text x="36" y="498" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="{text_secondary}">Advanced backend patterns, AI-enabled systems, and more</text>
+<text x="36" y="522" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="{text_secondary}">reliable, observable architectures.</text>
 
-<rect x="590" y="394" width="550" height="120" rx="10" fill="url(#{gid})" stroke="{pill_card_stroke}" stroke-width="1.2"/>
-<rect x="604" y="408" width="186" height="32" rx="7" fill="{badge_bg}" stroke="{badge_border}" stroke-width="0.9"/>
+<rect x="590" y="428" width="550" height="122" rx="10" fill="url(#{gid})" stroke="{pill_card_stroke}" stroke-width="1.2"/>
+<rect x="604" y="442" width="190" height="32" rx="7" fill="{badge_bg}" stroke="{badge_border}" stroke-width="0.9"/>
 {layers_icon}
-<text x="642" y="429" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" font-weight="700" fill="{text_col}">Engineering mindset</text>
-<text x="606" y="464" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13.5" fill="{text_secondary}">Build → Measure → Observe → Iterate to create intelligent,</text>
-<text x="606" y="486" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13.5" fill="{text_secondary}">resilient, and high-impact software systems.</text>
+<text x="642" y="463" font-family="'JetBrains Mono', Consolas, monospace" font-size="13" font-weight="700" fill="{text_col}">Engineering mindset</text>
+<text x="606" y="498" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="{text_secondary}">Build → Measure → Observe → Iterate to create intelligent,</text>
+<text x="606" y="522" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="{text_secondary}">resilient, and high-impact software systems.</text>
 
 </svg>'''
 
