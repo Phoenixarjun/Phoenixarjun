@@ -1,8 +1,0 @@
-{
-  "name": "Titanium Hacker (fallback only)",
-  "colors": {
-    "base": "#0C0F10", "surface": "#1B2328", "surface2": "#253139",
-    "stroke": "#42535C", "accent": "#B6FF3B", "secondary": "#8EADB6",
-    "text": "#EEF7EF", "muted": "#A6B6B2"
-  }
-}

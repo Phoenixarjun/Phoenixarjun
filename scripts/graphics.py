@@ -26,7 +26,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 _VENDOR_DIR = _ROOT / "assets" / "stack" / "vendor"
 
 
-def get_vendor_icon(slug: str, x: float, y: float, size: float = 22) -> str:
+def get_vendor_icon(slug: str, x: float, y: float, size: float = 22, is_light: bool = False) -> str:
     path = _VENDOR_DIR / f"{slug}.svg"
     if not path.is_file():
         return ""
@@ -41,6 +41,9 @@ def get_vendor_icon(slug: str, x: float, y: float, size: float = 22) -> str:
         off_x = x + (size - act_w) / 2.0
         off_y = y + (size - act_h) / 2.0
         raw = path.read_text(encoding="utf-8")
+        if is_light:
+            if slug in {"langgraph", "langchain", "crewai", "threejs"}:
+                raw = raw.replace("#EEF7EF", "#141B20").replace("#FFFFFF", "#141B20").replace("#ffffff", "#141B20")
         inner = raw.split(">", 1)[1].rsplit("</svg>", 1)[0]
         return f'<g transform="translate({off_x:.2f}, {off_y:.2f}) scale({scale:.4f}) translate({-min_x:.1f}, {-min_y:.1f})">{inner}</g>'
     except Exception:
@@ -138,54 +141,67 @@ def pill(x, y, label, theme, w=None, h=28, font=12):
 # 1. SECTION TERMINAL HEADERS
 # -------------------------------------------------------------
 def section_terminal_header(command: str, flag: str, theme: dict, width: int = 1160, is_light: bool = False) -> str:
-    """Generate naresh@github:~$ <command> --<flag> ─────── • header strip (Mode A: transparent root).
-
-    For flagship-projects, renders the full section banner with chip icon and subtitle.
-    """
+    """Generate standardized naresh@github:~$ <command> --<flag> ─────── • header strip (Mode A: transparent root)."""
     t = get_light_theme(theme) if is_light else theme
     prompt_str = "naresh@github:~$"
     cmd_str = f" {command} --{flag}" if flag else f" {command}"
 
-    # Calculate text widths
-    prompt_len = len(prompt_str) * 9.2
-    cmd_len = len(cmd_str) * 9.0
-    text_end_x = 22 + prompt_len + cmd_len + 18
-    line_end_x = width - 20
+    # Typography targets (Phase 3.2):
+    # Prompt: 26px font size, Command: 25px font size
+    # Canvas height: 52px, Left inset: 20px
+    prompt_len = len(prompt_str) * 15.6
+    cmd_len = len(cmd_str) * 14.8
+    text_end_x = 34 + prompt_len + cmd_len + 16
+    line_end_x = width - 24
 
-    is_flagship = (command == "ls" and flag == "flagship-projects")
-    is_playground = (command == "open" and flag == "developer-playground")
-    h = 96 if is_flagship else (68 if is_playground else 40)
+    accessible_title = "Featured Projects" if (command == "ls" and flag == "flagship-projects") else f"{prompt_str}{cmd_str}"
 
     body = [
-        # Mode A: Transparent outer canvas, no full-canvas rect
-        # Cursor bar (vertical accent block)
-        f'<rect x="10" y="14" width="3.2" height="15" rx="1.5" fill="{t["accent"]}"/>',
-        # Terminal prompt
-        f'<text x="22" y="26" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="15" font-weight="700" fill="{t["accent"]}">{E(prompt_str)}'
-        f'<tspan fill="{t["text"]}" font-weight="500">{E(cmd_str)}</tspan></text>',
-        # Horizontal connecting guide rule
-        line(text_end_x, 22, line_end_x - 10, 22, t['stroke'], 1.2, 0.75),
-        # Precision arrow terminal end marker
-        f'<path d="M {line_end_x - 8} 17 L {line_end_x - 2} 22 L {line_end_x - 8} 27" fill="none" stroke="{t["accent"]}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
+        f'<title>{E(accessible_title)}</title>',
+        # Vertical lime accent bar at start
+        f'<rect x="20" y="13" width="4" height="26" rx="2" fill="{t["accent"]}"/>',
+        # Terminal prompt and command text
+        f'<text x="34" y="33" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="26" font-weight="700" fill="{t["accent"]}">{E(prompt_str)}'
+        f'<tspan fill="{t["text"]}" font-size="25" font-weight="500">{E(cmd_str)}</tspan></text>',
+        # Horizontal steel continuation line
+        f'<line x1="{text_end_x:.1f}" y1="26" x2="{line_end_x - 14}" y2="26" stroke="{t["stroke"]}" stroke-width="1.3" opacity="0.8"/>',
+        # Lime endpoint circle
+        f'<circle cx="{line_end_x - 4}" cy="26" r="3.5" fill="{t["accent"]}"/>',
     ]
 
-    if is_flagship:
-        # Layered chip icon (3 stacked isometric rhombus plates)
-        icon_accent = t['accent']
-        face_fill = f"{t['accent']}" if not is_light else t['surface']
-        face_op = "0.22" if not is_light else "0.9"
-        icon_svg = (
-            f'<g id="chip-icon" transform="translate(14, 40)">\n'
-            f'  <polygon points="16,6 30,13 16,20 2,13" fill="{face_fill}" fill-opacity="{face_op}" stroke="{icon_accent}" stroke-width="1.3"/>\n'
-            f'  <polygon points="16,14 30,21 16,28 2,21" fill="none" stroke="{icon_accent}" stroke-width="1.3"/>\n'
-            f'  <polygon points="16,22 30,29 16,36 2,29" fill="none" stroke="{icon_accent}" stroke-width="1.3"/>\n'
-            f'</g>'
-        )
-        body.append(icon_svg)
-        body.append(txt(54, 65, "Featured Projects", size=26, color=t['text'], weight=750))
-        body.append(txt(54, 86, "Selected systems and products currently highlighted on this profile.", size=15, color=t['muted'], weight=400))
-    elif is_playground:
-        body.append(txt(22, 54, "A little personality, without distracting from the engineering.", size=14.5, color=t['muted'], weight=400))
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="52" viewBox="0 0 {width} 52" role="img" aria-label="{E(accessible_title)}">
+{''.join(body)}
+</svg>'''
+
+
+def section_heading(title: str, subtitle: str, theme: dict, accent_word: str = "", width: int = 1160, is_light: bool = False) -> str:
+    """Generate standardized Titanium Hacker section heading banner (Mode A: transparent root)."""
+    t = get_light_theme(theme) if is_light else theme
+    h = 58
+    accent_bar = f'<rect x="20" y="12" width="4.5" height="34" rx="2.2" fill="{t["accent"]}"/>'
+
+    if accent_word and accent_word in title:
+        parts = title.split(accent_word, 1)
+        title_markup = f'{E(parts[0])}<tspan fill="{t["accent"]}">{E(accent_word)}</tspan>{E(parts[1])}'
+    else:
+        title_markup = E(title)
+
+    explicit_widths = {
+        "Featured Projects": 295,
+        "Currently Building": 310,
+        "Engineering Stack": 285,
+        "Technical Writing": 275,
+        "Contribution Atlas": 290,
+    }
+    title_w = explicit_widths.get(title, len(title) * 17.5)
+    sub_x = 36 + title_w + 18
+
+    body = [
+        f'<title>{E(title)} // {E(subtitle)}</title>',
+        accent_bar,
+        f'<text x="36" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif" font-size="32" font-weight="750" fill="{t["text"]}">{title_markup}</text>',
+        f'<text x="{sub_x:.1f}" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif" font-size="16.5" font-weight="400" fill="{t["muted"]}">// {E(subtitle)}</text>',
+    ]
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img">
 {''.join(body)}
@@ -805,13 +821,17 @@ def now_building(p: dict, theme: dict, width: int = 1160, is_light: bool = False
 # -------------------------------------------------------------
 def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = False) -> str:
     """Generate authentic Titanium Hacker engineering stack component card (Mode A: transparent root)."""
-    h = 356
+    domains = stack.get('domains', [])
+    n_domains = max(1, len(domains))
+    row_step = 54
+    h = 20 + n_domains * row_step + 16
+
     t = get_light_theme(theme) if is_light else theme
     card_id = f"stack-{'light' if is_light else 'dark'}"
     bg_grad_id = f"cardBg-{card_id}"
 
     defs = [
-        f'<defs>\n'
+        f'<defs>\n',
         f'  <linearGradient id="{bg_grad_id}" x1="0" y1="0" x2="1" y2="1">\n',
     ]
     if is_light:
@@ -824,7 +844,7 @@ def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = Fal
                 f'  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5"/></filter>\n'
                 f'</defs>\n')
 
-    card_path = "M 34 8 H 1134 L 1148 22 V 334 L 1126 356 H 26 L 12 342 V 30 Z"
+    card_path = f"M 34 8 H {width - 26} L {width - 12} 22 V {h - 22} L {width - 34} {h} H 26 L 12 {h - 14} V 30 Z"
     stroke_col = t['stroke'] if not is_light else "#A8C0CB"
     badge_bg = "#FFFFFF" if is_light else "#10171B"
 
@@ -835,12 +855,11 @@ def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = Fal
         # 2. Top-left Chamfer Accent Stroke
         f'<path d="M 135 8 H 34 L 12 30 V 70" fill="none" stroke="{t["accent"]}" stroke-width="2.4" stroke-linecap="round"/>\n',
         # 3. Bottom-Right Corner Accent with Restrained Glow
-        f'<path d="M 1030 356 H 1126 L 1148 334 V 295" fill="none" stroke="{t["accent"]}" stroke-width="6" opacity="0.65" filter="url(#glow)"/>\n',
-        f'<path d="M 1030 356 H 1126 L 1148 334 V 295" fill="none" stroke="{t["accent"]}" stroke-width="2.4" stroke-linecap="round"/>\n',
+        f'<path d="M {width - 130} {h} H {width - 34} L {width - 12} {h - 22} V {h - 61}" fill="none" stroke="{t["accent"]}" stroke-width="6" opacity="0.65" filter="url(#glow)"/>\n',
+        f'<path d="M {width - 130} {h} H {width - 34} L {width - 12} {h - 22} V {h - 61}" fill="none" stroke="{t["accent"]}" stroke-width="2.4" stroke-linecap="round"/>\n',
     ]
 
-    domains = stack.get('domains', [])
-    row_y_coords = [20, 74, 128, 182, 236, 290]
+    row_y_coords = [20 + i * row_step for i in range(n_domains)]
 
     for d, ry in zip(domains, row_y_coords):
         row_id = d.get('id', '')
@@ -877,6 +896,19 @@ def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = Fal
                         f'  <polygon points="-7,-4 0,0 0,8 -7,4" fill="none" stroke="{t["accent"]}" stroke-width="1.4"/>\n'
                         f'  <polygon points="0,0 7,-4 7,4 0,8" fill="none" stroke="{t["accent"]}" stroke-width="1.4"/>\n'
                         f'</g>\n')
+        elif icon_type == "cpu":
+            body.append(f'<g transform="translate({ic_x}, {ic_y})">\n'
+                        f'  <rect x="-7" y="-7" width="14" height="14" rx="2" fill="none" stroke="{t["accent"]}" stroke-width="1.5"/>\n'
+                        f'  <rect x="-3" y="-3" width="6" height="6" rx="1" fill="{t["accent"]}" opacity="0.4"/>\n'
+                        f'  <line x1="-10" y1="-3.5" x2="-7" y2="-3.5" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="-10" y1="3.5" x2="-7" y2="3.5" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="7" y1="-3.5" x2="10" y2="-3.5" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="7" y1="3.5" x2="10" y2="3.5" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="-3.5" y1="-10" x2="-3.5" y2="-7" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="3.5" y1="-10" x2="3.5" y2="-7" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="-3.5" y1="7" x2="-3.5" y2="10" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'  <line x1="3.5" y1="7" x2="3.5" y2="10" stroke="{t["accent"]}" stroke-width="1.3"/>\n'
+                        f'</g>\n')
         elif icon_type == "monitor":
             body.append(f'<g transform="translate({ic_x}, {ic_y})">\n'
                         f'  <rect x="-9" y="-7" width="18" height="12" rx="2" fill="none" stroke="{t["accent"]}" stroke-width="1.5"/>\n'
@@ -895,46 +927,54 @@ def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = Fal
         # Vertical divider next to badge
         body.append(line(268, ry + 9, 268, ry + 33, stroke_col, 1.2, 0.45) + '\n')
 
-        # Item layout coordinates
-        if row_id == "languages":
-            item_xs = [286, 420, 534, 690, 842, 956]
-            div_xs  = [402, 516, 672, 824, 938]
-        elif row_id == "applied-ai":
-            item_xs = [286, 444, 600, 744, 886]
-            div_xs  = [426, 582, 726, 868]
-        elif row_id == "backend-data":
-            item_xs = [286, 408, 530, 696, 848, 1002]
-            div_xs  = [390, 512, 678, 830, 984]
-        elif row_id == "platform-infra":
-            item_xs = [286, 424, 590, 700, 834]
-            div_xs  = [406, 572, 682, 816]
-        elif row_id == "frontend-interface":
-            item_xs = [286, 452, 616, 810]
-            div_xs  = [432, 596, 790]
-        else: # observability
-            item_xs = [286, 464, 614, 810]
-            div_xs  = [444, 594, 790, 988]
+        # Natural left-aligned item placement across the row (no giant stretching voids)
+        is_obs = (row_id == "observability" or d.get('has_more', False))
+        start_x = 284
+        n = len(items)
+        gap = 18 if n >= 7 else 20
+        font_sz = 13 if n >= 7 else 13.5
 
+        def _char_w(name: str) -> float:
+            w = 0.0
+            for ch in name:
+                if ch in "ijlI.,:;' ":
+                    w += 3.8
+                elif ch in "mwMW@%":
+                    w += 9.6
+                elif ch.isupper() or ch.isdigit() or ch in "+#-":
+                    w += 7.8
+                else:
+                    w += 6.6
+            return w
+
+        cur_x = start_x
         for i, item in enumerate(items):
-            if i < len(item_xs):
-                ix = item_xs[i]
-                item_name = item.get('name', '')
-                slug = item.get('slug', item_name.lower().replace(' ', '-'))
-                # Embed vendor vector icon
-                icon_markup = get_vendor_icon(slug, ix, ry + 10, size=22)
-                body.append(icon_markup + '\n')
-                # Text label
-                body.append(txt(ix + 28, ry + 26, item_name, size=14, color=t['text'], weight=550) + '\n')
+            ix = round(cur_x)
+            item_name = item.get('name', '')
+            slug = item.get('slug', item_name.lower().replace(' ', '-'))
+            # Embed vendor vector icon
+            icon_markup = get_vendor_icon(slug, ix, ry + 10, size=22, is_light=is_light)
+            body.append(icon_markup + '\n')
+            # Text label
+            body.append(txt(ix + 27, ry + 26, item_name, size=font_sz, color=t['text'], weight=550) + '\n')
 
-        # Inter-item dividers
-        for dx in div_xs:
-            body.append(line(dx, ry + 11, dx, ry + 31, stroke_col, 1.1, 0.35) + '\n')
+            # Calculate item width: icon(22) + gap-to-text(6) + text width
+            item_w = 22 + 6 + round(_char_w(item_name) * (font_sz / 13.0))
 
-        # Observability '+ more' pill
-        if d.get('has_more', False) or row_id == "observability":
-            px = 1008
-            body.append(rect(px, ry + 7, 82, 28, badge_bg, r=14, stroke=t['accent'], sw=1.4) + '\n')
-            body.append(f'<text x="{px + 41}" y="{ry + 25}" font-size="12" font-weight="650" fill="{t["accent"]}" font-family="\'JetBrains Mono\', monospace" text-anchor="middle">+ more</text>\n')
+            # Inter-item divider
+            if i < n - 1:
+                div_x = round(cur_x + item_w + gap / 2.0)
+                body.append(line(div_x, ry + 11, div_x, ry + 31, stroke_col, 1.1, 0.35) + '\n')
+
+            cur_x += item_w + gap
+
+        # Observability '+ more' pill placed neatly after the items
+        if is_obs:
+            div_x = round(cur_x - gap / 2.0)
+            body.append(line(div_x, ry + 11, div_x, ry + 31, stroke_col, 1.1, 0.35) + '\n')
+            px = round(cur_x)
+            body.append(rect(px, ry + 7, 78, 28, badge_bg, r=14, stroke=t['accent'], sw=1.3) + '\n')
+            body.append(f'<text x="{px + 39}" y="{ry + 25}" font-size="12" font-weight="650" fill="{t["accent"]}" font-family="\'JetBrains Mono\', monospace" text-anchor="middle">+ more</text>\n')
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img" aria-label="Engineering Stack">
 <title>Engineering Stack</title>
@@ -962,12 +1002,13 @@ def technical_writing_row_card(article: dict, theme: dict, width: int = 1160, is
     """Generate individual clickable article row card (Mode D: contained surface)."""
     h = 68
     t = get_light_theme(theme) if is_light else theme
-    bg = "#FFFFFF" if is_light else "#0C0F10"
-    stroke = "#D0D7DE" if is_light else "#222D33"
-    accent = "#1A7F37" if is_light else "#B6FF3B"
-    text = "#1F2328" if is_light else "#EEF7EF"
-    muted = "#656D76" if is_light else "#7A8C99"
-    surf = "#F6F8FA" if is_light else "#10161A"
+    stroke = "#A8C0CB" if is_light else t.get("stroke", "#42535C")
+    accent = "#1A7F37" if is_light else t.get("accent", "#B6FF3B")
+    text = "#1F2328" if is_light else t.get("text", "#EEF7EF")
+    muted = "#656D76" if is_light else t.get("muted", "#A6B6B2")
+    surf = "#FFFFFF" if is_light else "#10171B"
+    surf_stroke = "#D0D7DE" if is_light else "#33444D"
+    grad_id = f"twRowBg-{'light' if is_light else 'dark'}"
 
     idx = article.get("index", "01")
     title = article.get("title", "")
@@ -975,14 +1016,23 @@ def technical_writing_row_card(article: dict, theme: dict, width: int = 1160, is
     read_time = article.get("read_time", "~8 min read")
     tag_icon = '<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8 8a2 2 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828l-8-8zM7 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="currentColor"/>'
 
+    stop0 = "#FFFFFF" if is_light else "#141B20"
+    stop1 = "#F2F6F8" if is_light else "#0E1317"
+
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img">
-  <rect x="8" y="4" width="{width - 16}" height="{h - 8}" rx="8" ry="8" fill="{bg}" stroke="{stroke}" stroke-width="1.2" />
-  <rect x="28" y="18" width="40" height="28" rx="6" fill="{surf}" stroke="{stroke}" stroke-width="1" />
+  <defs>
+    <linearGradient id="{grad_id}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="{stop0}" />
+      <stop offset="100%" stop-color="{stop1}" />
+    </linearGradient>
+  </defs>
+  <rect x="8" y="4" width="{width - 16}" height="{h - 8}" rx="8" ry="8" fill="url(#{grad_id})" stroke="{stroke}" stroke-width="1.2" />
+  <rect x="28" y="18" width="40" height="28" rx="6" fill="{surf}" stroke="{surf_stroke}" stroke-width="1" />
   <text x="48" y="37" font-family="ui-monospace, SFMono-Regular, monospace" font-size="13" font-weight="700" fill="{text}" text-anchor="middle">{idx}</text>
   <text x="84" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="16.5" font-weight="750" fill="{text}">{escape(title)}</text>
   <g transform="translate(84, 42) scale(0.68)" color="{muted}">{tag_icon}</g>
   <text x="102" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="{muted}">{escape(topic)} · Medium · {escape(read_time)}</text>
-  <rect x="{width - 54}" y="18" width="28" height="28" rx="6" fill="{surf}" stroke="{stroke}" stroke-width="1" />
+  <rect x="{width - 54}" y="18" width="28" height="28" rx="6" fill="{surf}" stroke="{surf_stroke}" stroke-width="1" />
   <text x="{width - 40}" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" fill="{accent}" text-anchor="middle">↗</text>
 </svg>'''
 
@@ -991,9 +1041,11 @@ def technical_writing_card(writing, theme: dict, width: int = 1160, is_light: bo
     """Generate technical writing card matching Titanium Hacker system (Mode D: contained surface)."""
     h = 262
     t = get_light_theme(theme) if is_light else theme
-    card_bg = "#FFFFFF" if is_light else "#0C0F10"
-    card_stroke = "#D0D7DE" if is_light else "#222D33"
-    surf_bg = "#F6F8FA" if is_light else "#10161A"
+    card_stroke = "#A8C0CB" if is_light else t.get("stroke", "#42535C")
+    surf_bg = "#FFFFFF" if is_light else "#10171B"
+    grad_id = f"twCardBg-{'light' if is_light else 'dark'}"
+    stop0 = "#FFFFFF" if is_light else "#141B20"
+    stop1 = "#F2F6F8" if is_light else "#0E1317"
     if isinstance(writing, dict):
         articles = writing.get('featured', [])
     else:
@@ -1013,6 +1065,10 @@ def technical_writing_card(writing, theme: dict, width: int = 1160, is_light: bo
 
     body = [
         f'''<defs>
+  <linearGradient id="{grad_id}" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="{stop0}" />
+    <stop offset="100%" stop-color="{stop1}" />
+  </linearGradient>
   <filter id="tw-lime-glow" x="-20%" y="-20%" width="140%" height="140%">
     <feGaussianBlur stdDeviation="3.5" result="blur" />
     <feMerge>
@@ -1021,8 +1077,8 @@ def technical_writing_card(writing, theme: dict, width: int = 1160, is_light: bo
     </feMerge>
   </filter>
 </defs>''',
-        # Main card surface (matching #0C0F10)
-        f'<path d="{c_path}" fill="{card_bg}" stroke="{card_stroke}" stroke-width="1.2" />',
+        # Main card surface (matching #141B20 -> #0E1317)
+        f'<path d="{c_path}" fill="url(#{grad_id})" stroke="{card_stroke}" stroke-width="1.2" />',
     ]
 
     # Corner glow highlight at bottom right
@@ -1102,15 +1158,15 @@ def playground(theme: dict, width: int = 1160, is_light: bool = False) -> str:
     h = 560
     t = get_light_theme(theme) if is_light else theme
 
-    bg_card = "#FFFFFF" if is_light else "#0C0F10"
-    hud_bg = "#F6F8FA" if is_light else "#10161A"
+    bg_card = "#FFFFFF" if is_light else "#0E1317"
+    hud_bg = "#FFFFFF" if is_light else "#10171B"
     node_bg = "#FFFFFF" if is_light else "#141C21"
-    stroke_col = "#D0D7DE" if is_light else "#222D33"
+    stroke_col = "#A8C0CB" if is_light else t.get("stroke", "#42535C")
     accent_col = "#1A7F37" if is_light else "#B6FF3B"
     text_col = "#1F2328" if is_light else "#EEF7EF"
     muted_col = "#656D76" if is_light else "#8EADB6"
     sub_col = "#57606A" if is_light else "#A6B6B2"
-    dashed_stroke = "#D0D7DE" if is_light else "#1E2B33"
+    dashed_stroke = "#D0D7DE" if is_light else "#253139"
 
     body = [
         f'''<defs>
@@ -1128,9 +1184,9 @@ def playground(theme: dict, width: int = 1160, is_light: bool = False) -> str:
       <feMergeNode in="SourceGraphic"/>
     </feMerge>
   </filter>
-  <linearGradient id="cardSheen" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="{"#FFFFFF" if is_light else "#141C21"}" stop-opacity="0.8"/>
-    <stop offset="100%" stop-color="{"#F6F8FA" if is_light else "#0B0E10"}" stop-opacity="0.95"/>
+  <linearGradient id="cardSheen" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="{"#FFFFFF" if is_light else "#141B20"}"/>
+    <stop offset="100%" stop-color="{"#F2F6F8" if is_light else "#0E1317"}"/>
   </linearGradient>
 </defs>'''
     ]
@@ -1143,17 +1199,13 @@ def playground(theme: dict, width: int = 1160, is_light: bool = False) -> str:
     # Vertical divider line
     body.append(f'<line x1="72" y1="16" x2="72" y2="56" stroke="{stroke_col}" stroke-width="1.2" opacity="0.65"/>')
 
-    # Title: Developer Playground — System Runner
+    # Title: Developer Playground // System Runner
     body.append(f'<text x="88" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="750" fill="{text_col}">Developer Playground</text>')
-    body.append(f'<text x="408" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="{accent_col}">— System Runner</text>')
-
-    # Top Right Badge: CONCEPT ③
-    body.append(f'<rect x="{width - 140}" y="20" width="126" height="32" rx="16" fill="{hud_bg}" stroke="{stroke_col}" stroke-width="1.2"/>')
-    body.append(f'<text x="{width - 77}" y="41" font-family="\'JetBrains Mono\', monospace" font-size="12" font-weight="650" fill="{text_col}" letter-spacing="1" text-anchor="middle">CONCEPT ③</text>')
+    body.append(f'<text x="398" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="{accent_col}">// System Runner</text>')
 
     # Description Line
     body.append(f'<text x="16" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="15">'
-                f'<tspan fill="{accent_col}" font-weight="700">Architecture Grid Runner — </tspan>'
+                f'<tspan fill="{accent_col}" font-weight="700">Architecture Grid Runner // </tspan>'
                 f'<tspan fill="{sub_col}">Solve a systems puzzle by connecting backend components and creating a valid data flow from source to target.</tspan>'
                 f'</text>')
 
@@ -1345,8 +1397,8 @@ def playground(theme: dict, width: int = 1160, is_light: bool = False) -> str:
     body.append(f'<rect x="{btn_x}" y="{btn_y}" width="{btn_w}" height="{btn_h}" rx="12" fill="{btn_bg}" stroke="{accent_col}" stroke-width="2" filter="url(#limeGlow)"/>')
     body.append(f'<text x="{btn_x + btn_w/2}" y="{btn_y + 28}" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="750" fill="{accent_col}" text-anchor="middle">Play System Runner ↗</text>')
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img" aria-label="Developer Playground — System Runner">
-<title>Developer Playground — System Runner</title>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img" aria-label="Developer Playground // System Runner">
+<title>Developer Playground // System Runner</title>
 <desc>Architecture Grid Runner: Solve a systems puzzle by connecting backend components and creating a valid data flow from source to target.</desc>
 {''.join(body)}
 </svg>'''

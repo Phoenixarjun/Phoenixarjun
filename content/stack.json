@@ -7,6 +7,7 @@
       "items": [
         {"name": "Python", "slug": "python"},
         {"name": "Java", "slug": "java"},
+        {"name": "C++", "slug": "cplusplus"},
         {"name": "TypeScript", "slug": "typescript"},
         {"name": "JavaScript", "slug": "javascript"},
         {"name": "SQL", "slug": "sql"},
@@ -20,9 +21,11 @@
       "items": [
         {"name": "LangGraph", "slug": "langgraph"},
         {"name": "LangChain", "slug": "langchain"},
-        {"name": "AutoGen", "slug": "autogen"},
+        {"name": "LlamaIndex", "slug": "llamaindex"},
         {"name": "CrewAI", "slug": "crewai"},
-        {"name": "FastAPI", "slug": "fastapi"}
+        {"name": "Hugging Face", "slug": "huggingface"},
+        {"name": "Agno", "slug": "agno"},
+        {"name": "Microsoft Agent Framework", "slug": "microsoft-agent-framework"}
       ]
     },
     {
@@ -30,12 +33,27 @@
       "name": "Backend & Data",
       "icon": "layers",
       "items": [
+        {"name": "Spring Boot", "slug": "spring-boot"},
+        {"name": "FastAPI", "slug": "fastapi"},
         {"name": "Kafka", "slug": "kafka"},
         {"name": "Redis", "slug": "redis"},
         {"name": "PostgreSQL", "slug": "postgresql"},
         {"name": "MongoDB", "slug": "mongodb"},
         {"name": "Elasticsearch", "slug": "elasticsearch"},
-        {"name": "OpenSearch", "slug": "opensearch"}
+        {"name": "Neo4j", "slug": "neo4j"}
+      ]
+    },
+    {
+      "id": "ml-engineering",
+      "name": "ML & Model Engineering",
+      "icon": "cpu",
+      "items": [
+        {"name": "PyTorch", "slug": "pytorch"},
+        {"name": "TensorFlow", "slug": "tensorflow"},
+        {"name": "Scikit-learn", "slug": "scikit-learn"},
+        {"name": "OpenCV", "slug": "opencv"},
+        {"name": "MLflow", "slug": "mlflow"},
+        {"name": "ONNX Runtime", "slug": "onnx"}
       ]
     },
     {
@@ -45,9 +63,10 @@
       "items": [
         {"name": "Docker", "slug": "docker"},
         {"name": "Kubernetes", "slug": "kubernetes"},
-        {"name": "Git", "slug": "git"},
-        {"name": "Linux", "slug": "linux"},
-        {"name": "GCP", "slug": "gcp"}
+        {"name": "Terraform", "slug": "terraform"},
+        {"name": "AWS", "slug": "aws"},
+        {"name": "GCP", "slug": "gcp"},
+        {"name": "Git", "slug": "git"}
       ]
     },
     {
@@ -58,14 +77,15 @@
         {"name": "React", "slug": "react"},
         {"name": "Next.js", "slug": "next-js"},
         {"name": "Tailwind CSS", "slug": "tailwind-css"},
-        {"name": "Streamlit", "slug": "streamlit"}
+        {"name": "Vite", "slug": "vite"},
+        {"name": "Three.js", "slug": "threejs"},
+        {"name": "GSAP", "slug": "gsap"}
       ]
     },
     {
       "id": "observability",
       "name": "Observability",
       "icon": "pulse",
-      "has_more": true,
       "items": [
         {"name": "Prometheus", "slug": "prometheus"},
         {"name": "Grafana", "slug": "grafana"},

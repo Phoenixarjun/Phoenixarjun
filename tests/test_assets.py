@@ -169,7 +169,6 @@ class EngineeringFocusAssetTests(unittest.TestCase):
             self.assertIn('Developer Playground', content)
             self.assertIn('System Runner', content)
             self.assertIn('Architecture Grid Runner', content)
-            self.assertIn('CONCEPT ③', content)
             self.assertIn('/// ARCHITECTURE', content)
             self.assertIn('Play System Runner ↗', content)
 
@@ -227,7 +226,7 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         self.assertIn('https://github.com/Phoenixarjun', readme)
         self.assertIn('https://www.linkedin.com/in/naresh-b-a-1b5331243/', readme)
         self.assertIn('https://medium.com/@phoenixarjun007', readme)
-        self.assertIn('assets/sections/footer.svg', readme)
+        self.assertIn('assets/logout-footer/logout-card-animated.gif', readme)
 
 
 if __name__ == '__main__':

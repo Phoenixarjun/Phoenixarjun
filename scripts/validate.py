@@ -24,7 +24,7 @@ def validate():
     for p in projects['flagship']+projects['currently_building']:
         url=urlsplit(p['url'])
         assert url.scheme=='https' and url.netloc=='github.com' and url.path.strip('/'), p
-    content=(ROOT/'README.v2.md').read_text(encoding='utf-8')
+    content=(ROOT/'README.md').read_text(encoding='utf-8')
     assert ('assets/hero/identity.svg' in content or 'assets/generated/hero' in content)
     assert len(content)<500*1024
     for filename in (ROOT/'assets').rglob('*.svg'):
@@ -34,10 +34,6 @@ def validate():
         ET.parse(filename)
     for folder in ('hero','projects','now','stack','contributions','playground'):
         assert list((ROOT/'assets'/folder).glob('*.svg'))
-    # This starter is designed to be extracted into an EXISTING profile repo.
-    # README.md and .github/workflows may legitimately be present there.
-    # The generator only emits README.v2.md; live-file preservation is checked
-    # by the integration smoke test instead of forbidding existing files.
     print('PASS: themes, source data, SVGs and rendered README preview')
 
 if __name__=='__main__':

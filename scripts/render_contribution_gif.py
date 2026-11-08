@@ -59,11 +59,11 @@ def get_chrome_path() -> str | None:
 
 
 def render_base_card_image(contrib_data: dict, theme: dict, width: int = 1160, height: int = 460) -> Image.Image:
-    """Render base card SVG (without active towers, only flat platform and UI) using headless Chrome."""
+    """Render base card SVG (without active towers, only flat platform and UI) using headless Chrome with true alpha transparency."""
     chrome = get_chrome_path()
     if not chrome:
-        # Fallback to dark background
-        return Image.new("RGBA", (width, height), (12, 15, 16, 255))
+        # Fallback to transparent background
+        return Image.new("RGBA", (width, height), (0, 0, 0, 0))
 
     # Generate static SVG with height_progress = 0 (only flat ground tiles)
     base_svg = render_contribution_atlas_svg(
@@ -79,7 +79,7 @@ def render_base_card_image(contrib_data: dict, theme: dict, width: int = 1160, h
 <head>
   <style>
     * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-    body {{ background: #070B0C; width: {width}px; height: {height}px; overflow: hidden; }}
+    body {{ background: transparent; width: {width}px; height: {height}px; overflow: hidden; }}
   </style>
 </head>
 <body>
@@ -90,9 +90,10 @@ def render_base_card_image(contrib_data: dict, theme: dict, width: int = 1160, h
 
     cmd = [
         chrome,
-        "--headless",
+        "--headless=new",
         "--disable-gpu",
         "--no-sandbox",
+        "--default-background-color=00000000",
         f"--window-size={width},{height}",
         f"--screenshot={out_png}",
         str(tmp_html),
@@ -243,7 +244,7 @@ def render_atlas_gif(
                 top_pts["bottom"],
                 g["bottom"],
             ]
-            draw.polygon(left_poly, fill=col["left"], outline=col["left"])
+            draw.polygon(left_poly, fill=col["left"] + (255,), outline=col["left"] + (255,))
 
             # Right side face
             right_poly = [
@@ -252,7 +253,7 @@ def render_atlas_gif(
                 top_pts["right"],
                 g["right"],
             ]
-            draw.polygon(right_poly, fill=col["right"], outline=col["right"])
+            draw.polygon(right_poly, fill=col["right"] + (255,), outline=col["right"] + (255,))
 
             # Top face
             top_poly = [
@@ -261,28 +262,25 @@ def render_atlas_gif(
                 top_pts["bottom"],
                 top_pts["left"],
             ]
-            draw.polygon(top_poly, fill=col["top"], outline=col["stroke"])
+            draw.polygon(top_poly, fill=col["top"] + (255,), outline=col["stroke"] + (255,))
 
             # Peak glow effect (if top intensity and near completion)
             if col["glow"] and curr_h > 15:
                 # Highlight corner dot
                 dot_x, dot_y = top_pts["top"]
-                draw.ellipse([dot_x - 1.5, dot_y - 1.5, dot_x + 1.5, dot_y + 1.5], fill=(212, 255, 120))
+                draw.ellipse([dot_x - 1.5, dot_y - 1.5, dot_x + 1.5, dot_y + 1.5], fill=(212, 255, 120, 255))
 
-        # Quantize frame to 128 colors with Floyd-Steinberg dithering for compact, crisp palette
-        rgb_frame = frame.convert("RGB")
-        quantized = rgb_frame.quantize(colors=128, method=Image.Resampling.LANCZOS, dither=Image.Dither.FLOYDSTEINBERG)
-        frames.append(quantized)
+        frames.append(frame)
 
-    print("Assembling optimized animated GIF...")
+    print("Assembling optimized animated GIF with transparency...")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     frames[0].save(
         out_path,
         save_all=True,
         append_images=frames[1:],
         duration=frame_duration_ms,
-        loop=1,
-        optimize=True,
+        loop=0,
+        disposal=2,
     )
     size_mb = out_path.stat().st_size / (1024 * 1024)
     print(f"Success! Saved: {out_path} ({size_mb:.2f} MB, {num_frames} frames)")

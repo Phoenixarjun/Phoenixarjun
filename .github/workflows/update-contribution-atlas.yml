@@ -57,7 +57,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/contributions.json assets/contributions/ assets/writing/ assets/headers/ README.md README.v2.md
+          git add data/contributions.json assets/contributions/ assets/writing/ assets/headers/ README.md
           if git diff --staged --quiet; then
             echo "No contribution changes detected; skipping commit."
           else

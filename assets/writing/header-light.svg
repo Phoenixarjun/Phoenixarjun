@@ -1,5 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="44" viewBox="0 0 1160 44" role="img">
-  <rect x="8" y="10" width="4" height="24" rx="2" fill="#3B6600" />
-  <text x="22" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="750" fill="#3B6600">Technical Writing</text>
-  <text x="202" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="400" fill="#586A73">// Articles, ideas, and engineering write-ups</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="58" viewBox="0 0 1160 58" role="img">
+<title>Technical Writing // Articles, ideas, and engineering write-ups</title><rect x="20" y="12" width="4.5" height="34" rx="2.2" fill="#3B6600"/><text x="36" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="750" fill="#11171A">Technical Writing</text><text x="329.0" y="38" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#586A73">// Articles, ideas, and engineering write-ups</text>
 </svg>

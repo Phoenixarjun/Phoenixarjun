@@ -31,10 +31,12 @@ def get_atlas_palette(theme: dict, is_light: bool = False) -> dict:
     if is_light:
         return {
             "bg": "transparent",
-            "card_bg": "#FFFFFF",
-            "card_stroke": "#D0D7DE",
-            "stat_bg": "#F6F8FA",
-            "stat_stroke": "#D8DEE4",
+            "card_bg": "url(#atlasCardBg)",
+            "card_bg_start": "#FFFFFF",
+            "card_bg_end": "#F2F6F8",
+            "card_stroke": "#A8C0CB",
+            "stat_bg": "#FFFFFF",
+            "stat_stroke": "#D0D7DE",
             "accent": "#1A7F37",
             "accent_bright": "#2DA44E",
             "text": "#1F2328",
@@ -54,13 +56,15 @@ def get_atlas_palette(theme: dict, is_light: bool = False) -> dict:
             ],
         }
 
-    # Dark Titanium Hacker Palette
+    # Dark Titanium Hacker Palette (matching #141B20 -> #0E1317 contained surfaces)
     return {
         "bg": "transparent",
-        "card_bg": "#0C0F10",
-        "card_stroke": "#222D33",
-        "stat_bg": "#10161A",
-        "stat_stroke": "#1E2B33",
+        "card_bg": "url(#atlasCardBg)",
+        "card_bg_start": "#141B20",
+        "card_bg_end": "#0E1317",
+        "card_stroke": theme.get("stroke", "#42535C"),
+        "stat_bg": "#10171B",
+        "stat_stroke": "#33444D",
         "accent": theme.get("accent", "#B6FF3B"),
         "accent_bright": "#D4FF78",
         "text": theme.get("text", "#EEF7EF"),
@@ -139,8 +143,12 @@ def render_contribution_atlas_svg(
     # Build SVG elements
     svg_parts: List[str] = []
 
-    # Defs: glow filter and gradients
+    # Defs: card background gradient, glow filter and platform gradients
     svg_parts.append(f'''<defs>
+  <linearGradient id="atlasCardBg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="{palette['card_bg_start']}" />
+    <stop offset="100%" stop-color="{palette['card_bg_end']}" />
+  </linearGradient>
   <filter id="atlas-lime-glow" x="-20%" y="-20%" width="140%" height="140%">
     <feGaussianBlur stdDeviation="3.5" result="blur" />
     <feMerge>
@@ -180,16 +188,9 @@ def render_contribution_atlas_svg(
         glow_corner = f"M {cx0 + cw - 32} {cy0 + ch} L {cx0 + cw - chamfer} {cy0 + ch} L {cx0 + cw} {cy0 + ch - chamfer} L {cx0 + cw} {cy0 + ch - 32}"
         svg_parts.append(f'<path d="{glow_corner}" fill="none" stroke="{palette["accent"]}" stroke-width="2.5" filter="url(#atlas-lime-glow)" opacity="0.85" />')
 
-    # Top-left accent bar
-    svg_parts.append(f'<rect x="24" y="24" width="4" height="22" rx="2" fill="{palette["accent"]}" />')
-
-    # Header Title and Subtitle
-    svg_parts.append(f'<text x="36" y="41" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="750" fill="{palette["accent"]}">Contribution Atlas</text>')
-    svg_parts.append(f'<text x="215" y="41" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" fill="{palette["muted"]}">// My GitHub activity, visualized as a contribution city</text>')
-
     # 2. Statistics strip (5 metric boxes)
     # Box layout: width ~216, height 58, gap ~6
-    stat_y = 56
+    stat_y = 24
     box_w = 216
     box_h = 58
     gap = 7
@@ -241,7 +242,7 @@ def render_contribution_atlas_svg(
         bx = start_x + i * (box_w + gap)
         # Card background
         svg_parts.append(
-            f'<rect x="{bx}" y="{stat_y}" width="{box_w}" height="{box_h}" rx="6" fill="{palette["stat_bg"]}" stroke="{palette["stat_stroke"]}" stroke-width="1" />'
+            f'<rect x="{bx}" y="{stat_y}" width="{box_w}" height="{box_h}" rx="8" fill="{palette["stat_bg"]}" stroke="{palette["stat_stroke"]}" stroke-width="1" />'
         )
         # Icon
         svg_parts.append(

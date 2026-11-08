@@ -1,0 +1,43 @@
+{
+  "identity": {
+    "prompt": "naresh@github:~$ whoami",
+    "name": "Naresh B A",
+    "role": "AI Systems Engineer",
+    "tagline_lines": [
+      "Building intelligent software",
+      "on reliable systems."
+    ],
+    "employer": "Software Engineer @ Prodapt",
+    "location": "Chennai, India"
+  },
+  "canvas": {
+    "width": 1600,
+    "height": 740
+  },
+  "portrait": {
+    "crop": [
+      120,
+      145,
+      890,
+      945
+    ],
+    "x": 90,
+    "y": 138,
+    "width": 486,
+    "height": 505,
+    "dot_spacing": 4.8
+  },
+  "theme": "titanium-hacker",
+  "animation": {
+    "duration_seconds": 5.0,
+    "fps": 9,
+    "gif_width": 1120,
+    "portrait_start_seconds": 0.22,
+    "portrait_end_seconds": 2.45,
+    "typing_start_seconds": 0.6,
+    "typing_end_seconds": 2.7,
+    "typing_hold_seconds": 3.9,
+    "typing_erase_seconds": 4.6,
+    "loop": true
+  }
+}

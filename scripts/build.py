@@ -20,6 +20,7 @@ from html import escape as html_escape
 try:
     from graphics import (
         section_terminal_header,
+        section_heading,
         engineering_focus_card,
         project_card,
         visual_aam,
@@ -39,6 +40,7 @@ try:
 except ModuleNotFoundError:
     from scripts.graphics import (
         section_terminal_header,
+        section_heading,
         engineering_focus_card,
         project_card,
         visual_aam,
@@ -72,6 +74,7 @@ def write(path: str, text: str) -> Path:
 
 def get_medium_posts(feed_url: str = 'https://medium.com/feed/@phoenixarjun007', max_posts: int = 5) -> list[dict]:
     """Dynamically fetch latest articles from Medium RSS feed with authentic word-count reading times."""
+    import re
     try:
         req = urllib.request.Request(
             feed_url,
@@ -88,24 +91,32 @@ def get_medium_posts(feed_url: str = 'https://medium.com/feed/@phoenixarjun007',
             clean_link = link.split('?')[0] if '?' in link else link
             cats = [c.text for c in item.findall('category') if c.text]
 
-            # Curated / authentic topics
-            if i == 1:
+            # Dynamic authentic topics based on title semantics and categories
+            title_lower = title.lower()
+            if 'workflow' in title_lower or 'backend' in title_lower:
+                topic = 'Backend & Systems · Architecture'
+            elif 'model' in title_lower or 'llm' in title_lower:
                 topic = 'Applied AI · Model Selection'
-            elif i == 2:
+            elif 'scion' in title_lower or 'git' in title_lower:
                 topic = 'Systems · Agent Scale'
-            elif i == 3:
+            elif 'agent toolkit' in title_lower or 'playbook' in title_lower:
                 topic = 'Agent Engineering · Tooling'
+            elif 'rag' in title_lower or 'vector' in title_lower:
+                topic = 'Distributed Systems · AI Infrastructure'
+            elif cats:
+                topic = ' · '.join(c.capitalize() for c in cats[:2])
             else:
-                topic = ' · '.join(c.capitalize() for c in cats[:2]) if cats else 'Applied AI · Engineering'
+                topic = 'Applied AI · Engineering'
 
-            # Calculate authentic reading time from actual article content (265 wpm Medium standard)
+            # Calculate authentic reading time from clean text (stripping HTML, 265 wpm Medium standard)
             content_elem = item.find('{http://purl.org/rss/1.0/modules/content/}encoded')
             content_text = content_elem.text if content_elem is not None and content_elem.text else ''
-            word_count = len(content_text.split()) if content_text else 0
+            clean_text = re.sub(r'<[^>]+>', ' ', content_text)
+            word_count = len(clean_text.split()) if clean_text else 0
             if word_count > 0:
                 read_time = f"~{max(1, round(word_count / 265))} min read"
             else:
-                read_time = "~9 min read" if i in (1, 2) else "~3 min read"
+                read_time = "~7 min read"
 
             posts.append({
                 'index': f"{i:02d}",
@@ -179,8 +190,16 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
 
     # 1. HERO IDENTITY (Mode C: Independent Cyber Card)
     lines.append('<!-- ==================== SECTION 01: IDENTITY / HERO ==================== -->\n')
-    lines.append('<!-- Regenerate hero assets: python scripts/generate_hero_svg.py && python scripts/render_hero_gif.py -->\n')
-    lines.append('<p align="center">\n  <img src="./assets/generated/hero/hero-animated.gif" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n\n')
+    lines.append('<!-- Regenerate hero assets: python scripts/generate_hero.py -->\n')
+    lines.append(
+        '<p align="center">\n'
+        '  <img\n'
+        '    src="./assets/generated/hero/hero-animated.gif"\n'
+        '    width="100%"\n'
+        '    alt="Naresh B A — AI Systems Engineer. Building intelligent software on reliable systems. Software Engineer at Prodapt, Chennai, India."\n'
+        '  />\n'
+        '</p>\n\n'
+    )
     lines.append('<!-- Fallback:\n<p align="center">\n  <img src="./assets/generated/hero/hero-static.svg" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n-->\n\n')
 
     # 2. ENGINEERING FOCUS (Mode A Transparent Canvas with Mode B Contained Pods)
@@ -201,6 +220,15 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
     # 3. FLAGSHIP PROJECTS (Mode A Transparent Outer Rows with Mode B Architecture Previews)
     lines.append('<!-- ==================== SECTION 03: FLAGSHIP PROJECTS ==================== -->\n')
     lines.append(header_tag('ls-flagship-projects'))
+    lines.append(
+        '<p align="center">\n'
+        '  <picture>\n'
+        '    <source media="(prefers-color-scheme: dark)" srcset="./assets/headings/featured-projects.svg">\n'
+        '    <source media="(prefers-color-scheme: light)" srcset="./assets/headings/featured-projects-light.svg">\n'
+        '    <img src="./assets/headings/featured-projects.svg" alt="Featured Projects // Selected systems, developer tools, and applications." width="100%" />\n'
+        '  </picture>\n'
+        '</p>\n'
+    )
     for p in projects['flagship']:
         slug = p["slug"]
         lines.append(
@@ -219,6 +247,15 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
     # 4. CURRENTLY BUILDING (Mode B Contained HUD Surface)
     lines.append('<!-- ==================== SECTION 04: CURRENTLY BUILDING ==================== -->\n')
     lines.append(header_tag('status-currently-building'))
+    lines.append(
+        '<p align="center">\n'
+        '  <picture>\n'
+        '    <source media="(prefers-color-scheme: dark)" srcset="./assets/headings/currently-building.svg">\n'
+        '    <source media="(prefers-color-scheme: light)" srcset="./assets/headings/currently-building-light.svg">\n'
+        '    <img src="./assets/headings/currently-building.svg" alt="Currently Building // Exploring better engineering workflows and developer tooling." width="100%" />\n'
+        '  </picture>\n'
+        '</p>\n'
+    )
     for p in projects['currently_building']:
         slug = p["slug"]
         lines.append(
@@ -237,6 +274,15 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
     # 5. ENGINEERING STACK (Mode A Transparent Terminal Matrix)
     lines.append('<!-- ==================== SECTION 05: ENGINEERING STACK ==================== -->\n')
     lines.append(header_tag('cat-engineering-stack'))
+    lines.append(
+        '<p align="center">\n'
+        '  <picture>\n'
+        '    <source media="(prefers-color-scheme: dark)" srcset="./assets/headings/engineering-stack.svg">\n'
+        '    <source media="(prefers-color-scheme: light)" srcset="./assets/headings/engineering-stack-light.svg">\n'
+        '    <img src="./assets/headings/engineering-stack.svg" alt="Engineering Stack // Technologies I use to design, build, and operate software." width="100%" />\n'
+        '  </picture>\n'
+        '</p>\n'
+    )
     lines.append(
         '<p align="center">\n'
         '  <picture>\n'
@@ -281,22 +327,26 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
     if profile['features'].get('show_contribution_city', True):
         lines.append('<!-- ==================== SECTION 07: CONTRIBUTION ATLAS ==================== -->\n')
         lines.append(header_tag('render-contribution-atlas'))
+        lines.append(
+            '<p align="center">\n'
+            '  <picture>\n'
+            '    <source media="(prefers-color-scheme: dark)" srcset="./assets/headings/contribution-atlas.svg">\n'
+            '    <source media="(prefers-color-scheme: light)" srcset="./assets/headings/contribution-atlas-light.svg">\n'
+            '    <img src="./assets/headings/contribution-atlas.svg" alt="Contribution Atlas // My GitHub activity, visualized as a contribution city" width="100%" />\n'
+            '  </picture>\n'
+            '</p>\n'
+        )
         metrics = compute_metrics(contrib_data.get('days', []), total_reported=contrib_data.get('total_contributions')) if contrib_data else {}
         total_c = metrics.get('total_contributions', 208)
         active_d = metrics.get('active_days', 37)
         lines.append(
             '<p align="center">\n'
             '  <picture>\n'
-            '    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions/atlas-static.svg">\n'
+            '    <source media="(prefers-color-scheme: dark)" srcset="./assets/contributions/atlas-animated.gif">\n'
             '    <source media="(prefers-color-scheme: light)" srcset="./assets/contributions/atlas-static-light.svg">\n'
-            f'    <img src="./assets/contributions/atlas-static.svg" alt="Contribution Atlas: {total_c:,} contributions across {active_d} active days as an isometric 3D city" width="100%" />\n'
+            f'    <img src="./assets/contributions/atlas-animated.gif" alt="Contribution Atlas: {total_c:,} contributions across {active_d} active days as an isometric 3D city" width="100%" />\n'
             '  </picture>\n'
-            '</p>\n'
-            '<!-- Optional Animated Build View:\n'
-            '<p align="center">\n'
-            '  <img src="./assets/contributions/atlas-animated.gif" alt="Contribution Atlas Rise Animation" width="100%" />\n'
-            '</p>\n'
-            '-->\n\n'
+            '</p>\n\n'
         )
 
     # 8. DEVELOPER PLAYGROUND (Mode D Contained Visualization)
@@ -367,17 +417,6 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
         f'{portfolio_btn}\n'
     )
     lines.append('</p>\n\n')
-
-    # Footer tagline
-    lines.append(
-        '<p align="center">\n'
-        '  <picture>\n'
-        '    <source media="(prefers-color-scheme: dark)" srcset="./assets/sections/footer.svg">\n'
-        '    <source media="(prefers-color-scheme: light)" srcset="./assets/sections/footer-light.svg">\n'
-        '    <img src="./assets/sections/footer.svg" alt="Variation 01 / Terminal Editorial — Building intelligent software on reliable systems." width="100%" />\n'
-        '  </picture>\n'
-        '</p>\n\n'
-    )
 
     # 10. FINAL LOGOUT FOOTER (Mode B Contained Animated Card + Static Fallback)
     lines.append('<!-- ==================== FINAL LOGOUT FOOTER ==================== -->\n')
@@ -473,9 +512,20 @@ def build(theme_override=None, save=False):
     write('assets/stack/toolkit.svg', stack_card(stack, theme, is_light=False))
     write('assets/stack/toolkit-light.svg', stack_card(stack, theme, is_light=True))
 
+    # Unified Section Headings (Sections 03, 04, 05, 06, and 07)
+    (ROOT / 'assets' / 'headings').mkdir(parents=True, exist_ok=True)
+    write('assets/headings/featured-projects.svg', section_heading('Featured Projects', 'Selected systems, developer tools, and applications.', theme, is_light=False))
+    write('assets/headings/featured-projects-light.svg', section_heading('Featured Projects', 'Selected systems, developer tools, and applications.', theme, is_light=True))
+    write('assets/headings/currently-building.svg', section_heading('Currently Building', 'Exploring better engineering workflows and developer tooling.', theme, is_light=False))
+    write('assets/headings/currently-building-light.svg', section_heading('Currently Building', 'Exploring better engineering workflows and developer tooling.', theme, is_light=True))
+    write('assets/headings/engineering-stack.svg', section_heading('Engineering Stack', 'Technologies I use to design, build, and operate software.', theme, is_light=False))
+    write('assets/headings/engineering-stack-light.svg', section_heading('Engineering Stack', 'Technologies I use to design, build, and operate software.', theme, is_light=True))
+    write('assets/headings/contribution-atlas.svg', section_heading('Contribution Atlas', 'My GitHub activity, visualized as a contribution city', theme, is_light=False))
+    write('assets/headings/contribution-atlas-light.svg', section_heading('Contribution Atlas', 'My GitHub activity, visualized as a contribution city', theme, is_light=True))
+
     # Section 06: Technical Writing (Header, Clickable Rows & Standalone Cards)
-    write('assets/writing/header.svg', technical_writing_header(theme, is_light=False))
-    write('assets/writing/header-light.svg', technical_writing_header(theme, is_light=True))
+    write('assets/writing/header.svg', section_heading('Technical Writing', 'Articles, ideas, and engineering write-ups', theme, is_light=False))
+    write('assets/writing/header-light.svg', section_heading('Technical Writing', 'Articles, ideas, and engineering write-ups', theme, is_light=True))
     for i, a in enumerate(posts[:3], 1):
         slug = f"row-{i:02d}"
         write(f'assets/writing/{slug}.svg', technical_writing_row_card(a, theme, is_light=False))
@@ -531,10 +581,9 @@ def build(theme_override=None, save=False):
     except Exception as e:
         print(f"Warning: Logout footer generation skipped or failed ({e}); preserving existing assets.")
 
-    # 5. Assemble READMEs
+    # 5. Assemble master README
     live = contributions.get('status') == 'ok' and bool(contributions.get('days'))
     readme_content = build_readme(profile, projects, stack, posts, live, contrib_data=contributions)
-    write('README.v2.md', readme_content)
     write('README.md', readme_content)
 
     print(f'Built full Variation 01 layout with theme: {key} (Medium blog feed: live, contributions: {"live" if live else "sample"})')
