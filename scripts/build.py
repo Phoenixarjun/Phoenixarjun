@@ -33,6 +33,7 @@ try:
         technical_writing_card,
         city,
         playground,
+        arcade_game_button,
         connect_button,
         terminal_footer,
     )
@@ -53,6 +54,7 @@ except ModuleNotFoundError:
         technical_writing_card,
         city,
         playground,
+        arcade_game_button,
         connect_button,
         terminal_footer,
     )
@@ -360,14 +362,26 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
             f'    <img src="./assets/playground/arcade-showcase.gif" alt="Developer Arcade — Five Browser Games by Naresh B A" width="100%" />\n'
             f'  </a>\n'
             f'</p>\n\n'
-            f'<p align="center">\n'
-            f'  <a href="{arcade_base}/packet-breaker/"><code>[01] Packet Breaker</code></a> &nbsp;•&nbsp;\n'
-            f'  <a href="{arcade_base}/circuit-pinball/"><code>[02] Circuit Pinball</code></a> &nbsp;•&nbsp;\n'
-            f'  <a href="{arcade_base}/runtime-rush/"><code>[03] Runtime Rush</code></a> &nbsp;•&nbsp;\n'
-            f'  <a href="{arcade_base}/firewall-defense/"><code>[04] Firewall Defense</code></a> &nbsp;•&nbsp;\n'
-            f'  <a href="{arcade_base}/stack-overflow/"><code>[05] Stack Overflow</code></a>\n'
-            f'</p>\n\n'
         )
+        game_buttons = [
+            ('packet-breaker', '01', 'Packet Breaker'),
+            ('circuit-pinball', '02', 'Circuit Pinball'),
+            ('runtime-rush', '03', 'Runtime Rush'),
+            ('firewall-defense', '04', 'Firewall Defense'),
+            ('stack-overflow', '05', 'Stack Overflow'),
+        ]
+        btn_elements = []
+        for slug, num, name in game_buttons:
+            btn_elements.append(
+                f'<a href="{arcade_base}/{slug}/">'
+                f'<picture>'
+                f'<source media="(prefers-color-scheme: dark)" srcset="./assets/sections/btn-{slug}.svg">'
+                f'<source media="(prefers-color-scheme: light)" srcset="./assets/sections/btn-{slug}-light.svg">'
+                f'<img src="./assets/sections/btn-{slug}.svg" width="19%" alt="[{num}] {name}" />'
+                f'</picture>'
+                f'</a>'
+            )
+        lines.append(f'<p align="center">\n  {"".join(btn_elements)}\n</p>\n\n')
 
     # 9. CONNECT (Mode A Accessible Actions)
     lines.append('<!-- ==================== SECTION 09: CONNECT ==================== -->\n')
@@ -564,6 +578,18 @@ def build(theme_override=None, save=False):
         except ModuleNotFoundError:
             from generate_arcade_showcase import build_showcase
         build_showcase()
+
+    # Section 08: Arcade Game Launcher Buttons (Dark and Light variants)
+    game_buttons = [
+        ('packet-breaker', '01', 'Packet Breaker'),
+        ('circuit-pinball', '02', 'Circuit Pinball'),
+        ('runtime-rush', '03', 'Runtime Rush'),
+        ('firewall-defense', '04', 'Firewall Defense'),
+        ('stack-overflow', '05', 'Stack Overflow'),
+    ]
+    for slug, num, name in game_buttons:
+        write(f'assets/sections/btn-{slug}.svg', arcade_game_button(num, name, theme, width=216, height=46, is_light=False))
+        write(f'assets/sections/btn-{slug}-light.svg', arcade_game_button(num, name, theme, width=216, height=46, is_light=True))
 
     # Section 09: Connect Buttons (Dark and Light variants, compact width=206, height=50 with built-in 30px gap)
     connect_slugs = [

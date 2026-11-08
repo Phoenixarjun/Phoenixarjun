@@ -192,6 +192,13 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         header_text = header.read_text(encoding='utf-8')
         self.assertIn('play --developer-arcade', header_text)
 
+        # Game launcher buttons check
+        for slug in ['packet-breaker', 'circuit-pinball', 'runtime-rush', 'firewall-defense', 'stack-overflow']:
+            dark_btn = ROOT / 'assets' / 'sections' / f'btn-{slug}.svg'
+            light_btn = ROOT / 'assets' / 'sections' / f'btn-{slug}-light.svg'
+            self.assertTrue(dark_btn.is_file(), f'Missing {dark_btn}')
+            self.assertTrue(light_btn.is_file(), f'Missing {light_btn}')
+
         # README link check
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
         self.assertIn('https://phoenixarjun.github.io/Phoenixarjun/games/', readme)

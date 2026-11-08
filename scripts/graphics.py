@@ -1538,6 +1538,63 @@ def connect_button(
 </svg>'''
 
 
+def arcade_game_button(
+    num: str,
+    name: str,
+    theme: dict,
+    width: int = 216,
+    height: int = 46,
+    is_light: bool = False
+) -> str:
+    """Generate compact rounded glass capsule game launcher button with Titanium Hacker styling."""
+    t = get_light_theme(theme) if is_light else theme
+    accent_col = "#1A7F37" if is_light else "#B6FF3B"
+    text_col = "#1F2328" if is_light else "#EEF7EF"
+    arrow_col = "#57606A" if is_light else "#A6B6B2"
+    badge_bg = "rgba(26, 127, 55, 0.1)" if is_light else "rgba(182, 255, 59, 0.12)"
+    badge_border = "rgba(26, 127, 55, 0.3)" if is_light else "rgba(182, 255, 59, 0.28)"
+
+    sheen_top = "#FFFFFF" if is_light else "#182329"
+    sheen_bot = "#F2F6F8" if is_light else "#0E1418"
+    stroke_col = "#D0D7DE" if is_light else "#2A3840"
+    specular_col = "rgba(255,255,255,0.7)" if is_light else "rgba(255,255,255,0.12)"
+
+    card_x = 5
+    card_w = width - 10
+    card_h = height - 6
+
+    ext_arrow = (
+        '<path d="M 12 9 v 5 a 1.5 1.5 0 0 1 -1.5 1.5 h -7 A 1.5 1.5 0 0 1 2 14 V 7 A 1.5 1.5 0 0 1 3.5 5.5 h 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
+        '<polyline points="10 3 15 3 15 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
+        '<line x1="7" y1="11" x2="15" y2="3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
+    )
+
+    body = [
+        f'''<defs>
+  <linearGradient id="btnSheen_{num}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="{sheen_top}" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="{sheen_bot}" stop-opacity="0.96"/>
+  </linearGradient>
+</defs>''',
+        # Main Button Rounded Card
+        f'<rect x="{card_x}" y="3" width="{card_w}" height="{card_h}" rx="10" fill="url(#btnSheen_{num})" stroke="{stroke_col}" stroke-width="1.2" />',
+        # Specular top highlight
+        f'<path d="M {card_x + 8} 4 H {card_x + card_w - 8}" stroke="{specular_col}" stroke-width="1"/>',
+        # Mini number badge pill: 01
+        f'<rect x="{card_x + 9}" y="{(card_h - 22)/2 + 3}" width="25" height="22" rx="5" fill="{badge_bg}" stroke="{badge_border}" stroke-width="0.8"/>',
+        f'<text x="{card_x + 21.5}" y="{(card_h - 22)/2 + 18}" font-family="\'JetBrains Mono\', Consolas, monospace" font-size="11" font-weight="700" fill="{accent_col}" text-anchor="middle">{num}</text>',
+        # Game Label text
+        f'<text x="{card_x + 42}" y="{card_h/2 + 7.5}" font-family="system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', sans-serif" font-size="12" font-weight="650" fill="{text_col}">{escape(name)}</text>',
+        # Right external arrow
+        f'<g transform="translate({card_x + card_w - 20}, {(card_h - 14)/2 + 3}) scale(0.8)" color="{arrow_col}">{ext_arrow}</g>'
+    ]
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="[{num}] {escape(name)}">
+<title>[{num}] {escape(name)}</title>
+{''.join(body)}
+</svg>'''
+
+
 def terminal_footer(profile: dict, theme: dict, width: int = 1160, is_light: bool = False) -> str:
     """Generate authentic Titanium Hacker terminal editorial footer (Mode A: transparent root)."""
     h = 70
