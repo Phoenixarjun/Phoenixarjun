@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: closest point clamps to segment ends
+ok 1 - closest point clamps to segment ends
+  ---
+  duration_ms: 1.422192
+  type: 'test'
+  ...
+# Subtest: zero-length segment handled without NaN
+ok 2 - zero-length segment handled without NaN
+  ---
+  duration_ms: 0.367182
+  type: 'test'
+  ...
+# Subtest: circle/segment contact normal and overlap are correct
+ok 3 - circle/segment contact normal and overlap are correct
+  ---
+  duration_ms: 1.053496
+  type: 'test'
+  ...
+# Subtest: segment end cap collision is circular, not square
+ok 4 - segment end cap collision is circular, not square
+  ---
+  duration_ms: 0.130376
+  type: 'test'
+  ...
+# Subtest: circle/circle overlap and no-overlap
+ok 5 - circle/circle overlap and no-overlap
+  ---
+  duration_ms: 0.350998
+  type: 'test'
+  ...
+# Subtest: circle/AABB contact on horizontal, vertical and inside faces
+ok 6 - circle/AABB contact on horizontal, vertical and inside faces
+  ---
+  duration_ms: 0.248284
+  type: 'test'
+  ...
+# Subtest: stationary wall reflection preserves normal speed for e=1
+ok 7 - stationary wall reflection preserves normal speed for e=1
+  ---
+  duration_ms: 0.217007
+  type: 'test'
+  ...
+# Subtest: inelastic wall collision dissipates energy
+ok 8 - inelastic wall collision dissipates energy
+  ---
+  duration_ms: 0.103776
+  type: 'test'
+  ...
+# Subtest: relative velocity handles moving flipper surface
+ok 9 - relative velocity handles moving flipper surface
+  ---
+  duration_ms: 0.258699
+  type: 'test'
+  ...
+# Subtest: swept circle/circle catches fast impact and misses diverging direction
+ok 10 - swept circle/circle catches fast impact and misses diverging direction
+  ---
+  duration_ms: 0.409517
+  type: 'test'
+  ...
+# Subtest: swept circle/segment catches fast wall collision
+ok 11 - swept circle/segment catches fast wall collision
+  ---
+  duration_ms: 0.247583
+  type: 'test'
+  ...
+# Subtest: swept circle/segment catches endpoint grazing
+ok 12 - swept circle/segment catches endpoint grazing
+  ---
+  duration_ms: 0.102965
+  type: 'test'
+  ...
+# Subtest: swept circle/segment does not hit zero-length absent path
+ok 13 - swept circle/segment does not hit zero-length absent path
+  ---
+  duration_ms: 0.070656
+  type: 'test'
+  ...
+# Subtest: flipper pivot geometry mirrors its opposite pair
+ok 14 - flipper pivot geometry mirrors its opposite pair
+  ---
+  duration_ms: 0.102504
+  type: 'test'
+  ...
+# Subtest: angular contact velocity points upward on both flipping bats
+ok 15 - angular contact velocity points upward on both flipping bats
+  ---
+  duration_ms: 0.081763
+  type: 'test'
+  ...
+# Subtest: speed limiting is monotonic and bounded
+ok 16 - speed limiting is monotonic and bounded
+  ---
+  duration_ms: 0.137266
+  type: 'test'
+  ...
+# Subtest: 10,000 randomized side and end-cap intersections have finite normals
+ok 17 - 10,000 randomized side and end-cap intersections have finite normals
+  ---
+  duration_ms: 8.290021
+  type: 'test'
+  ...
+# Subtest: 10,000 random swept cases never return a time outside [0, dt]
+ok 18 - 10,000 random swept cases never return a time outside [0, dt]
+  ---
+  duration_ms: 11.924222
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 81.994737

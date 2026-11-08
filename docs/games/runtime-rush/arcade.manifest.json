@@ -1,0 +1,16 @@
+{
+  "id": "runtime-rush",
+  "title": "Runtime Rush",
+  "subtitle": "Keep the request alive",
+  "version": "1.0.0",
+  "category": "3D Endless Runner",
+  "sequence": 3,
+  "entrypoint": "./index.html",
+  "standalone": "./standalone.html",
+  "runtime": "Native WebGL with perspective Canvas fallback",
+  "theme": "Titanium Hacker",
+  "offline": true,
+  "status": "built-locally-not-deployed",
+  "controls": ["keyboard", "mouse-swipes", "touch-buttons"],
+  "note": "Future five-game arcade hub should point to this only after actual deployment verification."
+}

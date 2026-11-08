@@ -1,0 +1,23 @@
+import assert from 'node:assert/strict';
+import {test} from 'node:test';
+import {StackGame,W,START_W,BLOCK_H,BASE_Y,G,overlap,impactTime,predictLandingX,solveLanding,supportStability,stageFor,clamp,mulberry32} from '../src/physics.mjs';
+function run(g,seconds,step=1/120){for(let t=0;t<seconds;t+=step)g.update(Math.min(step,seconds-t));}
+test('interval overlap exact and no-contact cases',()=>{let r=overlap({x:100,w:50},{x:110,w:50});assert.equal(r.width,40);r=overlap({x:0,w:2},{x:20,w:2});assert.equal(r.width,0);});
+test('impact time matches closed-form kinematics',()=>{const t=impactTime(-150,0,-34);assert.ok(Math.abs(.5*G*t*t-116)<1e-7);assert.ok(impactTime(3,300,3)<1e-10)});
+test('prediction accounts for retained horizontal velocity and wind',()=>{const m={x:500,y:300,vy:0,vx:30};const t=impactTime(m.y,0,430);assert.ok(Math.abs(predictLandingX(m,430,40)-(500+30*t+20*t*t))<1e-9);});
+test('perfect center alignment preserves and restores width',()=>{const r=solveLanding({x:502,w:150},{x:500,w:150});assert.equal(r.ok,true);assert.equal(r.perfect,true);assert.equal(r.block.w,152);});
+test('overhang trims block and shifts new layer center',()=>{const r=solveLanding({x:550,w:200},{x:500,w:200});assert.equal(r.ok,true);assert.equal(r.block.w,150);assert.equal(r.block.x,525);});
+test('narrow overlap fails without adding a block',()=>{const r=solveLanding({x:679,w:200},{x:500,w:200});assert.equal(r.ok,false);});
+test('minimum contact width never results in negative widths',()=>{assert.equal(solveLanding({x:700,w:150},{x:500,w:200}).ok,false);});
+test('center-of-mass stability detects unsupported upper stack',()=>{assert.ok(supportStability([{x:0,w:150},{x:0,w:120}])>.95);assert.equal(supportStability([{x:0,w:100},{x:200,w:30}]),0);});
+test('same seed produces identical initial state and wind',()=>{let a=new StackGame(17),b=new StackGame(17);assert.deepEqual(a.moving,b.moving);assert.equal(a.wind,b.wind);a.start();b.start();run(a,2.23);run(b,2.23);assert.deepEqual(a.moving,b.moving);});
+test('moving block bounces inside arena bounds',()=>{const g=new StackGame(7);g.start();run(g,8);assert.ok(g.moving.x>g.moving.w/2);assert.ok(g.moving.x<W-g.moving.w/2);});
+test('gravity lands at exact contact y with no penetration',()=>{const g=new StackGame(3);g.start();g.moving.x=g.tower[0].x;g.moving.vx=0;g.release();run(g,1);assert.equal(g.tower.length,2);assert.equal(g.tower[1].y,g.tower[0].y-BLOCK_H);});
+test('miss transitions to game over',()=>{const g=new StackGame(13);g.start();g.moving.x=120;g.moving.vx=0;g.release();run(g,1);assert.equal(g.mode,'gameover');assert.equal(g.tower.length,1);});
+test('perfect streak increases focus up to cap',()=>{const g=new StackGame(6);g.start();g.focus=60;g.moving.x=520;g.moving.vx=0;g.release();run(g,.7);assert.ok(g.focus>=81);assert.equal(g.combo,1);});
+test('focus slows moving block but uses a finite resource',()=>{const a=new StackGame(9),b=new StackGame(9);a.start();b.start();a.toggleFocus(true);run(a,.5);run(b,.5);assert.ok(a.focus<100);assert.ok(Math.abs(a.moving.x-b.moving.x)>30);});
+test('pause works during free fall, preserving airborne state',()=>{const g=new StackGame(8);g.start();g.moving.x=520;g.release();run(g,.1);const y=g.moving.y;g.pause();run(g,1);assert.equal(g.moving.y,y);g.pause();assert.equal(g.mode,'falling');run(g,.8);assert.equal(g.tower.length,2);});
+test('stage progression is deterministic',()=>{assert.equal(stageFor(1).name,'BOOTSTRAP');assert.equal(stageFor(5).name,'LOAD BALANCE');assert.equal(stageFor(10).name,'DISTRIBUTED CORE');assert.equal(stageFor(16).name,'HIGH AVAILABILITY');assert.equal(stageFor(23).name,'HYPERSCALE');});
+test('a stack can advance through twenty-five perfect placements',()=>{const g=new StackGame(1);g.start();for(let i=0;i<25;i++){g.moving.x=g.tower.at(-1).x;g.moving.vx=0;g.wind=0;g.release();run(g,.8);assert.equal(g.tower.length,i+2,`landing ${i+1}`);assert.ok(g.stability>.5);assert.equal(g.mode,'running');}assert.equal(g.level,26);assert.ok(g.score>10000);});
+test('long unattended session stays bounded and reaches failure or continues bouncing',()=>{const g=new StackGame(30);g.start();run(g,120);assert.ok(['running','falling','gameover'].includes(g.mode));assert.ok(g.time<=121);});
+test('10,000 randomized landing overlap scenarios preserve invariants',()=>{const r=mulberry32(123);for(let i=0;i<10000;i++){const w=24+r()*200,topW=24+r()*200,x=(r()-.5)*430,rx=solveLanding({x,w},{x:0,w:topW});if(rx.ok){assert.ok(rx.block.w>0);assert.ok(rx.block.w<=Math.max(w,topW)+2+1e-6);if(!rx.perfect) assert.ok(rx.block.x-rx.block.w/2>=Math.max(x-w/2,-topW/2)-1e-6);assert.ok(rx.quality>=0&&rx.quality<=1);}}});

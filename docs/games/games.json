@@ -1,0 +1,63 @@
+[
+  {
+    "id": "packet-breaker",
+    "number": "01",
+    "name": "Packet Breaker",
+    "slug": "packet-breaker",
+    "category": "Brick Breaker // Arcade Physics",
+    "description": "Deflect data packets, destroy system faults, and survive progressively harder levels.",
+    "url": "./packet-breaker/",
+    "preview": "./assets/previews/packet-breaker.gif",
+    "controls": "Arrow keys / A-D / Mouse / Touch to steer paddle. Space to launch.",
+    "status": "available"
+  },
+  {
+    "id": "circuit-pinball",
+    "number": "02",
+    "name": "Circuit Pinball",
+    "slug": "circuit-pinball",
+    "category": "Pinball // Reactive Circuits",
+    "description": "Keep the signal alive through reactive bumpers, flippers, and high-energy circuits.",
+    "url": "./circuit-pinball/",
+    "preview": "./assets/previews/circuit-pinball.gif",
+    "controls": "Left/Right Arrows or A/D for flippers. Down Arrow or Space for plunger.",
+    "status": "available"
+  },
+  {
+    "id": "runtime-rush",
+    "number": "03",
+    "name": "Runtime Rush",
+    "slug": "runtime-rush",
+    "category": "3D Runner // WebGL Engine",
+    "description": "Navigate infrastructure failures in a fast-paced futuristic runner.",
+    "url": "./runtime-rush/",
+    "preview": "./assets/previews/runtime-rush.gif",
+    "controls": "A/D or Left/Right to change lanes. W/Up to jump. S/Down to slide.",
+    "status": "available"
+  },
+  {
+    "id": "firewall-defense",
+    "number": "04",
+    "name": "Firewall Defense",
+    "slug": "firewall-defense",
+    "category": "Tower Defense // Network Strategy",
+    "description": "Deploy defenses, manage resources, and protect the network core from attack waves.",
+    "url": "./firewall-defense/",
+    "preview": "./assets/previews/firewall-defense.gif",
+    "controls": "Click/Touch to select and deploy defense modules. Space to speed up waves.",
+    "status": "available"
+  },
+  {
+    "id": "stack-overflow",
+    "number": "05",
+    "name": "Stack Overflow",
+    "slug": "stack-overflow",
+    "category": "Precision Physics // Tower Protocol",
+    "description": "Build a stable server tower through precise timing and increasingly difficult placements.",
+    "url": "./stack-overflow/",
+    "preview": "./assets/previews/stack-overflow.gif",
+    "controls": "Space / Click / Tap to drop server blocks. Shift for precision focus.",
+    "status": "available"
+  }
+]
+

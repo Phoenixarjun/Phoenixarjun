@@ -352,17 +352,20 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
     # 8. DEVELOPER PLAYGROUND (Mode D Contained Visualization)
     if profile['features'].get('show_playground', True):
         lines.append('<!-- ==================== SECTION 08: DEVELOPER PLAYGROUND ==================== -->\n')
-        lines.append(header_tag('play-system-runner'))
-        runner_url = "https://phoenixarjun.github.io/Phoenixarjun/runner.html"
+        lines.append(header_tag('play-developer-arcade'))
+        arcade_base = "https://phoenixarjun.github.io/Phoenixarjun/games"
         lines.append(
             f'<p align="center">\n'
-            f'  <a href="{runner_url}">\n'
-            f'    <picture>\n'
-            f'      <source media="(prefers-color-scheme: dark)" srcset="./assets/playground/concept.svg">\n'
-            f'      <source media="(prefers-color-scheme: light)" srcset="./assets/playground/concept-light.svg">\n'
-            f'      <img src="./assets/playground/concept.svg" alt="Developer Playground — System Runner: Architecture Grid Runner" width="100%" />\n'
-            f'    </picture>\n'
+            f'  <a href="{arcade_base}/">\n'
+            f'    <img src="./assets/playground/arcade-showcase.gif" alt="Developer Arcade — Five Browser Games by Naresh B A" width="100%" />\n'
             f'  </a>\n'
+            f'</p>\n\n'
+            f'<p align="center">\n'
+            f'  <a href="{arcade_base}/packet-breaker/"><code>[01] Packet Breaker</code></a> &nbsp;•&nbsp;\n'
+            f'  <a href="{arcade_base}/circuit-pinball/"><code>[02] Circuit Pinball</code></a> &nbsp;•&nbsp;\n'
+            f'  <a href="{arcade_base}/runtime-rush/"><code>[03] Runtime Rush</code></a> &nbsp;•&nbsp;\n'
+            f'  <a href="{arcade_base}/firewall-defense/"><code>[04] Firewall Defense</code></a> &nbsp;•&nbsp;\n'
+            f'  <a href="{arcade_base}/stack-overflow/"><code>[05] Stack Overflow</code></a>\n'
             f'</p>\n\n'
         )
 
@@ -473,6 +476,7 @@ def build(theme_override=None, save=False):
         ('read', 'technical-writing', 'read-technical-writing'),
         ('render', 'technical-writing', 'render-technical-writing'),
         ('render', 'contribution-atlas', 'render-contribution-atlas'),
+        ('play', 'developer-arcade', 'play-developer-arcade'),
         ('play', 'system-runner', 'play-system-runner'),
         ('open', 'developer-playground', 'open-developer-playground'),
         ('connect', 'all', 'connect-all'),
@@ -551,9 +555,15 @@ def build(theme_override=None, save=False):
     except Exception as e:
         print(f"Warning: Animated GIF generation skipped or failed ({e}); preserving static fallback.")
 
-    # Section 08: Developer Playground (Dark and Light variants)
+    # Section 08: Developer Playground (Dark and Light variants + Arcade Showcase)
     write('assets/playground/concept.svg', playground(theme, is_light=False))
     write('assets/playground/concept-light.svg', playground(theme, is_light=True))
+    if not (ROOT / 'assets' / 'playground' / 'arcade-showcase.gif').exists():
+        try:
+            from scripts.generate_arcade_showcase import build_showcase
+        except ModuleNotFoundError:
+            from generate_arcade_showcase import build_showcase
+        build_showcase()
 
     # Section 09: Connect Buttons (Dark and Light variants, compact width=206, height=50 with built-in 30px gap)
     connect_slugs = [

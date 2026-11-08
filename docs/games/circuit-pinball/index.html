@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0C0F10" />
+  <meta name="description" content="Circuit Pinball — a physics-driven neon Titanium Hacker arcade game. Flip, launch, nudge, score and survive." />
+  <title>Circuit Pinball // Titanium Hacker Arcade</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../shared/arcade-header.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="../shared/arcade-header.js"></script>
+</head>
+<body>
+  <header id="arcade-nav" data-slug="circuit-pinball"></header>
+  <div class="ambient ambient-a" aria-hidden="true"></div><div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="app-shell">
+    <section class="intro" aria-label="Game introduction">
+      <div class="intro-top"><div class="eyebrow"><span class="terminal-prompt">REACTOR SIMULATION</span><span class="eyebrow-line"></span></div></div>
+      <div class="intro-main"><div><span class="chapter">PROJECT // PINBALL-CORE</span><h1>CIRCUIT <span>PINBALL</span><span class="cursor">_</span></h1><p>Keep the packet alive. Trigger the circuitry. Chase the high score.</p></div><div class="intro-badge" aria-hidden="true"><span class="badge-kicker">SYSTEM STATUS</span><span class="badge-core">ONLINE <b>●</b></span><span class="badge-caption">PHYSICS ENGINE // 120 HZ</span></div></div>
+    </section>
+    <main class="game-layout">
+      <aside class="sidebar left-sidebar" aria-label="Arcade telemetry">
+        <section class="panel score-panel"><div class="panel-title">// TELEMETRY <span>LIVE</span></div><div class="score-label">TOTAL SCORE</div><div class="score-display" id="score" aria-live="polite">000,000</div><div class="score-line"><span>PERSONAL BEST</span><strong id="best">000,000</strong></div><div class="telemetry-divider"></div><div class="metric-grid"><div><span>BALLS LEFT</span><strong id="ballsLeft">03</strong></div><div><span>MULTIPLIER</span><strong id="multiplier">×1</strong></div><div><span>SECTOR</span><strong id="sector">01</strong></div><div><span>COMBO</span><strong id="combo">00</strong></div></div></section>
+        <section class="panel mission-panel"><div class="panel-title">// MISSION CONTROL <span>01</span></div><div class="mission-heading">REACTOR UPLINK</div><p>Complete target banks, chain bumper hits, and survive the drain.</p><div class="mission-progress"><span id="missionProgressLabel">TARGET BANK 0 / 5</span><span id="progressPercent">0%</span></div><div class="bar"><span id="missionProgress"></span></div><ul class="mission-list" id="missions"><li><span>◈</span> Charge bumper matrix <b id="bumperCount">0 / 10</b></li><li><span>◈</span> Disable drop targets <b id="targetsCount">0 / 5</b></li><li><span>◈</span> Activate multiball <b id="multiState">LOCKED</b></li></ul></section>
+        <section class="panel help-panel"><div class="panel-title">// OPERATOR GUIDE</div><div class="guide-row"><kbd>A</kbd><kbd>←</kbd><span>Left flipper</span></div><div class="guide-row"><kbd>D</kbd><kbd>→</kbd><span>Right flipper</span></div><div class="guide-row"><kbd>SPACE</kbd><span>Hold / release plunger</span></div><div class="guide-row"><kbd>N</kbd><kbd>↑</kbd><span>Nudge (avoid tilt)</span></div><div class="guide-row"><kbd>P</kbd><span>Pause</span><kbd>M</kbd><span>Audio</span></div></section>
+      </aside>
+      <section class="table-section" aria-label="Playable Circuit Pinball arcade table">
+        <div class="machine-top"><div><span class="machine-led"></span> CIRCUIT BOARD <span class="machine-sep">/</span> <strong>REACTOR-7</strong></div><div class="machine-right" id="tableStatus">READY TO INITIALIZE</div></div>
+        <div class="table-shell" id="tableShell">
+          <div class="canvas-wrap"><canvas id="pinball" width="760" height="1080" role="img" aria-label="Pinball table with two flippers near the bottom, glowing targets and bumpers; playable with keyboard or on-screen buttons."></canvas>
+            <div class="screen-overlay" id="overlay" aria-live="polite"><div class="overlay-inner"><div class="overlay-orbit"><span>◈</span></div><span class="overlay-kicker" id="overlayKicker">WELCOME TO THE MACHINE</span><h2 id="overlayTitle">CIRCUIT<br/><em>PINBALL</em></h2><p id="overlayMessage">Five-stage, physics-driven pinball. Keep the data packet in play, hit targets and master the flippers.</p><button id="startBtn" class="primary-btn">INITIALIZE GAME <span aria-hidden="true">↗</span></button><div class="overlay-tiny">A / D · FLIP &nbsp;&nbsp; SPACE · LAUNCH &nbsp;&nbsp; N · NUDGE</div></div></div>
+            <div class="toast" id="toast" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="cabinet-footer"><div><span class="signal-led"></span><span id="cabinetMessage">REACTOR STANDBY</span></div><div><button id="pauseBtn" class="small-btn" aria-label="Pause game" title="Pause / resume (P)">Ⅱ PAUSE</button><button id="muteBtn" class="small-btn" aria-label="Mute sound" title="Sound (M)">♪ SOUND ON</button></div></div>
+        <div class="touch-controls" aria-label="Touch controls"><button class="touch-button flip-button" id="leftBtn" aria-label="Left flipper">↰ <span>LEFT FLIP</span></button><button class="touch-button nudge-button" id="nudgeBtn" aria-label="Nudge table">✧ <span>NUDGE</span></button><button class="touch-button launch-button" id="launchBtn" aria-label="Hold to charge, release to launch">⤒ <span>HOLD TO LAUNCH</span></button><button class="touch-button flip-button" id="rightBtn" aria-label="Right flipper">↱ <span>RIGHT FLIP</span></button></div>
+      </section>
+      <aside class="sidebar right-sidebar" aria-label="Game instructions and status">
+        <section class="panel diag-panel"><div class="panel-title">// REACTOR DIAGNOSTICS <span>OK</span></div><div class="reactor-icon" aria-hidden="true"><svg viewBox="0 0 170 165"><defs><linearGradient id="reactorFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b6ff3b" stop-opacity=".75"/><stop offset="1" stop-color="#72b6ad" stop-opacity=".1"/></linearGradient></defs><g fill="none" stroke="#a3d14b" opacity=".52"><ellipse cx="85" cy="82" rx="76" ry="30" transform="rotate(-28 85 82)"/><ellipse cx="85" cy="82" rx="76" ry="30" transform="rotate(28 85 82)"/><circle cx="85" cy="82" r="52" stroke-dasharray="3 9"/></g><path d="M85 42 126 64V107L85 130 44 107V64Z" fill="url(#reactorFill)" fill-opacity=".12" stroke="#B6FF3B" stroke-width="1.7"/><path d="M44 64 85 85 126 64 M85 85V130" stroke="#B6FF3B"/><circle cx="85" cy="85" r="13" fill="#B6FF3B" opacity=".8"/></svg></div><div class="diag-detail"><span>SIMULATION</span><strong>120 <small>HZ</small></strong></div><div class="diag-detail"><span>TABLE STATE</span><strong id="diagState">STANDBY</strong></div><div class="diag-detail"><span>BALL SAVER</span><strong id="saverState">OFFLINE</strong></div><div class="diag-detail"><span>TILT SENSOR</span><strong id="tiltState">NOMINAL</strong></div></section>
+        <section class="panel event-panel"><div class="panel-title">// EVENT STREAM <span class="pulse-dot">●</span></div><div id="eventStream" class="events" aria-live="polite"><div><span>00:00</span> Table boot complete</div><div><span>00:00</span> Awaiting player input</div></div></section>
+        <section class="panel modes-panel"><div class="panel-title">// SYSTEM MODIFIERS</div><div class="modifier"><span class="modifier-icon">⚡</span><div><strong>REACTOR BUMPERS</strong><small>Charge score multipliers</small></div></div><div class="modifier"><span class="modifier-icon">◈</span><div><strong>DROP TARGETS</strong><small>Unlock escalating sectors</small></div></div><div class="modifier"><span class="modifier-icon">∞</span><div><strong>MULTIBALL</strong><small>Double the chaos</small></div></div></section>
+      </aside>
+    </main>
+    <footer class="site-footer"><span>NARESH B A <b>//</b> ENGINEERING PLAYGROUND</span><span>BUILT WITH CURIOSITY. DRIVEN BY SYSTEMS.</span><span>LOCAL HIGH SCORES · NO TRACKING · NO LOGIN</span></footer>
+  </div>
+  <script src="src/physics.js"></script>
+  <script src="src/audio.js"></script>
+  <script src="src/render.js"></script>
+  <script src="src/game.js"></script>
+</body>
+</html>

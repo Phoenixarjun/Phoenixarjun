@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Runtime Rush — Titanium Hacker Arcade</title>
+<meta name="theme-color" content="#070B0C">
+<meta name="description" content="Runtime Rush: a free, offline-capable 3D infrastructure runner. Shift lanes, jump failures, slide under gates and keep the request alive.">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../shared/arcade-header.css">
+<link rel="stylesheet" href="./style.css">
+<script defer src="../shared/arcade-header.js"></script>
+</head>
+<body>
+<header id="arcade-nav" data-slug="runtime-rush"></header>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+<div class="page-shell">
+<section class="intro"><div class="terminal"><span class="prompt">SYSTEM TELEMETRY</span><span class="terminal-line"></span></div><div class="headline-row"><div><div class="chapter">// INFRASTRUCTURE ENGINE — FAULT-TOLERANT RUNNER</div><h1>RUNTIME <em>RUSH</em><span class="blink">_</span></h1><p>One packet. Three lanes. Endless infrastructure failure. <strong>Keep the request alive.</strong></p></div><div class="mission-chip"><span>NETWORK STATE</span><b><i></i> ONLINE</b><small>WEBGL / REAL-TIME PHYSICS</small></div></div></section>
+<main class="main-layout"><div class="arena-column"><section class="arena-shell" aria-label="Runtime Rush 3D game"><div class="arena-top"><span><span class="indicator"></span> NETWORK RUN // <b id="sector-label">BOOT SEQUENCE</b></span><div><button id="mute-btn" class="icon-btn" aria-label="Enable sound" title="Toggle sound">SOUND: OFF</button><button id="pause-btn" class="icon-btn" aria-label="Pause game" title="Pause game">Ⅱ PAUSE</button></div></div>
+<div id="game-wrap" class="game-wrap" tabindex="0" aria-label="3D runner; use left and right arrows, space to jump, down arrow to slide"><canvas id="game-canvas" aria-label="Three-dimensional obstacle course"></canvas><div class="screen-vignette"></div><div class="screen-scanlines"></div>
+<div class="hud-top"><div class="hud-cell"><span>SCORE</span><strong id="score">000000</strong></div><div class="hud-cell"><span>DISTANCE</span><strong><b id="distance">0000</b> <small>M</small></strong></div><div class="hud-cell"><span>INTEGRITY</span><strong id="integrity" class="integrity">◈ ◈ ◈</strong></div></div>
+<div class="crosshair" aria-hidden="true"><i></i><i></i></div>
+<div id="feedback" class="feedback" aria-live="polite"></div>
+<div class="hud-bottom"><span>◢ LINK // <b id="lane-label">LANE 02</b></span><div><span id="shield-state">◈ SHIELD OFF</span><span id="combo-state">COMBO ×0</span></div></div>
+<div id="screen" class="screen-overlay"><div class="overlay-card"><div class="overlay-id">// NEURAL TRANSPORT LAYER · 03</div><div class="overlay-emblem"><svg width="102" height="102" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="43" fill="none" stroke="#42535C" stroke-width="1.5"/><circle cx="60" cy="60" r="34" fill="none" stroke="#b6ff3b" stroke-dasharray="5 7" stroke-width="2"/><path d="M28 60L60 28L92 60L60 92Z" fill="#b6ff3b10" stroke="#b6ff3b" stroke-width="2"/><path d="M38 60H82M60 38V82" stroke="#b6ff3b" stroke-width="2"/><circle cx="60" cy="60" r="8" fill="#b6ff3b"/></svg></div><div id="overlay-kicker" class="overlay-kicker">READY TO INITIALIZE</div><h2 id="overlay-title">KEEP THE <em>REQUEST</em> ALIVE.</h2><p id="overlay-description">Dodge corrupted nodes, leap over failed services, slide under security gates, and collect signal energy. How far can your packet travel?</p><button id="start-btn" class="primary-btn">INITIATE RUN <span>↗</span></button><div class="overlay-hint">← / → MOVE &nbsp; · &nbsp; SPACE JUMP &nbsp; · &nbsp; ↓ SLIDE</div></div></div>
+<div id="webgl-warning" class="webgl-warning" hidden>WebGL is unavailable in this browser. Try a browser with hardware acceleration enabled.</div>
+</div>
+<div class="arena-footer"><span><span class="status-dot"></span> LIVE SIMULATION <span class="muted">· 120 HZ</span></span><span><b id="speed-readout">22</b> M/S <span class="muted">· ADAPTIVE VELOCITY</span></span><span>BEST <b id="best-readout">000000</b></span></div></section>
+<div class="touch-controls" aria-label="Touch controls"><button id="left-btn" class="touch-btn"><strong>◀</strong><small>LEFT</small></button><button id="jump-btn" class="touch-btn highlight"><strong>↑</strong><small>JUMP</small></button><button id="slide-btn" class="touch-btn"><strong>↓</strong><small>SLIDE</small></button><button id="right-btn" class="touch-btn"><strong>▶</strong><small>RIGHT</small></button></div>
+<div class="below-arena"><span>DATA TRANSPORT: <b id="status-text">AWAITING INITIALIZATION</b></span><span id="progress-mini">SECTOR 01 / 05</span></div></div>
+<aside class="sidebar"><div class="panel stats-panel"><div class="panel-title">/// RUN TELEMETRY <span>LIVE</span></div><div class="score-value" id="side-score">000000</div><div class="small-label">PACKET SCORE</div><div class="stat-separator"></div><div class="metric-pairs"><div><span>COMBO CHAIN</span><strong id="side-combo">× 00</strong></div><div><span>NEAR MISSES</span><strong id="near-misses">00</strong></div><div><span>SECTOR</span><strong id="side-sector">01 / 05</strong></div><div><span>REQUESTS SAVED</span><strong id="side-dodged">00</strong></div></div><div class="stat-separator"></div><div class="progress-label"><span>PROTOCOL PROGRESS</span><strong id="progress-num">0%</strong></div><div class="progress-track"><div id="progress-fill"></div></div></div>
+<div class="panel systems-panel"><div class="panel-title">/// FIELD MANUAL <span>01</span></div><div class="manual-item"><i class="manual-icon red">▥</i><div><b>FAILED NODE</b><span>Change lane or jump high enough to clear it</span></div></div><div class="manual-item"><i class="manual-icon amber">▰</i><div><b>LOW BARRIER</b><span>Jump over the corrupted transfer</span></div></div><div class="manual-item"><i class="manual-icon teal">⌑</i><div><b>ACCESS GATE</b><span>Slide beneath the scanning beam</span></div></div><div class="manual-item"><i class="manual-icon lime">◈</i><div><b>ENERGY SHARD</b><span>Collect for score and combo multipliers</span></div></div></div>
+<div class="panel controls-panel"><div class="panel-title">/// SYSTEM CONTROLS <span>INPUT</span></div><div class="control-row"><span><kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd></span><b>SHIFT LANE</b></div><div class="control-row"><span><kbd>SPACE</kbd> / <kbd>W</kbd></span><b>JUMP</b></div><div class="control-row"><span><kbd>↓</kbd> / <kbd>S</kbd></span><b>SLIDE</b></div><div class="control-row"><span><kbd>P</kbd> / <kbd>ESC</kbd></span><b>PAUSE</b></div><div class="controls-note">Mouse swipe and on-screen controls supported. Press M to toggle sound.</div></div></aside></main>
+<footer class="site-footer"><span>RUNTIME RUSH <b>//</b> A TITANIUM HACKER EXPERIMENT</span><span>NO ACCOUNTS · NO NETWORK REQUIRED · LOCAL HIGH SCORES</span></footer>
+</div>
+<script type="module" src="./src/game.js"></script>
+</body></html>

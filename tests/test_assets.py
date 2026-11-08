@@ -172,22 +172,29 @@ class EngineeringFocusAssetTests(unittest.TestCase):
             self.assertIn('/// ARCHITECTURE', content)
             self.assertIn('Play System Runner ↗', content)
 
-        # Prototype check
-        runner_html = ROOT / 'docs' / 'runner.html'
-        self.assertTrue(runner_html.is_file(), f'Missing {runner_html}')
-        runner_text = runner_html.read_text(encoding='utf-8')
-        self.assertIn('SYSTEM RUNNER', runner_text)
-        self.assertIn('gameCanvas', runner_text)
+        # Developer Arcade Hub & 5 Games Prototype check
+        arcade_html = ROOT / 'docs' / 'games' / 'index.html'
+        self.assertTrue(arcade_html.is_file(), f'Missing {arcade_html}')
+        arcade_text = arcade_html.read_text(encoding='utf-8')
+        self.assertIn('Developer Arcade', arcade_text)
+
+        for slug in ['packet-breaker', 'circuit-pinball', 'runtime-rush', 'firewall-defense', 'stack-overflow']:
+            game_html = ROOT / 'docs' / 'games' / slug / 'index.html'
+            self.assertTrue(game_html.is_file(), f'Missing game {slug}')
+
+        # Showcase GIF check
+        showcase_gif = ROOT / 'assets' / 'playground' / 'arcade-showcase.gif'
+        self.assertTrue(showcase_gif.is_file(), f'Missing {showcase_gif}')
 
         # Header check
-        header = ROOT / 'assets' / 'headers' / 'play-system-runner.svg'
+        header = ROOT / 'assets' / 'headers' / 'play-developer-arcade.svg'
         self.assertTrue(header.is_file())
         header_text = header.read_text(encoding='utf-8')
-        self.assertIn('play --system-runner', header_text)
+        self.assertIn('play --developer-arcade', header_text)
 
         # README link check
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
-        self.assertIn('https://phoenixarjun.github.io/Phoenixarjun/runner.html', readme)
+        self.assertIn('https://phoenixarjun.github.io/Phoenixarjun/games/', readme)
 
     def test_connect_and_footer_assets(self):
         """Connect buttons and footer must have dual-mode compact 206px buttons with built-in vector spacing and editorial footer."""

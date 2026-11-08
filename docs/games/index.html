@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#070B0C">
+  <meta name="description" content="Titanium Hacker Developer Arcade — Five standalone, physics-driven browser games engineered by Naresh B A. Zero dependencies, offline-ready, pure web performance.">
+  <title>Developer Arcade // Naresh B A — AI Systems Engineer</title>
+  
+  <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./arcade.css">
+  <script defer src="./arcade.js"></script>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div class="app-container">
+    <!-- Top Terminal Navigation Bar -->
+    <header class="arcade-header" role="navigation" aria-label="Arcade Navigation">
+      <div class="terminal-title">
+        <span class="terminal-prompt">naresh@github:~$</span>
+        <span class="terminal-cmd" id="portalTerminalCmd"></span><span class="terminal-cursor" id="portalTerminalCursor">_</span>
+      </div>
+      <div class="header-right">
+        <a class="nav-link-btn nav-link-primary" href="https://github.com/Phoenixarjun" target="_blank" rel="noopener noreferrer">
+          GitHub Profile <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="hero-section" aria-labelledby="heroTitle">
+      <div class="hero-kicker">
+        <span class="status-pulse" aria-hidden="true"></span>
+        <span>Developer Playground // Interactive Engineering</span>
+      </div>
+      <h1 class="hero-title" id="heroTitle">
+        DEVELOPER <span>ARCADE</span>
+      </h1>
+      <p class="hero-subtitle">
+        Five physics-driven, zero-dependency browser games engineered for precision, replayability, and pure fun. Built with vanilla JavaScript, HTML5 Canvas, and WebGL.
+      </p>
+
+      <div class="system-strip" aria-label="System specifications">
+        <div class="system-item">
+          <span>MODULES:</span>
+          <strong class="accent">05 / 05 ONLINE</strong>
+        </div>
+        <div class="system-item">
+          <span>ENGINE:</span>
+          <strong>CANVAS & WEBGL</strong>
+        </div>
+        <div class="system-item">
+          <span>TRACKING:</span>
+          <strong>ZERO COOKIES / NO TELEMETRY</strong>
+        </div>
+        <div class="system-item">
+          <span>STORAGE:</span>
+          <strong>LOCAL HIGH SCORES</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Interactive Showcase -->
+    <section class="showcase-container" aria-label="Active Game Showcase">
+      <!-- Left: Gameplay Preview Screen -->
+      <div class="preview-viewport">
+        <div class="preview-badge-overlay">
+          <span class="badge-num" id="previewBadgeNum">01</span>
+          <span>//</span>
+          <span id="previewBadgeName">PACKET BREAKER</span>
+        </div>
+        <img class="preview-img" id="previewImg" src="./assets/previews/packet-breaker.gif" alt="Game preview animation">
+        <div class="preview-scanlines" aria-hidden="true"></div>
+      </div>
+
+      <!-- Right: Active Game Details Panel -->
+      <div class="details-panel">
+        <div class="details-header">
+          <div class="details-kicker">
+            <span class="game-index-tag" id="detailsIndex">MODULE // 01</span>
+            <span>TITANIUM HACKER</span>
+          </div>
+          <h2 class="details-title" id="detailsTitle">Packet Breaker</h2>
+          <div class="details-category" id="detailsCategory">Brick Breaker // Arcade Physics</div>
+          <p class="details-desc" id="detailsDesc">
+            Deflect data packets, destroy system faults, and survive progressively harder levels.
+          </p>
+          
+          <div class="controls-card">
+            <div class="controls-card-title">Controller Mapping</div>
+            <div class="controls-card-text" id="detailsControls">
+              Arrow keys / A-D / Mouse / Touch to steer paddle. Space to launch.
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-container">
+          <a class="launch-btn" id="launchBtn" href="./packet-breaker/">
+            <span>PLAY GAME</span> <span aria-hidden="true">↗</span>
+          </a>
+          <button class="rotation-control" id="rotationControl" type="button" title="Toggle 5-second preview auto-rotation">
+            <span id="rotationStatusText">AUTO-ROTATING</span>
+            <div class="rotation-progress-bar" aria-hidden="true">
+              <div class="rotation-progress-fill" id="rotationProgressFill"></div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Selection Grid -->
+    <section class="catalog-section" aria-labelledby="catalogTitle">
+      <div class="catalog-heading">
+        <span id="catalogTitle">// SELECT SYSTEM MODULE</span>
+        <small>[Use ← / → Arrow Keys to cycle, P to pause]</small>
+      </div>
+      <div class="game-grid" id="catalogGrid">
+        <!-- Generated dynamically via arcade.js -->
+      </div>
+    </section>
+
+    <!-- Page Footer -->
+    <footer class="arcade-footer">
+      <div class="footer-left">
+        <span>ENGINEERED BY</span>
+        <strong>NARESH B A</strong>
+        <span>// AI SYSTEMS ENGINEER</span>
+      </div>
+      <div class="footer-right">
+        <span>© 2026 NARESH B A</span>
+        <a href="https://github.com/Phoenixarjun" target="_blank" rel="noopener noreferrer">github.com/Phoenixarjun ↗</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+

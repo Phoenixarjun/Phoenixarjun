@@ -1,0 +1,12 @@
+{
+  "name":"stack-overflow-titanium-arcade",
+  "version":"1.0.0",
+  "private":true,
+  "type":"module",
+  "description":"Server tower precision stacking game; standalone HTML/CSS/JS",
+  "scripts":{
+    "test":"node --test tests/physics.test.mjs",
+    "build":"python build_standalone.py",
+    "serve":"python -m http.server 8000"
+  }
+}

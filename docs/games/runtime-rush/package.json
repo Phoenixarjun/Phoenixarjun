@@ -1,0 +1,1 @@
+{"name":"runtime-rush-titanium","version":"1.0.0","private":true,"type":"module","description":"Offline-capable true-3D WebGL infrastructure runner; Titanium Hacker game 03","scripts":{"test":"node --test tests/physics.test.mjs","serve":"python -m http.server 8000","standalone":"python tools/build_standalone.py"}}
