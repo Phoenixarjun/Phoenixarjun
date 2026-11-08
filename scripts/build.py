@@ -33,6 +33,7 @@ try:
         technical_writing_card,
         city,
         playground,
+        about_me_card,
         arcade_game_button,
         connect_button,
         terminal_footer,
@@ -55,6 +56,7 @@ except ModuleNotFoundError:
         technical_writing_card,
         city,
         playground,
+        about_me_card,
         arcade_game_button,
         connect_button,
         terminal_footer,
@@ -205,6 +207,21 @@ def build_readme(profile: dict, projects: dict, stack: dict, posts: list[dict], 
         '</p>\n\n'
     )
     lines.append('<!-- Fallback:\n<p align="center">\n  <img src="./assets/generated/hero/hero-static.svg" alt="Naresh B A — AI Systems Engineer" width="100%" />\n</p>\n-->\n\n')
+
+    # ABOUT ME (Mode A Transparent Canvas with Mode B Contained Editor & Pods)
+    lines.append('<!-- ==================== SECTION: ABOUT ME ==================== -->\n')
+    lines.append(header_tag('show-about-me'))
+    lines.append(
+        '<p align="center">\n'
+        '  <picture>\n'
+        '    <source media="(prefers-color-scheme: dark)" srcset="./assets/sections/about-me.svg">\n'
+        '    <source media="(prefers-color-scheme: light)" srcset="./assets/sections/about-me-light.svg">\n'
+        '    <img src="./assets/sections/about-me.svg"\n'
+        '         alt="About Me — Naresh B A, Software Engineer at Prodapt"\n'
+        '         width="100%" />\n'
+        '  </picture>\n'
+        '</p>\n\n'
+    )
 
     # 2. ENGINEERING FOCUS (Mode A Transparent Canvas with Mode B Contained Pods)
     lines.append('<!-- ==================== SECTION 02: ENGINEERING FOCUS ==================== -->\n')
@@ -485,6 +502,7 @@ def build(theme_override=None, save=False):
 
     # 2. Section Header Dividers (Dual-mode Dark and Light variants)
     headers = [
+        ('show', 'about-me', 'show-about-me'),
         ('inspect', 'engineering-focus', 'inspect-engineering-focus'),
         ('ls', 'flagship-projects', 'ls-flagship-projects'),
         ('status', 'currently-building', 'status-currently-building'),
@@ -503,6 +521,8 @@ def build(theme_override=None, save=False):
         write(f'assets/headers/{slug}-light.svg', section_terminal_header(cmd, flg, theme, is_light=True))
 
     # 3. Section Cards & Components (Dark and Light variants)
+    write('assets/sections/about-me.svg', about_me_card(theme, is_light=False))
+    write('assets/sections/about-me-light.svg', about_me_card(theme, is_light=True))
     write('assets/sections/engineering-focus.svg', engineering_focus_card(profile, theme, is_light=False))
     write('assets/sections/engineering-focus-light.svg', engineering_focus_card(profile, theme, is_light=True))
 
