@@ -37,6 +37,7 @@ try:
         connect_button,
         terminal_footer,
     )
+    from contractgraph_visual import graph_svg
     from contribution_metrics import compute_metrics
 except ModuleNotFoundError:
     from scripts.graphics import (
@@ -58,6 +59,7 @@ except ModuleNotFoundError:
         connect_button,
         terminal_footer,
     )
+    from scripts.contractgraph_visual import graph_svg
     from scripts.contribution_metrics import compute_metrics
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -520,6 +522,8 @@ def build(theme_override=None, save=False):
     write('assets/projects/visuals/aam-topology-light.svg', visual_aam(theme, is_light=True, standalone=True))
     write('assets/projects/visuals/promptnova-workflow.svg', visual_promptnova(theme, is_light=False, standalone=True))
     write('assets/projects/visuals/promptnova-workflow-light.svg', visual_promptnova(theme, is_light=True, standalone=True))
+    write('assets/projects/visuals/contractgraph-dag.svg', graph_svg(theme, is_light=False))
+    write('assets/projects/visuals/contractgraph-dag-light.svg', graph_svg(theme, is_light=True))
     write('assets/projects/visuals/credflow-collections.svg', visual_credflow(theme, is_light=False, standalone=True))
     write('assets/projects/visuals/credflow-collections-light.svg', visual_credflow(theme, is_light=True, standalone=True))
 

@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="216" viewBox="0 0 1160 216" role="img" aria-label="CredFlow — Backend &amp; Product Engineering">
 <title>CredFlow</title>
 <defs>
-  <linearGradient id="cardBg-proj-3-light" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#FFFFFF"/>
-    <stop offset="100%" stop-color="#F2F6F8"/>
+  <linearGradient id="cardBg-proj-4-light" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#FFFFFF"/>
+    <stop offset="1" stop-color="#F2F6F8"/>
   </linearGradient>
   <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5"/></filter>
   <filter id="glowSmall" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
 </defs>
-<path d="M 34 8 H 1134 L 1148 22 V 186 L 1126 208 H 26 L 12 194 V 30 Z" fill="url(#cardBg-proj-3-light)" stroke="#A8C0CB" stroke-width="1.2"/>
+<path d="M 34 8 H 1134 L 1148 22 V 186 L 1126 208 H 26 L 12 194 V 30 Z" fill="url(#cardBg-proj-4-light)" stroke="#A8C0CB" stroke-width="1.2"/>
 <path d="M 135 8 H 34 L 12 30 V 70" fill="none" stroke="#3B6600" stroke-width="2.4" stroke-linecap="round"/>
 <line x1="12" y1="48" x2="12" y2="168" stroke="#3B6600" stroke-width="3.5" stroke-linecap="round"/>
 <path d="M 1030 208 H 1126 L 1148 186 V 145" fill="none" stroke="#3B6600" stroke-width="6" opacity="0.65" filter="url(#glow)"/>
 <path d="M 1030 208 H 1126 L 1148 186 V 145" fill="none" stroke="#3B6600" stroke-width="2.4" stroke-linecap="round"/>
-<text x="65" y="116" font-family="'JetBrains Mono', Consolas, monospace" font-size="34" font-weight="750" fill="#3B6600" text-anchor="middle">03</text>
+<text x="65" y="116" font-family="'JetBrains Mono', Consolas, monospace" font-size="34" font-weight="750" fill="#3B6600" text-anchor="middle">04</text>
 <line x1="118" y1="26" x2="118" y2="190" stroke="#8EADB6" stroke-width="1.2" opacity="0.55"/>
 <text x="145" y="46" font-size="26" fill="#11171A" font-weight="750" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">CredFlow</text>
 <text x="145" y="78" font-size="14.5" fill="#586A73" font-weight="400" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">A full-stack telecom billing and collections application with automated</text>

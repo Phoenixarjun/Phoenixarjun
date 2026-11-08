@@ -37,10 +37,28 @@
       "featured": true
     },
     {
+      "slug": "contractgraph",
+      "name": "ContractGraph",
+      "short_name": "CG",
+      "number": "03",
+      "category": "Agent Workflow Engineering",
+      "description": "Claude Code-native contract-driven workflows. Compiles context and JSON Schema contracts into scoped agent DAGs, with independent verification gates and targeted node repair.",
+      "technologies": [
+        "Claude Code",
+        "Python",
+        "JSON Schema",
+        "DAG"
+      ],
+      "github_url": "https://github.com/Phoenixarjun/ContractGraph",
+      "url": "https://github.com/Phoenixarjun/ContractGraph",
+      "visual": "assets/projects/visuals/contractgraph-dag.svg",
+      "featured": true
+    },
+    {
       "slug": "credflow",
       "name": "CredFlow",
       "short_name": "CF",
-      "number": "03",
+      "number": "04",
       "category": "Backend & Product Engineering",
       "description": "A full-stack telecom billing and collections application with automated dunning rules, invoice workflows, and role-based operational dashboards. Integrates Spring Boot services, relational persistence, and AI-assisted features.",
       "technologies": [

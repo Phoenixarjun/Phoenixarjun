@@ -70,6 +70,15 @@
   </a>
 </p>
 <p align="center">
+  <a href="https://github.com/Phoenixarjun/ContractGraph">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/contractgraph.svg">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/projects/contractgraph-light.svg">
+      <img src="./assets/projects/contractgraph.svg" alt="ContractGraph" width="100%" />
+    </picture>
+  </a>
+</p>
+<p align="center">
   <a href="https://github.com/Phoenixarjun/CredFlow">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./assets/projects/credflow.svg">

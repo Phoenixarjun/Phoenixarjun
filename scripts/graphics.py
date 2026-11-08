@@ -22,6 +22,14 @@ from html import escape
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+try:
+    from scripts.contractgraph_visual import graph_svg
+except (ModuleNotFoundError, ImportError):
+    try:
+        from contractgraph_visual import graph_svg
+    except (ModuleNotFoundError, ImportError):
+        from .contractgraph_visual import graph_svg
+
 _ROOT = Path(__file__).resolve().parents[1]
 _VENDOR_DIR = _ROOT / "assets" / "stack" / "vendor"
 
@@ -619,11 +627,11 @@ def project_card(p: dict, theme: dict, idx: int, width: int = 1160, is_light: bo
         f'  <linearGradient id="{bg_grad_id}" x1="0" y1="0" x2="1" y2="1">\n',
     ]
     if is_light:
-        defs.append(f'    <stop offset="0%" stop-color="#FFFFFF"/>\n'
-                    f'    <stop offset="100%" stop-color="#F2F6F8"/>\n')
+        defs.append(f'    <stop offset="0" stop-color="#FFFFFF"/>\n'
+                    f'    <stop offset="1" stop-color="#F2F6F8"/>\n')
     else:
-        defs.append(f'    <stop offset="0%" stop-color="#141B20"/>\n'
-                    f'    <stop offset="100%" stop-color="#0E1317"/>\n')
+        defs.append(f'    <stop offset="0" stop-color="#141B20"/>\n'
+                    f'    <stop offset="1" stop-color="#0E1317"/>\n')
     defs.append(f'  </linearGradient>\n'
                 f'  <filter id="{glow_id}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5"/></filter>\n'
                 f'  <filter id="{glow_sm_id}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>\n'
@@ -688,13 +696,18 @@ def project_card(p: dict, theme: dict, idx: int, width: int = 1160, is_light: bo
     cont_path = "M 788 24 H 1112 L 1124 36 V 180 L 1112 192 H 788 L 776 180 V 36 Z"
     body.append(f'<path d="{cont_path}" fill="{right_bg}" fill-opacity="{right_op}" stroke="{t["stroke"]}" stroke-width="1" opacity="0.7"/>\n')
 
-    # Embed specialized architecture / workflow diagram based on idx
-    if idx == 1:
+    # Embed specialized architecture / workflow diagram based on project slug
+    slug = p.get('slug', '')
+    if slug == 'architecture-as-memory':
         body.append(visual_aam(theme, is_light=is_light, standalone=False))
-    elif idx == 2:
+    elif slug == 'promptnova':
         body.append(visual_promptnova(theme, is_light=is_light, standalone=False))
-    else:
+    elif slug == 'contractgraph':
+        body.append(graph_svg(theme, is_light=is_light, embedded=True))
+    elif slug == 'credflow':
         body.append(visual_credflow(theme, is_light=is_light, standalone=False))
+    else:
+        raise ValueError(f"No project visual registered for {slug}")
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{h}" viewBox="0 0 {width} {h}" role="img" aria-label="{E(p['name'])} — {E(p.get('category', 'Featured Project'))}">
 <title>{E(p['name'])}</title>
@@ -717,11 +730,11 @@ def now_building(p: dict, theme: dict, width: int = 1160, is_light: bool = False
         f'  <linearGradient id="{bg_grad_id}" x1="0" y1="0" x2="1" y2="1">\n',
     ]
     if is_light:
-        defs.append(f'    <stop offset="0%" stop-color="#FFFFFF"/>\n'
-                    f'    <stop offset="100%" stop-color="#F2F6F8"/>\n')
+        defs.append(f'    <stop offset="0" stop-color="#FFFFFF"/>\n'
+                    f'    <stop offset="1" stop-color="#F2F6F8"/>\n')
     else:
-        defs.append(f'    <stop offset="0%" stop-color="#141B20"/>\n'
-                    f'    <stop offset="100%" stop-color="#0E1317"/>\n')
+        defs.append(f'    <stop offset="0" stop-color="#141B20"/>\n'
+                    f'    <stop offset="1" stop-color="#0E1317"/>\n')
     defs.append(f'  </linearGradient>\n'
                 f'  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5"/></filter>\n'
                 f'  <filter id="glowSmall" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>\n'
@@ -835,11 +848,11 @@ def stack_card(stack: dict, theme: dict, width: int = 1160, is_light: bool = Fal
         f'  <linearGradient id="{bg_grad_id}" x1="0" y1="0" x2="1" y2="1">\n',
     ]
     if is_light:
-        defs.append(f'    <stop offset="0%" stop-color="#FFFFFF"/>\n'
-                    f'    <stop offset="100%" stop-color="#F2F6F8"/>\n')
+        defs.append(f'    <stop offset="0" stop-color="#FFFFFF"/>\n'
+                    f'    <stop offset="1" stop-color="#F2F6F8"/>\n')
     else:
-        defs.append(f'    <stop offset="0%" stop-color="#141B20"/>\n'
-                    f'    <stop offset="100%" stop-color="#0E1317"/>\n')
+        defs.append(f'    <stop offset="0" stop-color="#141B20"/>\n'
+                    f'    <stop offset="1" stop-color="#0E1317"/>\n')
     defs.append(f'  </linearGradient>\n'
                 f'  <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5"/></filter>\n'
                 f'</defs>\n')
