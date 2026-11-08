@@ -118,9 +118,9 @@ class EngineeringFocusAssetTests(unittest.TestCase):
         """Featured projects must have valid 1160px SVGs, verified copy, and standalone visuals."""
         projects_data = json.loads((ROOT / 'content' / 'projects.json').read_text(encoding='utf-8'))
         flagship = projects_data['flagship']
-        self.assertEqual(len(flagship), 3)
+        self.assertEqual(len(flagship), 4)
 
-        expected_slugs = ['architecture-as-memory', 'promptnova', 'credflow']
+        expected_slugs = ['architecture-as-memory', 'promptnova', 'contractgraph', 'credflow']
         self.assertEqual([p['slug'] for p in flagship], expected_slugs)
 
         for p in flagship:
@@ -139,7 +139,7 @@ class EngineeringFocusAssetTests(unittest.TestCase):
                 self.assertIn(p['name'], content)
 
         # Standalone visuals
-        for vis_name in ['aam-topology', 'promptnova-workflow', 'credflow-collections']:
+        for vis_name in ['aam-topology', 'promptnova-workflow', 'contractgraph-dag', 'credflow-collections']:
             vis_dark = ROOT / 'assets' / 'projects' / 'visuals' / f'{vis_name}.svg'
             vis_light = ROOT / 'assets' / 'projects' / 'visuals' / f'{vis_name}-light.svg'
             self.assertTrue(vis_dark.is_file(), f'Missing {vis_dark}')
