@@ -4,3 +4,18 @@
 @media(max-width:740px){.app-shell{width:calc(100% - 22px)}.topbar{align-items:flex-start;flex-direction:column;padding-top:14px}.top-actions{width:100%;justify-content:space-between}.system-signal{display:none}.logo-mark{height:43px;width:43px;font-size:27px}.eyebrow{font-size:8px}h1{font-size:24px}.intro{justify-content:flex-start;flex-wrap:wrap;gap:0}.intro p{margin:10px 0 0}.intro-code{width:100%;font-size:9px;margin:6px 0 10px}.stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.stat{min-height:60px;gap:4px;padding:8px;border-radius:6px}.stat-icon{font-size:15px;width:20px}.stat small{font-size:7px;letter-spacing:.1px;white-space:normal}.stat strong{font-size:15px}.stat strong span{font-size:9px}.stat:nth-child(4),.stat:nth-child(5){grid-column:span 1}.game-layout{grid-template-columns:1fr}.left-rail,.right-rail,.arena-rail{grid-column:1;grid-row:auto}.arena-rail{grid-row:1}.left-rail{grid-row:2}.right-rail{grid-row:3}.arena-title{font-size:9px}.secondary-label{display:none}.arena-tag{font-size:8px}.arena-window canvas{width:700px;max-width:none;min-width:700px}.arena-window{overflow-x:auto;overscroll-behavior-x:contain;touch-action:pan-x}.arena-bottom{font-size:8px;justify-content:center}.control-dock{align-items:stretch;flex-direction:column}.wave-buttons{justify-content:space-between}.wave-buttons button{flex:1}.tower-palette{grid-template-columns:repeat(2,minmax(0,1fr))}.tower-option{min-height:103px;gap:7px}.tower-glyph{width:30px;height:35px;flex-basis:30px;font-size:13px}.tower-name{font-size:11px}.tower-cost{font-size:9px}.tower-desc{font-size:9px}.footer{font-size:8px;padding:19px 0}.icon-button{font-size:10px}.panel-heading h2{font-size:13px}}
 @media(max-width:380px){.tower-palette{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.control-dock{padding:10px}.wave-buttons{flex-wrap:wrap}.wave-buttons button{flex:1}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Firewall Defense 2.0: additions are scoped; the existing game layout and HUD remain intact. */
+.ability-dock{margin-top:12px;border:1px solid #33443F;border-radius:10px;background:linear-gradient(135deg,#141E1E,#0A1113);padding:11px 13px}
+.ability-caption{font:800 10px var(--mono);letter-spacing:1.1px;color:var(--accent);display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px}
+.ability-caption span{font-size:9px;color:var(--muted);font-weight:500;letter-spacing:0}
+.ability-palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ability-button{min-width:0;display:flex;flex-direction:column;text-align:left;gap:5px;padding:10px;border:1px solid #34453D;border-radius:7px;background:#101B1A;color:#EAF2E9;transition:border-color .15s,background .15s}
+.ability-button strong{color:var(--accent);font:800 11px var(--mono);letter-spacing:.3px}
+.ability-button span{font:10px var(--mono);color:#AEC3B7}
+.ability-button .ability-hint{font:10px/1.3 var(--sans);color:#819E98}
+.ability-button:not(:disabled):hover{border-color:var(--accent);background:#1B2B1F}
+.ability-button:disabled{opacity:.6}
+.end-modal #endlessBtn{display:block;width:100%;margin-top:10px;padding:12px;border-color:#A2CE71}
+.end-modal #endlessBtn[hidden]{display:none}
+@media(max-width:600px){.ability-caption{flex-direction:column;align-items:flex-start}.ability-palette{grid-template-columns:1fr}.ability-button{min-height:52px}}

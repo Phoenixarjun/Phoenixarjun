@@ -21,10 +21,10 @@
       </div>
       <div class="top-actions"><span class="system-signal"><i></i> NETWORK SIMULATION ONLINE</span><button class="icon-button" id="soundBtn" type="button" aria-label="Toggle sound">◖)) SOUND ON</button><button class="icon-button" id="helpBtn" type="button">? HOW TO PLAY</button></div>
     </header>
-    <div class="intro"><p>Fortify the network. Defend the core. <span>Strategic traffic filtering against escalating hostile waves.</span></p></div>
+    <div class="intro"><p>Fortify the network. Defend the core. <span>Six modular weapons. Three command protocols. Thirty escalating assaults.</span></p></div>
     <section class="stat-row" aria-label="Game statistics">
       <div class="stat"><span class="stat-icon lime">◈</span><div><small>CORE INTEGRITY</small><strong id="coreValue">20 <span>/ 20</span></strong></div></div>
-      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>WAVE / 08</small><strong id="waveValue">01 <span>/ 08</span></strong></div></div>
+      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>CAMPAIGN WAVE</small><strong id="waveValue">01 <span>/ 30</span></strong></div></div>
       <div class="stat"><span class="stat-icon amber">⬡</span><div><small>BANDWIDTH</small><strong id="creditsValue">290 <span>CR</span></strong></div></div>
       <div class="stat"><span class="stat-icon violet">⌁</span><div><small>THREATS NEUTRALIZED</small><strong id="killsValue">000</strong></div></div>
       <div class="stat"><span class="stat-icon lime">↗</span><div><small>OPERATION SCORE</small><strong id="scoreValue">0</strong></div></div>
@@ -34,12 +34,16 @@
         <div class="panel-heading"><span class="small-bars">▮▮</span><div><small>BUILD & DEPLOY</small><h2 id="arsenalTitle">DEFENSE ARSENAL</h2></div></div>
         <p class="section-note">Select a module, then tap an available node on the network map.</p>
         <div id="towerPalette" class="tower-palette" aria-label="Available defense modules"></div>
-        <div class="rail-footnote"><span class="soft-dot"></span><span><b>HOTKEYS</b> 1–4 select modules<br/>Click glowing nodes to place</span></div>
+        <div class="rail-footnote"><span class="soft-dot"></span><span><b>HOTKEYS</b> 1–6 select modules<br/>Click glowing nodes to place</span></div>
       </section>
       <section class="arena-rail" aria-label="Firewall Defense live game board">
         <div class="arena-top"><div class="arena-title"><span class="green-dot"></span> LIVE NETWORK TOPOLOGY <span class="secondary-label">// DUAL INGRESS</span></div><div class="arena-tag">SECURE CORE <span id="onlineStatus">ONLINE</span></div></div>
         <div class="arena-window" id="arenaWindow"><canvas id="gameCanvas" width="960" height="624" aria-label="Network map with two ingress paths, placement nodes, defenses and moving hostile packets" tabindex="0"></canvas><div class="arena-toast" id="toast" role="status" aria-live="polite"></div></div>
         <div class="arena-bottom"><div class="path-legend"><span><i class="legend-swatch laneA"></i> UPLINK A</span><span><i class="legend-swatch laneB"></i> UPLINK B</span><span><i class="legend-swatch node"></i> BUILD NODE</span></div><span class="board-help">TAP NODE TO DEPLOY • SELECT DEFENSE TO UPGRADE</span></div>
+        <section class="ability-dock" aria-label="Tactical superpowers">
+          <div class="ability-caption">/// COMMAND PROTOCOLS <span>Spend credits strategically; cooldowns run only during waves</span></div>
+          <div id="abilityPalette" class="ability-palette"></div>
+        </section>
         <div class="control-dock">
           <div class="wave-block"><small>NEXT THREAT PROFILE</small><strong id="waveName">01 // PORT SCAN</strong><span id="waveHint">Probes on both network paths</span></div>
           <div class="wave-buttons"><button type="button" id="speedBtn" class="btn-quiet" aria-label="Toggle simulation speed">1× SPEED</button><button type="button" id="pauseBtn" class="btn-quiet" aria-label="Pause game">Ⅱ PAUSE</button><button type="button" id="startWaveBtn" class="btn-primary">▶ DEPLOY WAVE 01</button></div>
@@ -55,7 +59,7 @@
     </main>
     <footer class="footer"><span>◈ TITANIUM HACKER ARCADE <i>//</i> A NETWORK-DEFENSE EXPERIMENT</span><span>NO ACCOUNTS • NO SERVER • RUNS IN YOUR BROWSER</span></footer>
   </div>
-  <dialog id="helpDialog" class="overlay"><div class="modal"><div class="modal-top"><span>◈ OPERATOR BRIEFING</span><button id="closeHelp" type="button" class="close-button" aria-label="Close instructions">×</button></div><h2>DEFEND THE CORE.</h2><p>Hostile packets arrive along <b>two separate network paths</b>. Place defense modules on glowing build nodes to intercept traffic before it reaches the core.</p><ol><li>Choose <b>Firewall</b>, <b>Rate Limiter</b>, <b>Pulse Node</b>, or <b>IDS Scanner</b>.</li><li>Click an available node to deploy. Modules automatically target incoming traffic.</li><li>Launch a wave. Earn bandwidth credits from destroyed packets; upgrade and reposition defenses between waves.</li><li>Survive eight escalating waves, including stealth and shielded traffic and a final Titan. On a phone, swipe the map horizontally to reach distant nodes.</li></ol><div class="control-help"><span><kbd>1–4</kbd> Select</span><span><kbd>SPACE</kbd> Start wave</span><span><kbd>P</kbd> Pause</span><span><kbd>ARROWS + ENTER</kbd> Place</span><span><kbd>ESC</kbd> Close</span></div><button id="helpPlay" type="button" class="btn-primary">READY TO DEFEND ↗</button></div></dialog>
-  <dialog id="endDialog" class="overlay"><div class="modal end-modal"><div id="endSymbol" class="end-symbol">◈</div><span class="modal-kicker">SESSION COMPLETE</span><h2 id="endTitle">CORE SECURED</h2><p id="endCopy">The network survived the incoming attack.</p><div class="end-stats"><div><small>FINAL SCORE</small><strong id="endScore">0</strong></div><div><small>NEUTRALIZED</small><strong id="endKills">0</strong></div></div><button id="replayBtn" class="btn-primary" type="button">↻ REBOOT SIMULATION</button></div></dialog>
+  <dialog id="helpDialog" class="overlay"><div class="modal"><div class="modal-top"><span>◈ OPERATOR BRIEFING</span><button id="closeHelp" type="button" class="close-button" aria-label="Close instructions">×</button></div><h2>DEFEND THE CORE.</h2><p>Hostile packets arrive along <b>two separate network paths</b>. Place defense modules on glowing build nodes to intercept traffic before it reaches the core.</p><ol><li>Choose <b>Firewall</b>, <b>Rate Limiter</b>, <b>Pulse Node</b>, or <b>IDS Scanner</b>.</li><li>Click an available node to deploy. Modules automatically target incoming traffic.</li><li>Launch a wave. Earn bandwidth credits from destroyed packets; upgrade and reposition defenses between waves.</li><li>Survive 30 authored waves across six threat acts, featuring splitter packets, jammers, regenerators, and six major boss assaults. Build Scatter Cannons for triple-shot volleys or Rail Lances for piercing blasts. Three command protocols—EMP, Overclock, and Core Shield—consume credits and have cooldowns. On a phone, swipe the map horizontally to reach distant nodes.</li></ol><div class="control-help"><span><kbd>1–6</kbd> Weapons</span><span><kbd>E/O/Q</kbd> Powers</span><span><kbd>SPACE</kbd> Start wave</span><span><kbd>P</kbd> Pause</span><span><kbd>ARROWS + ENTER</kbd> Place</span><span><kbd>ESC</kbd> Close</span></div><button id="helpPlay" type="button" class="btn-primary">READY TO DEFEND ↗</button></div></dialog>
+  <dialog id="endDialog" class="overlay"><div class="modal end-modal"><div id="endSymbol" class="end-symbol">◈</div><span class="modal-kicker">SESSION COMPLETE</span><h2 id="endTitle">CORE SECURED</h2><p id="endCopy">The network survived the incoming attack.</p><div class="end-stats"><div><small>FINAL SCORE</small><strong id="endScore">0</strong></div><div><small>NEUTRALIZED</small><strong id="endKills">0</strong></div></div><button id="replayBtn" class="btn-primary" type="button">↻ REBOOT SIMULATION</button><button id="endlessBtn" class="btn-outline" type="button" hidden>∞ CONTINUE ENDLESS MODE</button></div></dialog>
 </body>
 </html>

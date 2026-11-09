@@ -47,10 +47,10 @@
       name: "Firewall Defense",
       slug: "firewall-defense",
       category: "Tower Defense // Network Strategy",
-      description: "Deploy defenses, manage resources, and protect the network core from attack waves.",
+      description: "Defend the network across 30 waves with six weapons, tactical powers, and boss encounters.",
       url: "./firewall-defense/",
       preview: "./assets/previews/firewall-defense.gif",
-      controls: "Click/Touch to select and deploy defense modules. Space to speed up waves."
+      controls: "1–6 Select module • E/O/Q Tactical powers • Space Launch wave • Click/Tap to place and upgrade"
     },
     {
       id: "stack-overflow",
