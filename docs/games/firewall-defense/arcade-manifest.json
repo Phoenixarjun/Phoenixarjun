@@ -2,14 +2,26 @@
   "id": "firewall-defense",
   "order": 4,
   "name": "Firewall Defense",
-  "subtitle": "Defend the core against hostile packets",
+  "subtitle": "30-wave tactical defense / 6 weapons / boss encounters",
   "category": "Tactical network defense / strategy",
   "theme": "Titanium Hacker",
   "entry": "./index.html",
   "offline_entry": "./standalone.html",
   "thumbnail": "./assets/arcade-cover.png",
   "preview": "./assets/firewall-defense-gameplay.gif",
-  "control_modes": ["mouse", "touch", "keyboard"],
+  "control_modes": [
+    "mouse",
+    "touch",
+    "keyboard"
+  ],
   "status": "standalone-ready",
-  "no_external_services": true
+  "no_external_services": true,
+  "version": "2.0.0",
+  "features": [
+    "30 authored waves",
+    "6 weapons",
+    "3 command protocols",
+    "6 boss fights",
+    "endless mode"
+  ]
 }

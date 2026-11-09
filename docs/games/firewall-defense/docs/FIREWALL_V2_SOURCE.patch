@@ -1,0 +1,708 @@
+--- a/src/engine.mjs
++++ b/src/engine.mjs
+@@ -10,7 +10,9 @@
+   firewall:{name:'Firewall',code:'FW',cost:95,range:165,damage:30,cooldown:0.73,projectile:480,color:'#B6FF3B',desc:'Precision packet interceptor',upgrade:'+30% damage, +7% range'},
+   cache:{name:'Rate Limiter',code:'RL',cost:110,range:160,damage:12,cooldown:0.82,projectile:380,color:'#66D9E8',desc:'Slow hostile traffic by 44%',upgrade:'Longer slowdown, faster fire'},
+   pulse:{name:'Pulse Node',code:'AOE',cost:145,range:105,damage:17,cooldown:1.28,projectile:0,color:'#FFD166',desc:'Radial area-of-effect burst',upgrade:'Wider pulse and stronger damage'},
+-  ids:{name:'IDS Scanner',code:'IDS',cost:160,range:195,damage:22,cooldown:1.12,projectile:0,color:'#C99BFF',desc:'Reveals stealth, chains to 3 targets',upgrade:'+1 chain target each level'}
++  ids:{name:'IDS Scanner',code:'IDS',cost:160,range:195,damage:22,cooldown:1.12,projectile:0,color:'#C99BFF',desc:'Reveals stealth, chains to 3 targets',upgrade:'+1 chain target each level'},
++  scatter:{name:'Scatter Cannon',code:'SC',cost:180,range:158,damage:16,cooldown:1.14,projectile:430,color:'#FFAA78',desc:'Triple-shot bursts against close-range traffic',upgrade:'More damage and faster volleys'},
++  rail:{name:'Rail Lance',code:'RLX',cost:265,range:275,damage:95,cooldown:2.48,projectile:0,color:'#E2FD83',desc:'Piercing beam damages multiple aligned targets',upgrade:'Higher beam energy and penetration'}
+ });
+ export const ENEMY_TYPES = Object.freeze({
+   probe:{name:'Probe',hp:70,speed:67,reward:12,leak:1,color:'#C6E3DA',radius:11},
+@@ -18,18 +20,58 @@
+   armored:{name:'Armored',hp:165,speed:48,reward:20,leak:2,color:'#EFAD63',radius:14,armor:5},
+   stealth:{name:'Stealth',hp:72,speed:84,reward:19,leak:2,color:'#BF90EA',radius:10,stealth:true},
+   shield:{name:'Shielded',hp:125,shield:70,speed:60,reward:23,leak:2,color:'#79B6FF',radius:13},
+-  titan:{name:'Titan',hp:560,shield:190,speed:35,reward:100,leak:6,color:'#F77E7E',radius:23,armor:6}
++  titan:{name:'Titan',hp:560,shield:190,speed:35,reward:110,leak:6,color:'#F77E7E',radius:23,armor:6,boss:true},
++  swarm:{name:'Swarm',hp:38,speed:142,reward:9,leak:1,color:'#9DDFF4',radius:8},
++  splitter:{name:'Splitter',hp:150,speed:61,reward:27,leak:2,color:'#D1E77D',radius:12,armor:2,split:true},
++  jammer:{name:'Jammer',hp:185,speed:54,reward:34,leak:3,color:'#FFAD85',radius:14,armor:3,jammer:true},
++  regen:{name:'Regenerator',hp:205,speed:49,reward:35,leak:3,color:'#9BE8BA',radius:15,armor:3,regen:true},
++  sentinel:{name:'Sentinel',hp:900,shield:360,speed:30,reward:195,leak:8,color:'#FF9D8B',radius:25,armor:8,boss:true,jammer:true},
++  overseer:{name:'Overseer',hp:1450,shield:620,speed:26,reward:300,leak:12,color:'#F96A9A',radius:28,armor:10,boss:true,jammer:true,regen:true}
+ });
+-export const WAVES = [
+-  {name:'Port Scan',hint:'Probes on both network paths',count:10,pool:['probe']},
+-  {name:'Burst Traffic',hint:'Fast packets—prioritize rate limiting',count:15,pool:['probe','sprint','sprint']},
+-  {name:'Heavy Payloads',hint:'Armored threats resist low damage',count:16,pool:['probe','armored','sprint']},
+-  {name:'Silent Intrusion',hint:'IDS detects stealth at full range',count:20,pool:['stealth','probe','sprint']},
+-  {name:'Shield Storm',hint:'Shields absorb hits before hull',count:22,pool:['shield','probe','armored']},
+-  {name:'Coordinated Swarm',hint:'Mixed traffic attacks both paths',count:27,pool:['sprint','probe','stealth','shield']},
+-  {name:'Zero-Day Flood',hint:'High density and hard targets',count:31,pool:['armored','stealth','shield','sprint']},
+-  {name:'Core Breach',hint:'A Titan arrives in the final assault',count:32,pool:['armored','sprint','shield','stealth','probe']}
+-];
++// Six acts of five authored missions. The counts exclude any boss appended at the end.
++const W=(name,hint,count,pool,boss=null)=>Object.freeze({name,hint,count,pool,boss});
++export const WAVES = Object.freeze([
++  W('Port Scan','Establish your first defenses on both paths',10,['probe']),
++  W('Burst Traffic','Fast probes test your early reaction time',14,['probe','sprint','sprint']),
++  W('Heavy Payloads','Armored traffic needs focused fire',16,['probe','armored','sprint']),
++  W('Silent Intrusion','IDS scanners reveal stealth threats',18,['stealth','probe','sprint']),
++  W('Gateway Titan','BOSS // The first heavy breach attempt',18,['armored','shield','probe'],'titan'),
++  W('Shield Storm','Layered shields demand sustained damage',21,['shield','probe','armored']),
++  W('Packet Fragmentation','Splitters create additional attackers on defeat',22,['splitter','probe','sprint']),
++  W('Saturation Attack','Swarm packets threaten both gateways',26,['swarm','sprint','probe','probe']),
++  W('Blackout Probe','Jammers disrupt nearby defenses',26,['jammer','stealth','shield']),
++  W('Sentinel Protocol','BOSS // A jammer-protected sentinel approaches',28,['jammer','shield','sprint'],'sentinel'),
++  W('Supply Chain Breach','Stealth and armored units cooperate',29,['stealth','armored','splitter']),
++  W('Regenerative Payload','Repair-capable enemies need concentrated damage',29,['regen','shield','sprint']),
++  W('Twin Lane Siege','Heavy pressure on both ingress routes',32,['armored','splitter','swarm','shield']),
++  W('Ghost Traffic','Stealth bursts mix with disrupting jammers',34,['stealth','jammer','sprint']),
++  W('Titan Recompiled','BOSS // The Titan returns reinforced',34,['regen','armored','shield'],'titan'),
++  W('Cache Poisoning','Fast traffic blends with regenerative threats',36,['swarm','regen','sprint','shield']),
++  W('Zero Trust Collapse','Jammers and stealth nodes pressure the core',38,['jammer','stealth','splitter','shield']),
++  W('Flood of Forks','Splitters create secondary swarms',40,['splitter','splitter','swarm','armored']),
++  W('Deep Packet Assault','Elites lead shielded and armored packets',41,['shield','armored','regen','jammer']),
++  W('Sentinel Reboot','BOSS // A second sentinel drives the breach',40,['jammer','regen','shield'],'sentinel'),
++  W('Kernel Panic','Full-spectrum threats attack at once',43,['armored','stealth','jammer','sprint']),
++  W('Replication Storm','Replicating traffic congests both lanes',45,['splitter','swarm','regen','shield']),
++  W('Critical Vulnerability','High-speed waves require careful timing',46,['sprint','swarm','jammer','stealth']),
++  W('No Safe Route','All defenses are tested simultaneously',48,['armored','shield','regen','splitter','jammer']),
++  W('Titan Uprising','BOSS // Heavy armor at maximum pressure',45,['armored','regen','shield','jammer'],'titan'),
++  W('Final Handshake','High-density encrypted attack traffic',49,['shield','stealth','swarm','splitter']),
++  W('Quarantine Failure','Jam-resistant timing is essential',50,['jammer','regen','shield','armored']),
++  W('System Meltdown','Rapid splitters push both pathways',52,['splitter','swarm','sprint','stealth']),
++  W('Absolute Zero-Day','Every enemy capability enters the network',54,['jammer','shield','armored','regen','stealth','splitter']),
++  W('The Final Overseer','FINAL BOSS // Protect the core against the Overseer',55,['jammer','regen','shield','armored','splitter','stealth'],'overseer')
++]);
++export const MAX_LEVEL=5;
++export const ABILITIES=Object.freeze({
++  emp:{name:'EMP FREEZE',cost:120,cooldown:52,duration:2.7,description:'Freeze every active hostile packet for 2.7s'},
++  overclock:{name:'OVERCLOCK',cost:155,cooldown:62,duration:7,description:'Increase all tower firing rates for 7s'},
++  shield:{name:'CORE SHIELD',cost:135,cooldown:58,charges:7,description:'Absorb 7 points of incoming core damage'}
++});
++// Saturating curves avoid zero/negative spawn delays and unbounded threat speed.
++export const spawnInterval=(index,noise=0)=>Math.max(.19,.76*Math.exp(-.042*Math.max(0,index)))+Math.max(0,noise)*.11;
++export const enemyHealthScale=index=>1+.10*Math.max(0,index)+.0032*Math.max(0,index)**2;
++export const enemySpeedScale=index=>1+Math.min(.42,.016*Math.max(0,index));
+ export function distance(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
+ export function routeLength(route){let total=0;for(let i=1;i<route.length;i++)total+=distance(route[i-1],route[i]);return total;}
+ export const ROUTE_LENGTHS=ROUTES.map(routeLength);
+@@ -55,7 +97,7 @@
+ export class FirewallGame {
+   constructor(seed=0xB6FF3B){this.seed=seed;this.reset();}
+   reset(){
+-    this.random=makeRng(this.seed);this.phase='ready';this.waveIndex=0;this.credits=290;this.integrity=20;this.score=0;this.kills=0;this.towers=[];this.enemies=[];this.projectiles=[];this.effects=[];this.time=0;this.enemyId=0;this.towerId=0;this.shotId=0;this.spawned=0;this.toSpawn=0;this.spawnTimer=0;this.selectedPad=null;this.selectedType='firewall';this.speed=1;this.audio=true;this.message='Build defenses on glowing nodes, then launch Wave 01.';this.events=[];this.combo=0;this.pendingWaveReward=0;
++    this.random=makeRng(this.seed);this.phase='ready';this.waveIndex=0;this.credits=290;this.integrity=20;this.score=0;this.kills=0;this.towers=[];this.enemies=[];this.projectiles=[];this.effects=[];this.time=0;this.enemyId=0;this.towerId=0;this.shotId=0;this.spawned=0;this.toSpawn=0;this.spawnTimer=0;this.selectedPad=null;this.selectedType='firewall';this.speed=1;this.audio=true;this.message='Build defenses on glowing nodes, then launch Wave 01.';this.events=[];this.combo=0;this.pendingWaveReward=0;this.abilityLast={emp:-Infinity,overclock:-Infinity,shield:-Infinity};this.overclockUntil=0;this.coreShield=0;this.endless=false;this.bossKills=0;
+   }
+   emit(type,data={}){this.events.push({type,...data});if(this.events.length>160)this.events.splice(0,this.events.length-160);}
+   consumeEvents(){return this.events.splice(0);}
+@@ -72,31 +114,43 @@
+   }
+   upgradeTower(padId){
+     const tower=this.getTowerAt(padId);if(!tower)return {ok:false,reason:'Select a defense'};
+-    if(tower.level>=3)return {ok:false,reason:'Maximum level reached'};
+-    const cost=Math.round(TOWER_TYPES[tower.type].cost*(.7+.3*(tower.level-1)));
++    if(tower.level>=MAX_LEVEL)return {ok:false,reason:'Maximum level reached'};
++    const cost=this.upgradeCost(tower);
+     if(this.credits<cost)return {ok:false,reason:'Not enough bandwidth credits'};
+     this.credits-=cost;tower.level++;tower.spent+=cost;tower.cooldown=Math.min(tower.cooldown,.25);
+     this.emit('upgrade',{x:tower.x,y:tower.y,level:tower.level});return {ok:true,cost};
+   }
++  upgradeCost(tower){return Math.round(TOWER_TYPES[tower.type].cost*(.7+.43*Math.pow(tower.level-1,1.25)));}
++  currentWave(){if(this.waveIndex<WAVES.length)return WAVES[this.waveIndex];const i=this.waveIndex-WAVES.length;const pool=['probe','sprint','armored','shield','stealth','splitter','jammer','regen','swarm'];return W(`Endless ${i+1}`, 'SURVIVAL // High-pressure randomized threat mixture', Math.min(85,55+Math.floor(i*1.35)),[pool[i%pool.length],pool[(i+2)%pool.length],pool[(i+5)%pool.length],pool[(i+7)%pool.length]],(i+1)%5===0?(i%2?'sentinel':'overseer'):null);}
++  abilityState(type){const spec=ABILITIES[type];if(!spec)return null;return {cooldown:Math.max(0,spec.cooldown-(this.time-this.abilityLast[type])),cost:spec.cost,ready:this.phase==='wave'&&this.credits>=spec.cost&&this.time-this.abilityLast[type]>=spec.cooldown};}
++  activateAbility(type){const spec=ABILITIES[type];if(!spec)return {ok:false,reason:'Unknown protocol'};if(this.phase!=='wave')return {ok:false,reason:'Activate during an attack wave'};const state=this.abilityState(type);if(state.cooldown>0)return {ok:false,reason:`Cooldown ${Math.ceil(state.cooldown)}s`};if(this.credits<spec.cost)return {ok:false,reason:'Insufficient bandwidth credits'};
++    if(type==='shield'&&this.coreShield>=14)return {ok:false,reason:'Core shield capacity full'};
++    if(type==='emp'&&!this.enemies.length)return {ok:false,reason:'No hostile packets to freeze'};
++    this.credits-=spec.cost;this.abilityLast[type]=this.time;
++    if(type==='emp'){for(const enemy of this.enemies)enemy.frozenUntil=Math.max(enemy.frozenUntil||0,this.time+spec.duration);this.emit('emp',{x:WORLD.width/2,y:WORLD.height/2,color:'#66D9E8'});}
++    else if(type==='overclock'){this.overclockUntil=Math.max(this.overclockUntil,this.time+spec.duration);this.emit('overclock',{x:WORLD.width/2,y:WORLD.height/2,color:'#B6FF3B'});}
++    else{this.coreShield=Math.min(14,this.coreShield+spec.charges);this.emit('coreShield',{x:913,y:312,color:'#B6FF3B'});}
++    this.emit('ability',{ability:type,cost:spec.cost});return {ok:true,cost:spec.cost};
++  }
++  startEndless(){if(this.phase!=='won'||this.waveIndex<WAVES.length)return false;this.endless=true;this.phase='ready';this.message='ENDLESS PROTOCOL // SURVIVE AS LONG AS POSSIBLE';this.emit('endlessStart');return true;}
+   sellTower(padId){const tower=this.getTowerAt(padId);if(!tower)return {ok:false,reason:'No defense selected'};
+     const refund=Math.round(tower.spent*.65);this.credits+=refund;this.towers=this.towers.filter(t=>t!==tower);this.emit('sell',{x:tower.x,y:tower.y});return {ok:true,refund};}
+   startWave(){
+-    if(this.phase!=='ready'||this.waveIndex>=WAVES.length)return false;
+-    this.phase='wave';this.spawned=0;this.toSpawn=WAVES[this.waveIndex].count+(this.waveIndex===7?1:0);this.spawnTimer=0;this.combo=0;
+-    this.message=`WAVE ${String(this.waveIndex+1).padStart(2,'0')} // ${WAVES[this.waveIndex].name.toUpperCase()}`;
++    if(this.phase!=='ready'||(this.waveIndex>=WAVES.length&&!this.endless))return false;
++    this.phase='wave';this.spawned=0;this.toSpawn=this.currentWave().count+(this.currentWave().boss?1:0);this.spawnTimer=0;this.combo=0;
++    this.message=`WAVE ${String(this.waveIndex+1).padStart(2,'0')} // ${this.currentWave().name.toUpperCase()}`;
+     this.emit('waveStart',{wave:this.waveIndex+1});return true;
+   }
+   spawnEnemy(type,routeIndex=this.random()<.5?0:1){
+     const spec=ENEMY_TYPES[type];if(!spec)throw new Error(`Unknown enemy ${type}`);
+-    const boost=1+Math.max(0,this.waveIndex)*.13;
++    const boost=enemyHealthScale(this.waveIndex);
+     const enemy={id:++this.enemyId,type,routeIndex,distance:0,x:ROUTES[routeIndex][0].x,y:ROUTES[routeIndex][0].y,
+       hp:Math.round(spec.hp*boost),maxHp:Math.round(spec.hp*boost),shield:Math.round((spec.shield||0)*boost),maxShield:Math.round((spec.shield||0)*boost),
+-      speed:spec.speed*(1+this.waveIndex*.025),radius:spec.radius,slowUntil:0,slowFactor:1,alive:true,alpha:1,hitFlash:0};
++      speed:spec.speed*enemySpeedScale(this.waveIndex),radius:spec.radius,slowUntil:0,slowFactor:1,frozenUntil:0,jamTimer:2.8,regenTimer:2.3,alive:true,alpha:1,hitFlash:0};
+     this.enemies.push(enemy);this.emit('spawn',{x:enemy.x,y:enemy.y,enemyType:type});return enemy;
+   }
+   getWaveEnemy(i){
+-    if(this.waveIndex===7&&i===this.toSpawn-1)return 'titan';
+-    const wave=WAVES[this.waveIndex];return wave.pool[i%wave.pool.length];
++    const wave=this.currentWave();if(wave.boss&&i===this.toSpawn-1)return wave.boss;return wave.pool[i%wave.pool.length];
+   }
+   targetFor(tower){
+     const spec=TOWER_TYPES[tower.type];const radius=spec.range*(1+.08*(tower.level-1));let best=null,bestProgress=-1;
+@@ -113,8 +167,9 @@
+     if(!enemy?.alive)return 0;const spec=ENEMY_TYPES[enemy.type];let dmg=Math.max(1,damage-Math.max(0,(spec.armor||0)-pierce));
+     if(enemy.shield>0){const shieldDmg=Math.min(enemy.shield,dmg);enemy.shield-=shieldDmg;dmg-=shieldDmg;}
+     enemy.hp-=dmg;enemy.hitFlash=.12;
+-    if(enemy.hp<=0){enemy.alive=false;this.score+=spec.reward*10;this.credits+=spec.reward;this.kills++;this.combo++;
++    if(enemy.hp<=0){enemy.alive=false;if(spec.boss)this.bossKills++;this.score+=spec.reward*10;this.credits+=spec.reward;this.kills++;this.combo++;
+       this.emit('kill',{x:enemy.x,y:enemy.y,enemyType:enemy.type,points:spec.reward*10});
++      if(spec.split){for(let j=0;j<2;j++){const child=this.spawnEnemy('swarm',enemy.routeIndex);child.distance=Math.max(0,enemy.distance-18+j*20);Object.assign(child,locationAlong(ROUTES[child.routeIndex],child.distance));}this.emit('split',{x:enemy.x,y:enemy.y,color:spec.color});}
+       if(this.combo%8===0){this.credits+=20;this.emit('bonus',{x:enemy.x,y:enemy.y,value:20});}}
+     else this.emit('hit',{x:enemy.x,y:enemy.y,color:spec.color});
+     return dmg;
+@@ -122,21 +177,38 @@
+   towerFire(tower){
+     const spec=TOWER_TYPES[tower.type];const target=this.targetFor(tower);if(!target)return false;
+     tower.angle=Math.atan2(target.y-tower.y,target.x-tower.x);tower.shots++;
++    const boost=1+.34*(tower.level-1);
+     if(tower.type==='pulse'){
+       const r=spec.range*(.6+.08*(tower.level-1));let hits=0;
+       for(const e of this.enemies)if(e.alive&&distance(tower,e)<r){this.damageEnemy(e,spec.damage*(1+.4*(tower.level-1)),3);hits++;}
+       this.emit('pulse',{x:tower.x,y:tower.y,r,color:spec.color,hits});
+     }else if(tower.type==='ids'){
+-      const visited=new Set();let current=target;
++      const visited=new Set();let current=target,from={x:tower.x,y:tower.y};
+       for(let j=0;j<2+tower.level;j++){
+         if(!current)break;visited.add(current.id);this.damageEnemy(current,spec.damage*(1+.32*(tower.level-1)),4);
+-        this.emit('beam',{x:tower.x,y:tower.y,tx:current.x,ty:current.y,color:spec.color,chain:j});
++        this.emit('beam',{x:from.x,y:from.y,tx:current.x,ty:current.y,color:spec.color,chain:j});
+         const candidates=this.enemies.filter(e=>e.alive&&!visited.has(e.id)&&distance(e,current)<115);
+         candidates.sort((a,b)=>distance(a,current)-distance(b,current));
+-        if(candidates.length){tower={...tower,x:current.x,y:current.y};current=candidates[0];}else current=null;
++        from={x:current.x,y:current.y};current=candidates[0]||null;
+       }
++    }else if(tower.type==='rail'){
++      const range=spec.range*(1+.08*(tower.level-1)),cos=Math.cos(tower.angle),sin=Math.sin(tower.angle);
++      const tx=tower.x+cos*range,ty=tower.y+sin*range;
++      const hits=this.enemies.filter(e=>e.alive&&distance(tower,e)<=range+e.radius&&segmentCircleHit(tower.x,tower.y,tx,ty,e.x,e.y,e.radius+9))
++        .sort((a,b)=>distance(tower,a)-distance(tower,b)).slice(0,3+Math.floor(tower.level/2));
++      hits.forEach((enemy,j)=>this.damageEnemy(enemy,spec.damage*boost*Math.pow(.81,j),8));
++      this.emit('rail',{x:tower.x,y:tower.y,tx,ty,color:spec.color,hits:hits.length});
+     }else{
+-      this.projectiles.push({id:++this.shotId,x:tower.x,y:tower.y,targetId:target.id,vx:Math.cos(tower.angle)*spec.projectile,vy:Math.sin(tower.angle)*spec.projectile,spd:spec.projectile,type:tower.type,damage:spec.damage*(1+.34*(tower.level-1)),age:0,ttl:1.6});
++      const createShot=(enemy,offset=0)=>{
++        const angle=Math.atan2(enemy.y-tower.y,enemy.x-tower.x)+offset;
++        this.projectiles.push({id:++this.shotId,x:tower.x+Math.cos(tower.angle+Math.PI/2)*Math.sign(offset)*10,y:tower.y+Math.sin(tower.angle+Math.PI/2)*Math.sign(offset)*10,targetId:enemy.id,vx:Math.cos(angle)*spec.projectile,vy:Math.sin(angle)*spec.projectile,spd:spec.projectile,type:tower.type,damage:spec.damage*boost,age:0,ttl:1.7});
++      };
++      if(tower.type==='scatter'){
++        const others=this.enemies.filter(e=>e.alive&&e.id!==target.id&&distance(tower,e)<spec.range*(1+.08*(tower.level-1)))
++          .sort((a,b)=>distance(tower,a)-distance(tower,b));
++        const targets=[target,others[0]||target,others[1]||target];
++        targets.forEach((enemy,j)=>createShot(enemy,(j-1)*.085));
++      }else createShot(target);
+       this.emit('shot',{x:tower.x,y:tower.y,towerType:tower.type});
+     }
+     return true;
+@@ -144,23 +216,25 @@
+   update(dt){
+     if(this.phase!=='wave')return;
+     const d=clamp(dt,0,1/20);this.time+=d;
+-    const wave=WAVES[this.waveIndex];
++    const wave=this.currentWave();
+     if(this.spawned<this.toSpawn){this.spawnTimer-=d;
+       if(this.spawnTimer<=0){this.spawnEnemy(this.getWaveEnemy(this.spawned),this.spawned%2);this.spawned++;
+-        this.spawnTimer=.7*(1-this.waveIndex*.055)+(this.random()*.18);}}
++        this.spawnTimer=spawnInterval(this.waveIndex,this.random());}}
+     for(const enemy of this.enemies){if(!enemy.alive)continue;
+       enemy.hitFlash=Math.max(0,enemy.hitFlash-d);
+-      const factor=this.time<enemy.slowUntil?enemy.slowFactor:1;
++      if(ENEMY_TYPES[enemy.type].regen){enemy.regenTimer-=d;if(enemy.regenTimer<=0){enemy.hp=Math.min(enemy.maxHp,enemy.hp+Math.max(4,enemy.maxHp*.027));enemy.regenTimer=2.7;this.emit('regen',{x:enemy.x,y:enemy.y,color:'#9BE8BA'});}}
++      if(ENEMY_TYPES[enemy.type].jammer){enemy.jamTimer-=d;if(enemy.jamTimer<=0){for(const tower of this.towers)if(distance(enemy,tower)<118)tower.jammedUntil=Math.max(tower.jammedUntil||0,this.time+1.35);enemy.jamTimer=3.9;this.emit('jam',{x:enemy.x,y:enemy.y,color:'#FFAD85'});}}
++      const factor=this.time<(enemy.frozenUntil||0)?0:this.time<enemy.slowUntil?enemy.slowFactor:1;
+       enemy.distance+=enemy.speed*factor*d;
+       if(enemy.distance>=ROUTE_LENGTHS[enemy.routeIndex]){
+-        enemy.alive=false;this.integrity-=ENEMY_TYPES[enemy.type].leak;this.combo=0;this.emit('leak',{x:enemy.x,y:enemy.y,damage:ENEMY_TYPES[enemy.type].leak});
++        enemy.alive=false;const leak=ENEMY_TYPES[enemy.type].leak;const absorbed=Math.min(this.coreShield,leak);this.coreShield-=absorbed;this.integrity-=leak-absorbed;this.combo=0;this.emit('leak',{x:enemy.x,y:enemy.y,damage:leak-absorbed,absorbed});
+         if(this.integrity<=0){this.integrity=0;this.phase='lost';this.message='CORE OFFLINE // BREACH DETECTED';this.emit('gameLost');break;}}
+       else Object.assign(enemy,locationAlong(ROUTES[enemy.routeIndex],enemy.distance));
+     }
+     if(this.phase==='lost'){this.enemies=this.enemies.filter(e=>e.alive);return;}
+-    for(const tower of this.towers){tower.cooldown-=d;
++    for(const tower of this.towers){if(this.time<(tower.jammedUntil||0))continue;tower.cooldown-=d;
+       if(tower.cooldown<=0&&this.towerFire(tower)){
+-        const spec=TOWER_TYPES[tower.type];tower.cooldown=spec.cooldown/(1+.10*(tower.level-1));}
++        const spec=TOWER_TYPES[tower.type];tower.cooldown=spec.cooldown/(1+.10*(tower.level-1))/(this.time<this.overclockUntil?1.8:1);}
+       else if(tower.cooldown<-.08)tower.cooldown=-.08;
+     }
+     for(const shot of this.projectiles){
+@@ -180,10 +254,10 @@
+     this.projectiles=this.projectiles.filter(p=>p.ttl>0);
+     this.enemies=this.enemies.filter(e=>e.alive);
+     if(this.phase==='wave'&&this.spawned>=this.toSpawn&&this.enemies.length===0){
+-      const bonus=65+this.waveIndex*22;this.credits+=bonus;this.score+=bonus*3;this.waveIndex++;
++      const bonus=70+this.waveIndex*19;this.credits+=bonus;this.score+=bonus*3;this.waveIndex++;
+       this.emit('waveClear',{bonus,wave:this.waveIndex});
+-      if(this.waveIndex>=WAVES.length){this.phase='won';this.message='NETWORK SECURED // ALL WAVES CLEARED';this.emit('gameWon');}
+-      else {this.phase='ready';this.message=`WAVE CLEARED +${bonus} // PREPARE ${WAVES[this.waveIndex].name.toUpperCase()}`;}
++      if(this.waveIndex>=WAVES.length&&!this.endless){this.phase='won';this.message='NETWORK SECURED // ALL WAVES CLEARED';this.emit('gameWon');}
++      else {this.phase='ready';this.message=`WAVE CLEARED +${bonus} // PREPARE ${this.currentWave().name.toUpperCase()}`;}
+     }
+   }
+   snapshot(){return {phase:this.phase,wave:this.waveIndex+1,credits:this.credits,integrity:this.integrity,score:this.score,kills:this.kills,towers:this.towers.length,enemies:this.enemies.length};}
+--- a/src/main.js
++++ b/src/main.js
+@@ -1,10 +1,10 @@
+-import {FirewallGame,WAVES,WORLD,PADS,TOWER_TYPES,ENEMY_TYPES,distance} from './engine.mjs';
++import {FirewallGame,WAVES,WORLD,PADS,TOWER_TYPES,ENEMY_TYPES,ABILITIES,MAX_LEVEL,distance} from './engine.mjs';
+ import {CanvasRenderer} from './renderer.js';
+ 
+ const $=id=>document.getElementById(id);
+ const game=new FirewallGame();
+ const renderer=new CanvasRenderer($('gameCanvas'));
+-const towerIcons={firewall:'⌁',cache:'◷',pulse:'◉',ids:'⌗'};
++const towerIcons={firewall:'⌁',cache:'◷',pulse:'◉',ids:'⌗',scatter:'✺',rail:'⟿'};
+ const towerNames=Object.keys(TOWER_TYPES);
+ let paused=false,rafId=0,lastFrame=0,acc=0,lastHUD=0,toastTimer=0,lastSound=0,ended=false,keyboardPadIndex=0;
+ let audioCtx=null;
+@@ -31,20 +31,36 @@
+ function money(x){return Number(x).toLocaleString('en-US');}
+ function refreshInspector(){const padId=game.selectedPad,tower=game.getTowerAt(padId),actions=$('inspectorActions'),info=$('selectedInfo');
+   if(!tower){info.className='inspector-empty';info.textContent='Select a placed defense to inspect its output, upgrade its capabilities, or reclaim its bandwidth.';actions.hidden=true;return;}
+-  const s=TOWER_TYPES[tower.type],upgradePrice=Math.round(s.cost*(.7+.3*(tower.level-1))),dps=(s.damage/towerCooldown(tower)).toFixed(1),refund=Math.round(tower.spent*.65);
++  const s=TOWER_TYPES[tower.type],upgradePrice=game.upgradeCost(tower),dps=(s.damage/towerCooldown(tower)).toFixed(1),refund=Math.round(tower.spent*.65);
+   info.className='inspector-content';info.innerHTML=`<strong style="color:${s.color}">${s.name.toUpperCase()} <em>LVL ${tower.level}</em></strong>Node ${String(padId+1).padStart(2,'0')} &nbsp;•&nbsp; ${tower.shots} activations<br/>Effective range: ${Math.round(s.range*(1+.08*(tower.level-1)))}m<br/>Approx. base DPS: ${dps}<br/><span style="font-size:10px;color:#75938d">${s.upgrade}</span>`;
+-  actions.hidden=false;$('upgradeBtn').textContent=tower.level>=3?'MAX LEVEL':`▲ UPGRADE ${upgradePrice}`;$('upgradeBtn').disabled=tower.level>=3||game.credits<upgradePrice;
++  actions.hidden=false;$('upgradeBtn').textContent=tower.level>=MAX_LEVEL?'MAX LEVEL':`▲ UPGRADE ${upgradePrice}`;$('upgradeBtn').disabled=tower.level>=MAX_LEVEL||game.credits<upgradePrice;
+   $('sellBtn').textContent=`SELL +${refund}`;
+ }
+ function towerCooldown(tower){return TOWER_TYPES[tower.type].cooldown/(1+.10*(tower.level-1));}
++function refreshAbilities(){const panel=$('abilityPalette');if(!panel)return;
++  for(const type of Object.keys(ABILITIES)){
++    const spec=ABILITIES[type],state=game.abilityState(type);
++    let btn=panel.querySelector(`[data-ability="${type}"]`);
++    if(!btn){btn=document.createElement('button');btn.type='button';btn.className='ability-button';btn.dataset.ability=type;
++      btn.innerHTML=`<strong></strong><span></span><div class="ability-hint"></div>`;
++      btn.addEventListener('click',()=>useAbility(type));panel.append(btn);}
++    btn.querySelector('strong').textContent=spec.name;
++    btn.querySelector('span').textContent=state.cooldown>0?`⏳ ${Math.ceil(state.cooldown)}s COOLDOWN`:`${spec.cost} CR • READY`;
++    btn.querySelector('.ability-hint').textContent=spec.description;
++    btn.disabled=!state.ready;
++  }
++}
++function useAbility(type){const result=game.activateAbility(type);if(!result.ok){toast(result.reason.toUpperCase(),'error');return;}
++  processEvents();refreshHUD(true);toast(`${ABILITIES[type].name} ACTIVATED`);beep(type==='emp'?260:type==='shield'?770:620,.18,'triangle',.045);
++}
+ function refreshHUD(force=false){
+   $('coreValue').innerHTML=`${game.integrity} <span>/ 20</span>`;
+   $('coreValue').style.color=game.integrity<=7?'#FF7886':'#EEF7EF';
+-  $('waveValue').innerHTML=`${String(Math.min(game.waveIndex+1,8)).padStart(2,'0')} <span>/ 08</span>`;
++  $('waveValue').innerHTML=`${String(game.waveIndex+1).padStart(2,'0')} <span>/ ${game.endless?'∞':WAVES.length}</span>`;
+   $('creditsValue').innerHTML=`${money(game.credits)} <span>CR</span>`;$('killsValue').textContent=String(game.kills).padStart(3,'0');$('scoreValue').textContent=money(game.score);
+-  const wave=WAVES[Math.min(game.waveIndex,WAVES.length-1)];$('waveName').textContent=`${String(Math.min(game.waveIndex+1,8)).padStart(2,'0')} // ${wave.name.toUpperCase()}`;$('waveHint').textContent=wave.hint;
++  const wave=game.phase==='won'&&!game.endless?WAVES[WAVES.length-1]:game.currentWave();$('waveName').textContent=`${String(game.waveIndex+1).padStart(2,'0')} // ${wave.name.toUpperCase()}`;$('waveHint').textContent=wave.hint;
+   $('threatTitle').textContent=wave.name.toUpperCase();$('threatDesc').textContent=wave.hint;
+-  $('threatIcon').textContent=game.waveIndex>=7?'⛨':game.waveIndex>=3?'⛯':'▦';
++  $('threatIcon').textContent=wave.boss?'⛨':game.waveIndex>=10?'⛯':'▦';
+   const remain=game.phase==='wave'?Math.max(0,game.toSpawn-game.spawned)+game.enemies.length:game.phase==='ready'?wave.count:0;
+   $('threatRemaining').textContent=`${remain} HOSTILES ${game.phase==='wave'?'ACTIVE':'INBOUND'}`;
+   $('threatPhase').textContent=game.phase==='wave'?'LIVE ATTACK':game.phase==='ready'?'PREPARE':game.phase.toUpperCase();
+@@ -54,13 +70,16 @@
+   $('startWaveBtn').disabled=game.phase!=='ready';
+   $('startWaveBtn').textContent=game.phase==='ready'?`▶ DEPLOY WAVE ${String(game.waveIndex+1).padStart(2,'0')}`:game.phase==='wave'?'◉ WAVE LIVE':'SESSION CLOSED';
+   $('speedBtn').textContent=game.speed+'× SPEED';$('pauseBtn').textContent=paused?'▶ RESUME':'Ⅱ PAUSE';$('pauseBtn').disabled=game.phase!=='wave';
+-  if(force){drawPalette();refreshInspector();}else if(game.selectedPad!==null)refreshInspector();
++  refreshAbilities();if(force){drawPalette();refreshInspector();}else if(game.selectedPad!==null)refreshInspector();
+ }
+ function processEvents(){const events=game.consumeEvents();if(!events.length)return;renderer.pushEvents(events);
+   for(const e of events){switch(e.type){
+     case 'build':addLog(`${TOWER_TYPES[e.towerType]?.name||'Defense'} module deployed`);beep(570,.11,'triangle');break;
+     case 'upgrade':addLog(`module upgraded to level ${e.level}`);beep(700,.1);break;
+     case 'sell':addLog('defense reclaimed / bandwidth returned');break;
++    case 'ability':addLog(`${ABILITIES[e.ability]?.name||'Protocol'} activated`);break;
++    case 'jam':if(game.time%4<1)addLog('attack modules temporarily jammed');break;
++    case 'split':addLog('splitter fragmented into two swarm packets');break;
+     case 'waveStart':addLog(`wave ${String(e.wave).padStart(2,'0')} launched`);toast('HOSTILE TRAFFIC INBOUND');beep(230,.24,'sawtooth',.045);break;
+     case 'kill':if(game.kills%5===0)addLog(`${game.kills} threats neutralized`);if(performance.now()-lastSound>65){beep(145,.045,'triangle',.017);lastSound=performance.now();}break;
+     case 'leak':addLog(`CORE BREACHED — ${e.damage} integrity lost`);toast('⚠ CORE INTEGRITY LOST','error');beep(155,.18,'sawtooth',.055);break;
+@@ -75,7 +94,7 @@
+   $('endTitle').textContent=reason==='won'?'NETWORK SECURED':'CORE BREACHED';
+   $('endCopy').textContent=reason==='won'?'Every hostile wave was contained. The core is still online.':'Hostile packets overwhelmed the core. Rebuild a stronger perimeter and try again.';
+   $('endScore').textContent=money(game.score);$('endKills').textContent=money(game.kills);
+-  if(!$('endDialog').open)$('endDialog').showModal();
++  $('endlessBtn').hidden=reason!=='won';if(!$('endDialog').open)$('endDialog').showModal();
+   addLog(reason==='won'?'all waves secured':'session terminated');beep(reason==='won'?880:120,.35,'sawtooth',.043);
+ }
+ function reset(){if($('endDialog').open)$('endDialog').close();game.reset();paused=false;ended=false;renderer.effects.length=0;renderer.hoverPad=null;acc=0;drawPalette();refreshHUD(true);addLog('network simulator rebooted');toast('DEFENSE SIMULATION REBOOTED');}
+@@ -109,11 +128,13 @@
+ $('closeHelp').addEventListener('click',()=>{$('helpDialog').close();});
+ $('helpPlay').addEventListener('click',()=>{$('helpDialog').close();});
+ $('replayBtn').addEventListener('click',reset);
++$('endlessBtn').addEventListener('click',()=>{if(game.startEndless()){$('endDialog').close();ended=false;refreshHUD(true);toast('ENDLESS PROTOCOL ENABLED');}});
+ window.addEventListener('keydown',e=>{
+   if($('helpDialog').open||$('endDialog').open||e.target instanceof HTMLInputElement)return;
+   if(e.target===$('gameCanvas'))return;
+-  if(['Space','Digit1','Digit2','Digit3','Digit4'].includes(e.code))e.preventDefault();
+-  const ix=Number(e.key)-1;if(ix>=0&&ix<4&&Number.isInteger(ix)){game.selectType(towerNames[ix]);drawPalette();toast(`${TOWER_TYPES[towerNames[ix]].name.toUpperCase()} SELECTED`);}
++  if(['Space','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6'].includes(e.code))e.preventDefault();
++  const ix=Number(e.key)-1;if(ix>=0&&ix<towerNames.length&&Number.isInteger(ix)){game.selectType(towerNames[ix]);drawPalette();toast(`${TOWER_TYPES[towerNames[ix]].name.toUpperCase()} SELECTED`);}
++  if(e.code==='KeyE')useAbility('emp');if(e.code==='KeyO')useAbility('overclock');if(e.code==='KeyQ')useAbility('shield');
+   if(e.code==='Space'){if(game.phase==='ready'){game.startWave();processEvents();refreshHUD(true);}}
+   if(e.key.toLowerCase()==='p'&&game.phase==='wave'){paused=!paused;refreshHUD();}
+   if(e.code==='Escape'){game.selectedPad=null;refreshInspector();}
+--- a/src/renderer.js
++++ b/src/renderer.js
+@@ -10,8 +10,8 @@
+ export class CanvasRenderer{
+   constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});this.hoverPad=null;this.visualTime=0;this.effects=[];this.particles=[];this.size();}
+   size(){const dpr=Math.min(window.devicePixelRatio||1,2);this.canvas.width=Math.round(WORLD.width*dpr);this.canvas.height=Math.round(WORLD.height*dpr);this.ctx.setTransform(dpr,0,0,dpr,0,0);}
+-  pushEvents(events){for(const e of events){if(['impact','hit','kill','build','upgrade','sell','pulse','beam','slow','leak','bonus','shot'].includes(e.type)){
+-      const max=['beam','pulse'].includes(e.type)? .24 : e.type==='kill'?.75:.32;
++  pushEvents(events){for(const e of events){if(['impact','hit','kill','build','upgrade','sell','pulse','beam','slow','leak','bonus','shot','rail','emp','overclock','coreShield','split','regen','jam'].includes(e.type)){
++      const max=['beam','rail','pulse'].includes(e.type)? .32:['emp','overclock','coreShield'].includes(e.type)?.85:e.type==='kill'?.75:.32;
+       this.effects.push({...e,life:max,max});if(this.effects.length>95)this.effects.splice(0,this.effects.length-95);
+     }} }
+   step(dt){this.visualTime+=Math.min(.05,dt);for(const e of this.effects)e.life-=dt;this.effects=this.effects.filter(e=>e.life>0);}
+@@ -75,6 +75,9 @@
+       g.restore();hex(g,tower.x,tower.y,23,'#48665D','#172426',1,Math.PI/6);
+       // metallic face panel and center icon
+       g.fillStyle='#1E2D2E';g.beginPath();g.arc(tower.x,tower.y,15,0,TAU);g.fill();
++      if(game.time<(tower.jammedUntil||0)){
++        g.save();g.strokeStyle='#FFAD85';g.setLineDash([3,3]);g.lineWidth=2;g.beginPath();g.arc(tower.x,tower.y,34,0,TAU);g.stroke();g.restore();
++      }
+       if(tower.type==='firewall'){
+         g.save();g.translate(tower.x,tower.y);g.rotate(tower.angle);g.strokeStyle=spec.color;g.lineWidth=3;g.beginPath();g.moveTo(-13,0);g.lineTo(10,0);g.moveTo(2,-6);g.lineTo(12,0);g.lineTo(2,6);g.stroke();g.restore();
+       } else if(tower.type==='cache'){
+@@ -82,6 +85,12 @@
+       }else if(tower.type==='pulse'){
+         for(let i=0;i<3;i++){const a=i*TAU/3+t*.3;g.beginPath();g.arc(tower.x+Math.cos(a)*9,tower.y+Math.sin(a)*9,3,0,TAU);g.fillStyle=spec.color;g.fill();}
+         g.fillStyle='#B7D3BA';g.fillRect(tower.x-2,tower.y-2,4,4);
++      }else if(tower.type==='scatter'){
++        g.save();g.translate(tower.x,tower.y);g.rotate(tower.angle);g.strokeStyle=spec.color;g.lineWidth=2.8;
++        for(let j=-1;j<=1;j++){g.beginPath();g.moveTo(-10,j*4);g.lineTo(12,j*5);g.stroke();}g.restore();
++      }else if(tower.type==='rail'){
++        g.save();g.translate(tower.x,tower.y);g.rotate(tower.angle);g.strokeStyle=spec.color;g.lineWidth=2.4;
++        g.strokeRect(-13,-5,26,10);g.beginPath();g.moveTo(4,0);g.lineTo(16,0);g.stroke();g.restore();
+       }else{
+         g.strokeStyle=spec.color;g.lineWidth=2.3;g.beginPath();g.moveTo(tower.x-10,tower.y+7);g.lineTo(tower.x-3,tower.y-6);g.lineTo(tower.x+3,tower.y+4);g.lineTo(tower.x+10,tower.y-10);g.stroke();
+       }
+@@ -89,14 +98,15 @@
+       if(selected){hex(g,tower.x,tower.y,35,spec.color,null,1.2,Math.PI/6);}
+     }}
+   drawEnemies(g,game,t){for(const enemy of game.enemies){const spec=ENEMY_TYPES[enemy.type];const color=enemy.hitFlash>0?'#FFFFFF':spec.color;
++      if(game.time<(enemy.frozenUntil||0)){glow(g,enemy.x,enemy.y,enemy.radius+19,'#66D9E8',.2);g.strokeStyle='#66D9E8';g.lineWidth=2;g.beginPath();g.arc(enemy.x,enemy.y,enemy.radius+11,0,TAU);g.stroke();}
+       if(game.time<enemy.slowUntil){g.beginPath();g.arc(enemy.x,enemy.y,enemy.radius+8,0,TAU);g.strokeStyle=C.aqua;g.lineWidth=1.8;g.setLineDash([4,3]);g.stroke();g.setLineDash([]);}
+       if(enemy.shield>0){g.save();g.shadowColor='#6CADFF';g.shadowBlur=8;g.beginPath();g.arc(enemy.x,enemy.y,enemy.radius+7,0,TAU);g.strokeStyle='#77B8FF';g.lineWidth=2.2;g.stroke();g.restore();}
+       g.save();g.shadowColor=color;g.shadowBlur=13;hex(g,enemy.x,enemy.y,enemy.radius,color,'#1A2023',2,enemy.type==='sprint'?t*2:0);g.restore();
+-      if(enemy.type==='titan'){hex(g,enemy.x,enemy.y,enemy.radius*.62,color,'#381A24',1.5);txt(g,'!',enemy.x,enemy.y,16,color,'center',900);}
++      if(ENEMY_TYPES[enemy.type].boss){hex(g,enemy.x,enemy.y,enemy.radius*.62,color,'#381A24',1.5);txt(g,'!',enemy.x,enemy.y,16,color,'center',900);}
+       else if(enemy.type==='stealth'){g.save();g.globalAlpha=.66+.18*Math.sin(t*9);txt(g,'?',enemy.x,enemy.y,14,color,'center',900);g.restore();}
+       else if(enemy.type==='sprint'){g.fillStyle=color;g.beginPath();g.arc(enemy.x,enemy.y,3,0,TAU);g.fill();}
+       else{g.strokeStyle=color;g.lineWidth=1.5;g.beginPath();g.moveTo(enemy.x-4,enemy.y);g.lineTo(enemy.x+4,enemy.y);g.moveTo(enemy.x,enemy.y-4);g.lineTo(enemy.x,enemy.y+4);g.stroke();}
+-      const bw=enemy.type==='titan'?55:enemy.radius*2.7,bh=3,bx=enemy.x-bw/2,by=enemy.y-enemy.radius-11;
++      const bw=ENEMY_TYPES[enemy.type].boss?65:enemy.radius*2.7,bh=3,bx=enemy.x-bw/2,by=enemy.y-enemy.radius-11;
+       g.fillStyle='#3D2229';g.fillRect(bx,by,bw,bh);g.fillStyle=enemy.hp/enemy.maxHp>.45?'#A6F46B':'#F8A16B';g.fillRect(bx,by,bw*Math.max(0,enemy.hp/enemy.maxHp),bh);
+     }}
+   drawProjectiles(g,game,t){for(const p of game.projectiles){const color=TOWER_TYPES[p.type].color;
+@@ -104,14 +114,22 @@
+     }}
+   drawEffects(g,t){for(const e of this.effects){const a=e.life/e.max;
+       g.save();g.globalAlpha=a;
+-      if(e.type==='beam'){
++      if(e.type==='rail'){
++        g.shadowColor=e.color;g.shadowBlur=18;g.strokeStyle=e.color;g.lineWidth=3.5*a+1.5;
++        g.beginPath();g.moveTo(e.x,e.y);g.lineTo(e.tx,e.ty);g.stroke();
++        g.strokeStyle='#F9FFEC';g.lineWidth=.75;g.stroke();
++      }else if(e.type==='emp'||e.type==='overclock'||e.type==='coreShield'){
++        const radius=e.type==='coreShield'?100:e.type==='emp'?530:350;
++        g.strokeStyle=e.color;g.shadowColor=e.color;g.shadowBlur=24;g.lineWidth=4*a;
++        g.beginPath();g.arc(e.x,e.y,radius*(1-a*.8),0,TAU);g.stroke();
++      }else if(e.type==='beam'){
+         g.shadowColor=e.color;g.shadowBlur=12;g.strokeStyle=e.color;g.lineWidth=2+2*a;
+         g.beginPath();g.moveTo(e.x,e.y);g.lineTo((e.x+e.tx)/2+4*Math.sin(t*35), (e.y+e.ty)/2);g.lineTo(e.tx,e.ty);g.stroke();
+       }else if(e.type==='pulse'){
+         g.strokeStyle=e.color;g.shadowColor=e.color;g.shadowBlur=16;g.lineWidth=2.5;g.beginPath();g.arc(e.x,e.y,e.r*(1-a*.7),0,TAU);g.stroke();
+-      }else if(e.type==='hit'||e.type==='impact'||e.type==='kill'||e.type==='build'||e.type==='upgrade'||e.type==='slow'||e.type==='bonus'){
++      }else if(e.type==='hit'||e.type==='impact'||e.type==='kill'||e.type==='build'||e.type==='upgrade'||e.type==='slow'||e.type==='bonus'||e.type==='regen'||e.type==='split'||e.type==='jam'){
+         const radius=(1-a)*24+(e.type==='kill'?15:5);g.strokeStyle=e.color||C.accent;g.lineWidth=2*a;g.beginPath();g.arc(e.x,e.y,radius,0,TAU);g.stroke();
+-        if(e.type==='kill'||e.type==='bonus'){txt(g,e.type==='bonus'?'+20 CR':'NEUTRALIZED',e.x,e.y-15-(1-a)*24,9,C.accent,'center',750);}
++        if(e.type==='kill'||e.type==='bonus'||e.type==='regen'||e.type==='split'||e.type==='jam'){txt(g,e.type==='bonus'?'+20 CR':'NEUTRALIZED',e.x,e.y-15-(1-a)*24,9,C.accent,'center',750);}
+       }else if(e.type==='leak'){
+         glow(g,e.x,e.y,(1-a)*90+10,C.red,.22*a);
+       }
+@@ -123,6 +141,15 @@
+     txt(g,'●',31,32,12,C.accent,'left',700);txt(g,'IDS MATRIX // ACTIVE',49,32,10,'#8DB5A2','left',750);
+     rr(g,743,17,197,30,5,'#0B1516','#283B35',1);
+     txt(g,'UPLINKS: 02  •  CORE: 01',840,32,9,'#A6C2B7','center',750);
++    if(game.coreShield>0){
++      const cx=913,cy=312;g.save();g.strokeStyle='#B6FF3B';g.shadowColor='#B6FF3B';g.shadowBlur=17;g.lineWidth=2.4;
++      g.beginPath();g.arc(cx,cy,43+2*Math.sin(t*3),0,TAU);g.stroke();g.restore();
++      txt(g,`SHIELD ${game.coreShield}`,cx,cy+57,10,C.accent,'center',800);
++    }
++    if(game.time<game.overclockUntil)txt(g,'OVERCLOCK ACTIVE',481,553,11,'#B6FF3B','center',800);
++    const boss=game.enemies.find(e=>e.alive&&ENEMY_TYPES[e.type].boss);
++    if(boss){rr(g,294,43,371,29,5,'#281820','#7C424B',1);g.fillStyle='#B6FF3B';g.fillRect(304,65,352*Math.max(0,boss.hp/boss.maxHp),3);
++      txt(g,`⚠ ${ENEMY_TYPES[boss.type].name.toUpperCase()} // ${Math.ceil(boss.hp)} HP`,480,57,11,'#FF9D8B','center',800);}
+     const active=game.phase==='wave';rr(g,357,570,251,30,7,'#0C1717','#304039',1);
+     txt(g,active?'◉   HOSTILE TRAFFIC DETECTED':game.phase==='ready'?'◎   AWAITING WAVE DEPLOYMENT':game.phase==='won'?'◈   NETWORK SECURED':'✕   SYSTEM OFFLINE',482,585,10,active?'#FFD166':C.accent,'center',800);
+     // scanning cursor on uplink junctions
+--- a/index.html
++++ b/index.html
+@@ -14,14 +14,14 @@
+     <header class="topbar">
+       <div class="brand-lockup">
+         <div class="logo-mark" aria-hidden="true"><span>⌁</span></div>
+-        <div><div class="eyebrow">NARESH//ARCADE <span class="slash">/</span> GAME 04</div><h1>FIREWALL <em>DEFENSE</em><span class="blink">_</span></h1></div>
++        <div><div class="eyebrow">NARESH//ARCADE <span class="slash">/</span> TACTICAL EDITION</div><h1>FIREWALL <em>DEFENSE</em><span class="blink">_</span></h1></div>
+       </div>
+       <div class="top-actions"><span class="system-signal"><i></i> NETWORK SIMULATION ONLINE</span><button class="icon-button" id="soundBtn" type="button" aria-label="Toggle sound">◖)) SOUND ON</button><button class="icon-button" id="helpBtn" type="button">? HOW TO PLAY</button></div>
+     </header>
+-    <div class="intro"><p>Fortify the network. Defend the core. <span>Strategic traffic filtering against escalating hostile waves.</span></p><div class="intro-code">naresh@github:~$ <b>deploy --firewall-defense</b></div></div>
++    <div class="intro"><p>Fortify the network. Defend the core. <span>Six modular weapons. Three command protocols. Thirty escalating assaults.</span></p><div class="intro-code">naresh@github:~$ <b>deploy --firewall-defense</b></div></div>
+     <section class="stat-row" aria-label="Game statistics">
+       <div class="stat"><span class="stat-icon lime">◈</span><div><small>CORE INTEGRITY</small><strong id="coreValue">20 <span>/ 20</span></strong></div></div>
+-      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>WAVE / 08</small><strong id="waveValue">01 <span>/ 08</span></strong></div></div>
++      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>CAMPAIGN WAVE</small><strong id="waveValue">01 <span>/ 30</span></strong></div></div>
+       <div class="stat"><span class="stat-icon amber">⬡</span><div><small>BANDWIDTH</small><strong id="creditsValue">290 <span>CR</span></strong></div></div>
+       <div class="stat"><span class="stat-icon violet">⌁</span><div><small>THREATS NEUTRALIZED</small><strong id="killsValue">000</strong></div></div>
+       <div class="stat"><span class="stat-icon lime">↗</span><div><small>OPERATION SCORE</small><strong id="scoreValue">0</strong></div></div>
+@@ -31,12 +31,16 @@
+         <div class="panel-heading"><span class="small-bars">▮▮</span><div><small>BUILD & DEPLOY</small><h2 id="arsenalTitle">DEFENSE ARSENAL</h2></div></div>
+         <p class="section-note">Select a module, then tap an available node on the network map.</p>
+         <div id="towerPalette" class="tower-palette" aria-label="Available defense modules"></div>
+-        <div class="rail-footnote"><span class="soft-dot"></span><span><b>HOTKEYS</b> 1–4 select modules<br/>Click glowing nodes to place</span></div>
++        <div class="rail-footnote"><span class="soft-dot"></span><span><b>HOTKEYS</b> 1–6 select modules<br/>Click glowing nodes to place</span></div>
+       </section>
+       <section class="arena-rail" aria-label="Firewall Defense live game board">
+         <div class="arena-top"><div class="arena-title"><span class="green-dot"></span> LIVE NETWORK TOPOLOGY <span class="secondary-label">// DUAL INGRESS</span></div><div class="arena-tag">SECURE CORE <span id="onlineStatus">ONLINE</span></div></div>
+         <div class="arena-window" id="arenaWindow"><canvas id="gameCanvas" width="960" height="624" aria-label="Network map with two ingress paths, placement nodes, defenses and moving hostile packets" tabindex="0"></canvas><div class="arena-toast" id="toast" role="status" aria-live="polite"></div></div>
+         <div class="arena-bottom"><div class="path-legend"><span><i class="legend-swatch laneA"></i> UPLINK A</span><span><i class="legend-swatch laneB"></i> UPLINK B</span><span><i class="legend-swatch node"></i> BUILD NODE</span></div><span class="board-help">TAP NODE TO DEPLOY • SELECT DEFENSE TO UPGRADE</span></div>
++        <section class="ability-dock" aria-label="Tactical superpowers">
++          <div class="ability-caption">/// COMMAND PROTOCOLS <span>Spend credits strategically; cooldowns run only during waves</span></div>
++          <div id="abilityPalette" class="ability-palette"></div>
++        </section>
+         <div class="control-dock">
+           <div class="wave-block"><small>NEXT THREAT PROFILE</small><strong id="waveName">01 // PORT SCAN</strong><span id="waveHint">Probes on both network paths</span></div>
+           <div class="wave-buttons"><button type="button" id="speedBtn" class="btn-quiet" aria-label="Toggle simulation speed">1× SPEED</button><button type="button" id="pauseBtn" class="btn-quiet" aria-label="Pause game">Ⅱ PAUSE</button><button type="button" id="startWaveBtn" class="btn-primary">▶ DEPLOY WAVE 01</button></div>
+@@ -52,7 +56,7 @@
+     </main>
+     <footer class="footer"><span>◈ TITANIUM HACKER ARCADE <i>//</i> A NETWORK-DEFENSE EXPERIMENT</span><span>NO ACCOUNTS • NO SERVER • RUNS IN YOUR BROWSER</span></footer>
+   </div>
+-  <dialog id="helpDialog" class="overlay"><div class="modal"><div class="modal-top"><span>◈ OPERATOR BRIEFING</span><button id="closeHelp" type="button" class="close-button" aria-label="Close instructions">×</button></div><h2>DEFEND THE CORE.</h2><p>Hostile packets arrive along <b>two separate network paths</b>. Place defense modules on glowing build nodes to intercept traffic before it reaches the core.</p><ol><li>Choose <b>Firewall</b>, <b>Rate Limiter</b>, <b>Pulse Node</b>, or <b>IDS Scanner</b>.</li><li>Click an available node to deploy. Modules automatically target incoming traffic.</li><li>Launch a wave. Earn bandwidth credits from destroyed packets; upgrade and reposition defenses between waves.</li><li>Survive eight escalating waves, including stealth and shielded traffic and a final Titan. On a phone, swipe the map horizontally to reach distant nodes.</li></ol><div class="control-help"><span><kbd>1–4</kbd> Select</span><span><kbd>SPACE</kbd> Start wave</span><span><kbd>P</kbd> Pause</span><span><kbd>ARROWS + ENTER</kbd> Place</span><span><kbd>ESC</kbd> Close</span></div><button id="helpPlay" type="button" class="btn-primary">READY TO DEFEND ↗</button></div></dialog>
+-  <dialog id="endDialog" class="overlay"><div class="modal end-modal"><div id="endSymbol" class="end-symbol">◈</div><span class="modal-kicker">SESSION COMPLETE</span><h2 id="endTitle">CORE SECURED</h2><p id="endCopy">The network survived the incoming attack.</p><div class="end-stats"><div><small>FINAL SCORE</small><strong id="endScore">0</strong></div><div><small>NEUTRALIZED</small><strong id="endKills">0</strong></div></div><button id="replayBtn" class="btn-primary" type="button">↻ REBOOT SIMULATION</button></div></dialog>
++  <dialog id="helpDialog" class="overlay"><div class="modal"><div class="modal-top"><span>◈ OPERATOR BRIEFING</span><button id="closeHelp" type="button" class="close-button" aria-label="Close instructions">×</button></div><h2>DEFEND THE CORE.</h2><p>Hostile packets arrive along <b>two separate network paths</b>. Place defense modules on glowing build nodes to intercept traffic before it reaches the core.</p><ol><li>Choose <b>Firewall</b>, <b>Rate Limiter</b>, <b>Pulse Node</b>, or <b>IDS Scanner</b>.</li><li>Click an available node to deploy. Modules automatically target incoming traffic.</li><li>Launch a wave. Earn bandwidth credits from destroyed packets; upgrade and reposition defenses between waves.</li><li>Survive 30 authored waves across six threat acts, featuring splitter packets, jammers, regenerators, and six major boss assaults. Build Scatter Cannons for triple-shot volleys or Rail Lances for piercing blasts. Three command protocols—EMP, Overclock, and Core Shield—consume credits and have cooldowns. On a phone, swipe the map horizontally to reach distant nodes.</li></ol><div class="control-help"><span><kbd>1–6</kbd> Weapons</span><span><kbd>E/O/Q</kbd> Powers</span><span><kbd>SPACE</kbd> Start wave</span><span><kbd>P</kbd> Pause</span><span><kbd>ARROWS + ENTER</kbd> Place</span><span><kbd>ESC</kbd> Close</span></div><button id="helpPlay" type="button" class="btn-primary">READY TO DEFEND ↗</button></div></dialog>
++  <dialog id="endDialog" class="overlay"><div class="modal end-modal"><div id="endSymbol" class="end-symbol">◈</div><span class="modal-kicker">SESSION COMPLETE</span><h2 id="endTitle">CORE SECURED</h2><p id="endCopy">The network survived the incoming attack.</p><div class="end-stats"><div><small>FINAL SCORE</small><strong id="endScore">0</strong></div><div><small>NEUTRALIZED</small><strong id="endKills">0</strong></div></div><button id="replayBtn" class="btn-primary" type="button">↻ REBOOT SIMULATION</button><button id="endlessBtn" class="btn-outline" type="button" hidden>∞ CONTINUE ENDLESS MODE</button></div></dialog>
+ </body>
+ </html>
+--- a/style.css
++++ b/style.css
+@@ -4,3 +4,18 @@
+ @media(max-width:740px){.app-shell{width:calc(100% - 22px)}.topbar{align-items:flex-start;flex-direction:column;padding-top:14px}.top-actions{width:100%;justify-content:space-between}.system-signal{display:none}.logo-mark{height:43px;width:43px;font-size:27px}.eyebrow{font-size:8px}h1{font-size:24px}.intro{justify-content:flex-start;flex-wrap:wrap;gap:0}.intro p{margin:10px 0 0}.intro-code{width:100%;font-size:9px;margin:6px 0 10px}.stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.stat{min-height:60px;gap:4px;padding:8px;border-radius:6px}.stat-icon{font-size:15px;width:20px}.stat small{font-size:7px;letter-spacing:.1px;white-space:normal}.stat strong{font-size:15px}.stat strong span{font-size:9px}.stat:nth-child(4),.stat:nth-child(5){grid-column:span 1}.game-layout{grid-template-columns:1fr}.left-rail,.right-rail,.arena-rail{grid-column:1;grid-row:auto}.arena-rail{grid-row:1}.left-rail{grid-row:2}.right-rail{grid-row:3}.arena-title{font-size:9px}.secondary-label{display:none}.arena-tag{font-size:8px}.arena-window canvas{width:700px;max-width:none;min-width:700px}.arena-window{overflow-x:auto;overscroll-behavior-x:contain;touch-action:pan-x}.arena-bottom{font-size:8px;justify-content:center}.control-dock{align-items:stretch;flex-direction:column}.wave-buttons{justify-content:space-between}.wave-buttons button{flex:1}.tower-palette{grid-template-columns:repeat(2,minmax(0,1fr))}.tower-option{min-height:103px;gap:7px}.tower-glyph{width:30px;height:35px;flex-basis:30px;font-size:13px}.tower-name{font-size:11px}.tower-cost{font-size:9px}.tower-desc{font-size:9px}.footer{font-size:8px;padding:19px 0}.icon-button{font-size:10px}.panel-heading h2{font-size:13px}}
+ @media(max-width:380px){.tower-palette{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.control-dock{padding:10px}.wave-buttons{flex-wrap:wrap}.wave-buttons button{flex:1}}
+ @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
++
++/* Firewall Defense 2.0: additions are scoped; the existing game layout and HUD remain intact. */
++.ability-dock{margin-top:12px;border:1px solid #33443F;border-radius:10px;background:linear-gradient(135deg,#141E1E,#0A1113);padding:11px 13px}
++.ability-caption{font:800 10px var(--mono);letter-spacing:1.1px;color:var(--accent);display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px}
++.ability-caption span{font-size:9px;color:var(--muted);font-weight:500;letter-spacing:0}
++.ability-palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
++.ability-button{min-width:0;display:flex;flex-direction:column;text-align:left;gap:5px;padding:10px;border:1px solid #34453D;border-radius:7px;background:#101B1A;color:#EAF2E9;transition:border-color .15s,background .15s}
++.ability-button strong{color:var(--accent);font:800 11px var(--mono);letter-spacing:.3px}
++.ability-button span{font:10px var(--mono);color:#AEC3B7}
++.ability-button .ability-hint{font:10px/1.3 var(--sans);color:#819E98}
++.ability-button:not(:disabled):hover{border-color:var(--accent);background:#1B2B1F}
++.ability-button:disabled{opacity:.6}
++.end-modal #endlessBtn{display:block;width:100%;margin-top:10px;padding:12px;border-color:#A2CE71}
++.end-modal #endlessBtn[hidden]{display:none}
++@media(max-width:600px){.ability-caption{flex-direction:column;align-items:flex-start}.ability-palette{grid-template-columns:1fr}.ability-button{min-height:52px}}
+--- a/tests/engine.test.mjs
++++ b/tests/engine.test.mjs
+@@ -1,6 +1,6 @@
+ import test from 'node:test';
+ import assert from 'node:assert/strict';
+-import {FirewallGame,ROUTES,ROUTE_LENGTHS,PADS,TOWER_TYPES,ENEMY_TYPES,WAVES,makeRng,distance,routeLength,locationAlong,segmentCircleHit} from '../src/engine.mjs';
++import {FirewallGame,ROUTES,ROUTE_LENGTHS,PADS,TOWER_TYPES,ENEMY_TYPES,WAVES,ABILITIES,MAX_LEVEL,spawnInterval,enemyHealthScale,makeRng,distance,routeLength,locationAlong,segmentCircleHit} from '../src/engine.mjs';
+ const step=(g,s)=>{for(let i=0;i<Math.round(s*120);i++)g.update(1/120);};
+ test('Two routes have ordered, finite, nonzero lengths and end at core gateways',()=>{
+  assert.equal(ROUTES.length,2);for(let n=0;n<2;n++){assert.ok(ROUTE_LENGTHS[n]>700);assert.equal(ROUTE_LENGTHS[n],routeLength(ROUTES[n]));assert.ok(ROUTES[n][0].x<ROUTES[n].at(-1).x);}
+@@ -31,7 +31,7 @@
+ });
+ test('Upgrades have bounded levels, nonnegative credits and selling refunds',()=>{
+  const g=new FirewallGame();g.credits=2000;g.placeTower(2,'firewall');assert.equal(g.getTowerAt(2).level,1);
+- assert.ok(g.upgradeTower(2).ok);assert.ok(g.upgradeTower(2).ok);assert.equal(g.getTowerAt(2).level,3);assert.equal(g.upgradeTower(2).ok,false);
++ for(let i=1;i<MAX_LEVEL;i++)assert.ok(g.upgradeTower(2).ok);assert.equal(g.getTowerAt(2).level,MAX_LEVEL);assert.equal(g.upgradeTower(2).ok,false);
+  const old=g.credits,refund=Math.round(g.getTowerAt(2).spent*.65);assert.ok(g.sellTower(2).ok);assert.equal(g.credits,old+refund);assert.equal(g.sellTower(2).ok,false);
+ });
+ test('Cannot start overlapping waves; spawned enemies traverse two lanes',()=>{
+@@ -58,9 +58,11 @@
+  const g=new FirewallGame();const e=g.spawnEnemy('probe',0);e.slowFactor=.56;e.slowUntil=2;g.startWave();const initial=e.distance;g.update(1/120);assert.ok(e.distance-initial<e.speed/120);
+  step(g,3);assert.ok(g.time>2);assert.ok(e.distance>50);
+ });
+-test('Wave sequencing is deterministic, exactly eight waves with Titan last',()=>{
+- const g=new FirewallGame();assert.equal(WAVES.length,8);g.waveIndex=7;g.startWave();assert.equal(g.getWaveEnemy(g.toSpawn-1),'titan');
+- assert.equal(g.getWaveEnemy(0),WAVES[7].pool[0]);
++test('30 authored waves with six milestone bosses and a final Overseer',()=>{
++ const g=new FirewallGame();assert.equal(WAVES.length,30);
++ for(const i of [4,9,14,19,24,29])assert.ok(WAVES[i].boss);
++ g.waveIndex=29;assert.ok(g.startWave());assert.equal(g.getWaveEnemy(g.toSpawn-1),'overseer');
++ assert.equal(g.getWaveEnemy(0),WAVES[29].pool[0]);
+ });
+ test('Damage and range improve with tower level',()=>{
+  const g=new FirewallGame();g.credits=5000;const t=g.placeTower(2,'firewall').tower;
+@@ -71,23 +73,77 @@
+  const g=new FirewallGame();for(let i=0;i<200;i++)g.emit('test',{i});assert.equal(g.events.length,160);
+  assert.equal(g.consumeEvents().length,160);assert.equal(g.events.length,0);assert.deepEqual(Object.keys(g.snapshot()),['phase','wave','credits','integrity','score','kills','towers','enemies']);
+ });
+-test('A well-planned and adequately funded mixed-defense layout can clear all eight waves',()=>{
++test('A suitably planned mixed arsenal clears the complete 30-wave campaign',()=>{
+  const g=new FirewallGame();
+- const buildPlan=[[15,'firewall'],[19,'firewall'],[1,'firewall'],[5,'firewall'],[12,'firewall'],[18,'pulse'],[14,'ids'],[17,'ids'],[3,'cache'],[9,'cache'],[6,'firewall'],[13,'firewall']];
++ const buildPlan=[[15,'firewall'],[19,'firewall'],[1,'firewall'],[5,'firewall'],[12,'firewall'],[18,'pulse'],[14,'ids'],[17,'ids'],[3,'cache'],[9,'cache'],[6,'firewall'],[13,'firewall'],[0,'rail'],[8,'rail'],[4,'scatter'],[7,'scatter'],[10,'rail'],[11,'ids'],[16,'pulse'],[2,'scatter'],[20,'rail'],[21,'rail']];
+  for(let wave=0;wave<WAVES.length;wave++){
+-   for(const [pad,type] of buildPlan){if(!g.getTowerAt(pad))g.placeTower(pad,type);}
+-   for(const pad of [15,19,14])if(g.getTowerAt(pad)&&g.credits>=200)g.upgradeTower(pad);
++   for(const [pad,type] of buildPlan)if(!g.getTowerAt(pad)&&g.credits>TOWER_TYPES[type].cost+30)g.placeTower(pad,type);
++   let changed=true,guard=0;
++   while(changed&&guard++<90){changed=false;for(const [pad] of buildPlan){const t=g.getTowerAt(pad);if(t&&t.level<MAX_LEVEL&&g.credits>g.upgradeCost(t)+200){g.upgradeTower(pad);changed=true;}}}
+    assert.ok(g.startWave(),`wave ${wave+1} should start`);
+-   for(let frame=0;frame<120*115&&g.phase==='wave';frame++)g.update(1/120);
++   for(let frame=0;frame<120*145&&g.phase==='wave';frame++)g.update(1/120);
+    assert.notEqual(g.phase,'lost',`no unexpected defeat in wave ${wave+1}`);
+  }
+- assert.equal(g.phase,'won');assert.equal(g.waveIndex,8);assert.ok(g.kills>150);assert.ok(g.integrity>0);
++ assert.equal(g.phase,'won');assert.equal(g.waveIndex,30);assert.ok(g.kills>1200);assert.ok(g.integrity>0);
+ });
+ test('Underpowered layouts can lose later; resources never go negative and restart resets state',()=>{
+  const g=new FirewallGame(21);g.placeTower(15,'firewall');
+- for(let w=0;w<8&&g.phase!=='lost'&&g.phase!=='won';w++){
++ for(let w=0;w<WAVES.length&&g.phase!=='lost'&&g.phase!=='won';w++){
+    assert.ok(g.startWave());for(let n=0;n<120*115&&g.phase==='wave';n++)g.update(1/120);
+  }
+  assert.equal(g.phase,'lost');assert.ok(g.credits>=0);
+  g.reset();assert.equal(g.phase,'ready');assert.equal(g.integrity,20);assert.equal(g.towers.length,0);assert.equal(g.credits,290);
+ });
++
++test('Spawn cadence stays positive and strictly bounded for 30+ waves',()=>{
++ for(let i=0;i<200;i++){const interval=spawnInterval(i,.5);assert.ok(Number.isFinite(interval)&&interval>=.19&&interval<=.82);assert.ok(enemyHealthScale(i)>0);}
++});
++test('Scatter Cannon generates three projectiles, costs credits, and targets valid enemies',()=>{
++ const g=new FirewallGame();g.credits=1000;const t=g.placeTower(15,'scatter').tower;
++ const enemy=g.spawnEnemy('probe',0);enemy.x=t.x+38;enemy.y=t.y;enemy.distance=220;
++ assert.ok(g.towerFire(t));assert.equal(g.projectiles.length,3);assert.ok(g.projectiles.every(p=>p.damage>0&&p.type==='scatter'));
++});
++test('Rail Lance piercing beam hits enemies along its segment, not off-axis enemies',()=>{
++ const g=new FirewallGame();g.credits=1000;const t=g.placeTower(15,'rail').tower;
++ const near=g.spawnEnemy('armored',0),behind=g.spawnEnemy('armored',0),off=g.spawnEnemy('armored',0);
++ near.x=t.x+40;near.y=t.y;near.distance=200;
++ behind.x=t.x+85;behind.y=t.y;behind.distance=190;
++ off.x=t.x+65;off.y=t.y+90;off.distance=180;
++ const offHp=off.hp;
++ assert.ok(g.towerFire(t));assert.ok(near.hp<near.maxHp);assert.ok(behind.hp<behind.maxHp);assert.equal(off.hp,offHp);
++});
++test('EMP has a wave-only gate, consumes resources, freezes enemies and obeys cooldown',()=>{
++ const g=new FirewallGame();g.credits=600;assert.equal(g.activateAbility('emp').ok,false);
++ assert.ok(g.startWave());const e=g.spawnEnemy('sprint',0);const old=g.credits;
++ assert.ok(g.activateAbility('emp').ok);assert.equal(g.credits,old-ABILITIES.emp.cost);
++ const before=e.distance;step(g,1.5);assert.equal(e.distance,before);
++ assert.ok(!g.activateAbility('emp').ok);step(g,1.6);assert.ok(e.distance>before);
++});
++test('Overclock speeds firing, core shield absorbs leaks, and both have cost/cooldown limits',()=>{
++ const g=new FirewallGame();g.credits=1600;const t=g.placeTower(15,'firewall').tower;assert.ok(g.startWave());
++ assert.ok(g.activateAbility('overclock').ok);const e=g.spawnEnemy('probe',0);e.x=t.x+40;e.y=t.y;e.distance=130;
++ t.cooldown=0;g.towerFire(t);g.update(1/120);assert.ok(t.cooldown<TOWER_TYPES.firewall.cooldown);
++ assert.ok(g.activateAbility('shield').ok);assert.equal(g.coreShield,7);
++ const incoming=g.spawnEnemy('titan',0);incoming.distance=1e8;g.update(1/120);assert.equal(g.coreShield,1);assert.equal(g.integrity,20);
++ assert.ok(!g.activateAbility('shield').ok);
++});
++test('Jammers interfere with nearby towers; regenerators heal only to their cap',()=>{
++ const g=new FirewallGame();g.credits=1000;const t=g.placeTower(15,'firewall').tower;const j=g.spawnEnemy('jammer',0);j.x=t.x+10;j.y=t.y;j.jamTimer=0;
++ const r=g.spawnEnemy('regen',0);r.hp=r.maxHp/2;r.regenTimer=0;g.startWave();g.update(1/120);
++ assert.ok(t.jammedUntil>g.time);assert.ok(r.hp>r.maxHp/2&&r.hp<=r.maxHp);
++});
++test('Splitter death generates exactly two swarm children without losing wave completion ability',()=>{
++ const g=new FirewallGame();const e=g.spawnEnemy('splitter',1);e.distance=300;
++ g.damageEnemy(e,1e9);assert.equal(g.enemies.filter(e=>e.type==='swarm').length,2);assert.ok(g.enemies.filter(e=>e.type==='swarm').every(e=>e.distance>=0));
++});
++test('Victorious campaign can enter endless; cannot restart a second overlapping wave',()=>{
++ const g=new FirewallGame();g.waveIndex=WAVES.length;g.phase='won';assert.equal(g.startEndless(),true);
++ assert.equal(g.endless,true);assert.equal(g.phase,'ready');assert.ok(g.startWave());assert.equal(g.startWave(),false);
++ assert.ok(g.toSpawn>0);assert.ok(g.currentWave().name.startsWith('Endless'));
++});
++test('Ability charges never make credits negative or core integrity exceed initial value',()=>{
++ const g=new FirewallGame();g.credits=300;g.startWave();g.spawnEnemy('probe');
++ assert.ok(g.activateAbility('shield').ok);assert.equal(g.credits,165);
++ assert.ok(g.activateAbility('emp').ok);assert.equal(g.credits,45);
++ assert.equal(g.activateAbility('overclock').ok,false);assert.ok(g.credits>=0);
++});
+--- a/tests/browser_smoke.py
++++ b/tests/browser_smoke.py
+@@ -17,8 +17,9 @@
+         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
+         page.set_content(HTML,wait_until='load')
+         page.wait_for_timeout(200)
+-        assert page.locator('.tower-option').count()==4
++        assert page.locator('.tower-option').count()==6
+         assert page.evaluate('window.__firewallTest.game.phase')=='ready'
++        assert page.locator('.ability-button').count()==3
+         bbox=page.locator('#gameCanvas').bounding_box()
+         for x,y in [(414,278),(414,344),(216,278)]:
+             page.mouse.click(bbox['x']+x*bbox['width']/960,bbox['y']+y*bbox['height']/624)
+@@ -30,9 +31,20 @@
+         page.locator('#speedBtn').click();assert '2×' in page.locator('#speedBtn').inner_text()
+         page.evaluate('window.__firewallTest.step(40)')
+         assert page.evaluate('window.__firewallTest.game.waveIndex')==1
++        bbox=page.locator('#gameCanvas').bounding_box()
+         page.mouse.click(bbox['x']+414*bbox['width']/960,bbox['y']+278*bbox['height']/624)
+         page.locator('#upgradeBtn').click()
+         assert page.evaluate('window.__firewallTest.game.getTowerAt(15)?.level')==2
++        # All three command protocols use real click handlers and deduct their configured credits.
++        page.evaluate('window.__firewallTest.game.credits=1000')
++        page.locator('#startWaveBtn').click()
++        page.evaluate('window.__firewallTest.game.spawnEnemy("probe",0)')
++        for key in ('emp','overclock','shield'):
++            page.locator(f'[data-ability="{key}"]').click()
++        assert page.evaluate('window.__firewallTest.game.coreShield')==7
++        assert page.evaluate('window.__firewallTest.game.credits')==590
++        assert page.evaluate('window.__firewallTest.game.overclockUntil>window.__firewallTest.game.time')
++        assert page.evaluate('window.__firewallTest.game.enemies.some(e=>e.frozenUntil>window.__firewallTest.game.time)')
+         page.locator('#helpBtn').click();assert page.locator('#helpDialog').evaluate('(el)=>el.open')
+         page.locator('#closeHelp').click();assert not page.locator('#helpDialog').evaluate('(el)=>el.open')
+         assert not errors,errors
+--- a/package.json
++++ b/package.json
+@@ -1,8 +1,8 @@
+ {
+   "name": "firewall-defense-titanium",
+-  "version": "1.0.0",
++  "version": "2.0.0",
+   "private": true,
+-  "description": "Game 04 — standalone Titanium Hacker tactical network-defense arcade",
++  "description": "Firewall Defense 2.0: 30-wave tactical defense (same Game 04)",
+   "type": "module",
+   "scripts": {
+     "test": "node --test tests/engine.test.mjs"
+--- a/arcade-manifest.json
++++ b/arcade-manifest.json
+@@ -2,14 +2,26 @@
+   "id": "firewall-defense",
+   "order": 4,
+   "name": "Firewall Defense",
+-  "subtitle": "Defend the core against hostile packets",
++  "subtitle": "30-wave tactical defense / 6 weapons / boss encounters",
+   "category": "Tactical network defense / strategy",
+   "theme": "Titanium Hacker",
+   "entry": "./index.html",
+   "offline_entry": "./standalone.html",
+   "thumbnail": "./assets/arcade-cover.png",
+   "preview": "./assets/firewall-defense-gameplay.gif",
+-  "control_modes": ["mouse", "touch", "keyboard"],
++  "control_modes": [
++    "mouse",
++    "touch",
++    "keyboard"
++  ],
+   "status": "standalone-ready",
+-  "no_external_services": true
++  "no_external_services": true,
++  "version": "2.0.0",
++  "features": [
++    "30 authored waves",
++    "6 weapons",
++    "3 command protocols",
++    "6 boss fights",
++    "endless mode"
++  ]
+ }

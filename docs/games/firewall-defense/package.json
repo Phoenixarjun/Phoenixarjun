@@ -1,8 +1,8 @@
 {
   "name": "firewall-defense-titanium",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "Game 04 — standalone Titanium Hacker tactical network-defense arcade",
+  "description": "Firewall Defense 2.0: 30-wave tactical defense (same Game 04)",
   "type": "module",
   "scripts": {
     "test": "node --test tests/engine.test.mjs"

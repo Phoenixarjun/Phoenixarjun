@@ -10,15 +10,31 @@ ROOT=Path(__file__).resolve().parents[1]
 HTML=(ROOT/'standalone.html').read_text(encoding='utf8')
 HTML=HTML.replace('<script type="module">','<script>window.__FIREWALL_TEST_MODE__=true;</script><script type="module">',1)
 
+def get_chrome_executable():
+    import sys, shutil
+    if sys.platform == 'win32':
+        for p in [r"C:\Program Files\Google\Chrome\Application\chrome.exe", r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"]:
+            if Path(p).is_file():
+                return p
+    for p in ['/usr/bin/chromium', '/usr/bin/chromium-browser', '/usr/bin/google-chrome']:
+        if Path(p).is_file():
+            return p
+    return shutil.which('chromium') or shutil.which('google-chrome') or shutil.which('chrome')
+
 def run():
+    chrome_exec = get_chrome_executable()
     with sync_playwright() as playwright:
-        browser=playwright.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage'])
+        launch_opts = {'headless': True, 'args': ['--no-sandbox', '--disable-dev-shm-usage']}
+        if chrome_exec:
+            launch_opts['executable_path'] = chrome_exec
+        browser=playwright.chromium.launch(**launch_opts)
         page=browser.new_page(viewport={'width':1600,'height':1050})
         errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
         page.set_content(HTML,wait_until='load')
         page.wait_for_timeout(200)
-        assert page.locator('.tower-option').count()==4
+        assert page.locator('.tower-option').count()==6
         assert page.evaluate('window.__firewallTest.game.phase')=='ready'
+        assert page.locator('.ability-button').count()==3
         bbox=page.locator('#gameCanvas').bounding_box()
         for x,y in [(414,278),(414,344),(216,278)]:
             page.mouse.click(bbox['x']+x*bbox['width']/960,bbox['y']+y*bbox['height']/624)
@@ -30,9 +46,20 @@ def run():
         page.locator('#speedBtn').click();assert '2×' in page.locator('#speedBtn').inner_text()
         page.evaluate('window.__firewallTest.step(40)')
         assert page.evaluate('window.__firewallTest.game.waveIndex')==1
+        bbox=page.locator('#gameCanvas').bounding_box()
         page.mouse.click(bbox['x']+414*bbox['width']/960,bbox['y']+278*bbox['height']/624)
         page.locator('#upgradeBtn').click()
         assert page.evaluate('window.__firewallTest.game.getTowerAt(15)?.level')==2
+        # All three command protocols use real click handlers and deduct their configured credits.
+        page.evaluate('window.__firewallTest.game.credits=1000')
+        page.locator('#startWaveBtn').click()
+        page.evaluate('window.__firewallTest.game.spawnEnemy("probe",0)')
+        for key in ('emp','overclock','shield'):
+            page.locator(f'[data-ability="{key}"]').click()
+        assert page.evaluate('window.__firewallTest.game.coreShield')==7
+        assert page.evaluate('window.__firewallTest.game.credits')==590
+        assert page.evaluate('window.__firewallTest.game.overclockUntil>window.__firewallTest.game.time')
+        assert page.evaluate('window.__firewallTest.game.enemies.some(e=>e.frozenUntil>window.__firewallTest.game.time)')
         page.locator('#helpBtn').click();assert page.locator('#helpDialog').evaluate('(el)=>el.open')
         page.locator('#closeHelp').click();assert not page.locator('#helpDialog').evaluate('(el)=>el.open')
         assert not errors,errors
