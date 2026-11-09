@@ -1,10 +1,10 @@
-import {FirewallGame,WAVES,WORLD,PADS,TOWER_TYPES,ENEMY_TYPES,distance} from './engine.mjs';
+import {FirewallGame,WAVES,WORLD,PADS,TOWER_TYPES,ENEMY_TYPES,ABILITIES,MAX_LEVEL,distance} from './engine.mjs';
 import {CanvasRenderer} from './renderer.js';
 
 const $=id=>document.getElementById(id);
 const game=new FirewallGame();
 const renderer=new CanvasRenderer($('gameCanvas'));
-const towerIcons={firewall:'⌁',cache:'◷',pulse:'◉',ids:'⌗'};
+const towerIcons={firewall:'⌁',cache:'◷',pulse:'◉',ids:'⌗',scatter:'✺',rail:'⟿'};
 const towerNames=Object.keys(TOWER_TYPES);
 let paused=false,rafId=0,lastFrame=0,acc=0,lastHUD=0,toastTimer=0,lastSound=0,ended=false,keyboardPadIndex=0;
 let audioCtx=null;
@@ -31,20 +31,36 @@ function drawPalette(){const palette=$('towerPalette');palette.replaceChildren()
 function money(x){return Number(x).toLocaleString('en-US');}
 function refreshInspector(){const padId=game.selectedPad,tower=game.getTowerAt(padId),actions=$('inspectorActions'),info=$('selectedInfo');
   if(!tower){info.className='inspector-empty';info.textContent='Select a placed defense to inspect its output, upgrade its capabilities, or reclaim its bandwidth.';actions.hidden=true;return;}
-  const s=TOWER_TYPES[tower.type],upgradePrice=Math.round(s.cost*(.7+.3*(tower.level-1))),dps=(s.damage/towerCooldown(tower)).toFixed(1),refund=Math.round(tower.spent*.65);
+  const s=TOWER_TYPES[tower.type],upgradePrice=game.upgradeCost(tower),dps=(s.damage/towerCooldown(tower)).toFixed(1),refund=Math.round(tower.spent*.65);
   info.className='inspector-content';info.innerHTML=`<strong style="color:${s.color}">${s.name.toUpperCase()} <em>LVL ${tower.level}</em></strong>Node ${String(padId+1).padStart(2,'0')} &nbsp;•&nbsp; ${tower.shots} activations<br/>Effective range: ${Math.round(s.range*(1+.08*(tower.level-1)))}m<br/>Approx. base DPS: ${dps}<br/><span style="font-size:10px;color:#75938d">${s.upgrade}</span>`;
-  actions.hidden=false;$('upgradeBtn').textContent=tower.level>=3?'MAX LEVEL':`▲ UPGRADE ${upgradePrice}`;$('upgradeBtn').disabled=tower.level>=3||game.credits<upgradePrice;
+  actions.hidden=false;$('upgradeBtn').textContent=tower.level>=MAX_LEVEL?'MAX LEVEL':`▲ UPGRADE ${upgradePrice}`;$('upgradeBtn').disabled=tower.level>=MAX_LEVEL||game.credits<upgradePrice;
   $('sellBtn').textContent=`SELL +${refund}`;
 }
 function towerCooldown(tower){return TOWER_TYPES[tower.type].cooldown/(1+.10*(tower.level-1));}
+function refreshAbilities(){const panel=$('abilityPalette');if(!panel)return;
+  for(const type of Object.keys(ABILITIES)){
+    const spec=ABILITIES[type],state=game.abilityState(type);
+    let btn=panel.querySelector(`[data-ability="${type}"]`);
+    if(!btn){btn=document.createElement('button');btn.type='button';btn.className='ability-button';btn.dataset.ability=type;
+      btn.innerHTML=`<strong></strong><span></span><div class="ability-hint"></div>`;
+      btn.addEventListener('click',()=>useAbility(type));panel.append(btn);}
+    btn.querySelector('strong').textContent=spec.name;
+    btn.querySelector('span').textContent=state.cooldown>0?`⏳ ${Math.ceil(state.cooldown)}s COOLDOWN`:`${spec.cost} CR • READY`;
+    btn.querySelector('.ability-hint').textContent=spec.description;
+    btn.disabled=!state.ready;
+  }
+}
+function useAbility(type){const result=game.activateAbility(type);if(!result.ok){toast(result.reason.toUpperCase(),'error');return;}
+  processEvents();refreshHUD(true);toast(`${ABILITIES[type].name} ACTIVATED`);beep(type==='emp'?260:type==='shield'?770:620,.18,'triangle',.045);
+}
 function refreshHUD(force=false){
   $('coreValue').innerHTML=`${game.integrity} <span>/ 20</span>`;
   $('coreValue').style.color=game.integrity<=7?'#FF7886':'#EEF7EF';
-  $('waveValue').innerHTML=`${String(Math.min(game.waveIndex+1,8)).padStart(2,'0')} <span>/ 08</span>`;
+  $('waveValue').innerHTML=`${String(game.waveIndex+1).padStart(2,'0')} <span>/ ${game.endless?'∞':WAVES.length}</span>`;
   $('creditsValue').innerHTML=`${money(game.credits)} <span>CR</span>`;$('killsValue').textContent=String(game.kills).padStart(3,'0');$('scoreValue').textContent=money(game.score);
-  const wave=WAVES[Math.min(game.waveIndex,WAVES.length-1)];$('waveName').textContent=`${String(Math.min(game.waveIndex+1,8)).padStart(2,'0')} // ${wave.name.toUpperCase()}`;$('waveHint').textContent=wave.hint;
+  const wave=game.phase==='won'&&!game.endless?WAVES[WAVES.length-1]:game.currentWave();$('waveName').textContent=`${String(game.waveIndex+1).padStart(2,'0')} // ${wave.name.toUpperCase()}`;$('waveHint').textContent=wave.hint;
   $('threatTitle').textContent=wave.name.toUpperCase();$('threatDesc').textContent=wave.hint;
-  $('threatIcon').textContent=game.waveIndex>=7?'⛨':game.waveIndex>=3?'⛯':'▦';
+  $('threatIcon').textContent=wave.boss?'⛨':game.waveIndex>=10?'⛯':'▦';
   const remain=game.phase==='wave'?Math.max(0,game.toSpawn-game.spawned)+game.enemies.length:game.phase==='ready'?wave.count:0;
   $('threatRemaining').textContent=`${remain} HOSTILES ${game.phase==='wave'?'ACTIVE':'INBOUND'}`;
   $('threatPhase').textContent=game.phase==='wave'?'LIVE ATTACK':game.phase==='ready'?'PREPARE':game.phase.toUpperCase();
@@ -54,13 +70,16 @@ function refreshHUD(force=false){
   $('startWaveBtn').disabled=game.phase!=='ready';
   $('startWaveBtn').textContent=game.phase==='ready'?`▶ DEPLOY WAVE ${String(game.waveIndex+1).padStart(2,'0')}`:game.phase==='wave'?'◉ WAVE LIVE':'SESSION CLOSED';
   $('speedBtn').textContent=game.speed+'× SPEED';$('pauseBtn').textContent=paused?'▶ RESUME':'Ⅱ PAUSE';$('pauseBtn').disabled=game.phase!=='wave';
-  if(force){drawPalette();refreshInspector();}else if(game.selectedPad!==null)refreshInspector();
+  refreshAbilities();if(force){drawPalette();refreshInspector();}else if(game.selectedPad!==null)refreshInspector();
 }
 function processEvents(){const events=game.consumeEvents();if(!events.length)return;renderer.pushEvents(events);
   for(const e of events){switch(e.type){
     case 'build':addLog(`${TOWER_TYPES[e.towerType]?.name||'Defense'} module deployed`);beep(570,.11,'triangle');break;
     case 'upgrade':addLog(`module upgraded to level ${e.level}`);beep(700,.1);break;
     case 'sell':addLog('defense reclaimed / bandwidth returned');break;
+    case 'ability':addLog(`${ABILITIES[e.ability]?.name||'Protocol'} activated`);break;
+    case 'jam':if(game.time%4<1)addLog('attack modules temporarily jammed');break;
+    case 'split':addLog('splitter fragmented into two swarm packets');break;
     case 'waveStart':addLog(`wave ${String(e.wave).padStart(2,'0')} launched`);toast('HOSTILE TRAFFIC INBOUND');beep(230,.24,'sawtooth',.045);break;
     case 'kill':if(game.kills%5===0)addLog(`${game.kills} threats neutralized`);if(performance.now()-lastSound>65){beep(145,.045,'triangle',.017);lastSound=performance.now();}break;
     case 'leak':addLog(`CORE BREACHED — ${e.damage} integrity lost`);toast('⚠ CORE INTEGRITY LOST','error');beep(155,.18,'sawtooth',.055);break;
@@ -75,7 +94,7 @@ function finish(reason){if(ended)return;ended=true;saveBest(game.score);
   $('endTitle').textContent=reason==='won'?'NETWORK SECURED':'CORE BREACHED';
   $('endCopy').textContent=reason==='won'?'Every hostile wave was contained. The core is still online.':'Hostile packets overwhelmed the core. Rebuild a stronger perimeter and try again.';
   $('endScore').textContent=money(game.score);$('endKills').textContent=money(game.kills);
-  if(!$('endDialog').open)$('endDialog').showModal();
+  $('endlessBtn').hidden=reason!=='won';if(!$('endDialog').open)$('endDialog').showModal();
   addLog(reason==='won'?'all waves secured':'session terminated');beep(reason==='won'?880:120,.35,'sawtooth',.043);
 }
 function reset(){if($('endDialog').open)$('endDialog').close();game.reset();paused=false;ended=false;renderer.effects.length=0;renderer.hoverPad=null;acc=0;drawPalette();refreshHUD(true);addLog('network simulator rebooted');toast('DEFENSE SIMULATION REBOOTED');}
@@ -109,11 +128,13 @@ $('helpBtn').addEventListener('click',()=>{$('helpDialog').showModal();});
 $('closeHelp').addEventListener('click',()=>{$('helpDialog').close();});
 $('helpPlay').addEventListener('click',()=>{$('helpDialog').close();});
 $('replayBtn').addEventListener('click',reset);
+$('endlessBtn').addEventListener('click',()=>{if(game.startEndless()){$('endDialog').close();ended=false;refreshHUD(true);toast('ENDLESS PROTOCOL ENABLED');}});
 window.addEventListener('keydown',e=>{
   if($('helpDialog').open||$('endDialog').open||e.target instanceof HTMLInputElement)return;
   if(e.target===$('gameCanvas'))return;
-  if(['Space','Digit1','Digit2','Digit3','Digit4'].includes(e.code))e.preventDefault();
-  const ix=Number(e.key)-1;if(ix>=0&&ix<4&&Number.isInteger(ix)){game.selectType(towerNames[ix]);drawPalette();toast(`${TOWER_TYPES[towerNames[ix]].name.toUpperCase()} SELECTED`);}
+  if(['Space','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6'].includes(e.code))e.preventDefault();
+  const ix=Number(e.key)-1;if(ix>=0&&ix<towerNames.length&&Number.isInteger(ix)){game.selectType(towerNames[ix]);drawPalette();toast(`${TOWER_TYPES[towerNames[ix]].name.toUpperCase()} SELECTED`);}
+  if(e.code==='KeyE')useAbility('emp');if(e.code==='KeyO')useAbility('overclock');if(e.code==='KeyQ')useAbility('shield');
   if(e.code==='Space'){if(game.phase==='ready'){game.startWave();processEvents();refreshHUD(true);}}
   if(e.key.toLowerCase()==='p'&&game.phase==='wave'){paused=!paused;refreshHUD();}
   if(e.code==='Escape'){game.selectedPad=null;refreshInspector();}

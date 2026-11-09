@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0C0F10" />
   <meta name="description" content="Firewall Defense — a tactical network-defense browser game in the Titanium Hacker arcade." />
   <title>FIREWALL DEFENSE // Titanium Hacker Arcade</title>
+  <link rel="stylesheet" href="../shared/arcade-header.css" />
   <style>
 :root{--bg:#070B0C;--base:#0C0F10;--surface:#11191C;--surface2:#1B2328;--steel:#42535C;--stroke:#28363A;--accent:#B6FF3B;--text:#EEF7EF;--muted:#87A0A3;--aqua:#66D9E8;--amber:#FFD166;--violet:#C99BFF;--danger:#FF7886;--sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Cascadia Code","JetBrains Mono",Consolas,monospace;color-scheme:dark}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:var(--sans)}body{background:radial-gradient(ellipse 50% 29% at 45% -9%,rgba(134,242,72,.085),transparent 65%),radial-gradient(ellipse 55% 60% at 120% 40%,rgba(40,141,153,.06),transparent 78%),var(--bg)}button{font:inherit;cursor:pointer}button:focus-visible,canvas:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button:disabled{opacity:.48;cursor:not-allowed}.app-shell{width:min(1580px,calc(100% - 54px));margin:0 auto;min-height:100vh}.topbar{padding:25px 0 19px;display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom:1px solid #293536}.brand-lockup{display:flex;align-items:center;gap:17px}.logo-mark{width:54px;height:54px;display:grid;place-items:center;border:1px solid var(--accent);color:var(--accent);background:linear-gradient(145deg,#142018,#080F0E);clip-path:polygon(13% 0,85% 0,100% 16%,100% 85%,86% 100%,0 100%,0 13%);box-shadow:inset 0 0 25px rgba(182,255,59,.08);font-size:33px}.eyebrow,.panel-heading small,.stat small,.wave-block small,.threat-head,.threat-metadata,.inspector-title,.log-head,.rail-footer,.arena-title,.arena-tag,.arena-bottom,.intro-code,.footer,.modal-kicker{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;font-weight:700}.eyebrow{color:#86A8A2;letter-spacing:2.4px}.slash{color:var(--accent)}h1{font-size:clamp(23px,2.2vw,35px);letter-spacing:.4px;margin:3px 0 0;line-height:1;font-weight:850}h1 em{font-style:normal;color:var(--accent)}.blink{color:var(--accent);animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}.top-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.system-signal{font:700 10px var(--mono);letter-spacing:1px;color:#91A4A3;margin-right:11px}.system-signal i,.green-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);margin-right:7px}.icon-button{font:700 11px var(--mono);color:#B9C9C5;padding:10px 14px;border:1px solid var(--stroke);border-radius:6px;background:#11181B;letter-spacing:.3px}.icon-button:hover,.btn-quiet:hover,.btn-outline:hover{border-color:#759C55;color:var(--accent)}.intro{display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:48px;color:#C8D7D0}.intro p{font-size:12px;margin:9px 0}.intro p span{color:#819AA3}.intro-code{color:var(--accent);letter-spacing:0}.intro-code b{color:#D5E6DC;font-weight:500}.stat-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:4px 0 17px}.stat{display:flex;align-items:center;gap:14px;min-height:74px;padding:12px 16px;border:1px solid #253338;background:linear-gradient(120deg,rgba(25,38,39,.87),rgba(10,16,18,.98));border-radius:9px;position:relative;overflow:hidden}.stat:after{content:"";position:absolute;top:-1px;left:0;width:49px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.6}.stat-icon{font-size:27px;line-height:1;width:33px;text-align:center}.stat-icon.lime{color:var(--accent)}.stat-icon.aqua{color:var(--aqua)}.stat-icon.amber{color:var(--amber)}.stat-icon.violet{color:var(--violet)}.stat small{color:#789698;font-size:9px;letter-spacing:1.1px;display:block;white-space:nowrap}.stat strong{display:block;font:800 23px var(--mono);margin-top:5px;line-height:1}.stat strong span{font-size:12px;color:#7C9296}.game-layout{display:grid;grid-template-columns:268px minmax(0,1fr) 247px;gap:13px;align-items:stretch}.panel,.arena-window,.control-dock{border:1px solid #2A383C;background:linear-gradient(155deg,rgba(17,25,28,.92),rgba(9,14,16,.98));border-radius:11px}.panel{padding:16px;min-width:0}.panel-heading{display:flex;gap:12px;align-items:center;padding-bottom:14px;border-bottom:1px solid #253136}.small-bars{color:var(--accent);letter-spacing:1px}.panel-heading small{color:#7B9294;font-size:9px;letter-spacing:1.2px}.panel-heading h2{font-size:14px;letter-spacing:.55px;margin:4px 0 0}.section-note{color:#7D989E;font-size:12px;line-height:1.6;min-height:49px;margin:14px 0 12px}.tower-palette{display:flex;flex-direction:column;gap:10px}.tower-option{width:100%;display:flex;gap:12px;text-align:left;padding:12px 11px;border:1px solid #2B393F;border-radius:8px;background:#10191B;color:var(--text);min-height:87px;position:relative;transition:border-color .16s,background .16s,transform .16s}.tower-option:hover{border-color:#698354;background:#172222;transform:translateY(-1px)}.tower-option.selected{border-color:var(--accent);background:linear-gradient(115deg,#1B291E,#101A1C);box-shadow:inset 0 0 22px rgba(182,255,59,.05),0 0 14px rgba(182,255,59,.05)}.tower-option.selected:before{content:"";position:absolute;width:34px;height:2px;background:var(--accent);top:-1px;left:14px;box-shadow:0 0 12px var(--accent)}.tower-glyph{width:40px;height:42px;flex:0 0 40px;display:grid;place-items:center;border:1px solid currentColor;border-radius:8px;font:800 17px var(--mono);background:rgba(0,0,0,.22)}.tower-content{min-width:0;flex:1}.tower-name{display:flex;justify-content:space-between;gap:4px;align-items:center;font-size:13px;font-weight:780}.tower-cost{font:800 11px var(--mono);color:var(--accent)}.tower-desc{display:block;font-size:10px;color:#829AA0;line-height:1.5;margin:6px 0}.tower-stats{display:block;font:700 9px var(--mono);color:#657E82}.rail-footnote{margin-top:22px;display:flex;gap:10px;align-items:flex-start;color:#789196;font:10px/1.7 var(--mono);border-top:1px solid #293638;padding-top:17px}.rail-footnote b{color:#E3F2E8;font-size:9px}.soft-dot{width:7px;height:7px;flex:none;margin-top:3px;background:var(--accent);border-radius:50%;box-shadow:0 0 9px rgba(182,255,59,.6)}.arena-rail{min-width:0}.arena-top{height:43px;display:flex;align-items:center;justify-content:space-between;border:1px solid #2A383C;border-radius:9px 9px 0 0;padding:0 15px;background:#11191B;gap:10px}.arena-title{color:#C9DFD6;letter-spacing:1px}.secondary-label{color:#6D878C}.arena-tag{color:#8B9D9F;font-size:9px;white-space:nowrap}.arena-tag span{color:var(--accent)}.arena-window{position:relative;overflow-x:auto;overflow-y:hidden;border-radius:0;border-top:0;background:#070C0E;scrollbar-color:#456049 #0D1618;scrollbar-width:thin;touch-action:pan-x}canvas{width:100%;height:auto;display:block;aspect-ratio:960/624;cursor:crosshair;touch-action:pan-x}canvas:focus{outline:none}.arena-toast{position:absolute;left:50%;top:18px;transform:translateX(-50%) translateY(-10px);white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis;background:#1A2826;border:1px solid #79945A;border-radius:7px;padding:9px 15px;font:700 12px var(--mono);color:var(--accent);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 12px 25px #0008}.arena-toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}.arena-bottom{height:40px;display:flex;justify-content:space-between;align-items:center;border:1px solid #2A383C;border-top:0;border-radius:0 0 9px 9px;padding:0 13px;color:#72898F;gap:8px;font-size:9px;letter-spacing:.4px}.path-legend{display:flex;gap:13px;align-items:center;white-space:nowrap}.path-legend span{display:flex;align-items:center;gap:6px}.legend-swatch{display:inline-block;width:15px;height:4px;background:var(--accent);border-radius:4px}.legend-swatch.laneB{background:var(--aqua)}.legend-swatch.node{height:10px;width:10px;border:1px solid #91A46E;background:transparent}.board-help{font-size:8px;text-align:right}.control-dock{padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;min-height:91px}.wave-block{display:flex;flex-direction:column;gap:5px}.wave-block small{color:#719297;font-size:9px}.wave-block strong{font:750 14px var(--mono);color:#E6F5EB}.wave-block>span{color:#8B9FA2;font-size:11px}.wave-buttons{display:flex;align-items:center;gap:7px}.btn-quiet,.btn-outline,.btn-sell{background:#141F22;color:#C8DDD5;border:1px solid #314148;border-radius:6px;padding:11px 12px;font:750 10px var(--mono);white-space:nowrap}.btn-primary{background:linear-gradient(140deg,#B6FF3B,#91D824);border:1px solid #D0FF80;border-radius:6px;color:#10180E;padding:12px 14px;font:850 11px var(--mono);letter-spacing:.1px;box-shadow:0 0 17px rgba(182,255,59,.12);white-space:nowrap}.btn-primary:hover{filter:brightness(1.12);box-shadow:0 0 21px rgba(182,255,59,.25)}.threat-card{margin-top:16px;padding:12px;border:1px solid #34403A;background:linear-gradient(148deg,#18231F,#101919);border-radius:8px}.threat-head{display:flex;justify-content:space-between;color:#8DAE8D;font-size:9px}.threat-head i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}.threat-icon{font-size:36px;color:var(--accent);margin:14px 0 8px;text-align:center}.threat-card strong{display:block;font:850 15px var(--mono);text-align:center;color:#E7F5E8}.threat-card p{font-size:11px;line-height:1.6;text-align:center;color:#88A19F;min-height:56px;margin:10px 0}.threat-progress{width:100%;height:6px;border-radius:5px;background:#25353A;overflow:hidden}.threat-progress span{width:0;height:100%;display:block;background:linear-gradient(90deg,#588A30,var(--accent));transition:width .18s}.threat-metadata{display:flex;justify-content:space-between;gap:4px;margin-top:12px;color:#6D8A8D;font-size:8px;letter-spacing:.5px}.inspector{margin-top:14px;border:1px solid #2A373A;border-radius:8px;background:#0E1617;padding:13px}.inspector-title{display:flex;justify-content:space-between;color:#8FA6A1;letter-spacing:1px}.inspector-title i{color:#66817A;font-style:normal}.inspector-empty{font-size:11px;line-height:1.6;color:#81969B;padding:17px 0}.inspector-content{padding:13px 0 8px;font-size:11px;line-height:1.7;color:#A0B5AD}.inspector-content strong{display:block;color:#EDF9F2;font-size:14px;margin-bottom:4px}.inspector-content em{font-style:normal;color:var(--accent)}.inspector-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.inspector-actions[hidden]{display:none}.btn-outline{border-color:#759C55;color:var(--accent);padding:10px 5px}.btn-sell{padding:10px 5px;color:#ECA9AC}.signal-log{margin-top:15px}.log-head{display:flex;justify-content:space-between;color:#96ABA8}.live-pill{color:var(--accent);font-size:9px}.event-log{height:104px;overflow-y:auto;margin-top:10px;border-top:1px solid #2A393A;padding:9px 0;font:10px/1.9 var(--mono);color:#83A2A0;scrollbar-width:thin}.event-log>div{border-bottom:1px solid #1D2A2C;padding:2px 0}.event-log span{color:#577A79;margin-right:9px}.rail-footer{margin-top:12px;padding-top:12px;border-top:1px solid #29373A;display:flex;justify-content:space-between;color:#85A09B}.rail-footer strong{color:var(--accent);font-size:15px}.footer{padding:26px 0 32px;display:flex;justify-content:space-between;gap:14px;color:#577678;font-size:9px}.footer i{color:var(--accent);font-style:normal}.overlay{border:0;background:transparent;color:var(--text);padding:20px;max-width:540px;width:min(95vw,540px)}.overlay::backdrop{background:rgba(1,6,6,.85);backdrop-filter:blur(5px)}.modal{background:linear-gradient(145deg,#18231E,#0A1112);border:1px solid #6E8C58;padding:26px;border-radius:12px;box-shadow:0 0 55px #89C83522}.modal-top{display:flex;justify-content:space-between;align-items:center;font:750 11px var(--mono);letter-spacing:1px;color:var(--accent)}.close-button{font-size:28px;color:#D0DFDA;background:transparent;border:0}.modal h2{font-size:29px;line-height:1.1;margin:24px 0 9px}.modal p,.modal li{font-size:13px;line-height:1.85;color:#ADC1B6}.modal b{color:var(--accent)}.modal ol{padding-left:20px}.modal ol li{margin:8px 0}.control-help{display:flex;gap:10px;flex-wrap:wrap;margin:17px 0 25px;color:#B5CAC0;font:11px var(--mono)}kbd{border:1px solid #46584C;border-radius:4px;padding:4px;background:#1A2920;color:var(--accent)}.modal .btn-primary{width:100%;padding:15px}.end-modal{text-align:center}.end-symbol{font-size:60px;color:var(--accent)}.modal-kicker{color:#8CABA0}.end-modal h2{font-size:31px;color:#E7F8E9}.end-stats{display:grid;grid-template-columns:1fr 1fr;border:1px solid #2F4037;margin:19px 0;border-radius:7px}.end-stats div{padding:16px}.end-stats div:first-child{border-right:1px solid #2F4037}.end-stats small{display:block;color:#83A099;font:10px var(--mono)}.end-stats strong{font:800 23px var(--mono);color:var(--accent);display:block;margin-top:8px}
 @media(max-width:1450px){.app-shell{width:min(1420px,calc(100% - 32px))}.game-layout{grid-template-columns:235px minmax(0,1fr) 220px}.panel{padding:12px}.tower-option{padding:10px 9px}.wave-buttons{flex-wrap:wrap;justify-content:flex-end}.board-help{display:none}.stat{padding:10px}.stat-icon{font-size:23px}}
@@ -14,7 +15,23 @@
 @media(max-width:380px){.tower-palette{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.control-dock{padding:10px}.wave-buttons{flex-wrap:wrap}.wave-buttons button{flex:1}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
+/* Firewall Defense 2.0: additions are scoped; the existing game layout and HUD remain intact. */
+.ability-dock{margin-top:12px;border:1px solid #33443F;border-radius:10px;background:linear-gradient(135deg,#141E1E,#0A1113);padding:11px 13px}
+.ability-caption{font:800 10px var(--mono);letter-spacing:1.1px;color:var(--accent);display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px}
+.ability-caption span{font-size:9px;color:var(--muted);font-weight:500;letter-spacing:0}
+.ability-palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ability-button{min-width:0;display:flex;flex-direction:column;text-align:left;gap:5px;padding:10px;border:1px solid #34453D;border-radius:7px;background:#101B1A;color:#EAF2E9;transition:border-color .15s,background .15s}
+.ability-button strong{color:var(--accent);font:800 11px var(--mono);letter-spacing:.3px}
+.ability-button span{font:10px var(--mono);color:#AEC3B7}
+.ability-button .ability-hint{font:10px/1.3 var(--sans);color:#819E98}
+.ability-button:not(:disabled):hover{border-color:var(--accent);background:#1B2B1F}
+.ability-button:disabled{opacity:.6}
+.end-modal #endlessBtn{display:block;width:100%;margin-top:10px;padding:12px;border-color:#A2CE71}
+.end-modal #endlessBtn[hidden]{display:none}
+@media(max-width:600px){.ability-caption{flex-direction:column;align-items:flex-start}.ability-palette{grid-template-columns:1fr}.ability-button{min-height:52px}}
+
 </style>
+  <script defer src="../shared/arcade-header.js"></script>
   <script type="module">
 // SOURCE: engine.mjs
 /** FIREWALL DEFENSE // deterministic strategy simulation, no browser dependencies. */
@@ -29,7 +46,9 @@ const TOWER_TYPES = Object.freeze({
   firewall:{name:'Firewall',code:'FW',cost:95,range:165,damage:30,cooldown:0.73,projectile:480,color:'#B6FF3B',desc:'Precision packet interceptor',upgrade:'+30% damage, +7% range'},
   cache:{name:'Rate Limiter',code:'RL',cost:110,range:160,damage:12,cooldown:0.82,projectile:380,color:'#66D9E8',desc:'Slow hostile traffic by 44%',upgrade:'Longer slowdown, faster fire'},
   pulse:{name:'Pulse Node',code:'AOE',cost:145,range:105,damage:17,cooldown:1.28,projectile:0,color:'#FFD166',desc:'Radial area-of-effect burst',upgrade:'Wider pulse and stronger damage'},
-  ids:{name:'IDS Scanner',code:'IDS',cost:160,range:195,damage:22,cooldown:1.12,projectile:0,color:'#C99BFF',desc:'Reveals stealth, chains to 3 targets',upgrade:'+1 chain target each level'}
+  ids:{name:'IDS Scanner',code:'IDS',cost:160,range:195,damage:22,cooldown:1.12,projectile:0,color:'#C99BFF',desc:'Reveals stealth, chains to 3 targets',upgrade:'+1 chain target each level'},
+  scatter:{name:'Scatter Cannon',code:'SC',cost:180,range:158,damage:16,cooldown:1.14,projectile:430,color:'#FFAA78',desc:'Triple-shot bursts against close-range traffic',upgrade:'More damage and faster volleys'},
+  rail:{name:'Rail Lance',code:'RLX',cost:265,range:275,damage:95,cooldown:2.48,projectile:0,color:'#E2FD83',desc:'Piercing beam damages multiple aligned targets',upgrade:'Higher beam energy and penetration'}
 });
 const ENEMY_TYPES = Object.freeze({
   probe:{name:'Probe',hp:70,speed:67,reward:12,leak:1,color:'#C6E3DA',radius:11},
@@ -37,18 +56,58 @@ const ENEMY_TYPES = Object.freeze({
   armored:{name:'Armored',hp:165,speed:48,reward:20,leak:2,color:'#EFAD63',radius:14,armor:5},
   stealth:{name:'Stealth',hp:72,speed:84,reward:19,leak:2,color:'#BF90EA',radius:10,stealth:true},
   shield:{name:'Shielded',hp:125,shield:70,speed:60,reward:23,leak:2,color:'#79B6FF',radius:13},
-  titan:{name:'Titan',hp:560,shield:190,speed:35,reward:100,leak:6,color:'#F77E7E',radius:23,armor:6}
+  titan:{name:'Titan',hp:560,shield:190,speed:35,reward:110,leak:6,color:'#F77E7E',radius:23,armor:6,boss:true},
+  swarm:{name:'Swarm',hp:38,speed:142,reward:9,leak:1,color:'#9DDFF4',radius:8},
+  splitter:{name:'Splitter',hp:150,speed:61,reward:27,leak:2,color:'#D1E77D',radius:12,armor:2,split:true},
+  jammer:{name:'Jammer',hp:185,speed:54,reward:34,leak:3,color:'#FFAD85',radius:14,armor:3,jammer:true},
+  regen:{name:'Regenerator',hp:205,speed:49,reward:35,leak:3,color:'#9BE8BA',radius:15,armor:3,regen:true},
+  sentinel:{name:'Sentinel',hp:900,shield:360,speed:30,reward:195,leak:8,color:'#FF9D8B',radius:25,armor:8,boss:true,jammer:true},
+  overseer:{name:'Overseer',hp:1450,shield:620,speed:26,reward:300,leak:12,color:'#F96A9A',radius:28,armor:10,boss:true,jammer:true,regen:true}
 });
-const WAVES = [
-  {name:'Port Scan',hint:'Probes on both network paths',count:10,pool:['probe']},
-  {name:'Burst Traffic',hint:'Fast packets—prioritize rate limiting',count:15,pool:['probe','sprint','sprint']},
-  {name:'Heavy Payloads',hint:'Armored threats resist low damage',count:16,pool:['probe','armored','sprint']},
-  {name:'Silent Intrusion',hint:'IDS detects stealth at full range',count:20,pool:['stealth','probe','sprint']},
-  {name:'Shield Storm',hint:'Shields absorb hits before hull',count:22,pool:['shield','probe','armored']},
-  {name:'Coordinated Swarm',hint:'Mixed traffic attacks both paths',count:27,pool:['sprint','probe','stealth','shield']},
-  {name:'Zero-Day Flood',hint:'High density and hard targets',count:31,pool:['armored','stealth','shield','sprint']},
-  {name:'Core Breach',hint:'A Titan arrives in the final assault',count:32,pool:['armored','sprint','shield','stealth','probe']}
-];
+// Six acts of five authored missions. The counts exclude any boss appended at the end.
+const W=(name,hint,count,pool,boss=null)=>Object.freeze({name,hint,count,pool,boss});
+const WAVES = Object.freeze([
+  W('Port Scan','Establish your first defenses on both paths',10,['probe']),
+  W('Burst Traffic','Fast probes test your early reaction time',14,['probe','sprint','sprint']),
+  W('Heavy Payloads','Armored traffic needs focused fire',16,['probe','armored','sprint']),
+  W('Silent Intrusion','IDS scanners reveal stealth threats',18,['stealth','probe','sprint']),
+  W('Gateway Titan','BOSS // The first heavy breach attempt',18,['armored','shield','probe'],'titan'),
+  W('Shield Storm','Layered shields demand sustained damage',21,['shield','probe','armored']),
+  W('Packet Fragmentation','Splitters create additional attackers on defeat',22,['splitter','probe','sprint']),
+  W('Saturation Attack','Swarm packets threaten both gateways',26,['swarm','sprint','probe','probe']),
+  W('Blackout Probe','Jammers disrupt nearby defenses',26,['jammer','stealth','shield']),
+  W('Sentinel Protocol','BOSS // A jammer-protected sentinel approaches',28,['jammer','shield','sprint'],'sentinel'),
+  W('Supply Chain Breach','Stealth and armored units cooperate',29,['stealth','armored','splitter']),
+  W('Regenerative Payload','Repair-capable enemies need concentrated damage',29,['regen','shield','sprint']),
+  W('Twin Lane Siege','Heavy pressure on both ingress routes',32,['armored','splitter','swarm','shield']),
+  W('Ghost Traffic','Stealth bursts mix with disrupting jammers',34,['stealth','jammer','sprint']),
+  W('Titan Recompiled','BOSS // The Titan returns reinforced',34,['regen','armored','shield'],'titan'),
+  W('Cache Poisoning','Fast traffic blends with regenerative threats',36,['swarm','regen','sprint','shield']),
+  W('Zero Trust Collapse','Jammers and stealth nodes pressure the core',38,['jammer','stealth','splitter','shield']),
+  W('Flood of Forks','Splitters create secondary swarms',40,['splitter','splitter','swarm','armored']),
+  W('Deep Packet Assault','Elites lead shielded and armored packets',41,['shield','armored','regen','jammer']),
+  W('Sentinel Reboot','BOSS // A second sentinel drives the breach',40,['jammer','regen','shield'],'sentinel'),
+  W('Kernel Panic','Full-spectrum threats attack at once',43,['armored','stealth','jammer','sprint']),
+  W('Replication Storm','Replicating traffic congests both lanes',45,['splitter','swarm','regen','shield']),
+  W('Critical Vulnerability','High-speed waves require careful timing',46,['sprint','swarm','jammer','stealth']),
+  W('No Safe Route','All defenses are tested simultaneously',48,['armored','shield','regen','splitter','jammer']),
+  W('Titan Uprising','BOSS // Heavy armor at maximum pressure',45,['armored','regen','shield','jammer'],'titan'),
+  W('Final Handshake','High-density encrypted attack traffic',49,['shield','stealth','swarm','splitter']),
+  W('Quarantine Failure','Jam-resistant timing is essential',50,['jammer','regen','shield','armored']),
+  W('System Meltdown','Rapid splitters push both pathways',52,['splitter','swarm','sprint','stealth']),
+  W('Absolute Zero-Day','Every enemy capability enters the network',54,['jammer','shield','armored','regen','stealth','splitter']),
+  W('The Final Overseer','FINAL BOSS // Protect the core against the Overseer',55,['jammer','regen','shield','armored','splitter','stealth'],'overseer')
+]);
+const MAX_LEVEL=5;
+const ABILITIES=Object.freeze({
+  emp:{name:'EMP FREEZE',cost:120,cooldown:52,duration:2.7,description:'Freeze every active hostile packet for 2.7s'},
+  overclock:{name:'OVERCLOCK',cost:155,cooldown:62,duration:7,description:'Increase all tower firing rates for 7s'},
+  shield:{name:'CORE SHIELD',cost:135,cooldown:58,charges:7,description:'Absorb 7 points of incoming core damage'}
+});
+// Saturating curves avoid zero/negative spawn delays and unbounded threat speed.
+const spawnInterval=(index,noise=0)=>Math.max(.19,.76*Math.exp(-.042*Math.max(0,index)))+Math.max(0,noise)*.11;
+const enemyHealthScale=index=>1+.10*Math.max(0,index)+.0032*Math.max(0,index)**2;
+const enemySpeedScale=index=>1+Math.min(.42,.016*Math.max(0,index));
 function distance(a,b){return Math.hypot(a.x-b.x,a.y-b.y);}
 function routeLength(route){let total=0;for(let i=1;i<route.length;i++)total+=distance(route[i-1],route[i]);return total;}
 const ROUTE_LENGTHS=ROUTES.map(routeLength);
@@ -74,7 +133,7 @@ const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
 class FirewallGame {
   constructor(seed=0xB6FF3B){this.seed=seed;this.reset();}
   reset(){
-    this.random=makeRng(this.seed);this.phase='ready';this.waveIndex=0;this.credits=290;this.integrity=20;this.score=0;this.kills=0;this.towers=[];this.enemies=[];this.projectiles=[];this.effects=[];this.time=0;this.enemyId=0;this.towerId=0;this.shotId=0;this.spawned=0;this.toSpawn=0;this.spawnTimer=0;this.selectedPad=null;this.selectedType='firewall';this.speed=1;this.audio=true;this.message='Build defenses on glowing nodes, then launch Wave 01.';this.events=[];this.combo=0;this.pendingWaveReward=0;
+    this.random=makeRng(this.seed);this.phase='ready';this.waveIndex=0;this.credits=290;this.integrity=20;this.score=0;this.kills=0;this.towers=[];this.enemies=[];this.projectiles=[];this.effects=[];this.time=0;this.enemyId=0;this.towerId=0;this.shotId=0;this.spawned=0;this.toSpawn=0;this.spawnTimer=0;this.selectedPad=null;this.selectedType='firewall';this.speed=1;this.audio=true;this.message='Build defenses on glowing nodes, then launch Wave 01.';this.events=[];this.combo=0;this.pendingWaveReward=0;this.abilityLast={emp:-Infinity,overclock:-Infinity,shield:-Infinity};this.overclockUntil=0;this.coreShield=0;this.endless=false;this.bossKills=0;
   }
   emit(type,data={}){this.events.push({type,...data});if(this.events.length>160)this.events.splice(0,this.events.length-160);}
   consumeEvents(){return this.events.splice(0);}
@@ -91,31 +150,43 @@ class FirewallGame {
   }
   upgradeTower(padId){
     const tower=this.getTowerAt(padId);if(!tower)return {ok:false,reason:'Select a defense'};
-    if(tower.level>=3)return {ok:false,reason:'Maximum level reached'};
-    const cost=Math.round(TOWER_TYPES[tower.type].cost*(.7+.3*(tower.level-1)));
+    if(tower.level>=MAX_LEVEL)return {ok:false,reason:'Maximum level reached'};
+    const cost=this.upgradeCost(tower);
     if(this.credits<cost)return {ok:false,reason:'Not enough bandwidth credits'};
     this.credits-=cost;tower.level++;tower.spent+=cost;tower.cooldown=Math.min(tower.cooldown,.25);
     this.emit('upgrade',{x:tower.x,y:tower.y,level:tower.level});return {ok:true,cost};
   }
+  upgradeCost(tower){return Math.round(TOWER_TYPES[tower.type].cost*(.7+.43*Math.pow(tower.level-1,1.25)));}
+  currentWave(){if(this.waveIndex<WAVES.length)return WAVES[this.waveIndex];const i=this.waveIndex-WAVES.length;const pool=['probe','sprint','armored','shield','stealth','splitter','jammer','regen','swarm'];return W(`Endless ${i+1}`, 'SURVIVAL // High-pressure randomized threat mixture', Math.min(85,55+Math.floor(i*1.35)),[pool[i%pool.length],pool[(i+2)%pool.length],pool[(i+5)%pool.length],pool[(i+7)%pool.length]],(i+1)%5===0?(i%2?'sentinel':'overseer'):null);}
+  abilityState(type){const spec=ABILITIES[type];if(!spec)return null;return {cooldown:Math.max(0,spec.cooldown-(this.time-this.abilityLast[type])),cost:spec.cost,ready:this.phase==='wave'&&this.credits>=spec.cost&&this.time-this.abilityLast[type]>=spec.cooldown};}
+  activateAbility(type){const spec=ABILITIES[type];if(!spec)return {ok:false,reason:'Unknown protocol'};if(this.phase!=='wave')return {ok:false,reason:'Activate during an attack wave'};const state=this.abilityState(type);if(state.cooldown>0)return {ok:false,reason:`Cooldown ${Math.ceil(state.cooldown)}s`};if(this.credits<spec.cost)return {ok:false,reason:'Insufficient bandwidth credits'};
+    if(type==='shield'&&this.coreShield>=14)return {ok:false,reason:'Core shield capacity full'};
+    if(type==='emp'&&!this.enemies.length)return {ok:false,reason:'No hostile packets to freeze'};
+    this.credits-=spec.cost;this.abilityLast[type]=this.time;
+    if(type==='emp'){for(const enemy of this.enemies)enemy.frozenUntil=Math.max(enemy.frozenUntil||0,this.time+spec.duration);this.emit('emp',{x:WORLD.width/2,y:WORLD.height/2,color:'#66D9E8'});}
+    else if(type==='overclock'){this.overclockUntil=Math.max(this.overclockUntil,this.time+spec.duration);this.emit('overclock',{x:WORLD.width/2,y:WORLD.height/2,color:'#B6FF3B'});}
+    else{this.coreShield=Math.min(14,this.coreShield+spec.charges);this.emit('coreShield',{x:913,y:312,color:'#B6FF3B'});}
+    this.emit('ability',{ability:type,cost:spec.cost});return {ok:true,cost:spec.cost};
+  }
+  startEndless(){if(this.phase!=='won'||this.waveIndex<WAVES.length)return false;this.endless=true;this.phase='ready';this.message='ENDLESS PROTOCOL // SURVIVE AS LONG AS POSSIBLE';this.emit('endlessStart');return true;}
   sellTower(padId){const tower=this.getTowerAt(padId);if(!tower)return {ok:false,reason:'No defense selected'};
     const refund=Math.round(tower.spent*.65);this.credits+=refund;this.towers=this.towers.filter(t=>t!==tower);this.emit('sell',{x:tower.x,y:tower.y});return {ok:true,refund};}
   startWave(){
-    if(this.phase!=='ready'||this.waveIndex>=WAVES.length)return false;
-    this.phase='wave';this.spawned=0;this.toSpawn=WAVES[this.waveIndex].count+(this.waveIndex===7?1:0);this.spawnTimer=0;this.combo=0;
-    this.message=`WAVE ${String(this.waveIndex+1).padStart(2,'0')} // ${WAVES[this.waveIndex].name.toUpperCase()}`;
+    if(this.phase!=='ready'||(this.waveIndex>=WAVES.length&&!this.endless))return false;
+    this.phase='wave';this.spawned=0;this.toSpawn=this.currentWave().count+(this.currentWave().boss?1:0);this.spawnTimer=0;this.combo=0;
+    this.message=`WAVE ${String(this.waveIndex+1).padStart(2,'0')} // ${this.currentWave().name.toUpperCase()}`;
     this.emit('waveStart',{wave:this.waveIndex+1});return true;
   }
   spawnEnemy(type,routeIndex=this.random()<.5?0:1){
     const spec=ENEMY_TYPES[type];if(!spec)throw new Error(`Unknown enemy ${type}`);
-    const boost=1+Math.max(0,this.waveIndex)*.13;
+    const boost=enemyHealthScale(this.waveIndex);
     const enemy={id:++this.enemyId,type,routeIndex,distance:0,x:ROUTES[routeIndex][0].x,y:ROUTES[routeIndex][0].y,
       hp:Math.round(spec.hp*boost),maxHp:Math.round(spec.hp*boost),shield:Math.round((spec.shield||0)*boost),maxShield:Math.round((spec.shield||0)*boost),
-      speed:spec.speed*(1+this.waveIndex*.025),radius:spec.radius,slowUntil:0,slowFactor:1,alive:true,alpha:1,hitFlash:0};
+      speed:spec.speed*enemySpeedScale(this.waveIndex),radius:spec.radius,slowUntil:0,slowFactor:1,frozenUntil:0,jamTimer:2.8,regenTimer:2.3,alive:true,alpha:1,hitFlash:0};
     this.enemies.push(enemy);this.emit('spawn',{x:enemy.x,y:enemy.y,enemyType:type});return enemy;
   }
   getWaveEnemy(i){
-    if(this.waveIndex===7&&i===this.toSpawn-1)return 'titan';
-    const wave=WAVES[this.waveIndex];return wave.pool[i%wave.pool.length];
+    const wave=this.currentWave();if(wave.boss&&i===this.toSpawn-1)return wave.boss;return wave.pool[i%wave.pool.length];
   }
   targetFor(tower){
     const spec=TOWER_TYPES[tower.type];const radius=spec.range*(1+.08*(tower.level-1));let best=null,bestProgress=-1;
@@ -132,8 +203,9 @@ class FirewallGame {
     if(!enemy?.alive)return 0;const spec=ENEMY_TYPES[enemy.type];let dmg=Math.max(1,damage-Math.max(0,(spec.armor||0)-pierce));
     if(enemy.shield>0){const shieldDmg=Math.min(enemy.shield,dmg);enemy.shield-=shieldDmg;dmg-=shieldDmg;}
     enemy.hp-=dmg;enemy.hitFlash=.12;
-    if(enemy.hp<=0){enemy.alive=false;this.score+=spec.reward*10;this.credits+=spec.reward;this.kills++;this.combo++;
+    if(enemy.hp<=0){enemy.alive=false;if(spec.boss)this.bossKills++;this.score+=spec.reward*10;this.credits+=spec.reward;this.kills++;this.combo++;
       this.emit('kill',{x:enemy.x,y:enemy.y,enemyType:enemy.type,points:spec.reward*10});
+      if(spec.split){for(let j=0;j<2;j++){const child=this.spawnEnemy('swarm',enemy.routeIndex);child.distance=Math.max(0,enemy.distance-18+j*20);Object.assign(child,locationAlong(ROUTES[child.routeIndex],child.distance));}this.emit('split',{x:enemy.x,y:enemy.y,color:spec.color});}
       if(this.combo%8===0){this.credits+=20;this.emit('bonus',{x:enemy.x,y:enemy.y,value:20});}}
     else this.emit('hit',{x:enemy.x,y:enemy.y,color:spec.color});
     return dmg;
@@ -141,21 +213,38 @@ class FirewallGame {
   towerFire(tower){
     const spec=TOWER_TYPES[tower.type];const target=this.targetFor(tower);if(!target)return false;
     tower.angle=Math.atan2(target.y-tower.y,target.x-tower.x);tower.shots++;
+    const boost=1+.34*(tower.level-1);
     if(tower.type==='pulse'){
       const r=spec.range*(.6+.08*(tower.level-1));let hits=0;
       for(const e of this.enemies)if(e.alive&&distance(tower,e)<r){this.damageEnemy(e,spec.damage*(1+.4*(tower.level-1)),3);hits++;}
       this.emit('pulse',{x:tower.x,y:tower.y,r,color:spec.color,hits});
     }else if(tower.type==='ids'){
-      const visited=new Set();let current=target;
+      const visited=new Set();let current=target,from={x:tower.x,y:tower.y};
       for(let j=0;j<2+tower.level;j++){
         if(!current)break;visited.add(current.id);this.damageEnemy(current,spec.damage*(1+.32*(tower.level-1)),4);
-        this.emit('beam',{x:tower.x,y:tower.y,tx:current.x,ty:current.y,color:spec.color,chain:j});
+        this.emit('beam',{x:from.x,y:from.y,tx:current.x,ty:current.y,color:spec.color,chain:j});
         const candidates=this.enemies.filter(e=>e.alive&&!visited.has(e.id)&&distance(e,current)<115);
         candidates.sort((a,b)=>distance(a,current)-distance(b,current));
-        if(candidates.length){tower={...tower,x:current.x,y:current.y};current=candidates[0];}else current=null;
+        from={x:current.x,y:current.y};current=candidates[0]||null;
       }
+    }else if(tower.type==='rail'){
+      const range=spec.range*(1+.08*(tower.level-1)),cos=Math.cos(tower.angle),sin=Math.sin(tower.angle);
+      const tx=tower.x+cos*range,ty=tower.y+sin*range;
+      const hits=this.enemies.filter(e=>e.alive&&distance(tower,e)<=range+e.radius&&segmentCircleHit(tower.x,tower.y,tx,ty,e.x,e.y,e.radius+9))
+        .sort((a,b)=>distance(tower,a)-distance(tower,b)).slice(0,3+Math.floor(tower.level/2));
+      hits.forEach((enemy,j)=>this.damageEnemy(enemy,spec.damage*boost*Math.pow(.81,j),8));
+      this.emit('rail',{x:tower.x,y:tower.y,tx,ty,color:spec.color,hits:hits.length});
     }else{
-      this.projectiles.push({id:++this.shotId,x:tower.x,y:tower.y,targetId:target.id,vx:Math.cos(tower.angle)*spec.projectile,vy:Math.sin(tower.angle)*spec.projectile,spd:spec.projectile,type:tower.type,damage:spec.damage*(1+.34*(tower.level-1)),age:0,ttl:1.6});
+      const createShot=(enemy,offset=0)=>{
+        const angle=Math.atan2(enemy.y-tower.y,enemy.x-tower.x)+offset;
+        this.projectiles.push({id:++this.shotId,x:tower.x+Math.cos(tower.angle+Math.PI/2)*Math.sign(offset)*10,y:tower.y+Math.sin(tower.angle+Math.PI/2)*Math.sign(offset)*10,targetId:enemy.id,vx:Math.cos(angle)*spec.projectile,vy:Math.sin(angle)*spec.projectile,spd:spec.projectile,type:tower.type,damage:spec.damage*boost,age:0,ttl:1.7});
+      };
+      if(tower.type==='scatter'){
+        const others=this.enemies.filter(e=>e.alive&&e.id!==target.id&&distance(tower,e)<spec.range*(1+.08*(tower.level-1)))
+          .sort((a,b)=>distance(tower,a)-distance(tower,b));
+        const targets=[target,others[0]||target,others[1]||target];
+        targets.forEach((enemy,j)=>createShot(enemy,(j-1)*.085));
+      }else createShot(target);
       this.emit('shot',{x:tower.x,y:tower.y,towerType:tower.type});
     }
     return true;
@@ -163,23 +252,25 @@ class FirewallGame {
   update(dt){
     if(this.phase!=='wave')return;
     const d=clamp(dt,0,1/20);this.time+=d;
-    const wave=WAVES[this.waveIndex];
+    const wave=this.currentWave();
     if(this.spawned<this.toSpawn){this.spawnTimer-=d;
       if(this.spawnTimer<=0){this.spawnEnemy(this.getWaveEnemy(this.spawned),this.spawned%2);this.spawned++;
-        this.spawnTimer=.7*(1-this.waveIndex*.055)+(this.random()*.18);}}
+        this.spawnTimer=spawnInterval(this.waveIndex,this.random());}}
     for(const enemy of this.enemies){if(!enemy.alive)continue;
       enemy.hitFlash=Math.max(0,enemy.hitFlash-d);
-      const factor=this.time<enemy.slowUntil?enemy.slowFactor:1;
+      if(ENEMY_TYPES[enemy.type].regen){enemy.regenTimer-=d;if(enemy.regenTimer<=0){enemy.hp=Math.min(enemy.maxHp,enemy.hp+Math.max(4,enemy.maxHp*.027));enemy.regenTimer=2.7;this.emit('regen',{x:enemy.x,y:enemy.y,color:'#9BE8BA'});}}
+      if(ENEMY_TYPES[enemy.type].jammer){enemy.jamTimer-=d;if(enemy.jamTimer<=0){for(const tower of this.towers)if(distance(enemy,tower)<118)tower.jammedUntil=Math.max(tower.jammedUntil||0,this.time+1.35);enemy.jamTimer=3.9;this.emit('jam',{x:enemy.x,y:enemy.y,color:'#FFAD85'});}}
+      const factor=this.time<(enemy.frozenUntil||0)?0:this.time<enemy.slowUntil?enemy.slowFactor:1;
       enemy.distance+=enemy.speed*factor*d;
       if(enemy.distance>=ROUTE_LENGTHS[enemy.routeIndex]){
-        enemy.alive=false;this.integrity-=ENEMY_TYPES[enemy.type].leak;this.combo=0;this.emit('leak',{x:enemy.x,y:enemy.y,damage:ENEMY_TYPES[enemy.type].leak});
+        enemy.alive=false;const leak=ENEMY_TYPES[enemy.type].leak;const absorbed=Math.min(this.coreShield,leak);this.coreShield-=absorbed;this.integrity-=leak-absorbed;this.combo=0;this.emit('leak',{x:enemy.x,y:enemy.y,damage:leak-absorbed,absorbed});
         if(this.integrity<=0){this.integrity=0;this.phase='lost';this.message='CORE OFFLINE // BREACH DETECTED';this.emit('gameLost');break;}}
       else Object.assign(enemy,locationAlong(ROUTES[enemy.routeIndex],enemy.distance));
     }
     if(this.phase==='lost'){this.enemies=this.enemies.filter(e=>e.alive);return;}
-    for(const tower of this.towers){tower.cooldown-=d;
+    for(const tower of this.towers){if(this.time<(tower.jammedUntil||0))continue;tower.cooldown-=d;
       if(tower.cooldown<=0&&this.towerFire(tower)){
-        const spec=TOWER_TYPES[tower.type];tower.cooldown=spec.cooldown/(1+.10*(tower.level-1));}
+        const spec=TOWER_TYPES[tower.type];tower.cooldown=spec.cooldown/(1+.10*(tower.level-1))/(this.time<this.overclockUntil?1.8:1);}
       else if(tower.cooldown<-.08)tower.cooldown=-.08;
     }
     for(const shot of this.projectiles){
@@ -199,10 +290,10 @@ class FirewallGame {
     this.projectiles=this.projectiles.filter(p=>p.ttl>0);
     this.enemies=this.enemies.filter(e=>e.alive);
     if(this.phase==='wave'&&this.spawned>=this.toSpawn&&this.enemies.length===0){
-      const bonus=65+this.waveIndex*22;this.credits+=bonus;this.score+=bonus*3;this.waveIndex++;
+      const bonus=70+this.waveIndex*19;this.credits+=bonus;this.score+=bonus*3;this.waveIndex++;
       this.emit('waveClear',{bonus,wave:this.waveIndex});
-      if(this.waveIndex>=WAVES.length){this.phase='won';this.message='NETWORK SECURED // ALL WAVES CLEARED';this.emit('gameWon');}
-      else {this.phase='ready';this.message=`WAVE CLEARED +${bonus} // PREPARE ${WAVES[this.waveIndex].name.toUpperCase()}`;}
+      if(this.waveIndex>=WAVES.length&&!this.endless){this.phase='won';this.message='NETWORK SECURED // ALL WAVES CLEARED';this.emit('gameWon');}
+      else {this.phase='ready';this.message=`WAVE CLEARED +${bonus} // PREPARE ${this.currentWave().name.toUpperCase()}`;}
     }
   }
   snapshot(){return {phase:this.phase,wave:this.waveIndex+1,credits:this.credits,integrity:this.integrity,score:this.score,kills:this.kills,towers:this.towers.length,enemies:this.enemies.length};}
@@ -221,8 +312,8 @@ function hex(ctx,x,y,r,color,fill=null,width=1.5,rotation=0){ctx.beginPath();for
 class CanvasRenderer{
   constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});this.hoverPad=null;this.visualTime=0;this.effects=[];this.particles=[];this.size();}
   size(){const dpr=Math.min(window.devicePixelRatio||1,2);this.canvas.width=Math.round(WORLD.width*dpr);this.canvas.height=Math.round(WORLD.height*dpr);this.ctx.setTransform(dpr,0,0,dpr,0,0);}
-  pushEvents(events){for(const e of events){if(['impact','hit','kill','build','upgrade','sell','pulse','beam','slow','leak','bonus','shot'].includes(e.type)){
-      const max=['beam','pulse'].includes(e.type)? .24 : e.type==='kill'?.75:.32;
+  pushEvents(events){for(const e of events){if(['impact','hit','kill','build','upgrade','sell','pulse','beam','slow','leak','bonus','shot','rail','emp','overclock','coreShield','split','regen','jam'].includes(e.type)){
+      const max=['beam','rail','pulse'].includes(e.type)? .32:['emp','overclock','coreShield'].includes(e.type)?.85:e.type==='kill'?.75:.32;
       this.effects.push({...e,life:max,max});if(this.effects.length>95)this.effects.splice(0,this.effects.length-95);
     }} }
   step(dt){this.visualTime+=Math.min(.05,dt);for(const e of this.effects)e.life-=dt;this.effects=this.effects.filter(e=>e.life>0);}
@@ -286,6 +377,9 @@ class CanvasRenderer{
       g.restore();hex(g,tower.x,tower.y,23,'#48665D','#172426',1,Math.PI/6);
       // metallic face panel and center icon
       g.fillStyle='#1E2D2E';g.beginPath();g.arc(tower.x,tower.y,15,0,TAU);g.fill();
+      if(game.time<(tower.jammedUntil||0)){
+        g.save();g.strokeStyle='#FFAD85';g.setLineDash([3,3]);g.lineWidth=2;g.beginPath();g.arc(tower.x,tower.y,34,0,TAU);g.stroke();g.restore();
+      }
       if(tower.type==='firewall'){
         g.save();g.translate(tower.x,tower.y);g.rotate(tower.angle);g.strokeStyle=spec.color;g.lineWidth=3;g.beginPath();g.moveTo(-13,0);g.lineTo(10,0);g.moveTo(2,-6);g.lineTo(12,0);g.lineTo(2,6);g.stroke();g.restore();
       } else if(tower.type==='cache'){
@@ -293,6 +387,12 @@ class CanvasRenderer{
       }else if(tower.type==='pulse'){
         for(let i=0;i<3;i++){const a=i*TAU/3+t*.3;g.beginPath();g.arc(tower.x+Math.cos(a)*9,tower.y+Math.sin(a)*9,3,0,TAU);g.fillStyle=spec.color;g.fill();}
         g.fillStyle='#B7D3BA';g.fillRect(tower.x-2,tower.y-2,4,4);
+      }else if(tower.type==='scatter'){
+        g.save();g.translate(tower.x,tower.y);g.rotate(tower.angle);g.strokeStyle=spec.color;g.lineWidth=2.8;
+        for(let j=-1;j<=1;j++){g.beginPath();g.moveTo(-10,j*4);g.lineTo(12,j*5);g.stroke();}g.restore();
+      }else if(tower.type==='rail'){
+        g.save();g.translate(tower.x,tower.y);g.rotate(tower.angle);g.strokeStyle=spec.color;g.lineWidth=2.4;
+        g.strokeRect(-13,-5,26,10);g.beginPath();g.moveTo(4,0);g.lineTo(16,0);g.stroke();g.restore();
       }else{
         g.strokeStyle=spec.color;g.lineWidth=2.3;g.beginPath();g.moveTo(tower.x-10,tower.y+7);g.lineTo(tower.x-3,tower.y-6);g.lineTo(tower.x+3,tower.y+4);g.lineTo(tower.x+10,tower.y-10);g.stroke();
       }
@@ -300,14 +400,15 @@ class CanvasRenderer{
       if(selected){hex(g,tower.x,tower.y,35,spec.color,null,1.2,Math.PI/6);}
     }}
   drawEnemies(g,game,t){for(const enemy of game.enemies){const spec=ENEMY_TYPES[enemy.type];const color=enemy.hitFlash>0?'#FFFFFF':spec.color;
+      if(game.time<(enemy.frozenUntil||0)){glow(g,enemy.x,enemy.y,enemy.radius+19,'#66D9E8',.2);g.strokeStyle='#66D9E8';g.lineWidth=2;g.beginPath();g.arc(enemy.x,enemy.y,enemy.radius+11,0,TAU);g.stroke();}
       if(game.time<enemy.slowUntil){g.beginPath();g.arc(enemy.x,enemy.y,enemy.radius+8,0,TAU);g.strokeStyle=C.aqua;g.lineWidth=1.8;g.setLineDash([4,3]);g.stroke();g.setLineDash([]);}
       if(enemy.shield>0){g.save();g.shadowColor='#6CADFF';g.shadowBlur=8;g.beginPath();g.arc(enemy.x,enemy.y,enemy.radius+7,0,TAU);g.strokeStyle='#77B8FF';g.lineWidth=2.2;g.stroke();g.restore();}
       g.save();g.shadowColor=color;g.shadowBlur=13;hex(g,enemy.x,enemy.y,enemy.radius,color,'#1A2023',2,enemy.type==='sprint'?t*2:0);g.restore();
-      if(enemy.type==='titan'){hex(g,enemy.x,enemy.y,enemy.radius*.62,color,'#381A24',1.5);txt(g,'!',enemy.x,enemy.y,16,color,'center',900);}
+      if(ENEMY_TYPES[enemy.type].boss){hex(g,enemy.x,enemy.y,enemy.radius*.62,color,'#381A24',1.5);txt(g,'!',enemy.x,enemy.y,16,color,'center',900);}
       else if(enemy.type==='stealth'){g.save();g.globalAlpha=.66+.18*Math.sin(t*9);txt(g,'?',enemy.x,enemy.y,14,color,'center',900);g.restore();}
       else if(enemy.type==='sprint'){g.fillStyle=color;g.beginPath();g.arc(enemy.x,enemy.y,3,0,TAU);g.fill();}
       else{g.strokeStyle=color;g.lineWidth=1.5;g.beginPath();g.moveTo(enemy.x-4,enemy.y);g.lineTo(enemy.x+4,enemy.y);g.moveTo(enemy.x,enemy.y-4);g.lineTo(enemy.x,enemy.y+4);g.stroke();}
-      const bw=enemy.type==='titan'?55:enemy.radius*2.7,bh=3,bx=enemy.x-bw/2,by=enemy.y-enemy.radius-11;
+      const bw=ENEMY_TYPES[enemy.type].boss?65:enemy.radius*2.7,bh=3,bx=enemy.x-bw/2,by=enemy.y-enemy.radius-11;
       g.fillStyle='#3D2229';g.fillRect(bx,by,bw,bh);g.fillStyle=enemy.hp/enemy.maxHp>.45?'#A6F46B':'#F8A16B';g.fillRect(bx,by,bw*Math.max(0,enemy.hp/enemy.maxHp),bh);
     }}
   drawProjectiles(g,game,t){for(const p of game.projectiles){const color=TOWER_TYPES[p.type].color;
@@ -315,14 +416,22 @@ class CanvasRenderer{
     }}
   drawEffects(g,t){for(const e of this.effects){const a=e.life/e.max;
       g.save();g.globalAlpha=a;
-      if(e.type==='beam'){
+      if(e.type==='rail'){
+        g.shadowColor=e.color;g.shadowBlur=18;g.strokeStyle=e.color;g.lineWidth=3.5*a+1.5;
+        g.beginPath();g.moveTo(e.x,e.y);g.lineTo(e.tx,e.ty);g.stroke();
+        g.strokeStyle='#F9FFEC';g.lineWidth=.75;g.stroke();
+      }else if(e.type==='emp'||e.type==='overclock'||e.type==='coreShield'){
+        const radius=e.type==='coreShield'?100:e.type==='emp'?530:350;
+        g.strokeStyle=e.color;g.shadowColor=e.color;g.shadowBlur=24;g.lineWidth=4*a;
+        g.beginPath();g.arc(e.x,e.y,radius*(1-a*.8),0,TAU);g.stroke();
+      }else if(e.type==='beam'){
         g.shadowColor=e.color;g.shadowBlur=12;g.strokeStyle=e.color;g.lineWidth=2+2*a;
         g.beginPath();g.moveTo(e.x,e.y);g.lineTo((e.x+e.tx)/2+4*Math.sin(t*35), (e.y+e.ty)/2);g.lineTo(e.tx,e.ty);g.stroke();
       }else if(e.type==='pulse'){
         g.strokeStyle=e.color;g.shadowColor=e.color;g.shadowBlur=16;g.lineWidth=2.5;g.beginPath();g.arc(e.x,e.y,e.r*(1-a*.7),0,TAU);g.stroke();
-      }else if(e.type==='hit'||e.type==='impact'||e.type==='kill'||e.type==='build'||e.type==='upgrade'||e.type==='slow'||e.type==='bonus'){
+      }else if(e.type==='hit'||e.type==='impact'||e.type==='kill'||e.type==='build'||e.type==='upgrade'||e.type==='slow'||e.type==='bonus'||e.type==='regen'||e.type==='split'||e.type==='jam'){
         const radius=(1-a)*24+(e.type==='kill'?15:5);g.strokeStyle=e.color||C.accent;g.lineWidth=2*a;g.beginPath();g.arc(e.x,e.y,radius,0,TAU);g.stroke();
-        if(e.type==='kill'||e.type==='bonus'){txt(g,e.type==='bonus'?'+20 CR':'NEUTRALIZED',e.x,e.y-15-(1-a)*24,9,C.accent,'center',750);}
+        if(e.type==='kill'||e.type==='bonus'||e.type==='regen'||e.type==='split'||e.type==='jam'){txt(g,e.type==='bonus'?'+20 CR':'NEUTRALIZED',e.x,e.y-15-(1-a)*24,9,C.accent,'center',750);}
       }else if(e.type==='leak'){
         glow(g,e.x,e.y,(1-a)*90+10,C.red,.22*a);
       }
@@ -334,6 +443,15 @@ class CanvasRenderer{
     txt(g,'●',31,32,12,C.accent,'left',700);txt(g,'IDS MATRIX // ACTIVE',49,32,10,'#8DB5A2','left',750);
     rr(g,743,17,197,30,5,'#0B1516','#283B35',1);
     txt(g,'UPLINKS: 02  •  CORE: 01',840,32,9,'#A6C2B7','center',750);
+    if(game.coreShield>0){
+      const cx=913,cy=312;g.save();g.strokeStyle='#B6FF3B';g.shadowColor='#B6FF3B';g.shadowBlur=17;g.lineWidth=2.4;
+      g.beginPath();g.arc(cx,cy,43+2*Math.sin(t*3),0,TAU);g.stroke();g.restore();
+      txt(g,`SHIELD ${game.coreShield}`,cx,cy+57,10,C.accent,'center',800);
+    }
+    if(game.time<game.overclockUntil)txt(g,'OVERCLOCK ACTIVE',481,553,11,'#B6FF3B','center',800);
+    const boss=game.enemies.find(e=>e.alive&&ENEMY_TYPES[e.type].boss);
+    if(boss){rr(g,294,43,371,29,5,'#281820','#7C424B',1);g.fillStyle='#B6FF3B';g.fillRect(304,65,352*Math.max(0,boss.hp/boss.maxHp),3);
+      txt(g,`⚠ ${ENEMY_TYPES[boss.type].name.toUpperCase()} // ${Math.ceil(boss.hp)} HP`,480,57,11,'#FF9D8B','center',800);}
     const active=game.phase==='wave';rr(g,357,570,251,30,7,'#0C1717','#304039',1);
     txt(g,active?'◉   HOSTILE TRAFFIC DETECTED':game.phase==='ready'?'◎   AWAITING WAVE DEPLOYMENT':game.phase==='won'?'◈   NETWORK SECURED':'✕   SYSTEM OFFLINE',482,585,10,active?'#FFD166':C.accent,'center',800);
     // scanning cursor on uplink junctions
@@ -350,7 +468,7 @@ class CanvasRenderer{
 const $=id=>document.getElementById(id);
 const game=new FirewallGame();
 const renderer=new CanvasRenderer($('gameCanvas'));
-const towerIcons={firewall:'⌁',cache:'◷',pulse:'◉',ids:'⌗'};
+const towerIcons={firewall:'⌁',cache:'◷',pulse:'◉',ids:'⌗',scatter:'✺',rail:'⟿'};
 const towerNames=Object.keys(TOWER_TYPES);
 let paused=false,rafId=0,lastFrame=0,acc=0,lastHUD=0,toastTimer=0,lastSound=0,ended=false,keyboardPadIndex=0;
 let audioCtx=null;
@@ -377,20 +495,36 @@ function drawPalette(){const palette=$('towerPalette');palette.replaceChildren()
 function money(x){return Number(x).toLocaleString('en-US');}
 function refreshInspector(){const padId=game.selectedPad,tower=game.getTowerAt(padId),actions=$('inspectorActions'),info=$('selectedInfo');
   if(!tower){info.className='inspector-empty';info.textContent='Select a placed defense to inspect its output, upgrade its capabilities, or reclaim its bandwidth.';actions.hidden=true;return;}
-  const s=TOWER_TYPES[tower.type],upgradePrice=Math.round(s.cost*(.7+.3*(tower.level-1))),dps=(s.damage/towerCooldown(tower)).toFixed(1),refund=Math.round(tower.spent*.65);
+  const s=TOWER_TYPES[tower.type],upgradePrice=game.upgradeCost(tower),dps=(s.damage/towerCooldown(tower)).toFixed(1),refund=Math.round(tower.spent*.65);
   info.className='inspector-content';info.innerHTML=`<strong style="color:${s.color}">${s.name.toUpperCase()} <em>LVL ${tower.level}</em></strong>Node ${String(padId+1).padStart(2,'0')} &nbsp;•&nbsp; ${tower.shots} activations<br/>Effective range: ${Math.round(s.range*(1+.08*(tower.level-1)))}m<br/>Approx. base DPS: ${dps}<br/><span style="font-size:10px;color:#75938d">${s.upgrade}</span>`;
-  actions.hidden=false;$('upgradeBtn').textContent=tower.level>=3?'MAX LEVEL':`▲ UPGRADE ${upgradePrice}`;$('upgradeBtn').disabled=tower.level>=3||game.credits<upgradePrice;
+  actions.hidden=false;$('upgradeBtn').textContent=tower.level>=MAX_LEVEL?'MAX LEVEL':`▲ UPGRADE ${upgradePrice}`;$('upgradeBtn').disabled=tower.level>=MAX_LEVEL||game.credits<upgradePrice;
   $('sellBtn').textContent=`SELL +${refund}`;
 }
 function towerCooldown(tower){return TOWER_TYPES[tower.type].cooldown/(1+.10*(tower.level-1));}
+function refreshAbilities(){const panel=$('abilityPalette');if(!panel)return;
+  for(const type of Object.keys(ABILITIES)){
+    const spec=ABILITIES[type],state=game.abilityState(type);
+    let btn=panel.querySelector(`[data-ability="${type}"]`);
+    if(!btn){btn=document.createElement('button');btn.type='button';btn.className='ability-button';btn.dataset.ability=type;
+      btn.innerHTML=`<strong></strong><span></span><div class="ability-hint"></div>`;
+      btn.addEventListener('click',()=>useAbility(type));panel.append(btn);}
+    btn.querySelector('strong').textContent=spec.name;
+    btn.querySelector('span').textContent=state.cooldown>0?`⏳ ${Math.ceil(state.cooldown)}s COOLDOWN`:`${spec.cost} CR • READY`;
+    btn.querySelector('.ability-hint').textContent=spec.description;
+    btn.disabled=!state.ready;
+  }
+}
+function useAbility(type){const result=game.activateAbility(type);if(!result.ok){toast(result.reason.toUpperCase(),'error');return;}
+  processEvents();refreshHUD(true);toast(`${ABILITIES[type].name} ACTIVATED`);beep(type==='emp'?260:type==='shield'?770:620,.18,'triangle',.045);
+}
 function refreshHUD(force=false){
   $('coreValue').innerHTML=`${game.integrity} <span>/ 20</span>`;
   $('coreValue').style.color=game.integrity<=7?'#FF7886':'#EEF7EF';
-  $('waveValue').innerHTML=`${String(Math.min(game.waveIndex+1,8)).padStart(2,'0')} <span>/ 08</span>`;
+  $('waveValue').innerHTML=`${String(game.waveIndex+1).padStart(2,'0')} <span>/ ${game.endless?'∞':WAVES.length}</span>`;
   $('creditsValue').innerHTML=`${money(game.credits)} <span>CR</span>`;$('killsValue').textContent=String(game.kills).padStart(3,'0');$('scoreValue').textContent=money(game.score);
-  const wave=WAVES[Math.min(game.waveIndex,WAVES.length-1)];$('waveName').textContent=`${String(Math.min(game.waveIndex+1,8)).padStart(2,'0')} // ${wave.name.toUpperCase()}`;$('waveHint').textContent=wave.hint;
+  const wave=game.phase==='won'&&!game.endless?WAVES[WAVES.length-1]:game.currentWave();$('waveName').textContent=`${String(game.waveIndex+1).padStart(2,'0')} // ${wave.name.toUpperCase()}`;$('waveHint').textContent=wave.hint;
   $('threatTitle').textContent=wave.name.toUpperCase();$('threatDesc').textContent=wave.hint;
-  $('threatIcon').textContent=game.waveIndex>=7?'⛨':game.waveIndex>=3?'⛯':'▦';
+  $('threatIcon').textContent=wave.boss?'⛨':game.waveIndex>=10?'⛯':'▦';
   const remain=game.phase==='wave'?Math.max(0,game.toSpawn-game.spawned)+game.enemies.length:game.phase==='ready'?wave.count:0;
   $('threatRemaining').textContent=`${remain} HOSTILES ${game.phase==='wave'?'ACTIVE':'INBOUND'}`;
   $('threatPhase').textContent=game.phase==='wave'?'LIVE ATTACK':game.phase==='ready'?'PREPARE':game.phase.toUpperCase();
@@ -400,13 +534,16 @@ function refreshHUD(force=false){
   $('startWaveBtn').disabled=game.phase!=='ready';
   $('startWaveBtn').textContent=game.phase==='ready'?`▶ DEPLOY WAVE ${String(game.waveIndex+1).padStart(2,'0')}`:game.phase==='wave'?'◉ WAVE LIVE':'SESSION CLOSED';
   $('speedBtn').textContent=game.speed+'× SPEED';$('pauseBtn').textContent=paused?'▶ RESUME':'Ⅱ PAUSE';$('pauseBtn').disabled=game.phase!=='wave';
-  if(force){drawPalette();refreshInspector();}else if(game.selectedPad!==null)refreshInspector();
+  refreshAbilities();if(force){drawPalette();refreshInspector();}else if(game.selectedPad!==null)refreshInspector();
 }
 function processEvents(){const events=game.consumeEvents();if(!events.length)return;renderer.pushEvents(events);
   for(const e of events){switch(e.type){
     case 'build':addLog(`${TOWER_TYPES[e.towerType]?.name||'Defense'} module deployed`);beep(570,.11,'triangle');break;
     case 'upgrade':addLog(`module upgraded to level ${e.level}`);beep(700,.1);break;
     case 'sell':addLog('defense reclaimed / bandwidth returned');break;
+    case 'ability':addLog(`${ABILITIES[e.ability]?.name||'Protocol'} activated`);break;
+    case 'jam':if(game.time%4<1)addLog('attack modules temporarily jammed');break;
+    case 'split':addLog('splitter fragmented into two swarm packets');break;
     case 'waveStart':addLog(`wave ${String(e.wave).padStart(2,'0')} launched`);toast('HOSTILE TRAFFIC INBOUND');beep(230,.24,'sawtooth',.045);break;
     case 'kill':if(game.kills%5===0)addLog(`${game.kills} threats neutralized`);if(performance.now()-lastSound>65){beep(145,.045,'triangle',.017);lastSound=performance.now();}break;
     case 'leak':addLog(`CORE BREACHED — ${e.damage} integrity lost`);toast('⚠ CORE INTEGRITY LOST','error');beep(155,.18,'sawtooth',.055);break;
@@ -421,7 +558,7 @@ function finish(reason){if(ended)return;ended=true;saveBest(game.score);
   $('endTitle').textContent=reason==='won'?'NETWORK SECURED':'CORE BREACHED';
   $('endCopy').textContent=reason==='won'?'Every hostile wave was contained. The core is still online.':'Hostile packets overwhelmed the core. Rebuild a stronger perimeter and try again.';
   $('endScore').textContent=money(game.score);$('endKills').textContent=money(game.kills);
-  if(!$('endDialog').open)$('endDialog').showModal();
+  $('endlessBtn').hidden=reason!=='won';if(!$('endDialog').open)$('endDialog').showModal();
   addLog(reason==='won'?'all waves secured':'session terminated');beep(reason==='won'?880:120,.35,'sawtooth',.043);
 }
 function reset(){if($('endDialog').open)$('endDialog').close();game.reset();paused=false;ended=false;renderer.effects.length=0;renderer.hoverPad=null;acc=0;drawPalette();refreshHUD(true);addLog('network simulator rebooted');toast('DEFENSE SIMULATION REBOOTED');}
@@ -455,11 +592,13 @@ $('helpBtn').addEventListener('click',()=>{$('helpDialog').showModal();});
 $('closeHelp').addEventListener('click',()=>{$('helpDialog').close();});
 $('helpPlay').addEventListener('click',()=>{$('helpDialog').close();});
 $('replayBtn').addEventListener('click',reset);
+$('endlessBtn').addEventListener('click',()=>{if(game.startEndless()){$('endDialog').close();ended=false;refreshHUD(true);toast('ENDLESS PROTOCOL ENABLED');}});
 window.addEventListener('keydown',e=>{
   if($('helpDialog').open||$('endDialog').open||e.target instanceof HTMLInputElement)return;
   if(e.target===$('gameCanvas'))return;
-  if(['Space','Digit1','Digit2','Digit3','Digit4'].includes(e.code))e.preventDefault();
-  const ix=Number(e.key)-1;if(ix>=0&&ix<4&&Number.isInteger(ix)){game.selectType(towerNames[ix]);drawPalette();toast(`${TOWER_TYPES[towerNames[ix]].name.toUpperCase()} SELECTED`);}
+  if(['Space','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6'].includes(e.code))e.preventDefault();
+  const ix=Number(e.key)-1;if(ix>=0&&ix<towerNames.length&&Number.isInteger(ix)){game.selectType(towerNames[ix]);drawPalette();toast(`${TOWER_TYPES[towerNames[ix]].name.toUpperCase()} SELECTED`);}
+  if(e.code==='KeyE')useAbility('emp');if(e.code==='KeyO')useAbility('overclock');if(e.code==='KeyQ')useAbility('shield');
   if(e.code==='Space'){if(game.phase==='ready'){game.startWave();processEvents();refreshHUD(true);}}
   if(e.key.toLowerCase()==='p'&&game.phase==='wave'){paused=!paused;refreshHUD();}
   if(e.code==='Escape'){game.selectedPad=null;refreshInspector();}
@@ -479,18 +618,19 @@ if(new URLSearchParams(location.search).has('test')||window.__FIREWALL_TEST_MODE
 </script>
 </head>
 <body>
+  <header id="arcade-nav" data-slug="firewall-defense"></header>
   <div class="app-shell">
     <header class="topbar">
       <div class="brand-lockup">
         <div class="logo-mark" aria-hidden="true"><span>⌁</span></div>
-        <div><div class="eyebrow">NARESH//ARCADE <span class="slash">/</span> GAME 04</div><h1>FIREWALL <em>DEFENSE</em><span class="blink">_</span></h1></div>
+        <div><div class="eyebrow">NETWORK CORE DEFENSE</div><h1>FIREWALL <em>DEFENSE</em><span class="blink">_</span></h1></div>
       </div>
       <div class="top-actions"><span class="system-signal"><i></i> NETWORK SIMULATION ONLINE</span><button class="icon-button" id="soundBtn" type="button" aria-label="Toggle sound">◖)) SOUND ON</button><button class="icon-button" id="helpBtn" type="button">? HOW TO PLAY</button></div>
     </header>
-    <div class="intro"><p>Fortify the network. Defend the core. <span>Strategic traffic filtering against escalating hostile waves.</span></p><div class="intro-code">naresh@github:~$ <b>deploy --firewall-defense</b></div></div>
+    <div class="intro"><p>Fortify the network. Defend the core. <span>Six modular weapons. Three command protocols. Thirty escalating assaults.</span></p></div>
     <section class="stat-row" aria-label="Game statistics">
       <div class="stat"><span class="stat-icon lime">◈</span><div><small>CORE INTEGRITY</small><strong id="coreValue">20 <span>/ 20</span></strong></div></div>
-      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>WAVE / 08</small><strong id="waveValue">01 <span>/ 08</span></strong></div></div>
+      <div class="stat"><span class="stat-icon aqua">◎</span><div><small>CAMPAIGN WAVE</small><strong id="waveValue">01 <span>/ 30</span></strong></div></div>
       <div class="stat"><span class="stat-icon amber">⬡</span><div><small>BANDWIDTH</small><strong id="creditsValue">290 <span>CR</span></strong></div></div>
       <div class="stat"><span class="stat-icon violet">⌁</span><div><small>THREATS NEUTRALIZED</small><strong id="killsValue">000</strong></div></div>
       <div class="stat"><span class="stat-icon lime">↗</span><div><small>OPERATION SCORE</small><strong id="scoreValue">0</strong></div></div>
@@ -500,12 +640,16 @@ if(new URLSearchParams(location.search).has('test')||window.__FIREWALL_TEST_MODE
         <div class="panel-heading"><span class="small-bars">▮▮</span><div><small>BUILD & DEPLOY</small><h2 id="arsenalTitle">DEFENSE ARSENAL</h2></div></div>
         <p class="section-note">Select a module, then tap an available node on the network map.</p>
         <div id="towerPalette" class="tower-palette" aria-label="Available defense modules"></div>
-        <div class="rail-footnote"><span class="soft-dot"></span><span><b>HOTKEYS</b> 1–4 select modules<br/>Click glowing nodes to place</span></div>
+        <div class="rail-footnote"><span class="soft-dot"></span><span><b>HOTKEYS</b> 1–6 select modules<br/>Click glowing nodes to place</span></div>
       </section>
       <section class="arena-rail" aria-label="Firewall Defense live game board">
         <div class="arena-top"><div class="arena-title"><span class="green-dot"></span> LIVE NETWORK TOPOLOGY <span class="secondary-label">// DUAL INGRESS</span></div><div class="arena-tag">SECURE CORE <span id="onlineStatus">ONLINE</span></div></div>
         <div class="arena-window" id="arenaWindow"><canvas id="gameCanvas" width="960" height="624" aria-label="Network map with two ingress paths, placement nodes, defenses and moving hostile packets" tabindex="0"></canvas><div class="arena-toast" id="toast" role="status" aria-live="polite"></div></div>
         <div class="arena-bottom"><div class="path-legend"><span><i class="legend-swatch laneA"></i> UPLINK A</span><span><i class="legend-swatch laneB"></i> UPLINK B</span><span><i class="legend-swatch node"></i> BUILD NODE</span></div><span class="board-help">TAP NODE TO DEPLOY • SELECT DEFENSE TO UPGRADE</span></div>
+        <section class="ability-dock" aria-label="Tactical superpowers">
+          <div class="ability-caption">/// COMMAND PROTOCOLS <span>Spend credits strategically; cooldowns run only during waves</span></div>
+          <div id="abilityPalette" class="ability-palette"></div>
+        </section>
         <div class="control-dock">
           <div class="wave-block"><small>NEXT THREAT PROFILE</small><strong id="waveName">01 // PORT SCAN</strong><span id="waveHint">Probes on both network paths</span></div>
           <div class="wave-buttons"><button type="button" id="speedBtn" class="btn-quiet" aria-label="Toggle simulation speed">1× SPEED</button><button type="button" id="pauseBtn" class="btn-quiet" aria-label="Pause game">Ⅱ PAUSE</button><button type="button" id="startWaveBtn" class="btn-primary">▶ DEPLOY WAVE 01</button></div>
@@ -521,7 +665,7 @@ if(new URLSearchParams(location.search).has('test')||window.__FIREWALL_TEST_MODE
     </main>
     <footer class="footer"><span>◈ TITANIUM HACKER ARCADE <i>//</i> A NETWORK-DEFENSE EXPERIMENT</span><span>NO ACCOUNTS • NO SERVER • RUNS IN YOUR BROWSER</span></footer>
   </div>
-  <dialog id="helpDialog" class="overlay"><div class="modal"><div class="modal-top"><span>◈ OPERATOR BRIEFING</span><button id="closeHelp" type="button" class="close-button" aria-label="Close instructions">×</button></div><h2>DEFEND THE CORE.</h2><p>Hostile packets arrive along <b>two separate network paths</b>. Place defense modules on glowing build nodes to intercept traffic before it reaches the core.</p><ol><li>Choose <b>Firewall</b>, <b>Rate Limiter</b>, <b>Pulse Node</b>, or <b>IDS Scanner</b>.</li><li>Click an available node to deploy. Modules automatically target incoming traffic.</li><li>Launch a wave. Earn bandwidth credits from destroyed packets; upgrade and reposition defenses between waves.</li><li>Survive eight escalating waves, including stealth and shielded traffic and a final Titan. On a phone, swipe the map horizontally to reach distant nodes.</li></ol><div class="control-help"><span><kbd>1–4</kbd> Select</span><span><kbd>SPACE</kbd> Start wave</span><span><kbd>P</kbd> Pause</span><span><kbd>ARROWS + ENTER</kbd> Place</span><span><kbd>ESC</kbd> Close</span></div><button id="helpPlay" type="button" class="btn-primary">READY TO DEFEND ↗</button></div></dialog>
-  <dialog id="endDialog" class="overlay"><div class="modal end-modal"><div id="endSymbol" class="end-symbol">◈</div><span class="modal-kicker">SESSION COMPLETE</span><h2 id="endTitle">CORE SECURED</h2><p id="endCopy">The network survived the incoming attack.</p><div class="end-stats"><div><small>FINAL SCORE</small><strong id="endScore">0</strong></div><div><small>NEUTRALIZED</small><strong id="endKills">0</strong></div></div><button id="replayBtn" class="btn-primary" type="button">↻ REBOOT SIMULATION</button></div></dialog>
+  <dialog id="helpDialog" class="overlay"><div class="modal"><div class="modal-top"><span>◈ OPERATOR BRIEFING</span><button id="closeHelp" type="button" class="close-button" aria-label="Close instructions">×</button></div><h2>DEFEND THE CORE.</h2><p>Hostile packets arrive along <b>two separate network paths</b>. Place defense modules on glowing build nodes to intercept traffic before it reaches the core.</p><ol><li>Choose <b>Firewall</b>, <b>Rate Limiter</b>, <b>Pulse Node</b>, or <b>IDS Scanner</b>.</li><li>Click an available node to deploy. Modules automatically target incoming traffic.</li><li>Launch a wave. Earn bandwidth credits from destroyed packets; upgrade and reposition defenses between waves.</li><li>Survive 30 authored waves across six threat acts, featuring splitter packets, jammers, regenerators, and six major boss assaults. Build Scatter Cannons for triple-shot volleys or Rail Lances for piercing blasts. Three command protocols—EMP, Overclock, and Core Shield—consume credits and have cooldowns. On a phone, swipe the map horizontally to reach distant nodes.</li></ol><div class="control-help"><span><kbd>1–6</kbd> Weapons</span><span><kbd>E/O/Q</kbd> Powers</span><span><kbd>SPACE</kbd> Start wave</span><span><kbd>P</kbd> Pause</span><span><kbd>ARROWS + ENTER</kbd> Place</span><span><kbd>ESC</kbd> Close</span></div><button id="helpPlay" type="button" class="btn-primary">READY TO DEFEND ↗</button></div></dialog>
+  <dialog id="endDialog" class="overlay"><div class="modal end-modal"><div id="endSymbol" class="end-symbol">◈</div><span class="modal-kicker">SESSION COMPLETE</span><h2 id="endTitle">CORE SECURED</h2><p id="endCopy">The network survived the incoming attack.</p><div class="end-stats"><div><small>FINAL SCORE</small><strong id="endScore">0</strong></div><div><small>NEUTRALIZED</small><strong id="endKills">0</strong></div></div><button id="replayBtn" class="btn-primary" type="button">↻ REBOOT SIMULATION</button><button id="endlessBtn" class="btn-outline" type="button" hidden>∞ CONTINUE ENDLESS MODE</button></div></dialog>
 </body>
 </html>
