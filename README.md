@@ -170,34 +170,11 @@
   </picture>
 </p>
 <!-- BLOG-POST-LIST:START -->
-<p align="center">
-  <a href="https://medium.com/@phoenixarjun007/i-build-with-ai-im-tired-of-how-it-s-sold-online-898c32240c36">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/row-01.svg">
-      <source media="(prefers-color-scheme: light)" srcset="./assets/writing/row-01-light.svg">
-      <img src="./assets/writing/row-01.svg" alt="I Build With AI. I’m Tired of How It’s Sold Online." width="100%" />
-    </picture>
-  </a>
-</p>
-<p align="center">
-  <a href="https://medium.com/@phoenixarjun007/when-your-backend-starts-building-a-workflow-engine-d0c7838af114">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/row-02.svg">
-      <source media="(prefers-color-scheme: light)" srcset="./assets/writing/row-02-light.svg">
-      <img src="./assets/writing/row-02.svg" alt="When Your Backend Starts Building a Workflow Engine" width="100%" />
-    </picture>
-  </a>
-</p>
-<p align="center">
-  <a href="https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="./assets/writing/row-03.svg">
-      <source media="(prefers-color-scheme: light)" srcset="./assets/writing/row-03-light.svg">
-      <img src="./assets/writing/row-03.svg" alt="Think Beyond LLMs: Choosing the Right Model for the Right Job" width="100%" />
-    </picture>
-  </a>
-</p>
-<!-- BLOG-POST-LIST:END -->
+- **[I Build With AI. I’m Tired of How It’s Sold Online.](https://medium.com/@phoenixarjun007/i-build-with-ai-im-tired-of-how-it-s-sold-online-898c32240c36?source=rss-bf9add216b39------2)**
+- **[When Your Backend Starts Building a Workflow Engine](https://medium.com/@phoenixarjun007/when-your-backend-starts-building-a-workflow-engine-d0c7838af114?source=rss-bf9add216b39------2)**
+- **[Think Beyond LLMs: Choosing the Right Model for the Right Job](https://medium.com/@phoenixarjun007/think-beyond-llms-choosing-the-right-model-for-the-right-job-6a24e3ef0bf3?source=rss-bf9add216b39------2)**
+- **[Git at Agent Scale: What Anthropic’s Scion Really Teaches Us](https://medium.com/@phoenixarjun007/git-at-agent-scale-what-anthropics-scion-really-teaches-us-fa7bcfa09ade?source=rss-bf9add216b39------2)**
+- **[From Prompts to Engineering Playbooks: Why I Built Agent Toolkit](https://medium.com/@phoenixarjun007/from-prompts-to-engineering-playbooks-why-i-built-agent-toolkit-efb3f6a7298e?source=rss-bf9add216b39------2)**<!-- BLOG-POST-LIST:END -->
 
 <!-- ==================== SECTION 07: CONTRIBUTION ATLAS ==================== -->
 <p align="center">
